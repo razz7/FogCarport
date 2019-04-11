@@ -1,3 +1,10 @@
+<%-- 
+    Document   : index
+    Created on : Apr 11, 2019, 11:31:14 AM
+    Author     : Rasmus2
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
