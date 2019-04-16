@@ -5,6 +5,7 @@
  */
 package FunctionLayer;
 
+import DBAccess.MaterialMapper;
 import java.util.ArrayList;
 
 /**
@@ -12,8 +13,10 @@ import java.util.ArrayList;
  * @author rasmu
  */
 public class CarportAlgorithm {
+    
 
-    private Stykliste carportAlgorithm(float width, float length, float roofTilt, float shedwidth, float shedLength, int styklist_id) {
+    private Stykliste carportAlgorithm(float width, float length, float roofTilt, float shedwidth, float shedLength, int styklist_id) throws MaterialSampleException {
+        ArrayList<Material> materials = MaterialMapper.getAllMaterials();
         ArrayList<Item> arrList = new ArrayList<>();
         Stykliste styklist = new Stykliste(arrList, styklist_id);
 
@@ -49,9 +52,12 @@ public class CarportAlgorithm {
             int stalddørsgreb50x75 = 0; //Til lås på dør i skur
             int tHængsel390mm = 0; //Til skurdør
             int vinkelbeslag35 = 0;//Til montering af løsholter i skur
-
+            
+            
+            
         } else { //Roof tilt
 
         }
+        return styklist;
     }
 }
