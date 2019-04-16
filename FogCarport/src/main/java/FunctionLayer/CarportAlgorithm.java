@@ -11,4 +11,11 @@ package FunctionLayer;
  */
 public class CarportAlgorithm {
     
+    private Stykliste carportAlgorithm(float width, float length, float roofTilt, float shedwidth, float shedLength) {
+        if (roofTilt == 0) {
+            
+        } else {
+            
+        }
+    }
 }
