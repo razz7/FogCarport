@@ -28,9 +28,17 @@ public class Stykliste {
         return styklist_id;
     }
 
+    public void deleteItem(Item item) {
+        styklist.remove(item);
+    }
+
+    public void addItem(Item item) {
+        styklist.add(item);
+    }
+
     @Override
     public String toString() {
         return "Stykliste{" + "styklist=" + styklist + ", styklist_id=" + styklist_id + '}';
     }
-    
+
 }

@@ -10,7 +10,7 @@ package FunctionLayer;
  * @author rasmu
  */
 public class Item {
-    private int qty;
+    private int qty = 0;
     private int item_id;
     private String item_description;
     private String help_description;
@@ -20,8 +20,7 @@ public class Item {
     private String entity;
     private String materialtype;
 
-    public Item(int qty, int item_id, String item_description, String help_description, float length, float width, float height, String entity, String materialtype) {
-        this.qty = qty;
+    public Item(int item_id, String item_description, String help_description, float length, float width, float height, String entity, String materialtype) {
         this.item_id = item_id;
         this.item_description = item_description;
         this.help_description = help_description;
@@ -60,7 +59,7 @@ public class Item {
         return height;
     }
 
-    public String getNumberOfComponents() {
+    public String getEntity() {
         return entity;
     }
 
@@ -68,10 +67,15 @@ public class Item {
         return materialtype;
     }
 
+    public void setQty(int qty) {
+        this.qty = qty;
+    }
+
     @Override
     public String toString() {
         return "Item{" + "qty=" + qty + ", item_id=" + item_id + ", item_description=" + item_description + ", help_description=" + help_description + ", length=" + length + ", width=" + width + ", height=" + height + ", entity=" + entity + ", materialtype=" + materialtype + '}';
     }
+
     
     
 }
