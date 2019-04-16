@@ -16,7 +16,7 @@ public class CarportAlgorithm {
     private Stykliste carportAlgorithm(float width, float length, float roofTilt, float shedwidth, float shedLength, int styklist_id) {
         ArrayList<Item> arrList = new ArrayList<>();
         Stykliste styklist = new Stykliste(arrList, styklist_id);
-        
+
         //Number of different materials for different positions on the construction
         if (roofTilt == 0) { //Flat roof
             int trykimpBrædt1 = 0; //understernbrædder til for & bag ende
@@ -35,7 +35,7 @@ public class CarportAlgorithm {
             int trykimpBrædt7 = 0; //vandbrædt på stern i forende
             int PlastmoEcoliteBlåtonet1 = 0; //tagplader monteres på spær
             int PlastmoEcoliteBlåtonet2 = 0; //tagplader monteres på spær
-            
+
             int plastmoBundskruer200Stk = 0; //Skruer til tagplader
             int hulbånd1x20mm10mtr = 0; //Til vindkryds på spær
             int universal190mmHøjre = 0; //Til montering af spær på rem
@@ -49,16 +49,9 @@ public class CarportAlgorithm {
             int stalddørsgreb50x75 = 0; //Til lås på dør i skur
             int tHængsel390mm = 0; //Til skurdør
             int vinkelbeslag35 = 0;//Til montering af løsholter i skur
-            
-            
-            
-            
+
         } else { //Roof tilt
 
-            
-            
-            
-            
         }
     }
 }
