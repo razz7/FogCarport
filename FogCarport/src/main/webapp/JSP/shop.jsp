@@ -23,11 +23,16 @@
             <h5>Length</h5>
             <input type="text" name="length" value="">
             
+            <span>
             <fieldset id="roof">
+                <h5>Højt tag</h5>
                 <input type="radio" value="high" name="roof">
+                
+                <h5>Lavt tag</h5>
                 <input type="radio" value="low" name="roof">
             </fieldset>
-            
+            </span>
+                
             <input type="submit" value="Make order">
         </form>
         
