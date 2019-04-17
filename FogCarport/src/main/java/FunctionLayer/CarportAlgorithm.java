@@ -13,7 +13,6 @@ import java.util.ArrayList;
  * @author rasmu
  */
 public class CarportAlgorithm {
-    
 
     private Stykliste carportAlgorithm(float width, float length, float roofTilt, float shedwidth, float shedLength, int styklist_id) throws MaterialSampleException {
         ArrayList<Material> materials = MaterialMapper.getAllMaterials();
@@ -38,7 +37,6 @@ public class CarportAlgorithm {
             int trykimpBrædt7 = 0; //vandbrædt på stern i forende
             int PlastmoEcoliteBlåtonet1 = 0; //tagplader monteres på spær
             int PlastmoEcoliteBlåtonet2 = 0; //tagplader monteres på spær
-
             int plastmoBundskruer200Stk = 0; //Skruer til tagplader
             int hulbånd1x20mm10mtr = 0; //Til vindkryds på spær
             int universal190mmHøjre = 0; //Til montering af spær på rem
@@ -52,12 +50,18 @@ public class CarportAlgorithm {
             int stalddørsgreb50x75 = 0; //Til lås på dør i skur
             int tHængsel390mm = 0; //Til skurdør
             int vinkelbeslag35 = 0;//Til montering af løsholter i skur
-            
-            
-            
+
         } else { //Roof tilt
 
         }
         return styklist;
+    }
+
+    public static void main(String[] args) throws MaterialSampleException {
+        ArrayList<Material> materials = MaterialMapper.getAllMaterials();
+        for (Material mat : materials) {
+            System.out.println(mat);
+        }
+
     }
 }
