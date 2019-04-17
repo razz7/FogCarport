@@ -57,7 +57,7 @@ public class CarportAlgorithm {
         return styklist;
     }
 
-    public static void main(String[] args) throws MaterialSampleException {
+    public static void main(String[] args) throws MaterialSampleException { //Main til at teste algoritme
         ArrayList<Material> materials = MaterialMapper.getAllMaterials();
         for (Material mat : materials) {
             System.out.println(mat);
