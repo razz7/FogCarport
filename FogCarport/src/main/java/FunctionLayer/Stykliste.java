@@ -12,15 +12,15 @@ import java.util.ArrayList;
  * @author rasmu
  */
 public class Stykliste {
-    private ArrayList<Item> styklist;
+    private ArrayList<Material> styklist;
     private int styklist_id;
 
-    public Stykliste(ArrayList<Item> styklist, int styklist_id) {
+    public Stykliste(ArrayList<Material> styklist, int styklist_id) {
         this.styklist = styklist;
         this.styklist_id = styklist_id;
     }
 
-    public ArrayList<Item> getStyklist() {
+    public ArrayList<Material> getStyklist() {
         return styklist;
     }
 
@@ -28,11 +28,11 @@ public class Stykliste {
         return styklist_id;
     }
 
-    public void deleteItem(Item item) {
+    public void deleteItem(Material item) {
         styklist.remove(item);
     }
 
-    public void addItem(Item item) {
+    public void addItem(Material item) {
         styklist.add(item);
     }
 
