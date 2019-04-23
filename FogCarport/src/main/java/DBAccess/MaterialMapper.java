@@ -18,11 +18,13 @@ import java.util.ArrayList;
  * @author Rasmus2
  */
 public class MaterialMapper {
-    
-        public static ArrayList<Material> getAllMaterials() throws MaterialSampleException {
+
+    private Connector dbc = new Connector();
+
+    public ArrayList<Material> getAllMaterials() throws MaterialSampleException {
         ArrayList<Material> list = new ArrayList();
         try {
-            Connection con = Connector.connection();
+            Connection con = dbc.connection();
             String SQL = "SELECT * FROM fog.stock";
             PreparedStatement ps = con.prepareStatement(SQL);
             ResultSet rs = ps.executeQuery();

@@ -22,14 +22,11 @@ public class MainPage extends Command {
     String execute(HttpServletRequest request, HttpServletResponse response) throws LoginSampleException, OrderSampleException {
         String email = request.getParameter("email");
         String password = request.getParameter("password");
-        User user = LogicFacade.login(email, password);
-        
+        LogicFacade logic = new LogicFacade();
+        User user = logic.login(email, password);
+
         return "mainpage";
         //return user.getRole() + "page";
     }
-
-    
-
-    
 
 }

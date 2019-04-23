@@ -1,6 +1,9 @@
 package CarportTest;
 
+import DBAccess.Connector;
 import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 
 /**
  *
@@ -8,11 +11,15 @@ import java.sql.Connection;
  */
 public class FogTest {
 
-    private static Connection testConnection;
-    private static String USER = "LegoReader";
-    private static String USERPW = "LegoHouse1998";
-    private static String DBNAME = "useradmin";
-    private static String HOST = "178.62.228.96";
+    private String driver = "com.mysql.cj.jdbc.Driver";
+    private String url = "jdbc:mysql://167.99.209.155/fog";
+    private String user = "fog";
+    private String password = "projectFog:12345";
 
-    
+    public void FogTestConnection() throws SQLException {
+        Connector con = new Connector();
+        Connection conn = DriverManager.getConnection(url, user, password);
+        con.setConnection(conn);
+    }
+
 }

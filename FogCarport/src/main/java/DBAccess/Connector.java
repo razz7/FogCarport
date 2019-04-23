@@ -6,22 +6,26 @@ import java.sql.SQLException;
 
 public class Connector {
 
-    private static final String URL = "jdbc:mysql://167.99.209.155/fog";
-    private static final String USERNAME = "fog";
-    private static final String PASSWORD = "projectFog:12345";
-    
-    private static Connection singleton;
+    private String driver = "com.mysql.cj.jdbc.Driver";
+    private String url = "jdbc:mysql://167.99.209.155/fog";
+    private String user = "fog";
+    private String password = "projectFog:12345";
+    private Connection conn = null;
 
-    public static void setConnection( Connection con ) {
-        singleton = con;
+    public void setConnection(Connection con) {
+        conn = con;
     }
 
-    public static Connection connection() throws ClassNotFoundException, SQLException {
-        if ( singleton == null ) {
-            Class.forName( "com.mysql.cj.jdbc.Driver" );
-            singleton = DriverManager.getConnection( URL, USERNAME, PASSWORD );
+    public Connection connection() throws ClassNotFoundException, SQLException {
+        if (conn == null) {
+            try {
+                Class.forName(driver);
+                conn = DriverManager.getConnection(url, user, password);
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
         }
-        return singleton;
-    }
 
+        return conn;
+    }
 }

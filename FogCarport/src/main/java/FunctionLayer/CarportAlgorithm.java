@@ -15,12 +15,12 @@ import java.util.ArrayList;
 public class CarportAlgorithm {
 
     private Stykliste carportAlgorithm(float width, float length, float roofTilt, float shedwidth, float shedLength, int styklist_id) throws MaterialSampleException {
-        ArrayList<Material> materials = MaterialMapper.getAllMaterials();
+        MaterialMapper materialMap = new MaterialMapper();
+        ArrayList<Material> materials = materialMap.getAllMaterials();
         ArrayList<Material> arrList = new ArrayList<>();
         Stykliste styklist = new Stykliste(arrList, styklist_id);
 
         if (roofTilt == 0) { //Flat roof
-
 
         } else { //Roof tilt
 
@@ -29,7 +29,8 @@ public class CarportAlgorithm {
     }
 
     public static void main(String[] args) throws MaterialSampleException { //Main til at teste algoritme
-        ArrayList<Material> materials = MaterialMapper.getAllMaterials();
+        MaterialMapper materialMap = new MaterialMapper();
+        ArrayList<Material> materials = materialMap.getAllMaterials();
         for (Material mat : materials) {
             System.out.println(mat);
         }
