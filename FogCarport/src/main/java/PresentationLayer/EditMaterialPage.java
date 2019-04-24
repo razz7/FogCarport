@@ -27,7 +27,7 @@ public class EditMaterialPage extends Command{
         float height = Float.parseFloat(request.getParameter("height"));
         String entity = request.getParameter("entity");
         
-        
+        //something that checks if the value haven't been changed
         
         return "EditMaterial";
     }
