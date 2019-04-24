@@ -4,6 +4,8 @@
     Author     : Rasmus2
 --%>
 
+<%@page import="java.util.ArrayList"%>
+<%@page import="FunctionLayer.User"%>
 <jsp:include page='/JSP/siteheader.jsp'></jsp:include>
 
 <jsp:include page='/JSP/sitemenus.jsp'></jsp:include>
@@ -15,8 +17,8 @@
 <form>
     <table class="table">
         <%
-            if (session.getAttribute("chosenInvoice") != null) {
-                String in = (String) session.getAttribute("chosenInvoice");
+            if (session.getAttribute("chosenStykliste") != null) {
+                String in = (String) session.getAttribute("chosenStykliste");
                 User u = (User) session.getAttribute("User");
                 DataMapper data = new DataMapper();
                 if (data.getAllInvoicesForCustomer(u.getUserName(), u.getPassword()) != null) {

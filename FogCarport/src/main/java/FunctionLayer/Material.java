@@ -58,7 +58,7 @@ public class Material {
         return entity;
     }
 
-    public String getMaterialtype() {
+    public String getMaterialType() {
         return materialtype;
     }
 

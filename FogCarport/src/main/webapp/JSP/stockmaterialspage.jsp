@@ -3,6 +3,8 @@
     Created on : Apr 24, 2019, 1:57:59 PM
     Author     : Rasmus2
 --%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="FunctionLayer.Material"%>
 <jsp:include page='/JSP/siteheader.jsp'></jsp:include>
 
 <jsp:include page='/JSP/sitemenus.jsp'></jsp:include>
@@ -14,19 +16,10 @@
 <form>
     <table class="table">
         <%
-            if (session.getAttribute("chosenInvoice") != null) {
-                String in = (String) session.getAttribute("chosenInvoice");
-                User u = (User) session.getAttribute("User");
-                DataMapper data = new DataMapper();
-                if (data.getAllInvoicesForCustomer(u.getUserName(), u.getPassword()) != null) {
-                    ArrayList<Invoice> arIn = data.getAllInvoicesForCustomer(u.getUserName(), u.getPassword());
-                    for (int i = 0; i < arIn.size(); i++) {
-                        if (in.equals(arIn.get(i).getCart().toString())) {
-                            for (int j = 0; j < arIn.get(i).getCart().size(); j++) {
-                                out.println("<tr><td>" + arIn.get(i).getCart().get(j).toString() + "</tr></td>");
-                            }
-                        }
-                    }
+            if (session.getAttribute("stockMaterialList") != null) {
+                ArrayList<Material> list = (ArrayList<Material>) session.getAttribute("stockMaterialList");
+                for (int i = 0; i < list.size(); i++) {
+                    out.println("<tr><td>" + list.get(i).getItem_id() + ", " + list.get(i).getItem_description() + ", " + list.get(i).getWidth() + ", " + list.get(i).getHeight() + ", " + list.get(i).getEntity() + ", " + list.get(i).getMaterialType() + ", " + list.get(i).getPrice() + "</tr></td>");
                 }
             }
         %>
