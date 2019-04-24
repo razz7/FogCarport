@@ -78,6 +78,34 @@ public class Material {
         return price * qty;
     }
 
+    public void setItem_id(int item_id) {
+        this.item_id = item_id;
+    }
+
+    public void setItem_description(String item_description) {
+        this.item_description = item_description;
+    }
+
+    public void setWidth(float width) {
+        this.width = width;
+    }
+
+    public void setHeight(float height) {
+        this.height = height;
+    }
+
+    public void setEntity(String entity) {
+        this.entity = entity;
+    }
+
+    public void setMaterialtype(String materialtype) {
+        this.materialtype = materialtype;
+    }
+
+    public void setPrice(float price) {
+        this.price = price;
+    }
+
     @Override
     public String toString() {
         return "Item{" + "qty=" + qty + ", length=" + length + ", item_id=" + item_id + ", item_description=" + item_description + ", width=" + width + ", height=" + height + ", entity=" + entity + ", materialtype=" + materialtype + ", price=" + price + '}';
