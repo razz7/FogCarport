@@ -172,9 +172,25 @@ public class MaterialMapper {
            }
         }
         
-        public Material getMaterialbyID(int item_id) {
-            throw new UnsupportedClassVersionError("WORK IN PROCESS");
+        
+        public Material getMaterialbyID(int item_id) throws MaterialSampleException {
+        try {
+            Connection con = dbc.connection();
+            String SQL = "SELECT * FROM fog.stock WHERE item_id = ?";
+            PreparedStatement ps = con.prepareStatement(SQL);
+            ps.setInt(1, item_id);
+            ResultSet rs = ps.executeQuery();
+            //while (rs.next()) {
+            //    Material material = new Material(rs.getInt(1), rs.getString(2), rs.getFloat(3), rs.getFloat(4), rs.getString(5), rs.getString(6), rs.getFloat(7));
+                
+            //}
+            System.out.println(rs.getObject(1, Object.class));
+            //System.out.println(material);
             
+            return null;
+        } catch (ClassNotFoundException | SQLException ex) {
+            throw new MaterialSampleException(ex.getMessage());
+        }
         }
 
         public static void main(String[] args) throws MaterialSampleException, ClassNotFoundException {
@@ -185,6 +201,9 @@ public class MaterialMapper {
             //addStockQuantityToNewMaterial(1, 10);
             //updateQuantityToExistingMaterial(39, 100);
             //deleteMaterial(41);
+            MaterialMapper map = new MaterialMapper();
+            
+            map.getMaterialbyID(1);
     }
 
         

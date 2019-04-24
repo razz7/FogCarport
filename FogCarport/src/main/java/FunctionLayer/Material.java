@@ -20,6 +20,10 @@ public class Material {
     private String materialtype;
     private float price;
 
+   public Material(Object object){
+       System.out.println(object);
+   }
+    
     public Material(int item_id, String item_description, float width, float height, String entity, String materialtype, float price) {
         this.item_id = item_id;
         this.item_description = item_description;

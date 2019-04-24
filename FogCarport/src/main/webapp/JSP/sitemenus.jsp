@@ -3,7 +3,6 @@
     <nav id="site">
 
         <a href="/FogCarport/FrontController?command=allmaterials">Materials</a>
-        input type="hidden" name="command" value="order">
 
         <a href="/Cupcake/FrontController?action=admin">Admin page</a>
 
