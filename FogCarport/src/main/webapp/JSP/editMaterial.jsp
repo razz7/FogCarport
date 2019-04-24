@@ -13,11 +13,11 @@
 
 <h1>Edit material!</h1>
 <%
-    if (session.getAttribute("Material") != null) {
-        Material material = (Material) session.getAttribute("material");
+    if (session.getAttribute("stockMaterial") != null) {
+        Material material = (Material) session.getAttribute("stockMaterial");
 
         out.println("<form action=\"FrontController\" method=\"POST\">");
-        out.println("<input type=\"hidden\" name=\"command\" value=\"change\">");
+        out.println("<input type=\"hidden\" name=\"command\" value=\"allmaterials\">");
 
         out.println("<tr><td> Material id: </tr></td>");
         out.println("<input type=\"text\" name=\"id\" value=" + material.getItem_id() + ">");

@@ -20,7 +20,8 @@
             if (session.getAttribute("stockMaterialList") != null) {
                 ArrayList<Material> list = (ArrayList<Material>) session.getAttribute("stockMaterialList");
                 for (int i = 0; i < list.size(); i++) {
-                    out.println("<tr><td>" + list.get(i).getItem_id() + ", " + list.get(i).getItem_description() + ", " + list.get(i).getWidth() + ", " + list.get(i).getHeight() + ", " + list.get(i).getEntity() + ", " + list.get(i).getMaterialType() + ", " + list.get(i).getPrice() + "</tr></td>");
+                    //out.println("<tr><td>" + list.get(i).getItem_id() + ", " + list.get(i).getItem_description() + ", " + list.get(i).getWidth() + ", " + list.get(i).getHeight() + ", " + list.get(i).getEntity() + ", " + list.get(i).getMaterialType() + ", " + list.get(i).getPrice() + "</tr></td>");
+                    out.println("<h5>" + list.get(i).getItem_id() + ", " + list.get(i).getItem_description() + ", " + list.get(i).getWidth() + ", " + list.get(i).getHeight() + ", " + list.get(i).getEntity() + ", " + list.get(i).getMaterialType() + ", " + list.get(i).getPrice() + "</h5>");                    
                     
                     out.println("<form action=\"FrontController\" method=\"post\">");
                     out.println("<input type=\"hidden\" name=\"command\" value=\"editMaterial\">");
