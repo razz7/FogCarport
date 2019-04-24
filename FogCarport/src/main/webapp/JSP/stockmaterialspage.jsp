@@ -1,16 +1,15 @@
 <%-- 
-    Document   : styklist
-    Created on : Apr 24, 2019, 1:26:09 PM
+    Document   : stockmaterialspage
+    Created on : Apr 24, 2019, 1:57:59 PM
     Author     : Rasmus2
 --%>
-
 <jsp:include page='/JSP/siteheader.jsp'></jsp:include>
 
 <jsp:include page='/JSP/sitemenus.jsp'></jsp:include>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
-<h1>Styklist data</h1>
+<h1>All materials in stock</h1>
 
 <form>
     <table class="table">
