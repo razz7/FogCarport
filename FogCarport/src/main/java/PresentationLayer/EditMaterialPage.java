@@ -20,6 +20,8 @@ public class EditMaterialPage extends Command{
     @Override
     String execute(HttpServletRequest request, HttpServletResponse response) throws LoginSampleException, OrderSampleException, MaterialSampleException {
         int id = Integer.parseInt(request.getParameter("id"));
+        
+        
         String description = request.getParameter("description");
         float width = Float.parseFloat(request.getParameter("width"));
         float height = Float.parseFloat(request.getParameter("height"));

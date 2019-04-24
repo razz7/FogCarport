@@ -47,7 +47,8 @@ public class DatabaseFacade {
             map.deleteMaterial(item_id);
     }
         
-    public Material getMaterialbyID(int item_id) {
-            throw new UnsupportedClassVersionError("WORK IN PROCESS");
+    public Material getMaterialbyID(int item_id) throws MaterialSampleException {
+            MaterialMapper map = new MaterialMapper();
+            return map.getMaterialbyID(item_id);
     }
 }

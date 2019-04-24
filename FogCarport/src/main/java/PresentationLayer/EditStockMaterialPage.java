@@ -10,7 +10,6 @@ import FunctionLayer.LoginSampleException;
 import FunctionLayer.Material;
 import FunctionLayer.MaterialSampleException;
 import FunctionLayer.OrderSampleException;
-import java.util.ArrayList;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -28,7 +27,17 @@ public class EditStockMaterialPage extends Command {
         //LogicFacade logic = new LogicFacade();
         //User user = logic.login(email, password);
 
-        String mat = request.getParameter("chosenStockMaterial");
+        int id = Integer.parseInt(request.getParameter("id"));
+        DatabaseFacade dbf = new DatabaseFacade();
+        Material mat = dbf.getMaterialbyID(id);
+        
+        HttpSession session = request.getSession();
+        session.setAttribute("stockMaterial", mat);
+
+        String description = request.getParameter("description");
+        float width = Float.parseFloat(request.getParameter("width"));
+        float height = Float.parseFloat(request.getParameter("height"));
+        String entity = request.getParameter("entity");
 
         return "editMaterial";
 
