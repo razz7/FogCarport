@@ -14,9 +14,11 @@ import java.sql.Statement;
  */
 public class UserMapper {
 
-    public static void createUser(User user) throws LoginSampleException {
+    private Connector dbc = new Connector();
+
+    public void createUser(User user) throws LoginSampleException {
         try {
-            Connection con = Connector.connection();
+            Connection con = dbc.connection();
             String SQL = "INSERT INTO user (email, password, role) VALUES (?, ?, ?)";
             PreparedStatement ps = con.prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS);
             ps.setString(1, user.getEmail());
@@ -32,9 +34,9 @@ public class UserMapper {
         }
     }
 
-    public static User login(String email, String password) throws LoginSampleException {
+    public User login(String email, String password) throws LoginSampleException {
         try {
-            Connection con = Connector.connection();
+            Connection con = dbc.connection();
             String SQL = "SELECT id, role FROM user "
                     + "WHERE email=? AND password=?";
             PreparedStatement ps = con.prepareStatement(SQL);
@@ -55,9 +57,9 @@ public class UserMapper {
         }
     }
 
-    public static void removeUser(User user) throws LoginSampleException {
+    public void removeUser(User user) throws LoginSampleException {
         try {
-            Connection con = Connector.connection();
+            Connection con = dbc.connection();
             String SQL = "DELETE FROM `useradmin`.`user`WHERE email=? AND password=?";
             PreparedStatement ps = con.prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS);
             ps.setString(1, user.getEmail());
@@ -67,5 +69,5 @@ public class UserMapper {
             throw new LoginSampleException(ex.getMessage());
         }
     }
-    
+
 }

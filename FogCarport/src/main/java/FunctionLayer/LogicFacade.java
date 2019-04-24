@@ -7,13 +7,16 @@ import DBAccess.UserMapper;
  * @author Rasmus2
  */
 public class LogicFacade {
-        public static User login(String email, String password) throws LoginSampleException {
-        return UserMapper.login(email, password);
+
+    public User login(String email, String password) throws LoginSampleException {
+        UserMapper userMap = new UserMapper();
+        return userMap.login(email, password);
     }
 
-    public static User createUser(String email, String password) throws LoginSampleException {
+    public User createUser(String email, String password) throws LoginSampleException {
         User user = new User(email, password, "customer");
-        UserMapper.createUser(user);
+        UserMapper userMap = new UserMapper();
+        userMap.createUser(user);
         return user;
     }
 }
