@@ -139,7 +139,7 @@ public class MaterialMapper {
          * @throws MaterialSampleException 
          */
         
-        private void updateQuantityToExistingMaterial(int item_id, int quantity) throws MaterialSampleException {
+        public void updateQuantityToExistingMaterial(int item_id, int quantity) throws MaterialSampleException {
             try {
             String sql = "UPDATE fog.stockStatus SET quantity=quantity+? where item_id=?";
             Connection con = dbc.connection();
