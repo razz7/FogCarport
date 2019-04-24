@@ -27,17 +27,12 @@ public class EditStockMaterialPage extends Command {
         //LogicFacade logic = new LogicFacade();
         //User user = logic.login(email, password);
 
-        int id = Integer.parseInt(request.getParameter("id"));
+        int id = Integer.parseInt(request.getParameter("chosenStockMaterial"));
         DatabaseFacade dbf = new DatabaseFacade();
         Material mat = dbf.getMaterialbyID(id);
-        
+
         HttpSession session = request.getSession();
         session.setAttribute("stockMaterial", mat);
-
-        String description = request.getParameter("description");
-        float width = Float.parseFloat(request.getParameter("width"));
-        float height = Float.parseFloat(request.getParameter("height"));
-        String entity = request.getParameter("entity");
 
         return "editMaterial";
 
