@@ -7,8 +7,10 @@ package PresentationLayer;
 
 import DBAccess.DatabaseFacade;
 import FunctionLayer.LoginSampleException;
+import FunctionLayer.Material;
 import FunctionLayer.MaterialSampleException;
 import FunctionLayer.OrderSampleException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.http.HttpServletRequest;
@@ -40,6 +42,9 @@ public class UpdateMaterialPage extends Command{
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(UpdateMaterialPage.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
+        ArrayList<Material> materials = df.getAllMaterials();
+        session.setAttribute("stockMaterialList", materials);
         
         return "stockmaterialspage";
     }
