@@ -51,7 +51,7 @@ public class MaterialMapper {
          * @param quantity
          * @throws MaterialSampleException 
          */
-        public void addNewMaterial(String item_description, float width, float height, String entity, float price, String materialtype, int quantity) throws MaterialSampleException{
+        public void addNewMaterial(String item_description, float width, float height, String entity, String materialtype, float price, int quantity) throws MaterialSampleException{
             try {
             String sql = "INSERT into fog.stock (item_description, width, height, entity, materialtype)"
                     + " VALUES(?,?,?,?,?)";

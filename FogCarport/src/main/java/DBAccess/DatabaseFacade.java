@@ -26,15 +26,15 @@ public class DatabaseFacade {
         return mapper.getAllMaterials();
     }
        
-    public void addNewMaterial(String item_description, float width, float height, String entity, String materialtype, int quantity) throws MaterialSampleException{
+    public void addNewMaterial(String item_description, float width, float height, String entity, String materialtype, float price, int quantity) throws MaterialSampleException{
         MaterialMapper mapper = new MaterialMapper();
-        mapper.addNewMaterial(item_description, width, height, entity, materialtype, quantity);
+        mapper.addNewMaterial(item_description, width, height, entity, materialtype, price, quantity);
         
     }
     
-    public void updateMaterialData(int item_id, String item_description, float width, float height, String entity, String materialtype, int quantity) throws MaterialSampleException, ClassNotFoundException {
+    public void updateMaterialData(int item_id, String item_description, float width, float height, String entity, String materialtype, float price, int quantity) throws MaterialSampleException, ClassNotFoundException {
             MaterialMapper mapper = new MaterialMapper();
-            mapper.updateMaterialData(item_id, item_description, width, height, entity, materialtype, quantity);
+            mapper.updateMaterialData(item_id, item_description, width, height, entity, materialtype, price, quantity);
     }
            
     public void updateQuantityToExistingMaterial(int item_id, int quantity) throws MaterialSampleException {

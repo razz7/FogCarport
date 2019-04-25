@@ -38,7 +38,7 @@ public class UpdateMaterial extends Command{
         
         DatabaseFacade df = new DatabaseFacade();
         try {
-            df.updateMaterialData(id, description, width, height, entity, type, qty);
+            df.updateMaterialData(id, description, width, height, entity, type, price, qty);
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(UpdateMaterial.class.getName()).log(Level.SEVERE, null, ex);
         }

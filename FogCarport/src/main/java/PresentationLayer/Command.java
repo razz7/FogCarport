@@ -9,9 +9,9 @@ import javax.servlet.http.HttpServletResponse;
 
 abstract class Command {
 
-    private static HashMap<String, Command> commands;
+    private HashMap<String, Command> commands;
 
-    private static void initCommands() {
+    private void initCommands() {
         commands = new HashMap<>();
         commands.put( "main", new MainPage() );
         commands.put( "styklist", new StyklistPage() );
@@ -20,7 +20,7 @@ abstract class Command {
         commands.put( "updateMaterial", new UpdateMaterial() );
     }
 
-    static Command from( HttpServletRequest request ) {
+    Command from( HttpServletRequest request ) {
         String commandName = request.getParameter( "command" );
         if ( commands == null ) {
             initCommands();

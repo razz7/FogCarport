@@ -36,7 +36,13 @@ public class FrontController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
-            Command action = Command.from(request);
+            Command com = new Command() {
+                @Override
+                String execute(HttpServletRequest request, HttpServletResponse response) throws LoginSampleException, OrderSampleException, MaterialSampleException {
+                    throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+                }
+            };
+            Command action = com.from(request);
             String view = action.execute(request, response);
             request.getRequestDispatcher("/JSP/" + view + ".jsp").forward(request, response);
         } catch (LoginSampleException | OrderSampleException | MaterialSampleException ex) {
