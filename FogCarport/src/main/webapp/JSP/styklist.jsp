@@ -4,6 +4,7 @@
     Author     : Rasmus2
 --%>
 
+<%@page import="FunctionLayer.Material"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="FunctionLayer.User"%>
 <jsp:include page='/JSP/siteheader.jsp'></jsp:include>
@@ -18,17 +19,15 @@
     <table class="table">
         <%
             if (session.getAttribute("chosenStykliste") != null) {
-                String in = (String) session.getAttribute("chosenStykliste");
-                User u = (User) session.getAttribute("User");
-                DataMapper data = new DataMapper();
-                if (data.getAllInvoicesForCustomer(u.getUserName(), u.getPassword()) != null) {
-                    ArrayList<Invoice> arIn = data.getAllInvoicesForCustomer(u.getUserName(), u.getPassword());
-                    for (int i = 0; i < arIn.size(); i++) {
-                        if (in.equals(arIn.get(i).getCart().toString())) {
-                            for (int j = 0; j < arIn.get(i).getCart().size(); j++) {
-                                out.println("<tr><td>" + arIn.get(i).getCart().get(j).toString() + "</tr></td>");
-                            }
-                        }
+                ArrayList<Material> list = (ArrayList<Material>) session.getAttribute("chosenStykliste");
+
+                if (list != null) {
+                    for (int i = 0; i < list.size(); i++) {
+                        out.println("<h4> Item id: " + list.get(i).getItem_id() + "</h4>");
+                        out.println("<h4> Item description: " + list.get(i).getItem_description() + "</h4>");
+                        out.println("<h4> Item id: " + list.get(i).getMaterialType() + "</h4>");
+                        out.println("<h4> Item id: " + list.get(i).getWidth() + "</h4>");
+                        out.println("<h4> Item id: " + list.get(i).getHeight() + "</h4>");
                     }
                 }
             }
