@@ -21,7 +21,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author Ludvig
  */
-public class UpdateMaterialPage extends Command{
+public class UpdateMaterial extends Command{
 
     @Override
     String execute(HttpServletRequest request, HttpServletResponse response) throws LoginSampleException, OrderSampleException, MaterialSampleException {
@@ -40,7 +40,7 @@ public class UpdateMaterialPage extends Command{
         try {
             df.updateMaterialData(id, description, width, height, entity, type, qty);
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(UpdateMaterialPage.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(UpdateMaterial.class.getName()).log(Level.SEVERE, null, ex);
         }
         
         ArrayList<Material> materials = df.getAllMaterials();
