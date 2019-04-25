@@ -51,7 +51,7 @@ public class MaterialMapper {
          * @param quantity
          * @throws MaterialSampleException 
          */
-        public void addNewMaterial(String item_description, float width, float height, String entity, String materialtype, int quantity) throws MaterialSampleException{
+        public void addNewMaterial(String item_description, float width, float height, String entity, float price, String materialtype, int quantity) throws MaterialSampleException{
             try {
             String sql = "INSERT into fog.stock (item_description, width, height, entity, materialtype)"
                     + " VALUES(?,?,?,?,?)";
@@ -62,6 +62,7 @@ public class MaterialMapper {
             ps.setFloat(3, height);
             ps.setString(4, entity);
             ps.setString(5, materialtype);
+            ps.setFloat(6, price);
             
             ps.executeUpdate();
             
@@ -110,9 +111,9 @@ public class MaterialMapper {
          * @throws MaterialSampleException
          * @throws ClassNotFoundException
          */
-        public void updateMaterialData(int item_id, String item_description, float width, float height, String entity, String materialtype, int quantity) throws MaterialSampleException, ClassNotFoundException {
+        public void updateMaterialData(int item_id, String item_description, float width, float height, String entity, String materialtype, float price, int quantity) throws MaterialSampleException, ClassNotFoundException {
             try {
-            String sql = "UPDATE fog.stock SET item_description=?, width=?, height=?, entity=?, materialtype=? where item_id=?";
+            String sql = "UPDATE fog.stock SET item_description=?, width=?, height=?, entity=?, materialtype=?, price=? where item_id=?";
             Connection con = dbc.connection();
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setString(1, item_description);
@@ -120,7 +121,8 @@ public class MaterialMapper {
             ps.setFloat(3, height);
             ps.setString(4, entity);
             ps.setString(5, materialtype);
-            ps.setInt(6, item_id);
+            ps.setFloat(6, price);
+            ps.setInt(7, item_id);
             ps.executeUpdate();
             if(quantity != 0 && item_id != 0) {
                 updateQuantityToExistingMaterial(item_id, quantity);
@@ -224,15 +226,13 @@ public class MaterialMapper {
      
 
         public static void main(String[] args) throws MaterialSampleException, ClassNotFoundException {
-            //addNewMaterial("TESTTEST", 100, 50, "TEST", "TEST", 0);
-            //updateMaterialData(38, "TEST", 10.0f, 10.0f, "TEST", "TEST", 9);
-            MaterialMapper map = new MaterialMapper();
+            MaterialMapper map = new MaterialMapper();//updateMaterialData(38, "TEST", 10.0f, 10.0f, "TEST", "TEST", 9);
             //System.out.println(map.getAllMaterials());
             //addStockQuantityToNewMaterial(1, 10);
             //updateQuantityToExistingMaterial(39, 100);
             //deleteMaterial(41);
             //System.out.println(map.getLineitemsByOrder_id(1));
-            
+            //map.updateMaterialData(42, "qwe", 1, 1, "stk", "qwe", 1000, 0);
     }
 
         
