@@ -1,6 +1,7 @@
 package PresentationLayer;
 
 import FunctionLayer.LoginSampleException;
+import FunctionLayer.MaterialSampleException;
 import FunctionLayer.OrderSampleException;
 import java.util.HashMap;
 import javax.servlet.http.HttpServletRequest;
@@ -13,6 +14,9 @@ abstract class Command {
     private static void initCommands() {
         commands = new HashMap<>();
         commands.put( "main", new MainPage() );
+        commands.put( "styklist", new StyklistPage() );
+        commands.put( "allmaterials", new StockMaterialsPage() );
+        commands.put( "editMaterial", new EditStockMaterialPage() );
     }
 
     static Command from( HttpServletRequest request ) {
@@ -24,6 +28,6 @@ abstract class Command {
     }
 
     abstract String execute( HttpServletRequest request, HttpServletResponse response ) 
-            throws LoginSampleException, OrderSampleException;
+            throws LoginSampleException, OrderSampleException, MaterialSampleException;
 
 }

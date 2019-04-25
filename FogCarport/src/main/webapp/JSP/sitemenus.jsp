@@ -2,7 +2,7 @@
 
     <nav id="site">
 
-        <a href="/Cupcake/FrontController">Home</a>
+        <a href="/FogCarport/FrontController?command=allmaterials">Materials</a>
 
         <a href="/Cupcake/FrontController?action=admin">Admin page</a>
 

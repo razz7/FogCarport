@@ -178,7 +178,7 @@ public class MaterialMapper {
         }
                 
         
-        public Stykliste getLineitemsByID(int lineitems_id) {
+        public Stykliste getLineitemsByID(int order_id) {
             
             try {
                 int id = 0;
@@ -195,8 +195,9 @@ public class MaterialMapper {
                 while(rs.next()) {
                     
                     
-                    Material material = new Material(rs.getInt("quantity"), rs.getFloat("length"), sql, sql, length)
-                    Stykliste stykliste = new Stykliste(styklist, item_id)
+                    //Material material = new Material(rs.getInt("quantity"), rs.getFloat("length"), sql, sql, length)
+                    //Stykliste stykliste = new Stykliste(styklist, item_id)
+                   // material
                 }
                 
                 

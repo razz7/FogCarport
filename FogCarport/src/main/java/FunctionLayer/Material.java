@@ -10,6 +10,7 @@ package FunctionLayer;
  * @author rasmu
  */
 public class Material {
+
     private int qty = 0;
     private float length = 0;
     private int item_id;
@@ -58,7 +59,7 @@ public class Material {
         return entity;
     }
 
-    public String getMaterialtype() {
+    public String getMaterialType() {
         return materialtype;
     }
 
@@ -73,8 +74,8 @@ public class Material {
     public void setLength(float length) {
         this.length = length;
     }
-    
-    public float getTotalItemPrice(){
+
+    public float getTotalItemPrice() {
         return price * qty;
     }
 
@@ -110,6 +111,5 @@ public class Material {
     public String toString() {
         return "Item{" + "qty=" + qty + ", length=" + length + ", item_id=" + item_id + ", item_description=" + item_description + ", width=" + width + ", height=" + height + ", entity=" + entity + ", materialtype=" + materialtype + ", price=" + price + '}';
     }
-    
 
 }
