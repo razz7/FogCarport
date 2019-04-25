@@ -19,10 +19,10 @@ public class ListGenerator {
     private int sideLength;
     private int FrontLength;
     private static boolean FlatTag;
+   
     
-
-        
-
+    
+    
 
 
 

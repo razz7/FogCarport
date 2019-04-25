@@ -17,7 +17,7 @@
         Material material = (Material) session.getAttribute("stockMaterial");
 
         out.println("<form action=\"FrontController\" method=\"POST\">");
-        out.println("<input type=\"hidden\" name=\"command\" value=\"allmaterials\">");
+        out.println("<input type=\"hidden\" name=\"command\" value=\"updateMaterial\">");
 
         out.println("<tr><td> Material id: </tr></td>");
         out.println("<input type=\"text\" name=\"id\" value=" + material.getItem_id() + ">");

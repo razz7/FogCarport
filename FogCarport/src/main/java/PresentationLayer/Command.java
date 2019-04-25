@@ -17,6 +17,7 @@ abstract class Command {
         commands.put( "styklist", new StyklistPage() );
         commands.put( "allmaterials", new StockMaterialsPage() );
         commands.put( "editMaterial", new EditStockMaterialPage() );
+        commands.put( "updateMaterial", new UpdateMaterialPage() );
     }
 
     static Command from( HttpServletRequest request ) {
