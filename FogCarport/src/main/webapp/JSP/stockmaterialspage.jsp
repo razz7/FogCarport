@@ -26,9 +26,8 @@
                     out.println("<form action=\"FrontController\" method=\"post\">");
                     out.println("<input type=\"hidden\" name=\"command\" value=\"editMaterial\">");
                     out.println("<input type=\"hidden\" name=\"chosenStockMaterial\" value=\"" + list.get(i).getItem_id() + "\">");
-                    out.println("<input type=\"submit\" value=\"Order Stykliste\" >");
+                    out.println("<input type=\"submit\" value=\"Edit material\" >");
                     out.println("</form>");
-                    //out.println("<form action=\"FrontController\" method=\"post\"> <input type=\"hidden\" name=\"command\" value=\"editMaterial\"> <input type=\"hidden\" name=\"chosenStockMaterial\" value=\"" + list.get(i).getItem_id() + "\"/> </form>");
                 }
             }
         %>
