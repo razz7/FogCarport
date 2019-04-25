@@ -7,6 +7,7 @@ package DBAccess;
 
 import FunctionLayer.Material;
 import FunctionLayer.MaterialSampleException;
+import FunctionLayer.Stykliste;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -173,8 +174,35 @@ public class MaterialMapper {
         }
         
         public Material getMaterialbyID(int item_id) {
-            throw new UnsupportedClassVersionError("WORK IN PROCESS");
             
+        }
+                
+        
+        public Stykliste getLineitemsByID(int lineitems_id) {
+            
+            try {
+                int id = 0;
+                int item_id = 0;
+                float length = 0;
+                String sql = "SELECT quantity, length, item_description, width, height, entity, materialtype, price "
+                        + "FROM stock "
+                        + "INNER JOIN lineitems ON lineitems.item_id = stock.item_id;";
+                Connection con = dbc.connection();
+                PreparedStatement ps = con.prepareStatement(sql);
+                ResultSet rs = ps.executeQuery();
+                MaterialMapper mapper = new MaterialMapper();
+                
+                while(rs.next()) {
+                    
+                    
+                    Material material = new Material(rs.getInt("quantity"), rs.getFloat("length"), sql, sql, length)
+                    Stykliste stykliste = new Stykliste(styklist, item_id)
+                }
+                
+                
+            } catch(SQLException | ClassNotFoundException ex) {
+                
+            }
         }
 
         public static void main(String[] args) throws MaterialSampleException, ClassNotFoundException {
