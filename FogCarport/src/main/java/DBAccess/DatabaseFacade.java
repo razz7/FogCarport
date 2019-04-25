@@ -7,6 +7,7 @@ package DBAccess;
 
 import FunctionLayer.Material;
 import FunctionLayer.MaterialSampleException;
+import FunctionLayer.Stykliste;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -50,5 +51,9 @@ public class DatabaseFacade {
     public Material getMaterialbyID(int item_id) throws MaterialSampleException {
             MaterialMapper map = new MaterialMapper();
             return map.getMaterialbyID(item_id);
+    }
+    public Stykliste getLineitemsByOrderId(int order_id) throws MaterialSampleException {
+        MaterialMapper map = new MaterialMapper();
+        return map.getLineitemsByOrderId(order_id);
     }
 }

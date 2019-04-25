@@ -174,46 +174,65 @@ public class MaterialMapper {
         }
         
         public Material getMaterialbyID(int item_id) {
-            
+            throw new UnsupportedClassVersionError("WORK IN PROGRESS");
         }
+        /**
+         * This methods return all the lineitems and information about the item.
+         * @param order_id
+         * @return
+         * @throws MaterialSampleException 
+         */
                 
         
-        public Stykliste getLineitemsByID(int order_id) {
+        public Stykliste getLineitemsByOrderId(int order_id) throws MaterialSampleException {
             
             try {
-                int id = 0;
-                int item_id = 0;
-                float length = 0;
-                String sql = "SELECT quantity, length, item_description, width, height, entity, materialtype, price "
+                
+                String sql = "SELECT quantity, length, stock.item_id, item_description, width, height, entity, materialtype, price "
                         + "FROM stock "
-                        + "INNER JOIN lineitems ON lineitems.item_id = stock.item_id;";
+                        + "INNER JOIN lineitems ON lineitems.item_id = stock.item_id where order_id = " + order_id +";";
                 Connection con = dbc.connection();
                 PreparedStatement ps = con.prepareStatement(sql);
                 ResultSet rs = ps.executeQuery();
                 MaterialMapper mapper = new MaterialMapper();
-                
+                ArrayList<Material> materials = new ArrayList<>();
                 while(rs.next()) {
+                    Material material = new Material(0, "", 0, 0, "", "", 0);
+                    material.setQty(rs.getInt("quantity"));
+                    material.setLength(rs.getFloat("length"));
+                    material.setItem_id(rs.getInt("item_id"));
+                    material.setItem_description(rs.getString("item_description"));
+                    material.setWidth(rs.getFloat("width"));
+                    material.setHeight(rs.getFloat("height"));
+                    material.setEntity(rs.getString("entity"));
+                    material.setMaterialtype(rs.getString("materialtype"));
+                    material.setPrice(rs.getFloat("price"));
+                    materials.add(material);
                     
                     
-                    //Material material = new Material(rs.getInt("quantity"), rs.getFloat("length"), sql, sql, length)
-                    //Stykliste stykliste = new Stykliste(styklist, item_id)
-                   // material
+                    
                 }
-                
+                Stykliste styklist = new Stykliste(materials, order_id);
+                return styklist;                
                 
             } catch(SQLException | ClassNotFoundException ex) {
+                throw new MaterialSampleException(ex.getMessage());
                 
             }
+            
         }
+     
 
         public static void main(String[] args) throws MaterialSampleException, ClassNotFoundException {
             //addNewMaterial("TESTTEST", 100, 50, "TEST", "TEST", 0);
             //updateMaterialData(38, "TEST", 10.0f, 10.0f, "TEST", "TEST", 9);
-            //MaterialMapper map = new MaterialMapper();
+            MaterialMapper map = new MaterialMapper();
             //System.out.println(map.getAllMaterials());
             //addStockQuantityToNewMaterial(1, 10);
             //updateQuantityToExistingMaterial(39, 100);
             //deleteMaterial(41);
+            //System.out.println(map.getLineitemsByOrder_id(1));
+            
     }
 
         
