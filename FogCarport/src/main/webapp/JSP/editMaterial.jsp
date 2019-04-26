@@ -25,7 +25,7 @@
         out.println("<input type=\"text\" name=\"description\" value=" + material.getItem_description() + ">");
         out.println("<tr><td> Material width: </tr></td>");
         out.println("<input type=\"text\" name=\"width\" value=" + material.getWidth() + ">");
-        out.println("<tr><td> Material width: </tr></td>");
+        out.println("<tr><td> Material height: </tr></td>");
         out.println("<input type=\"text\" name=\"height\" value=" + material.getHeight() + ">");
         out.println("<tr><td> Material entity: </tr></td>");
         out.println("<input type=\"text\" name=\"entity\" value=" + material.getEntity() + ">");

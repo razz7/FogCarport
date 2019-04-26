@@ -28,6 +28,7 @@
                     out.println("<input type=\"hidden\" name=\"chosenStockMaterial\" value=\"" + list.get(i).getItem_id() + "\">");
                     out.println("<input type=\"submit\" value=\"Edit material\" >");
                     out.println("</form>");
+                    out.println("<br><br>");
                 }
             }
         %>
