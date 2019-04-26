@@ -238,8 +238,8 @@ public class MaterialMapper {
 
     public static void main(String[] args) throws MaterialSampleException, ClassNotFoundException {
         MaterialMapper map = new MaterialMapper();
-        //updateMaterialData(38, "TEST", 10.0f, 10.0f, "TEST", "TEST", 9);
-        //System.out.println(map.getAllMaterials());
+        //updateMaterialData(38, "TEST", 10.0f, 10.0f, "TEST", "TEST", 9f, 100);
+        System.out.println(map.getAllMaterials());
         //addStockQuantityToNewMaterial(1, 10);
         //updateQuantityToExistingMaterial(39, 100);
         //deleteMaterial(41);
