@@ -22,7 +22,7 @@ public class ListGenerator {
     private static boolean FlatTag;
    private ArrayList sides = new ArrayList();
     
-    
+    //virker ikke 
     private ArrayList sideCal(ArrayList sides, int length) 
     {
         ArrayList sideLength = new ArrayList();
