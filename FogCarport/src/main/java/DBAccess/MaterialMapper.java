@@ -113,11 +113,11 @@ public class MaterialMapper {
      */
     public void updateMaterialData(int item_id, String item_description, float width, float height, String entity, String materialtype, float price, int quantity) throws MaterialSampleException, ClassNotFoundException {
         try {
-            String sql = "UPDATE fog.stock SET item_description=?, width=?, height=?, entity=?, materialtype=?, price=?, stockquantity=? where item_id=?"
-                    + " VALUES(?,?,?,?,?,?,?,?);";
+            String sql = "UPDATE fog.stock SET item_description=?, width=?, height=?, entity=?, materialtype=?, price=?, stockquantity=? where item_id=?";
+                    
             Connection con = dbc.connection();
-            //PreparedStatement ps = con.prepareStatement(sql);
-            PreparedStatement ps = con.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
+            PreparedStatement ps = con.prepareStatement(sql);
+            //PreparedStatement ps = con.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
             ps.setString(1, item_description);
             ps.setFloat(2, width);
             ps.setFloat(3, height);
