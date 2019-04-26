@@ -118,7 +118,7 @@ public class Material {
 
     @Override
     public String toString() {
-        return "Materiale information: " + "længde: " + length + ", materiale id: " + item_id + ", materiale beskrivelse: " + item_description + ", bredde: " + width + ", højde: " + height + ", entity: " + entity + ", materialetype: " + materialtype + ", pris: " + price;
+        return "Materiale information: " + "materiale id: " + item_id +  ", materiale beskrivelse: " + item_description + ", højde: " + height  + ", bredde: " + width + ", entity: " + entity + ", materialetype: " + materialtype + ", pris: " + price;
     }
 
     
