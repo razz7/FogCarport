@@ -56,7 +56,7 @@ public class MaterialMapper {
             String sql = "INSERT into fog.stock (item_description, width, height, entity, materialtype, price, stockquantity)"
                     + " VALUES(?,?,?,?,?,?,?)";
             Connection con = dbc.connection();
-            PreparedStatement ps = con.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
+            PreparedStatement ps = con.prepareStatement(sql);
             ps.setString(1, item_description);
             ps.setFloat(2, width);
             ps.setFloat(3, height);
@@ -117,7 +117,6 @@ public class MaterialMapper {
                     
             Connection con = dbc.connection();
             PreparedStatement ps = con.prepareStatement(sql);
-            //PreparedStatement ps = con.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
             ps.setString(1, item_description);
             ps.setFloat(2, width);
             ps.setFloat(3, height);
@@ -246,7 +245,9 @@ public class MaterialMapper {
         //deleteMaterial(41);
         //System.out.println(map.getLineitemsByOrder_id(1));
         //map.updateMaterialData(42, "qwe", 1, 1, "stk", "qwe", 1000, 0);
+        
         map.updateMaterialData(42, "hey", 3.6f, 25.7f, "stk", "pakke", 45.6f, 500);
+        //map.addNewMaterial("hey1", 3.6f, 25.7f, "stk", "pakke", 45.6f, 500);
     }
 
 }
