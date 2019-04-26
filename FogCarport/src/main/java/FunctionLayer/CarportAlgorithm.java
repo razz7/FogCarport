@@ -7,6 +7,7 @@ package FunctionLayer;
 
 import DBAccess.MaterialMapper;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  *
@@ -16,15 +17,26 @@ public class CarportAlgorithm {
 
     private Stykliste carportAlgorithm(float width, float length, float roofTilt, float shedwidth, float shedLength, int styklist_id) throws MaterialSampleException {
         MaterialMapper materialMap = new MaterialMapper();
-        ArrayList<Material> materials = materialMap.getAllMaterials();
+        ArrayList<Material> mat = materialMap.getAllMaterials();
+        HashMap<Integer, Material> materials = new HashMap<>();
+        for (Material m : mat) {
+            
+            materials.put(m.getItem_id(), m);
+        }
+
         ArrayList<Material> arrList = new ArrayList<>();
         Stykliste styklist = new Stykliste(arrList, styklist_id);
+        Material material = null;
 
         if (roofTilt == 0) { //Flat roof
-            
-            //skur
-            
 
+            //skur
+            // Tilføj 4 stolper til hvert hjørne af 97x97mm.trykimp.Stolpe
+            material = materials.get(2);
+            material.setStyklistQty(4);
+            arrList.add(material);
+
+            //
         } else { //Roof tilt
 
         }
