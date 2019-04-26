@@ -34,7 +34,7 @@
         out.println("<tr><td> Material price: </tr></td>");
         out.println("<input type=\"text\" name=\"price\" value=" + material.getPrice() + ">");
         out.println("<tr><td> Material quantity: </tr></td>");
-        out.println("<input type=\"text\" name=\"qty\" value=" + material.getQty() + ">");
+        out.println("<input type=\"text\" name=\"qty\" value=" + material.getStockQty() + ">");
 
         out.println("<input type=\"submit\" value=\"Submit changes\">");
         out.println("</form");
