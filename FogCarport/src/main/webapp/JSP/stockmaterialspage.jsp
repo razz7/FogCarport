@@ -14,6 +14,14 @@
 
 <h1>All materials in stock</h1>
 
+<form action="FrontController" method="post">
+    <input type="hidden" name="command" value="editMaterial">
+    <input type="hidden" name="chosenStockMaterial" value="">
+    <input type="submit" value="Create a new stock material">
+</form>
+
+<br>
+
 <form>
     <table class="table">
         <%
@@ -21,14 +29,14 @@
                 ArrayList<Material> list = (ArrayList<Material>) session.getAttribute("stockMaterialList");
                 for (int i = 0; i < list.size(); i++) {
                     //out.println("<tr><td>" + list.get(i).getItem_id() + ", " + list.get(i).getItem_description() + ", " + list.get(i).getWidth() + ", " + list.get(i).getHeight() + ", " + list.get(i).getEntity() + ", " + list.get(i).getMaterialType() + ", " + list.get(i).getPrice() + "</tr></td>");
-                    out.println("<h5>" + list.get(i).toString() + ", StockQty: " + list.get(i).getStockQty() + "</h5>");                    
-                    
+                    out.println("<h5>" + list.get(i).toString() + ", StockQty: " + list.get(i).getStockQty() + "</h5>");
+
                     out.println("<form action=\"FrontController\" method=\"post\">");
-                    out.println("<input type=\"hidden\" name=\"command\" value=\"ditMaterial\">");
+                    out.println("<input type=\"hidden\" name=\"command\" value=\"editMaterial\">");
                     out.println("<input type=\"hidden\" name=\"chosenStockMaterial\" value=\"" + list.get(i).getItem_id() + "\">");
                     out.println("<input type=\"submit\" value=\"Edit material\" >");
                     out.println("</form>");
-                    
+
                     out.println("<form action=\"FrontController\" method=\"post\">");
                     out.println("<input type=\"hidden\" name=\"command\" value=\"deleteMaterial\">");
                     out.println("<input type=\"hidden\" name=\"chosenStockMaterial\" value=\"" + list.get(i).getItem_id() + "\">");

@@ -19,6 +19,7 @@ abstract class Command {
         commands.put( "editMaterial", new EditStockMaterialPage() );
         commands.put( "updateMaterial", new UpdateMaterial() );
         commands.put( "deleteMaterial", new DeleteStockMaterial() );
+        commands.put( "createMaterial", new CreateStockMaterial() );
     }
 
     Command from( HttpServletRequest request ) {
