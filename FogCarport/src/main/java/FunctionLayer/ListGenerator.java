@@ -15,9 +15,10 @@ import java.util.List;
  */
 public class ListGenerator {
 
-    private static boolean skurCheck;
+    private boolean skurCheck;
     private int sideLength;
     private int FrontLength;
+
     private static boolean FlatTag;
    private ArrayList sides = new ArrayList();
     
@@ -55,6 +56,8 @@ public class ListGenerator {
         Ls.sideCal(a, 10);
         System.out.println(Ls.sideCal(a, 10));
     }
+
+
     
     
     

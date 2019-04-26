@@ -9,18 +9,18 @@ import javax.servlet.http.HttpServletResponse;
 
 abstract class Command {
 
-    private static HashMap<String, Command> commands;
+    private HashMap<String, Command> commands;
 
-    private static void initCommands() {
+    private void initCommands() {
         commands = new HashMap<>();
         commands.put( "main", new MainPage() );
         commands.put( "styklist", new StyklistPage() );
         commands.put( "allmaterials", new StockMaterialsPage() );
         commands.put( "editMaterial", new EditStockMaterialPage() );
-        commands.put( "updateMaterial", new UpdateMaterialPage() );
+        commands.put( "updateMaterial", new UpdateMaterial() );
     }
 
-    static Command from( HttpServletRequest request ) {
+    Command from( HttpServletRequest request ) {
         String commandName = request.getParameter( "command" );
         if ( commands == null ) {
             initCommands();
