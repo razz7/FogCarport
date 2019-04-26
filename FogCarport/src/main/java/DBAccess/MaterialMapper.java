@@ -53,8 +53,8 @@ public class MaterialMapper {
      */
     public void addNewMaterial(String item_description, float width, float height, String entity, String materialtype, float price, int quantity) throws MaterialSampleException {
         try {
-            String sql = "INSERT into fog.stock (item_description, width, height, entity, materialtype)"
-                    + " VALUES(?,?,?,?,?)";
+            String sql = "INSERT into fog.stock (item_description, width, height, entity, materialtype, price, stockquantity)"
+                    + " VALUES(?,?,?,?,?,?,?)";
             Connection con = dbc.connection();
             PreparedStatement ps = con.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
             ps.setString(1, item_description);
@@ -63,13 +63,12 @@ public class MaterialMapper {
             ps.setString(4, entity);
             ps.setString(5, materialtype);
             ps.setFloat(6, price);
-
+            ps.setInt(7, quantity);
             ps.executeUpdate();
 
             //ResultSet rs = ps.getGeneratedKeys();
             //int item_id = rs.next() ? rs.getInt(1) : 0;
             //addStockQuantityToNewMaterial(item_id, quantity);
-
         } catch (SQLException | ClassNotFoundException ex) {
             throw new MaterialSampleException(ex.getMessage());
         }
@@ -96,7 +95,6 @@ public class MaterialMapper {
     //        throw new MaterialSampleException(ex.getMessage());
     //    }
     //}
-
     /**
      * This method updates an item with the given item_id. All values given the
      * method as parameter replaces the data in the db, even values that are
@@ -115,20 +113,23 @@ public class MaterialMapper {
      */
     public void updateMaterialData(int item_id, String item_description, float width, float height, String entity, String materialtype, float price, int quantity) throws MaterialSampleException, ClassNotFoundException {
         try {
-            String sql = "UPDATE fog.stock SET item_description=?, width=?, height=?, entity=?, materialtype=?, price=? where item_id=?";
+            String sql = "UPDATE fog.stock SET item_description=?, width=?, height=?, entity=?, materialtype=?, price=?, stockquantity=? where item_id=?"
+                    + " VALUES(?,?,?,?,?,?,?,?);";
             Connection con = dbc.connection();
-            PreparedStatement ps = con.prepareStatement(sql);
+            //PreparedStatement ps = con.prepareStatement(sql);
+            PreparedStatement ps = con.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
             ps.setString(1, item_description);
             ps.setFloat(2, width);
             ps.setFloat(3, height);
             ps.setString(4, entity);
             ps.setString(5, materialtype);
             ps.setFloat(6, price);
-            ps.setInt(7, item_id);
+            ps.setInt(7, quantity);
+            ps.setInt(8, item_id);
             ps.executeUpdate();
-    //        if (quantity != 0 && item_id != 0) {
-    //            updateQuantityToExistingMaterial(item_id, quantity);
-    //        }
+            //        if (quantity != 0 && item_id != 0) {
+            //            updateQuantityToExistingMaterial(item_id, quantity);
+            //        }
 
         } catch (SQLException | ClassCastException ex) {
             throw new MaterialSampleException(ex.getMessage());
@@ -157,14 +158,12 @@ public class MaterialMapper {
     //        throw new MaterialSampleException(ex.getMessage());
     //    }
     //}
-
     /**
      * Delete the material in the databases along with the quantity in stock.
      *
      * @param item_id
      * @throws MaterialSampleException
      */
-
     public void deleteMaterial(int item_id) throws MaterialSampleException {
         try {
             String sql = "DELETE FROM fog.stock WHERE item_id = ?";
@@ -203,7 +202,6 @@ public class MaterialMapper {
      * @return
      * @throws MaterialSampleException
      */
-
     public Stykliste getLineitemsByOrderId(int order_id) throws MaterialSampleException {
 
         try {
@@ -248,6 +246,7 @@ public class MaterialMapper {
         //deleteMaterial(41);
         //System.out.println(map.getLineitemsByOrder_id(1));
         //map.updateMaterialData(42, "qwe", 1, 1, "stk", "qwe", 1000, 0);
+        map.updateMaterialData(42, "hey", 3.6f, 25.7f, "stk", "pakke", 45.6f, 500);
     }
 
 }
