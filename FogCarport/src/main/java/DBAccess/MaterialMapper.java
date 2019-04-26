@@ -31,6 +31,7 @@ public class MaterialMapper {
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 Material material = new Material(rs.getInt(1), rs.getString(2), rs.getFloat(3), rs.getFloat(4), rs.getString(5), rs.getString(6), rs.getFloat(7));
+                material.setStockQty(8);
                 list.add(material);
             }
             return list;
@@ -65,9 +66,9 @@ public class MaterialMapper {
 
             ps.executeUpdate();
 
-            ResultSet rs = ps.getGeneratedKeys();
-            int item_id = rs.next() ? rs.getInt(1) : 0;
-            addStockQuantityToNewMaterial(item_id, quantity);
+            //ResultSet rs = ps.getGeneratedKeys();
+            //int item_id = rs.next() ? rs.getInt(1) : 0;
+            //addStockQuantityToNewMaterial(item_id, quantity);
 
         } catch (SQLException | ClassNotFoundException ex) {
             throw new MaterialSampleException(ex.getMessage());
@@ -82,19 +83,19 @@ public class MaterialMapper {
      * @param quantity
      * @throws MaterialSampleException
      */
-    private void addStockQuantityToNewMaterial(int item_id, int quantity) throws MaterialSampleException {
-        try {
-            String sql = "INSERT into fog.stockStatus(item_id, quantity) VALUES(?,?)";
-            Connection con = dbc.connection();
-            PreparedStatement ps = con.prepareStatement(sql);
-            ps.setInt(1, item_id);
-            ps.setInt(2, quantity);
-            ps.executeUpdate();
-
-        } catch (SQLException | ClassNotFoundException ex) {
-            throw new MaterialSampleException(ex.getMessage());
-        }
-    }
+    //private void addStockQuantityToNewMaterial(int item_id, int quantity) throws MaterialSampleException {
+    //    try {
+    //        String sql = "INSERT into fog.stockStatus(item_id, quantity) VALUES(?,?)";
+    //        Connection con = dbc.connection();
+    //        PreparedStatement ps = con.prepareStatement(sql);
+    //        ps.setInt(1, item_id);
+    //        ps.setInt(2, quantity);
+    //        ps.executeUpdate();
+    //        
+    //    } catch (SQLException | ClassNotFoundException ex) {
+    //        throw new MaterialSampleException(ex.getMessage());
+    //    }
+    //}
 
     /**
      * This method updates an item with the given item_id. All values given the
@@ -125,9 +126,9 @@ public class MaterialMapper {
             ps.setFloat(6, price);
             ps.setInt(7, item_id);
             ps.executeUpdate();
-            if (quantity != 0 && item_id != 0) {
-                updateQuantityToExistingMaterial(item_id, quantity);
-            }
+    //        if (quantity != 0 && item_id != 0) {
+    //            updateQuantityToExistingMaterial(item_id, quantity);
+    //        }
 
         } catch (SQLException | ClassCastException ex) {
             throw new MaterialSampleException(ex.getMessage());
@@ -143,19 +144,19 @@ public class MaterialMapper {
      * @param quantity
      * @throws MaterialSampleException
      */
-    public void updateQuantityToExistingMaterial(int item_id, int quantity) throws MaterialSampleException {
-        try {
-            String sql = "UPDATE fog.stockStatus SET quantity=quantity+? where item_id=?";
-            Connection con = dbc.connection();
-            PreparedStatement ps = con.prepareStatement(sql);
-            ps.setInt(1, quantity);
-            ps.setInt(2, item_id);
-            ps.executeUpdate();
-
-        } catch (SQLException | ClassNotFoundException ex) {
-            throw new MaterialSampleException(ex.getMessage());
-        }
-    }
+    //public void updateQuantityToExistingMaterial(int item_id, int quantity) throws MaterialSampleException {
+    //    try {
+    //        String sql = "UPDATE fog.stockStatus SET quantity=quantity+? where item_id=?";
+    //        Connection con = dbc.connection();
+    //        PreparedStatement ps = con.prepareStatement(sql);
+    //       ps.setInt(1, quantity);
+    //       ps.setInt(2, item_id);
+    //        ps.executeUpdate();
+    //
+    //   } catch (SQLException | ClassNotFoundException ex) {
+    //        throw new MaterialSampleException(ex.getMessage());
+    //    }
+    //}
 
     /**
      * Delete the material in the databases along with the quantity in stock.
@@ -177,8 +178,22 @@ public class MaterialMapper {
         }
     }
 
-    public Material getMaterialbyID(int item_id) {
-        throw new UnsupportedClassVersionError("WORK IN PROGRESS");
+    public Material getMaterialbyID(int item_id) throws MaterialSampleException {
+        try {
+            Connection con = dbc.connection();
+            String SQL = "SELECT * FROM fog.stock WHERE item_id = ?";
+            PreparedStatement ps = con.prepareStatement(SQL);
+            ps.setInt(1, item_id);
+            ResultSet rs = ps.executeQuery();
+            Material material = null;
+            while (rs.next()) {
+                material = new Material(rs.getInt(1), rs.getString(2), rs.getFloat(3), rs.getFloat(4), rs.getString(5), rs.getString(6), rs.getFloat(7));
+            }
+
+            return material;
+        } catch (ClassNotFoundException | SQLException ex) {
+            throw new MaterialSampleException(ex.getMessage());
+        }
     }
 
     /**
@@ -203,7 +218,7 @@ public class MaterialMapper {
             ArrayList<Material> materials = new ArrayList<>();
             while (rs.next()) {
                 Material material = new Material(0, "", 0, 0, "", "", 0);
-                material.setQty(rs.getInt("quantity"));
+                material.setStockQty(rs.getInt("quantity"));
                 material.setLength(rs.getFloat("length"));
                 material.setItem_id(rs.getInt("item_id"));
                 material.setItem_description(rs.getString("item_description"));

@@ -11,7 +11,8 @@ package FunctionLayer;
  */
 public class Material {
 
-    private int qty = 0;
+    private int styklistQty = 0;
+    private int stockQty = 0;
     private float length = 0;
     private int item_id;
     private String item_description;
@@ -31,8 +32,12 @@ public class Material {
         this.price = price;
     }
 
-    public int getQty() {
-        return qty;
+    public int getStockQty() {
+        return stockQty;
+    }
+
+    public int getStryklistQty() {
+        return styklistQty;
     }
 
     public float getLength() {
@@ -67,8 +72,8 @@ public class Material {
         return price;
     }
 
-    public void setQty(int qty) {
-        this.qty = qty;
+    public void setStyklistQty(int qty) {
+        this.styklistQty = qty;
     }
 
     public void setLength(float length) {
@@ -76,7 +81,7 @@ public class Material {
     }
 
     public float getTotalItemPrice() {
-        return price * qty;
+        return price * styklistQty;
     }
 
     public void setItem_id(int item_id) {
@@ -107,9 +112,13 @@ public class Material {
         this.price = price;
     }
 
+    public void setStockQty(int stockQty) {
+        this.stockQty = stockQty;
+    }    
+
     @Override
     public String toString() {
-        return "Item{" + "qty=" + qty + ", length=" + length + ", item_id=" + item_id + ", item_description=" + item_description + ", width=" + width + ", height=" + height + ", entity=" + entity + ", materialtype=" + materialtype + ", price=" + price + '}';
+        return "Item{" + "qty=" + styklistQty + ", length=" + length + ", item_id=" + item_id + ", item_description=" + item_description + ", width=" + width + ", height=" + height + ", entity=" + entity + ", materialtype=" + materialtype + ", price=" + price + '}';
     }
 
 }

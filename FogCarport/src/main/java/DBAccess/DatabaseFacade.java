@@ -37,10 +37,10 @@ public class DatabaseFacade {
             mapper.updateMaterialData(item_id, item_description, width, height, entity, materialtype, price, quantity);
     }
            
-    public void updateQuantityToExistingMaterial(int item_id, int quantity) throws MaterialSampleException {
-        MaterialMapper mapper = new MaterialMapper();
-        mapper.updateQuantityToExistingMaterial(item_id, quantity);
-    }
+    //public void updateQuantityToExistingMaterial(int item_id, int quantity) throws MaterialSampleException {
+    //    MaterialMapper mapper = new MaterialMapper();
+    //    mapper.updateQuantityToExistingMaterial(item_id, quantity);
+    //}
             
 
     public void deleteMaterial(int item_id) throws MaterialSampleException {
