@@ -25,7 +25,7 @@
         out.println("<input type=\"text\" name=\"description\" value=" + material.getItem_description() + ">");
         out.println("<tr><td> Material width: </tr></td>");
         out.println("<input type=\"text\" name=\"width\" value=" + material.getWidth() + ">");
-        out.println("<tr><td> Material width: </tr></td>");
+        out.println("<tr><td> Material height: </tr></td>");
         out.println("<input type=\"text\" name=\"height\" value=" + material.getHeight() + ">");
         out.println("<tr><td> Material entity: </tr></td>");
         out.println("<input type=\"text\" name=\"entity\" value=" + material.getEntity() + ">");
@@ -34,9 +34,31 @@
         out.println("<tr><td> Material price: </tr></td>");
         out.println("<input type=\"text\" name=\"price\" value=" + material.getPrice() + ">");
         out.println("<tr><td> Material quantity: </tr></td>");
-        out.println("<input type=\"text\" name=\"qty\" value=" + material.getQty() + ">");
+        out.println("<input type=\"text\" name=\"qty\" value=" + material.getStockQty() + ">");
 
         out.println("<input type=\"submit\" value=\"Submit changes\">");
+        out.println("</form");
+    } else {
+
+        out.println("<form action=\"FrontController\" method=\"POST\">");
+        out.println("<input type=\"hidden\" name=\"command\" value=\"createMaterial\">");
+
+        out.println("<tr><td> Material description: </tr></td>");
+        out.println("<input type=\"text\" name=\"description\" value=\"\">");
+        out.println("<tr><td> Material width: </tr></td>");
+        out.println("<input type=\"text\" name=\"width\" value=\"\">");
+        out.println("<tr><td> Material width: </tr></td>");
+        out.println("<input type=\"text\" name=\"height\" value=\"\">");
+        out.println("<tr><td> Material entity: </tr></td>");
+        out.println("<input type=\"text\" name=\"entity\" value=\"\">");
+        out.println("<tr><td> Material type: </tr></td>");
+        out.println("<input type=\"text\" name=\"type\" value=\"\">");
+        out.println("<tr><td> Material price: </tr></td>");
+        out.println("<input type=\"text\" name=\"price\" value=\"\">");
+        out.println("<tr><td> Material quantity: </tr></td>");
+        out.println("<input type=\"text\" name=\"qty\" value=\"\">");
+
+        out.println("<input type=\"submit\" value=\"Submit material\">");
         out.println("</form");
     }
 %>

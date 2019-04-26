@@ -21,6 +21,9 @@ public class CarportAlgorithm {
         Stykliste styklist = new Stykliste(arrList, styklist_id);
 
         if (roofTilt == 0) { //Flat roof
+            
+            //skur
+            
 
         } else { //Roof tilt
 
