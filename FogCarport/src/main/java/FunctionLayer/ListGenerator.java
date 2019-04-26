@@ -17,7 +17,7 @@ public class ListGenerator {
 
     private boolean skurCheck;
     private int sideLength;
-    private int FrontLength;
+    private int frontLength;
 
     private static boolean FlatTag;
    private ArrayList sides = new ArrayList();
