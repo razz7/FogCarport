@@ -23,6 +23,5 @@
 
         <!--         CSS link -->
         <link type="text/css" rel="stylesheet" href="css.css">
-
-    </head>
-    <body>
+</head>
+</body>
