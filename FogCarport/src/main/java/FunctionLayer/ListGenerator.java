@@ -16,7 +16,7 @@ public class ListGenerator {
 
     private boolean skurCheck;
     private int sideLength;
-    private int FrontLength;
+    private int frontLength;
 
     //For fladt tag carport mål 6.0 * 7.8 mtr
     //Træ&Tagplader
@@ -27,9 +27,9 @@ public class ListGenerator {
     private int f38x73mmLægtubh = 420;
     private int f45x95mmReglarub1 = 270;
     private int f45x95mmReglarub2 = 240;
-    private int f45x195mmspærtræubh1 = 600;
+    private int f45x195mmspærtræubh1Top = 6 ;
     private int f45x195mmspærtræubh2 = 480;
-    private int f45x195mmspærtræubh = 600;
+    private int f45x195mmspærtræubh = 6;
     private int f97x97mmtrykimpStolpe = 300;
     private int f19x100mmtrykimpBrædt1 = 210;
     private int f19x100mmtrykimpBrædt2 = 540;
@@ -56,31 +56,20 @@ public class ListGenerator {
     private ArrayList sides = new ArrayList();
 
     //virker ikke 
-    private ArrayList sideCal(ArrayList sides, int length) {
-        ArrayList sideLength = new ArrayList();
-
-        for (int i = 0; i < sides.size(); ++i) {
-            if (sides.indexOf(i) < 3.0) {
-                return sideLength;
-            } else {
-                double x = sides.indexOf(i) % length;
-                sideLength.add(x);
-            }
-        }
-
-        System.out.print(sideLength);
-        return sideLength;
+    private int sideCalWithShed(ArrayList<Double> sides, double shedLength) {
+        double sideMats = 0.0;
+        ArrayList<Double> sideLength = new ArrayList();
+        double carPortLength = (sides.get(1) - shedLength);
+        double carPortMatsLength = (carPortLength / f45x195mmspærtræubh1Top);
+        int totalLengthOfSideBoards =(int)Math.ceil(carPortMatsLength);
+        return totalLengthOfSideBoards;
+        
+        
     }
 
     public static void main(String[] args) {
-        ListGenerator Ls = new ListGenerator();
-        ArrayList a = new ArrayList();
-
-        a.add(5.5);
-        a.add(6.6);
-        a.add(643.3);
-        Ls.sideCal(a, 10);
-        System.out.println(Ls.sideCal(a, 10));
+        ListGenerator l = new ListGenerator();
+        
     }
 
 }
