@@ -24,9 +24,15 @@
                     out.println("<h5>" + list.get(i).toString() + ", StockQty: " + list.get(i).getStockQty() + "</h5>");                    
                     
                     out.println("<form action=\"FrontController\" method=\"post\">");
-                    out.println("<input type=\"hidden\" name=\"command\" value=\"editMaterial\">");
+                    out.println("<input type=\"hidden\" name=\"command\" value=\"ditMaterial\">");
                     out.println("<input type=\"hidden\" name=\"chosenStockMaterial\" value=\"" + list.get(i).getItem_id() + "\">");
                     out.println("<input type=\"submit\" value=\"Edit material\" >");
+                    out.println("</form>");
+                    
+                    out.println("<form action=\"FrontController\" method=\"post\">");
+                    out.println("<input type=\"hidden\" name=\"command\" value=\"deleteMaterial\">");
+                    out.println("<input type=\"hidden\" name=\"chosenStockMaterial\" value=\"" + list.get(i).getItem_id() + "\">");
+                    out.println("<input type=\"submit\" value=\"Delete material\" >");
                     out.println("</form>");
                 }
             }
