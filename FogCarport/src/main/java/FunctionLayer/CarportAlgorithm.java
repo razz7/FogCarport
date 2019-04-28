@@ -32,7 +32,7 @@ public class CarportAlgorithm {
             // Tilføj 10 stolper til hvert hjørne af 97x97mm.trykimp.Stolpe
             material = materials.get(6);
             material.setLength(300); //Carporten har en standarthøjde som IKKE ændres i udregning
-            material.setStyklistQty(10);
+            material.setStyklistQty(10 + 1); //+ 1 Hvis døren ikke er placeret imod hjørnestolpen
             arrList.add(material);
 
             //Tilføj 2 remme i siderne der sadles ned i stolperne af 45x195mm.spærtræubh
@@ -41,10 +41,10 @@ public class CarportAlgorithm {
             material.setStyklistQty(2);
             arrList.add(material);
             
-            //Tilføj 1 rem der skæres over til siderne der sadles ned i stolperne for skuret af 45x195mm.spærtræubh
+            //Tilføj 2 remme der sadles ned i stolperne for skuret af 45x195mm.spærtræubh
             material = materials.get(5);
-            material.setLength(shedLength * 2 + 10); //så lange som begge af skurets sider lagt sammen og lidt til tilskæring
-            material.setStyklistQty(1);
+            material.setLength(shedLength + 10); //så lange som skurets sider og lidt til tilskæring
+            material.setStyklistQty(2);
             arrList.add(material);
             
             //Tilføj bræddebolte 2 pr stolpe under rem og 4 for stolperne uder samligen mellem caports og skurret remme af bræddebolt10x120mm
@@ -86,7 +86,11 @@ public class CarportAlgorithm {
             //Tilføj 2 Hulbånd i et kryds på tværs af selve carport sektionen af hulbånd1x20mm.10mtr.
             material = materials.get(10);
             material.setLength(10); //rulle længe
-            material.setStyklistQty((int)Math.ceil((Math.sqrt(Math.pow(length - shedLength - 0.55, 2) + Math.pow(width - 0.30, 2))) / 10) * 2); //Længden af den ukende side på tværs af selve carporten fra første spær til pæl ved Math.sqrt((Math.pow(length - 0.55, 2) + Math.pow(width - 0.30, 2)) over eller understiger aldrig brugen af 10 meter hulånd pr rulle og er derfor bare 2 ruller.
+            if ((Math.sqrt(Math.pow(length - shedLength - 0.55, 2) + Math.pow(width - 0.30, 2))) < 5) { //Der kan ikke bruges mere end 2 ruller
+                material.setStyklistQty(1);
+            } else {
+                material.setStyklistQty(2);
+            }
             arrList.add(material);
             
             //Montering af hulbånd med 2 beslagskruger pr. ende af 4,0x50mm.beslagskruer250stk.
@@ -102,7 +106,7 @@ public class CarportAlgorithm {
             arrList.add(material);
             
             //Montering af understern til carportens front og bag af 25x200mm.trykimp.Brædt
-            material = materials.get(12);
+            material = materials.get(1);
             material.setLength((width + 0.20f) / (int)Math.ceil((width + 0.10) / 6)); //Bredde af understærn dømt ud fra carports bredde + 20 cm til tilskæring, bræderne må ikke overstige 6 meter i længde
             material.setStyklistQty(((int)Math.ceil((width + 0.10) / 6))* 2); //Mængde bedømt ud fra af brædderne ikke må overstige 6 meter, ellers rundes der op til at tilpadse flere bræder
             arrList.add(material);
