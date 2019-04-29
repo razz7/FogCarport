@@ -124,8 +124,7 @@ public class CarportAlgorithm {
             System.out.println(mat);
         }
         
-        System.out.println((int)Math.ceil(1.3));
-        System.out.println((int)Math.ceil((Math.sqrt(Math.pow(7.8 - 0.55, 2) + Math.pow(6 - 0.30, 2))) / 10) * 2);
+        System.out.println("");
         
         CarportAlgorithm car = new CarportAlgorithm();
         Stykliste styk = car.carportAlgorithm(6, 7.8f, 0, 6, 2.10f, 1);
