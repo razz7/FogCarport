@@ -118,6 +118,10 @@ public class Material {
 
     @Override
     public String toString() {
+        return "Material{" + "styklistQty=" + styklistQty + ", stockQty=" + stockQty + ", length=" + length + ", item_id=" + item_id + ", item_description=" + item_description + ", width=" + width + ", height=" + height + ", entity=" + entity + ", materialtype=" + materialtype + ", price=" + price + '}';
+    }
+    
+    public String toString1() {
         return "Materiale information: " + "materiale id: " + item_id +  ", materiale beskrivelse: " + item_description + ", højde: " + height  + ", bredde: " + width + ", entity: " + entity + ", materialetype: " + materialtype + ", pris: " + price;
     }
 
