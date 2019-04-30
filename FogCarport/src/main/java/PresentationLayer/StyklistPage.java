@@ -5,13 +5,16 @@
  */
 package PresentationLayer;
 
+import FunctionLayer.CarportAlgorithm;
 import FunctionLayer.LogicFacade;
 import FunctionLayer.LoginSampleException;
 import FunctionLayer.MaterialSampleException;
 import FunctionLayer.OrderSampleException;
+import FunctionLayer.Stykliste;
 import FunctionLayer.User;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -27,6 +30,10 @@ public class StyklistPage extends Command {
         LogicFacade logic = new LogicFacade();
         User user = logic.login(email, password);
         
+         CarportAlgorithm car = new CarportAlgorithm();
+                Stykliste styk = car.carportAlgorithm(6, 7.8f, 0, 6, 2.10f, 1);
+        HttpSession session = request.getSession();
+        session.setAttribute("list", styk);
         
 
         return "styklist";

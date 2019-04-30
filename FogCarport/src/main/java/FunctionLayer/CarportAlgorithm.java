@@ -15,7 +15,7 @@ import java.util.HashMap;
  */
 public class CarportAlgorithm {
 
-    private Stykliste carportAlgorithm(float width, float length, float roofTilt, float shedwidth, float shedLength, int styklist_id) throws MaterialSampleException {
+    public Stykliste carportAlgorithm(float width, float length, float roofTilt, float shedwidth, float shedLength, int styklist_id) throws MaterialSampleException {
         MaterialMapper materialMap = new MaterialMapper();
         ArrayList<Material> mat = materialMap.getAllMaterials();
         HashMap<Integer, Material> materials = new HashMap<>();
