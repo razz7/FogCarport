@@ -28,6 +28,7 @@
                         out.println("<h4> Item id: " + list.get(i).getMaterialType() + "</h4>");
                         out.println("<h4> Item id: " + list.get(i).getWidth() + "</h4>");
                         out.println("<h4> Item id: " + list.get(i).getHeight() + "</h4>");
+                        System.out.println("hello world");
                     }
                 }
             }
