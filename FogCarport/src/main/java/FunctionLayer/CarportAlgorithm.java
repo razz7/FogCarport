@@ -220,6 +220,27 @@ public class CarportAlgorithm {
             m.setStyklistQty((12 + 4) * 2); //Der skal uanset hvad bruges 2 vinkelbeslag pr. lysholter i skuret.
             arrList.add(m);
 
+            //Montering af lægte til z på bagside af dør af 38x73mm.Lægteubh.
+            material = materials.get(3);
+            m = new Material(material.getItem_id(), material.getItem_description(), material.getWidth(), material.getHeight(), material.getEntity(), material.getMaterialType(), material.getPrice());
+            m.setLength(4200); //Fast længde på alle modeller.
+            m.setStyklistQty(1); //Fast mængde på alle modeller.
+            arrList.add(m);
+
+            //Montering af 2 t-hængseler til skur dør af thængsel390mm.
+            material = materials.get(21);
+            m = new Material(material.getItem_id(), material.getItem_description(), material.getWidth(), material.getHeight(), material.getEntity(), material.getMaterialType(), material.getPrice());
+            m.setLength(0); //Ingen længde.
+            m.setStyklistQty(2); //Fast mængde på alle modeller, da en dør skal bruge mindst 2 t-hængsler.
+            arrList.add(m);
+
+            //Montering af et sæt ståldørsgreb til lås på dør i skur af stalddørsgreb50x75
+            material = materials.get(20);
+            m = new Material(material.getItem_id(), material.getItem_description(), material.getWidth(), material.getHeight(), material.getEntity(), material.getMaterialType(), material.getPrice());
+            m.setLength(0); //Ingen længde.
+            m.setStyklistQty(1); //Fast mængde på alle modeller, da en dør kun skal et sæt ståldørsgreb.
+            arrList.add(m);
+
         } else { //Roof tilt
             System.out.println("Hello World!");
         }
@@ -230,10 +251,10 @@ public class CarportAlgorithm {
         MaterialMapper materialMap = new MaterialMapper();
         ArrayList<Material> materials = materialMap.getAllMaterials();
         for (Material mat : materials) {
-            System.out.println(mat);
+            //System.out.println(mat);
         }
 
-        System.out.println("");
+        //System.out.println("");
 
         CarportAlgorithm car = new CarportAlgorithm();
         Stykliste styk = car.carportAlgorithm(6000, 7800, 0, 5300, 2100, 1);
