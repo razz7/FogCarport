@@ -4,6 +4,8 @@
     Author     : Rasmus2
 --%>
 
+<%@page import="FunctionLayer.CarportAlgorithm"%>
+<%@page import="FunctionLayer.Stykliste"%>
 <%@page import="FunctionLayer.Material"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="FunctionLayer.User"%>
@@ -13,27 +15,36 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
-<h1>Styklist data</h1>
+<h1>Stykliste</h1>
+
+
 
 <form>
+    
     <table class="table">
+        
         <%
-            if (session.getAttribute("chosenStykliste") != null) {
-                ArrayList<Material> list = (ArrayList<Material>) session.getAttribute("chosenStykliste");
-
-                if (list != null) {
-                    for (int i = 0; i < list.size(); i++) {
-                        out.println("<h4> Item id: " + list.get(i).getItem_id() + "</h4>");
-                        out.println("<h4> Item description: " + list.get(i).getItem_description() + "</h4>");
-                        out.println("<h4> Item id: " + list.get(i).getMaterialType() + "</h4>");
-                        out.println("<h4> Item id: " + list.get(i).getWidth() + "</h4>");
-                        out.println("<h4> Item id: " + list.get(i).getHeight() + "</h4>");
-                        System.out.println("hello world");
-                    }
-                }
-            }
+          //  if(session.getAttribute("list") != null) {
+            //    Stykliste list = (Stykliste) session.getAttribute("list");
+            CarportAlgorithm car = new CarportAlgorithm();
+            Stykliste list = car.carportAlgorithm(6, 7.8f, 0, 6, 2.10f, 1);
+            
+                    for (int i = 0; i < list.getStyklist().size(); i++) {
+                        
+                     out.println("<p>" + list.getStyklist().get(i).toString1() + "</p>");
+                     
+                     
+                    
+        }
+                    
+            
+            
         %>
+   
+       
+       
     </table>
+    
 </form>
 
 <jsp:include page='/JSP/sitefooter.jsp'></jsp:include>
