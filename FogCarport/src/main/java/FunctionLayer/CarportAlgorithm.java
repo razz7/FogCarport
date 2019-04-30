@@ -178,18 +178,47 @@ public class CarportAlgorithm {
             m.setStyklistQty(1); //En pakke indholder 200 skruger
             arrList.add(m);
 
-            //Montering af brædder til bedækningaf skur af 19x100mm.trykimp.Brædt
+            //Montering af brædder til yderste bedækningaf skur af 19x100mm.trykimp.Brædt
             material = materials.get(7);
             m = new Material(material.getItem_id(), material.getItem_description(), material.getWidth(), material.getHeight(), material.getEntity(), material.getMaterialType(), material.getPrice());
             m.setLength(2100); //Skurets højde ændres ikke
             m.setStyklistQty((int) (((shedLength / (100 - 19 * 2)) * 2) + ((shedwidth / (100 - 19 * 2)) * 2))); //Udregning af antal brædder på baggund af deres overlap på omtrænt 19mm på hver side, med skurets mål.
             arrList.add(m);
-            
-            
-            
-            
-            
-            
+
+            //Montering af yderste bedækning med 4 skruger pr. planke af 4,5x70mm.Skruer400stk.
+            material = materials.get(18);
+            m = new Material(material.getItem_id(), material.getItem_description(), material.getWidth(), material.getHeight(), material.getEntity(), material.getMaterialType(), material.getPrice());
+            m.setLength(0); //Ingen længde
+            m.setStyklistQty((int) Math.ceil((((shedLength / (100 - 19 * 2)) * 2) + ((shedwidth / (100 - 19 * 2)) * 2)) / 100)); //Mængden af brædder divideret med 100 og rundet op til et helt tal, hvilket angiver hvor mange pakker af 400 vi så skal bruge hvis hvert brædt bruger 4 skruger.
+            arrList.add(m);
+
+            //Montering af inderste bedækning med 4 skruger pr. planke af 4,5x50mm.Skruer300stk.
+            material = materials.get(19);
+            m = new Material(material.getItem_id(), material.getItem_description(), material.getWidth(), material.getHeight(), material.getEntity(), material.getMaterialType(), material.getPrice());
+            m.setLength(0); //Ingen længde
+            m.setStyklistQty((int) Math.ceil((((shedLength / (100 - 19 * 2)) * 2) + ((shedwidth / (100 - 19 * 2)) * 2)) / 100)); //Mængden af brædder divideret med 100 og rundet op til et helt tal, hvilket angiver hvor mange pakker af 300 vi så skal bruge hvis hvert brædt bruger 4 skruger.
+            arrList.add(m);
+
+            //Montering af 12 løsholter til skur gavler af 45x95mm.Reglarub.
+            material = materials.get(4);
+            m = new Material(material.getItem_id(), material.getItem_description(), material.getWidth(), material.getHeight(), material.getEntity(), material.getMaterialType(), material.getPrice());
+            m.setLength(shedwidth / 2); //Længden af løsholtere med spllittelse i bjælkerne og lidt ekstra til tilskærelse og tilpadsning ud fra skurets bredde.
+            m.setStyklistQty(12); //Der skal uanset hvad bruges 12 løsholtere til gavlen for indersiden af skurets konstruktion.
+            arrList.add(m);
+
+            //Montering af 4 løsholter til skur sider af 45x95mm.Reglarub.
+            material = materials.get(4);
+            m = new Material(material.getItem_id(), material.getItem_description(), material.getWidth(), material.getHeight(), material.getEntity(), material.getMaterialType(), material.getPrice());
+            m.setLength(shedLength); //Længden af løsholtere og lidt ekstra til tilskærelse og tilpadsning ud fra skurets længde.
+            m.setStyklistQty(4); //Der skal uanset hvad bruges 4 løsholtere til indersiden af skurets konstruktion.
+            arrList.add(m);
+
+            //Montering af vinkelbeslag til montering af løsholter i skur med 2 beslag pr. lysholter af vinkelbeslag35
+            material = materials.get(22);
+            m = new Material(material.getItem_id(), material.getItem_description(), material.getWidth(), material.getHeight(), material.getEntity(), material.getMaterialType(), material.getPrice());
+            m.setLength(0); //Ingen længde.
+            m.setStyklistQty((12 + 4) * 2); //Der skal uanset hvad bruges 2 vinkelbeslag pr. lysholter i skuret.
+            arrList.add(m);
 
         } else { //Roof tilt
             System.out.println("Hello World!");
