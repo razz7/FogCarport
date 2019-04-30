@@ -24,10 +24,10 @@
     <table class="table">
         
         <%
-          //  if(session.getAttribute("list") != null) {
-            //    Stykliste list = (Stykliste) session.getAttribute("list");
-            CarportAlgorithm car = new CarportAlgorithm();
-            Stykliste list = car.carportAlgorithm(6, 7.8f, 0, 6, 2.10f, 1);
+           if(session.getAttribute("list") != null) {
+                Stykliste list = (Stykliste) session.getAttribute("list");
+            
+            
             
                     for (int i = 0; i < list.getStyklist().size(); i++) {
                         
@@ -36,6 +36,7 @@
                      
                     
         }
+           }
                     
             
             
