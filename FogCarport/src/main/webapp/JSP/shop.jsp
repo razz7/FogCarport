@@ -12,7 +12,7 @@
 
 <h1>Velkommen til Fogs online bestillingsservice!</h1>
 
-<form action="FrontController" method="POST">
+<form  class="container-fluid"   action="FrontController" method="POST">
     <input type="hidden" name="command" value="order">
     <h5>Height</h5>
     <input type="text" name="height" value="">
@@ -31,7 +31,7 @@
         </fieldset>
     </span>
 
-    <input type="submit" value="Make order">
+    <input class="btn btn-primary" type="submit" value="Make order">
 </form>
 
 <jsp:include page='/JSP/sitefooter.jsp'></jsp:include>
