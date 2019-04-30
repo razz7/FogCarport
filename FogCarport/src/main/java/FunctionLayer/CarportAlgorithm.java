@@ -15,7 +15,7 @@ import java.util.HashMap;
  */
 public class CarportAlgorithm {
 
-    private Stykliste carportAlgorithm(float width, float length, float roofTilt, float shedwidth, float shedLength, int styklist_id) throws MaterialSampleException {
+    private Stykliste carportAlgorithm(float width, float length, float roofTilt, float shedWidth, float shedLength, int styklist_id) throws MaterialSampleException {
         MaterialMapper materialMap = new MaterialMapper();
         ArrayList<Material> mat = materialMap.getAllMaterials();
         HashMap<Integer, Material> materials = new HashMap<>();
@@ -137,39 +137,56 @@ public class CarportAlgorithm {
             m.setLength((width + 200) / (int) Math.ceil((width + 100) / 6000)); //Længde af overstern dømt ud fra carports længde + 20 cm til tilskæring, bræderne må ikke overstige 6 meter i længde
             m.setStyklistQty(((int) Math.ceil((width + 100) / 6000))); //Der skal kun monteres til forenden her, Mængde bedømt ud fra at brædderne ikke må overstige 6 meter, ellers rundes der op til at tilpadse flere bræder
             arrList.add(m);
-            
+
             //Montering af 1090mm bredde Trapez plader af PlastmoEcoliteblåtonet
             material = materials.get(8);
             m = new Material(material.getItem_id(), material.getItem_description(), material.getWidth(), material.getHeight(), material.getEntity(), material.getMaterialType(), material.getPrice());
-            if (length + 50*2 < 6) {
-                m.setLength(length + 50*2); //Længde af carporten + 5 cm til hver ende, hvis carporten er under 6 meter og derfor kun bruger en plade på langs
-                m.setStyklistQty(((int) Math.ceil((width + 50*2) / (1090 - 20*2)))); //Der skal monteres nok plader til at dække hele carportens bredde med 2cm overlap og 5 cm ekstra på hver side
+            if (length + 50 * 2 < 6) {
+                m.setLength(length + 50 * 2); //Længde af carporten + 5 cm til hver ende, hvis carporten er under 6 meter og derfor kun bruger en plade på langs
+                m.setStyklistQty(((int) Math.ceil((width + 50 * 2) / (1090 - 20 * 2)))); //Der skal monteres nok plader til at dække hele carportens bredde med 2cm overlap og 5 cm ekstra på hver side
             } else { //Da pladerne i dette tilfølde er længere ind de max 6m må der istedet være 2 set af plader istedet.
-                m.setLength((length / 2) + 50*2 + 20*2); //Længde af carporten + 5cm til hver side + 2 cm til overlap
-                m.setStyklistQty(((int) Math.ceil((width + 50*2) / (1090 - 20*2)))*2); //Der skal monteres nok plader til at dække hele carportens bredde med 2cm overlap og 5 cm ekstra på hver side
+                m.setLength((length / 2) + 50 * 2 + 20 * 2); //Længde af carporten + 5cm til hver side + 2 cm til overlap
+                m.setStyklistQty(((int) Math.ceil((width + 50 * 2) / (1090 - 20 * 2))) * 2); //Der skal monteres nok plader til at dække hele carportens bredde med 2cm overlap og 5 cm ekstra på hver side
             }
             arrList.add(m);
-            
+
             //Montering af trapezplader med bundskruger af plastmobundskruer200stk.
             material = materials.get(9);
             m = new Material(material.getItem_id(), material.getItem_description(), material.getWidth(), material.getHeight(), material.getEntity(), material.getMaterialType(), material.getPrice());
             m.setLength(0); //Ingen længde
             m.setStyklistQty(3); //En pakke indholder 200 bundskruger, da der bruges flere bundskruger pr. plade pr.trapezrille bruges 3 pakker.
             arrList.add(m);
-            
+
             //Montering af vandbrædt til begge carportens sider af 19x100mm.trykimp.Brædt
             material = materials.get(7);
             m = new Material(material.getItem_id(), material.getItem_description(), material.getWidth(), material.getHeight(), material.getEntity(), material.getMaterialType(), material.getPrice());
             m.setLength((length + 200) / (int) Math.ceil((length + 100) / 6000)); //Længde af understærn dømt ud fra carports længde + 20 cm til tilskæring, bræderne må ikke overstige 6 meter i længde
             m.setStyklistQty(((int) Math.ceil((length + 100) / 6000)) * 2); //Mængde bedømt ud fra at brædderne ikke må overstige 6 meter, ellers rundes der op til at tilpadse flere bræder
             arrList.add(m);
-            
+
             //Montering af vandbrædt til carportens frontende af 19x100mm.trykimp.Brædt
             material = materials.get(7);
             m = new Material(material.getItem_id(), material.getItem_description(), material.getWidth(), material.getHeight(), material.getEntity(), material.getMaterialType(), material.getPrice());
             m.setLength((width + 200) / (int) Math.ceil((width + 100) / 6000)); //Længde af overstern dømt ud fra carports længde + 20 cm til tilskæring, bræderne må ikke overstige 6 meter i længde
             m.setStyklistQty(((int) Math.ceil((width + 100) / 6000))); //Der skal kun monteres til forenden her, Mængde bedømt ud fra at brædderne ikke må overstige 6 meter, ellers rundes der op til at tilpadse flere bræder
             arrList.add(m);
+
+            //Skruger til montering af stern og vandbrædt af 4,5x60mm.skruer200stk.
+            material = materials.get(14);
+            m = new Material(material.getItem_id(), material.getItem_description(), material.getWidth(), material.getHeight(), material.getEntity(), material.getMaterialType(), material.getPrice());
+            m.setLength(0); //Ingen længde
+            m.setStyklistQty(1); //En pakke indholder 200 skruger
+            arrList.add(m);
+
+            //Montering af brædder til bedækningaf skur af 19x100mm.trykimp.Brædt
+            material = materials.get(7);
+            m = new Material(material.getItem_id(), material.getItem_description(), material.getWidth(), material.getHeight(), material.getEntity(), material.getMaterialType(), material.getPrice());
+            m.setLength(2100); //Skurets højde ændres ikke
+            m.setStyklistQty((int) (((shedLength / (100 - 19 * 2)) * 2) + ((shedWidth / (100 - 19 * 2)) * 2))); //Udregning af antal brædder på baggund af deres overlap på omtrænt 19mm på hver side, med skurets mål.
+            arrList.add(m);
+            
+            
+            
             
             
             
@@ -190,7 +207,7 @@ public class CarportAlgorithm {
         System.out.println("");
 
         CarportAlgorithm car = new CarportAlgorithm();
-        Stykliste styk = car.carportAlgorithm(6000, 7800, 0, 6000, 2100, 1);
+        Stykliste styk = car.carportAlgorithm(6000, 7800, 0, 5300, 2100, 1);
         for (int i = 0; i < styk.getStyklist().size(); i++) {
             System.out.println(styk.getStyklist().get(i));
         }
