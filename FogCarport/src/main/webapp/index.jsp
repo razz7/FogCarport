@@ -10,21 +10,33 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
-<h1>Welcome to the Lego House Builder</h1>
+<br>
+<div class="col-sm-8 offset-sm-4 text-left">
+   
+<h1>Fog Carport</h1>
+
 <table>
-    <tr><td>Login</td>
+    <tr>
         <td>
-            <form name="login" action="FrontController" method="POST">
-                <input type="hidden" name="command" value="login">
-                Email:<br>
-                <input type="text" name="email" value="jens@somewhere.com">
-                <br>
-                Password:<br>
-                <input type="password" name="password" value="jensen">
-                <br>
-                <input type="submit" value="Submit">
+            
+            <form>
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Email address</label>
+                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+                    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else. :=)</small>
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputPassword1">Password</label>
+                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                </div>
+                <div class="form-group form-check">
+                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                    <label class="form-check-label" for="exampleCheck1">Check me out</label>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
             </form>
         </td>
+        <%--
         <td>Register</td>
         <td>
             <form name="register" action="FrontController" method="POST">
@@ -41,8 +53,10 @@
                 <input type="submit" value="Submit">
             </form>
         </td>
-    </tr>
+        --%>
 </table>
+        </div>
+        
 <% String error = (String) request.getAttribute("error");
     if (error != null) {
         out.println("<H2>Error!!</h2>");
