@@ -31,7 +31,7 @@ public class StyklistPage extends Command {
         User user = logic.login(email, password);
         
          CarportAlgorithm car = new CarportAlgorithm();
-                Stykliste styk = car.carportAlgorithm(6, 7.8f, 0, 6, 2.10f, 1);
+                Stykliste styk = car.carportAlgorithm(6000, 7800, 0, 5300, 2100, 1);
         HttpSession session = request.getSession();
         session.setAttribute("list", styk);
         
