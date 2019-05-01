@@ -137,42 +137,109 @@ public class CarportAlgorithm {
             m.setLength((width + 200) / (int) Math.ceil((width + 100) / 6000)); //Længde af overstern dømt ud fra carports længde + 20 cm til tilskæring, bræderne må ikke overstige 6 meter i længde
             m.setStyklistQty(((int) Math.ceil((width + 100) / 6000))); //Der skal kun monteres til forenden her, Mængde bedømt ud fra at brædderne ikke må overstige 6 meter, ellers rundes der op til at tilpadse flere bræder
             arrList.add(m);
-            
+
             //Montering af 1090mm bredde Trapez plader af PlastmoEcoliteblåtonet
             material = materials.get(8);
             m = new Material(material.getItem_id(), material.getItem_description(), material.getWidth(), material.getHeight(), material.getEntity(), material.getMaterialType(), material.getPrice());
-            if (length + 50*2 < 6) {
-                m.setLength(length + 50*2); //Længde af carporten + 5 cm til hver ende, hvis carporten er under 6 meter og derfor kun bruger en plade på langs
-                m.setStyklistQty(((int) Math.ceil((width + 50*2) / (1090 - 20*2)))); //Der skal monteres nok plader til at dække hele carportens bredde med 2cm overlap og 5 cm ekstra på hver side
+            if (length + 50 * 2 < 6) {
+                m.setLength(length + 50 * 2); //Længde af carporten + 5 cm til hver ende, hvis carporten er under 6 meter og derfor kun bruger en plade på langs
+                m.setStyklistQty(((int) Math.ceil((width + 50 * 2) / (1090 - 20 * 2)))); //Der skal monteres nok plader til at dække hele carportens bredde med 2cm overlap og 5 cm ekstra på hver side
             } else { //Da pladerne i dette tilfølde er længere ind de max 6m må der istedet være 2 set af plader istedet.
-                m.setLength((length / 2) + 50*2 + 20*2); //Længde af carporten + 5cm til hver side + 2 cm til overlap
-                m.setStyklistQty(((int) Math.ceil((width + 50*2) / (1090 - 20*2)))*2); //Der skal monteres nok plader til at dække hele carportens bredde med 2cm overlap og 5 cm ekstra på hver side
+                m.setLength((length / 2) + 50 * 2 + 20 * 2); //Længde af carporten + 5cm til hver side + 2 cm til overlap
+                m.setStyklistQty(((int) Math.ceil((width + 50 * 2) / (1090 - 20 * 2))) * 2); //Der skal monteres nok plader til at dække hele carportens bredde med 2cm overlap og 5 cm ekstra på hver side
             }
             arrList.add(m);
-            
+
             //Montering af trapezplader med bundskruger af plastmobundskruer200stk.
             material = materials.get(9);
             m = new Material(material.getItem_id(), material.getItem_description(), material.getWidth(), material.getHeight(), material.getEntity(), material.getMaterialType(), material.getPrice());
             m.setLength(0); //Ingen længde
             m.setStyklistQty(3); //En pakke indholder 200 bundskruger, da der bruges flere bundskruger pr. plade pr.trapezrille bruges 3 pakker.
             arrList.add(m);
-            
+
             //Montering af vandbrædt til begge carportens sider af 19x100mm.trykimp.Brædt
             material = materials.get(7);
             m = new Material(material.getItem_id(), material.getItem_description(), material.getWidth(), material.getHeight(), material.getEntity(), material.getMaterialType(), material.getPrice());
             m.setLength((length + 200) / (int) Math.ceil((length + 100) / 6000)); //Længde af understærn dømt ud fra carports længde + 20 cm til tilskæring, bræderne må ikke overstige 6 meter i længde
             m.setStyklistQty(((int) Math.ceil((length + 100) / 6000)) * 2); //Mængde bedømt ud fra at brædderne ikke må overstige 6 meter, ellers rundes der op til at tilpadse flere bræder
             arrList.add(m);
-            
+
             //Montering af vandbrædt til carportens frontende af 19x100mm.trykimp.Brædt
             material = materials.get(7);
             m = new Material(material.getItem_id(), material.getItem_description(), material.getWidth(), material.getHeight(), material.getEntity(), material.getMaterialType(), material.getPrice());
             m.setLength((width + 200) / (int) Math.ceil((width + 100) / 6000)); //Længde af overstern dømt ud fra carports længde + 20 cm til tilskæring, bræderne må ikke overstige 6 meter i længde
             m.setStyklistQty(((int) Math.ceil((width + 100) / 6000))); //Der skal kun monteres til forenden her, Mængde bedømt ud fra at brædderne ikke må overstige 6 meter, ellers rundes der op til at tilpadse flere bræder
             arrList.add(m);
-            
-            
-            
+
+            //Skruger til montering af stern og vandbrædt af 4,5x60mm.skruer200stk.
+            material = materials.get(14);
+            m = new Material(material.getItem_id(), material.getItem_description(), material.getWidth(), material.getHeight(), material.getEntity(), material.getMaterialType(), material.getPrice());
+            m.setLength(0); //Ingen længde
+            m.setStyklistQty(1); //En pakke indholder 200 skruger
+            arrList.add(m);
+
+            //Montering af brædder til yderste bedækningaf skur af 19x100mm.trykimp.Brædt
+            material = materials.get(7);
+            m = new Material(material.getItem_id(), material.getItem_description(), material.getWidth(), material.getHeight(), material.getEntity(), material.getMaterialType(), material.getPrice());
+            m.setLength(2100); //Skurets højde ændres ikke
+            m.setStyklistQty((int) (((shedLength / (100 - 19 * 2)) * 2) + ((shedwidth / (100 - 19 * 2)) * 2))); //Udregning af antal brædder på baggund af deres overlap på omtrænt 19mm på hver side, med skurets mål.
+            arrList.add(m);
+
+            //Montering af yderste bedækning med 4 skruger pr. planke af 4,5x70mm.Skruer400stk.
+            material = materials.get(18);
+            m = new Material(material.getItem_id(), material.getItem_description(), material.getWidth(), material.getHeight(), material.getEntity(), material.getMaterialType(), material.getPrice());
+            m.setLength(0); //Ingen længde
+            m.setStyklistQty((int) Math.ceil((((shedLength / (100 - 19 * 2)) * 2) + ((shedwidth / (100 - 19 * 2)) * 2)) / 100)); //Mængden af brædder divideret med 100 og rundet op til et helt tal, hvilket angiver hvor mange pakker af 400 vi så skal bruge hvis hvert brædt bruger 4 skruger.
+            arrList.add(m);
+
+            //Montering af inderste bedækning med 4 skruger pr. planke af 4,5x50mm.Skruer300stk.
+            material = materials.get(19);
+            m = new Material(material.getItem_id(), material.getItem_description(), material.getWidth(), material.getHeight(), material.getEntity(), material.getMaterialType(), material.getPrice());
+            m.setLength(0); //Ingen længde
+            m.setStyklistQty((int) Math.ceil((((shedLength / (100 - 19 * 2)) * 2) + ((shedwidth / (100 - 19 * 2)) * 2)) / 100)); //Mængden af brædder divideret med 100 og rundet op til et helt tal, hvilket angiver hvor mange pakker af 300 vi så skal bruge hvis hvert brædt bruger 4 skruger.
+            arrList.add(m);
+
+            //Montering af 12 løsholter til skur gavler af 45x95mm.Reglarub.
+            material = materials.get(4);
+            m = new Material(material.getItem_id(), material.getItem_description(), material.getWidth(), material.getHeight(), material.getEntity(), material.getMaterialType(), material.getPrice());
+            m.setLength(shedwidth / 2); //Længden af løsholtere med spllittelse i bjælkerne og lidt ekstra til tilskærelse og tilpadsning ud fra skurets bredde.
+            m.setStyklistQty(12); //Der skal uanset hvad bruges 12 løsholtere til gavlen for indersiden af skurets konstruktion.
+            arrList.add(m);
+
+            //Montering af 4 løsholter til skur sider af 45x95mm.Reglarub.
+            material = materials.get(4);
+            m = new Material(material.getItem_id(), material.getItem_description(), material.getWidth(), material.getHeight(), material.getEntity(), material.getMaterialType(), material.getPrice());
+            m.setLength(shedLength); //Længden af løsholtere og lidt ekstra til tilskærelse og tilpadsning ud fra skurets længde.
+            m.setStyklistQty(4); //Der skal uanset hvad bruges 4 løsholtere til indersiden af skurets konstruktion.
+            arrList.add(m);
+
+            //Montering af vinkelbeslag til montering af løsholter i skur med 2 beslag pr. lysholter af vinkelbeslag35
+            material = materials.get(22);
+            m = new Material(material.getItem_id(), material.getItem_description(), material.getWidth(), material.getHeight(), material.getEntity(), material.getMaterialType(), material.getPrice());
+            m.setLength(0); //Ingen længde.
+            m.setStyklistQty((12 + 4) * 2); //Der skal uanset hvad bruges 2 vinkelbeslag pr. lysholter i skuret.
+            arrList.add(m);
+
+            //Montering af lægte til z på bagside af dør af 38x73mm.Lægteubh.
+            material = materials.get(3);
+            m = new Material(material.getItem_id(), material.getItem_description(), material.getWidth(), material.getHeight(), material.getEntity(), material.getMaterialType(), material.getPrice());
+            m.setLength(4200); //Fast længde på alle modeller.
+            m.setStyklistQty(1); //Fast mængde på alle modeller.
+            arrList.add(m);
+
+            //Montering af 2 t-hængseler til skur dør af thængsel390mm.
+            material = materials.get(21);
+            m = new Material(material.getItem_id(), material.getItem_description(), material.getWidth(), material.getHeight(), material.getEntity(), material.getMaterialType(), material.getPrice());
+            m.setLength(0); //Ingen længde.
+            m.setStyklistQty(2); //Fast mængde på alle modeller, da en dør skal bruge mindst 2 t-hængsler.
+            arrList.add(m);
+
+            //Montering af et sæt ståldørsgreb til lås på dør i skur af stalddørsgreb50x75
+            material = materials.get(20);
+            m = new Material(material.getItem_id(), material.getItem_description(), material.getWidth(), material.getHeight(), material.getEntity(), material.getMaterialType(), material.getPrice());
+            m.setLength(0); //Ingen længde.
+            m.setStyklistQty(1); //Fast mængde på alle modeller, da en dør kun skal et sæt ståldørsgreb.
+            arrList.add(m);
 
         } else { //Roof tilt
             System.out.println("Hello World!");
@@ -184,13 +251,13 @@ public class CarportAlgorithm {
         MaterialMapper materialMap = new MaterialMapper();
         ArrayList<Material> materials = materialMap.getAllMaterials();
         for (Material mat : materials) {
-            System.out.println(mat);
+            //System.out.println(mat);
         }
 
-        System.out.println("");
+        //System.out.println("");
 
         CarportAlgorithm car = new CarportAlgorithm();
-        Stykliste styk = car.carportAlgorithm(6000, 7800, 0, 6000, 2100, 1);
+        Stykliste styk = car.carportAlgorithm(6000, 7800, 0, 5300, 2100, 1);
         for (int i = 0; i < styk.getStyklist().size(); i++) {
             System.out.println(styk.getStyklist().get(i));
         }
