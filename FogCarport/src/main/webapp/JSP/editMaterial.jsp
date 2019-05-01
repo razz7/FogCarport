@@ -42,7 +42,7 @@
 
         out.println("<form action=\"FrontController\" method=\"POST\">");
         out.println("<input type=\"hidden\" name=\"command\" value=\"createMaterial\">");
-
+        
         out.println("<tr><td> Material description: </tr></td>");
         out.println("<input type=\"text\" name=\"description\" value=\"\">");
         out.println("<tr><td> Material width: </tr></td>");

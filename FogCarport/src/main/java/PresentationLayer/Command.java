@@ -21,6 +21,7 @@ abstract class Command {
         commands.put( "deleteMaterial", new DeleteStockMaterial() );
         commands.put( "createMaterial", new CreateStockMaterial() );
         commands.put( "styklistpage", new StyklistPage());
+        commands.put( "order", new OrderPage());
     }
 
     Command from( HttpServletRequest request ) {
