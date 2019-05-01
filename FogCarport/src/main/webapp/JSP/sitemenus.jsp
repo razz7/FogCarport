@@ -3,7 +3,7 @@
     
     
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <img src="img/logofog.png" width="50" height="50" alt="">
+  <img src="img/logofog.png" width="53" height="50" alt="">
   
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -17,7 +17,7 @@
         <a class="nav-link" href="/FogCarport/FrontController?command=allmaterials">Materials</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="/Cupcake/FrontController?action=admin">Admin page</a>
+        <a class="nav-link" href="/FogCarport/FrontController?command=styklistpage">Admin page</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="JSP/shop.jsp">Shop</a>
