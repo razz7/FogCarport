@@ -25,13 +25,14 @@ public class CarportAlgorithm {
         ArrayList<Material> arrList = new ArrayList<>();
         Stykliste styklist = new Stykliste(arrList, styklist_id);
         Material material;
+        Material m;
 
         if (roofTilt == 0) { //Flat roof
 
             //CAROPRT MED SKUR
             // Tilføj 10 stolper til hvert hjørne af 97x97mm.trykimp.Stolpe
             material = materials.get(6);
-            Material m = new Material(material.getItem_id(), material.getItem_description(), material.getWidth(), material.getHeight(), material.getEntity(), material.getMaterialType(), material.getPrice());
+            m = new Material(material.getItem_id(), material.getItem_description(), material.getWidth(), material.getHeight(), material.getEntity(), material.getMaterialType(), material.getPrice());
             m.setLength(3000); //Carporten har en standarthøjde som IKKE ændres i udregning
             m.setStyklistQty(10 + 1); //evt. + 1 Hvis døren ikke er placeret imod hjørnestolpen
             arrList.add(m);
@@ -85,7 +86,7 @@ public class CarportAlgorithm {
             m.setStyklistQty((int) Math.ceil((length - 45) / (45 + 600)) + 1); //Et beslag pr spær i venstre side
             arrList.add(m);
 
-            //Montering af venstr og højre niversalbeslag med 3 beslagskruger pr. flade af 4,0x50mm.beslagskruer250stk.
+            //Montering af venstre og højre universalbeslag med 3 beslagskruger pr. flade af 4,0x50mm.beslagskruer250stk.
             material = materials.get(15);
             m = new Material(material.getItem_id(), material.getItem_description(), material.getWidth(), material.getHeight(), material.getEntity(), material.getMaterialType(), material.getPrice());
             m.setLength(0); //Ingen længde
@@ -241,8 +242,139 @@ public class CarportAlgorithm {
             m.setStyklistQty(1); //Fast mængde på alle modeller, da en dør kun skal et sæt ståldørsgreb.
             arrList.add(m);
 
-        } else { //Roof tilt
-            System.out.println("Hello World!");
+        } else { //Roof tilt ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+            //CAROPRT MED OG UDEN SKUR
+            if (shedLength != 0 || shedwidth != 0) {
+                // Tilføj 8 stolper til hvert hjørne af 97x97mm.trykimp.Stolpe
+                material = materials.get(6);
+                m = new Material(material.getItem_id(), material.getItem_description(), material.getWidth(), material.getHeight(), material.getEntity(), material.getMaterialType(), material.getPrice());
+                m.setLength(3000); //Carporten har en standarthøjde som IKKE ændres i udregning
+                m.setStyklistQty(8 + 1); //evt. + 1 Hvis døren ikke er placeret imod hjørnestolpen
+                arrList.add(m);
+            } else {
+                //Hvis der ikke er skur, tilføj 6 stolper til hvert hjørne af 97x97mm.trykimp.Stolpe
+                material = materials.get(6);
+                m = new Material(material.getItem_id(), material.getItem_description(), material.getWidth(), material.getHeight(), material.getEntity(), material.getMaterialType(), material.getPrice());
+                m.setLength(3000); //Carporten har en standarthøjde som IKKE ændres i udregning
+                m.setStyklistQty(6); //6 stopler hvis uden skur
+                arrList.add(m);
+            }
+
+            if (shedLength != 0 || shedwidth != 0) {
+                //Tilføj 2 remme i siderne der sadles ned i stolperne af 45x195mm.spærtræubh
+                material = materials.get(5);
+                m = new Material(material.getItem_id(), material.getItem_description(), material.getWidth(), material.getHeight(), material.getEntity(), material.getMaterialType(), material.getPrice());
+                m.setLength(length - shedLength + 10); //så lange som carporten -minus skuret og lidt til tilskæring
+                m.setStyklistQty(2);
+                arrList.add(m);
+            } else {
+                //Hvis der ikke er skur, tilføj 4 remme i siderne der sadles ned i stolperne af 45x195mm.spærtræubh
+                material = materials.get(5);
+                m = new Material(material.getItem_id(), material.getItem_description(), material.getWidth(), material.getHeight(), material.getEntity(), material.getMaterialType(), material.getPrice());
+                m.setLength((length / 2) + 10); //så lange som carporten delt i to og lidt til tilskæring, da der er 6 stolper hvis uden skur.
+                m.setStyklistQty(4);
+                arrList.add(m);
+            }
+
+            if (shedLength != 0 || shedwidth != 0) {
+                //Tilføj 2 remme der sadles ned i stolperne for skuret af 45x195mm.spærtræubh
+                material = materials.get(5);
+                m = new Material(material.getItem_id(), material.getItem_description(), material.getWidth(), material.getHeight(), material.getEntity(), material.getMaterialType(), material.getPrice());
+                m.setLength(shedLength + 10); //så lange som skurets sider og lidt til tilskæring
+                m.setStyklistQty(2);
+                arrList.add(m);
+            }
+
+            if (shedLength != 0 || shedwidth != 0) {
+                //Tilføj bræddebolte 2 pr stolpe under rem og 4 for stolperne uder samligen mellem caports og skurret remme af bræddebolt10x120mm
+                material = (materials.get(16));
+                m = new Material(material.getItem_id(), material.getItem_description(), material.getWidth(), material.getHeight(), material.getEntity(), material.getMaterialType(), material.getPrice());
+                m.setLength(0); //ingen længde
+                m.setStyklistQty(6 * 2 + 2 * 4); //2 bræddebolte for hver stople under rem, bemærk at remmen samles af 2 stykker, over den stole der er mellem skur og carport,
+                arrList.add(m);                   //Samlingen centreres over stolpen og der anvendes i alt 4 bolte til denne samling.
+            } else {
+                //Hvis der ikke er skur, tilføj bræddebolte 2 pr stolpe og 4 pr samling under rem af bræddebolt10x120mm
+                material = (materials.get(16));
+                m = new Material(material.getItem_id(), material.getItem_description(), material.getWidth(), material.getHeight(), material.getEntity(), material.getMaterialType(), material.getPrice());
+                m.setLength(0); //ingen længde
+                m.setStyklistQty(4 * 2 + 2 * 4); //Da der er 6 stolper og 4 remme laves en af samlinger under de midterste stolper, 2 bræddebolte for hver stople under rem, bemærk at remmen samles af 2 stykker, over den stole der er mellem skur og carport,
+                arrList.add(m);                   //Samlingen centreres over stolpen og der anvendes i alt 4 bolte til denne samling.
+            }
+
+            if (shedLength != 0 || shedwidth != 0) {
+                //Tilføj firkantskiver for hver bræddebolt af firkantskiver40x40x11mm
+                material = materials.get(17);
+                m = new Material(material.getItem_id(), material.getItem_description(), material.getWidth(), material.getHeight(), material.getEntity(), material.getMaterialType(), material.getPrice());
+                m.setLength(0); //ingen længde
+                m.setStyklistQty(6 * 2 + 2 * 4); //samme mængde som der er bræddebolte
+                arrList.add(m);
+            } else {
+                //Hvis ikke skur tilføj firkantskiver for hver bræddebolt af firkantskiver40x40x11mm
+                material = materials.get(17);
+                m = new Material(material.getItem_id(), material.getItem_description(), material.getWidth(), material.getHeight(), material.getEntity(), material.getMaterialType(), material.getPrice());
+                m.setLength(0); //ingen længde
+                m.setStyklistQty(4 * 2 + 2 * 4); //samme mængde som der er bræddebolte
+                arrList.add(m);
+            }
+
+            //Montering af fædigskåret byg-selvspær max 110 cm mellemrum af fædigskåret(byg-selv spær)
+            material = materials.get(24);
+            m = new Material(material.getItem_id(), material.getItem_description(), material.getWidth(), material.getHeight(), material.getEntity(), material.getMaterialType(), material.getPrice());
+            m.setLength(length); //så lange som selve carportens brede
+            m.setStyklistQty((int) Math.ceil((length - 45) / (45 + 1100)) + 1); //Et spær pr. højest 1.10 meter af hele carport længden + 1 til enden
+            arrList.add(m);
+
+            //Montering af universal højre beslag 1 pr spær af universal190mmhøjre
+            material = materials.get(12);
+            m = new Material(material.getItem_id(), material.getItem_description(), material.getWidth(), material.getHeight(), material.getEntity(), material.getMaterialType(), material.getPrice());
+            m.setLength(0); //ingen længde
+            m.setStyklistQty((int) Math.ceil((length - 45) / (45 + 1100)) + 1); //Et beslag pr spær i højre side
+            arrList.add(m);
+
+            //Montering af universal venstre beslag 1 pr spær af universal190mmvenstre
+            material = materials.get(13);
+            m = new Material(material.getItem_id(), material.getItem_description(), material.getWidth(), material.getHeight(), material.getEntity(), material.getMaterialType(), material.getPrice());
+            m.setLength(0); //ingen længde
+            m.setStyklistQty((int) Math.ceil((length - 45) / (45 + 1100)) + 1); //Et beslag pr spær i venstre side
+            arrList.add(m);
+
+            //Montering af venstre og højre universalbeslag med 3 beslagskruger pr. flade af 5,0x40mm.beslagskruer250stk.
+            material = materials.get(32);
+            m = new Material(material.getItem_id(), material.getItem_description(), material.getWidth(), material.getHeight(), material.getEntity(), material.getMaterialType(), material.getPrice());
+            m.setLength(0); //Ingen længde
+            m.setStyklistQty(1); //En pakke indholder 250 beslagskruger
+            arrList.add(m);
+
+            //////////////////////////////////////////////////
+            //Montering af understern til begge carportens sider af 25x200mm.trykimp.Brædt
+            material = materials.get(1);
+            m = new Material(material.getItem_id(), material.getItem_description(), material.getWidth(), material.getHeight(), material.getEntity(), material.getMaterialType(), material.getPrice());
+            m.setLength((length + 200) / (int) Math.ceil((length + 100) / 6000)); //Længde af understærn dømt ud fra carports længde + 20 cm til tilskæring, bræderne må ikke overstige 6 meter i længde
+            m.setStyklistQty(((int) Math.ceil((length + 100) / 6000)) * 2); //Mængde bedømt ud fra at brædderne ikke må overstige 6 meter, ellers rundes der op til at tilpadse flere bræder
+            arrList.add(m);
+
+            //Montering af understern til carportens front og bag af 25x200mm.trykimp.Brædt
+            material = materials.get(1);
+            m = new Material(material.getItem_id(), material.getItem_description(), material.getWidth(), material.getHeight(), material.getEntity(), material.getMaterialType(), material.getPrice());
+            m.setLength((width + 200) / (int) Math.ceil((width + 100) / 6000)); //Bredde af understærn dømt ud fra carports bredde + 20 cm til tilskæring, bræderne må ikke overstige 6 meter i længde
+            m.setStyklistQty(((int) Math.ceil((width + 100) / 6000)) * 2); //Mængde bedømt ud fra at brædderne ikke må overstige 6 meter, ellers rundes der op til at tilpadse flere bræder
+            arrList.add(m);
+
+            //Montering af overstern til begge carportens sider af 25x125mm.trykimp.Brædt
+            material = materials.get(2);
+            m = new Material(material.getItem_id(), material.getItem_description(), material.getWidth(), material.getHeight(), material.getEntity(), material.getMaterialType(), material.getPrice());
+            m.setLength((length + 200) / (int) Math.ceil((length + 100) / 6000)); //Længde af overstern dømt ud fra carports længde + 20 cm til tilskæring, bræderne må ikke overstige 6 meter i længde
+            m.setStyklistQty(((int) Math.ceil((length + 100) / 6000)) * 2); //Mængde bedømt ud fra at brædderne ikke må overstige 6 meter, ellers rundes der op til at tilpadse flere bræder
+            arrList.add(m);
+
+            //Montering af overstern til carportens frontende af 25x125mm.trykimp.Brædt
+            material = materials.get(2);
+            m = new Material(material.getItem_id(), material.getItem_description(), material.getWidth(), material.getHeight(), material.getEntity(), material.getMaterialType(), material.getPrice());
+            m.setLength((width + 200) / (int) Math.ceil((width + 100) / 6000)); //Længde af overstern dømt ud fra carports længde + 20 cm til tilskæring, bræderne må ikke overstige 6 meter i længde
+            m.setStyklistQty(((int) Math.ceil((width + 100) / 6000))); //Der skal kun monteres til forenden her, Mængde bedømt ud fra at brædderne ikke må overstige 6 meter, ellers rundes der op til at tilpadse flere bræder
+            arrList.add(m);
+
         }
         return styklist;
     }
@@ -251,13 +383,14 @@ public class CarportAlgorithm {
         MaterialMapper materialMap = new MaterialMapper();
         ArrayList<Material> materials = materialMap.getAllMaterials();
         for (Material mat : materials) {
-            //System.out.println(mat);
+            System.out.println(mat);
         }
 
-        //System.out.println("");
+        System.out.println("");
 
         CarportAlgorithm car = new CarportAlgorithm();
-        Stykliste styk = car.carportAlgorithm(6000, 7800, 0, 5300, 2100, 1);
+        //Stykliste styk = car.carportAlgorithm(6000, 7800, 0, 5300, 2100, 1);
+        Stykliste styk = car.carportAlgorithm(3600, 7300, 35, 0, 0, 1);
         for (int i = 0; i < styk.getStyklist().size(); i++) {
             System.out.println(styk.getStyklist().get(i));
         }
