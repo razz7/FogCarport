@@ -24,11 +24,11 @@ public class StyklistPage extends Command {
 
     @Override
     String execute(HttpServletRequest request, HttpServletResponse response) throws LoginSampleException, OrderSampleException, MaterialSampleException {
-        String email = request.getParameter("email");
-        String password = request.getParameter("password");
-        
-        LogicFacade logic = new LogicFacade();
-        User user = logic.login(email, password);
+//        String email = request.getParameter("email");
+//        String password = request.getParameter("password");
+//        
+//        LogicFacade logic = new LogicFacade();
+//        User user = logic.login(email, password);
         
          CarportAlgorithm car = new CarportAlgorithm();
                 Stykliste styk = car.carportAlgorithm(6000, 7800, 0, 5300, 2100, 1);

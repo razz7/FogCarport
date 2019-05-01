@@ -17,7 +17,7 @@
         <a class="nav-link" href="/FogCarport/FrontController?command=allmaterials">Materials</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="/Cupcake/FrontController?action=admin">Admin page</a>
+        <a class="nav-link" href="/FogCarport/FrontController?command=styklistpage">Admin page</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="JSP/shop.jsp">Shop</a>
