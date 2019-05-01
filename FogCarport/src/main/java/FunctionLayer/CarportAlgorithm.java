@@ -97,7 +97,7 @@ public class CarportAlgorithm {
             material = materials.get(10);
             m = new Material(material.getItem_id(), material.getItem_description(), material.getWidth(), material.getHeight(), material.getEntity(), material.getMaterialType(), material.getPrice());
             m.setLength(10000); //rulle længe
-            if ((Math.sqrt(Math.pow(length - shedLength - 55, 2) + Math.pow(width - 30, 2))) < 500) { //Der kan ikke bruges mere end 2 ruller
+            if ((Math.sqrt(Math.pow(length - shedLength - 600, 2) + Math.pow(width - 30, 2))) < 500) { //Hulbånd placeres et spær inde, der kan ikke bruges mere end 2 ruller
                 m.setStyklistQty(1);
             } else {
                 m.setStyklistQty(2);
@@ -346,33 +346,67 @@ public class CarportAlgorithm {
             m.setStyklistQty(1); //En pakke indholder 250 beslagskruger
             arrList.add(m);
 
-            //////////////////////////////////////////////////
-            //Montering af understern til begge carportens sider af 25x200mm.trykimp.Brædt
-            material = materials.get(1);
+            if (shedLength != 0 || shedwidth != 0) {
+                //Tilføj 2 Hulbånd i et kryds på tværs af selve carport sektionen af hulbånd1x20mm.10mtr.
+                material = materials.get(10);
+                m = new Material(material.getItem_id(), material.getItem_description(), material.getWidth(), material.getHeight(), material.getEntity(), material.getMaterialType(), material.getPrice());
+                m.setLength(10000); //rulle længe
+                if ((Math.sqrt(Math.pow(length - shedLength - 1100, 2) + Math.pow(width - 30, 2))) < 500) { //Hulbånd placeres et spær inde, der kan ikke bruges mere end 2 ruller
+                    m.setStyklistQty(1);
+                } else {
+                    m.setStyklistQty(2);
+                }
+                arrList.add(m);
+            } else {
+                //Hvis der ikke er skur, tilføj 2 Hulbånd i et kryds på tværs af selve carport sektionen af hulbånd1x20mm.10mtr.
+                material = materials.get(10);
+                m = new Material(material.getItem_id(), material.getItem_description(), material.getWidth(), material.getHeight(), material.getEntity(), material.getMaterialType(), material.getPrice());
+                m.setLength(10000); //rulle længe
+                if ((Math.sqrt(Math.pow(length - (1100 * 2), 2) + Math.pow(width - 30, 2))) < 500) { //Da der ikke er et skur placeres hulbåndet et spær inde fra begge sider, der kan ikke bruges mere end 2 ruller
+                    m.setStyklistQty(1);
+                } else {
+                    m.setStyklistQty(2);
+                }
+                arrList.add(m);
+            }
+
+            //Montering af hulbånd med 2 beslagskruger pr. ende af 4,0x50mm.beslagskruer250stk.
+            material = materials.get(15);
             m = new Material(material.getItem_id(), material.getItem_description(), material.getWidth(), material.getHeight(), material.getEntity(), material.getMaterialType(), material.getPrice());
-            m.setLength((length + 200) / (int) Math.ceil((length + 100) / 6000)); //Længde af understærn dømt ud fra carports længde + 20 cm til tilskæring, bræderne må ikke overstige 6 meter i længde
-            m.setStyklistQty(((int) Math.ceil((length + 100) / 6000)) * 2); //Mængde bedømt ud fra at brædderne ikke må overstige 6 meter, ellers rundes der op til at tilpadse flere bræder
+            m.setLength(0); //Ingen længde
+            m.setStyklistQty(1); //En pakke indholder 250 beslagskruger
             arrList.add(m);
 
-            //Montering af understern til carportens front og bag af 25x200mm.trykimp.Brædt
-            material = materials.get(1);
-            m = new Material(material.getItem_id(), material.getItem_description(), material.getWidth(), material.getHeight(), material.getEntity(), material.getMaterialType(), material.getPrice());
-            m.setLength((width + 200) / (int) Math.ceil((width + 100) / 6000)); //Bredde af understærn dømt ud fra carports bredde + 20 cm til tilskæring, bræderne må ikke overstige 6 meter i længde
-            m.setStyklistQty(((int) Math.ceil((width + 100) / 6000)) * 2); //Mængde bedømt ud fra at brædderne ikke må overstige 6 meter, ellers rundes der op til at tilpadse flere bræder
-            arrList.add(m);
+            if (shedLength != 0 || shedwidth != 0) {
+                //Montering af sternbrædder til begge carportens sider af 25x150mm.trykimp.Bræt
+                material = materials.get(23);
+                m = new Material(material.getItem_id(), material.getItem_description(), material.getWidth(), material.getHeight(), material.getEntity(), material.getMaterialType(), material.getPrice());
+                m.setLength((length + 200) / (int) Math.ceil((length - shedLength + 100) / 6000)); //Længde af understærn dømt ud fra carports længde + 20 cm til tilskæring, bræderne må ikke overstige 6 meter i længde
+                m.setStyklistQty(((int) Math.ceil((length - shedLength + 100) / 6000)) * 2); //Mængde bedømt ud fra at brædderne ikke må overstige 6 meter, ellers rundes der op til at tilpadse flere bræder
+                arrList.add(m);
+            } else {
+                //Hvis der ikke er skur, montering af sternbrædder til begge carportens sider af 25x150mm.trykimp.Bræt
+                material = materials.get(23);
+                m = new Material(material.getItem_id(), material.getItem_description(), material.getWidth(), material.getHeight(), material.getEntity(), material.getMaterialType(), material.getPrice());
+                m.setLength((length + 200) / (int) Math.ceil((length + 100) / 6000)); //Længde af understærn dømt ud fra carports længde + 20 cm til tilskæring, bræderne må ikke overstige 6 meter i længde
+                m.setStyklistQty(((int) Math.ceil((length + 100) / 6000)) * 2); //Mængde bedømt ud fra at brædderne ikke må overstige 6 meter, ellers rundes der op til at tilpadse flere bræder
+                arrList.add(m);
+            }
 
-            //Montering af overstern til begge carportens sider af 25x125mm.trykimp.Brædt
-            material = materials.get(2);
-            m = new Material(material.getItem_id(), material.getItem_description(), material.getWidth(), material.getHeight(), material.getEntity(), material.getMaterialType(), material.getPrice());
-            m.setLength((length + 200) / (int) Math.ceil((length + 100) / 6000)); //Længde af overstern dømt ud fra carports længde + 20 cm til tilskæring, bræderne må ikke overstige 6 meter i længde
-            m.setStyklistQty(((int) Math.ceil((length + 100) / 6000)) * 2); //Mængde bedømt ud fra at brædderne ikke må overstige 6 meter, ellers rundes der op til at tilpadse flere bræder
-            arrList.add(m);
+            if (shedLength != 0 || shedwidth != 0) {
+                //Montering af sternbrædder til begge skurets carportens sider af 25x150mm.trykimp.Bræt
+                material = materials.get(23);
+                m = new Material(material.getItem_id(), material.getItem_description(), material.getWidth(), material.getHeight(), material.getEntity(), material.getMaterialType(), material.getPrice());
+                m.setLength((width + 200) / (int) Math.ceil((shedLength + 100) / 6000)); //Bredde af understærn dømt ud fra carports bredde + 20 cm til tilskæring, bræderne må ikke overstige 6 meter i længde
+                m.setStyklistQty(((int) Math.ceil((shedLength + 100) / 6000)) * 2); //Mængde bedømt ud fra at brædderne ikke må overstige 6 meter, ellers rundes der op til at tilpadse flere bræder
+                arrList.add(m);
+            }
 
-            //Montering af overstern til carportens frontende af 25x125mm.trykimp.Brædt
-            material = materials.get(2);
+            //Skruger til montering af stern og vandbrædt af 4,5x60mm.skruer200stk.
+            material = materials.get(14);
             m = new Material(material.getItem_id(), material.getItem_description(), material.getWidth(), material.getHeight(), material.getEntity(), material.getMaterialType(), material.getPrice());
-            m.setLength((width + 200) / (int) Math.ceil((width + 100) / 6000)); //Længde af overstern dømt ud fra carports længde + 20 cm til tilskæring, bræderne må ikke overstige 6 meter i længde
-            m.setStyklistQty(((int) Math.ceil((width + 100) / 6000))); //Der skal kun monteres til forenden her, Mængde bedømt ud fra at brædderne ikke må overstige 6 meter, ellers rundes der op til at tilpadse flere bræder
+            m.setLength(0); //Ingen længde
+            m.setStyklistQty(1); //En pakke indholder 200 skruger
             arrList.add(m);
 
         }
@@ -394,5 +428,13 @@ public class CarportAlgorithm {
         for (int i = 0; i < styk.getStyklist().size(); i++) {
             System.out.println(styk.getStyklist().get(i));
         }
+        
+        System.out.println("");
+        
+        Stykliste styk1 = car.carportAlgorithm(3600, 7300, 35, 3200, 2100, 1);
+        for (int i = 0; i < styk1.getStyklist().size(); i++) {
+            System.out.println(styk1.getStyklist().get(i));
+        }
+        
     }
 }
