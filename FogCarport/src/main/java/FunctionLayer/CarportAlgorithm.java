@@ -179,25 +179,25 @@ public class CarportAlgorithm {
             m.setStyklistQty(1); //En pakke indholder 200 skruger
             arrList.add(m);
 
-            //Montering af brædder til yderste bedækningaf skur af 19x100mm.trykimp.Brædt
+            //Montering af brædder til yderste bedækning af skur af 19x100mm.trykimp.Brædt
             material = materials.get(7);
             m = new Material(material.getItem_id(), material.getItem_description(), material.getWidth(), material.getHeight(), material.getEntity(), material.getMaterialType(), material.getPrice());
             m.setLength(2100); //Skurets højde ændres ikke
-            m.setStyklistQty((int) (((shedLength / (100 - 19 * 2)) * 2) + ((shedwidth / (100 - 19 * 2)) * 2))); //Udregning af antal brædder på baggund af deres overlap på omtrænt 19mm på hver side, med skurets mål.
+            m.setStyklistQty((int) (((shedLength / 60) * 2) + ((shedwidth / 60) * 2))); //Udregning af antal brædder på baggund af at beklædningsbrædder monteres med 6.cm mellemrum, med skurets mål.
             arrList.add(m);
 
-            //Montering af yderste bedækning med 4 skruger pr. planke af 4,5x70mm.Skruer400stk.
+            //Montering af yderste bedækning med 6 skruger pr. planke af 4,5x70mm.Skruer400stk.
             material = materials.get(18);
             m = new Material(material.getItem_id(), material.getItem_description(), material.getWidth(), material.getHeight(), material.getEntity(), material.getMaterialType(), material.getPrice());
             m.setLength(0); //Ingen længde
-            m.setStyklistQty((int) Math.ceil((((shedLength / (100 - 19 * 2)) * 2) + ((shedwidth / (100 - 19 * 2)) * 2)) / 100)); //Mængden af brædder divideret med 100 og rundet op til et helt tal, hvilket angiver hvor mange pakker af 400 vi så skal bruge hvis hvert brædt bruger 4 skruger.
+            m.setStyklistQty((int) Math.ceil((((shedLength / 60) * 2) + ((shedwidth / 60) * 2)) * 6 / 400)); //Mængden af brædder divideret med 400 og rundet op til et helt tal, hvilket angiver hvor mange pakker af 400 vi så skal bruge hvis hvert brædt bruger 4 skruger.
             arrList.add(m);
 
-            //Montering af inderste bedækning med 4 skruger pr. planke af 4,5x50mm.Skruer300stk.
+            //Montering af inderste bedækning med 3 skruger pr. planke af 4,5x50mm.Skruer300stk.
             material = materials.get(19);
             m = new Material(material.getItem_id(), material.getItem_description(), material.getWidth(), material.getHeight(), material.getEntity(), material.getMaterialType(), material.getPrice());
             m.setLength(0); //Ingen længde
-            m.setStyklistQty((int) Math.ceil((((shedLength / (100 - 19 * 2)) * 2) + ((shedwidth / (100 - 19 * 2)) * 2)) / 100)); //Mængden af brædder divideret med 100 og rundet op til et helt tal, hvilket angiver hvor mange pakker af 300 vi så skal bruge hvis hvert brædt bruger 4 skruger.
+            m.setStyklistQty((int) Math.ceil((((shedLength / 60) * 2) + ((shedwidth / 60) * 2)) * 3 / 300)); //Mængden af brædder divideret med 300 og rundet op til et helt tal, hvilket angiver hvor mange pakker af 300 vi så skal bruge hvis hvert brædt bruger 4 skruger.
             arrList.add(m);
 
             //Montering af 12 løsholter til skur gavler af 45x95mm.Reglarub.
@@ -423,18 +423,24 @@ public class CarportAlgorithm {
         System.out.println("");
 
         CarportAlgorithm car = new CarportAlgorithm();
-        //Stykliste styk = car.carportAlgorithm(6000, 7800, 0, 5300, 2100, 1);
-        Stykliste styk = car.carportAlgorithm(3600, 7300, 35, 0, 0, 1);
+        Stykliste styk = car.carportAlgorithm(6000, 7800, 0, 5300, 2100, 1);
         for (int i = 0; i < styk.getStyklist().size(); i++) {
             System.out.println(styk.getStyklist().get(i));
         }
-        
+
         System.out.println("");
-        
+
+        Stykliste stykk = car.carportAlgorithm(3600, 7300, 35, 0, 0, 1);
+        for (int i = 0; i < stykk.getStyklist().size(); i++) {
+            System.out.println(stykk.getStyklist().get(i));
+        }
+
+        System.out.println("");
+
         Stykliste styk1 = car.carportAlgorithm(3600, 7300, 35, 3200, 2100, 1);
         for (int i = 0; i < styk1.getStyklist().size(); i++) {
             System.out.println(styk1.getStyklist().get(i));
         }
-        
+
     }
 }
