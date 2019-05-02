@@ -339,7 +339,7 @@ public class CarportAlgorithm {
             m.setStyklistQty((int) Math.ceil((length - 45) / (45 + 1100)) + 1); //Et beslag pr spær i venstre side
             arrList.add(m);
 
-            //Montering af venstre og højre universalbeslag med 3 beslagskruger pr. flade af 5,0x40mm.beslagskruer250stk.
+            //Montering af venstre og højre universalbeslag med 3 beslagskruger pr. samt toplægte flade af 5,0x40mm.beslagskruer250stk.
             material = materials.get(32);
             m = new Material(material.getItem_id(), material.getItem_description(), material.getWidth(), material.getHeight(), material.getEntity(), material.getMaterialType(), material.getPrice());
             m.setLength(0); //Ingen længde
@@ -370,13 +370,6 @@ public class CarportAlgorithm {
                 arrList.add(m);
             }
 
-            //Montering af hulbånd med 2 beslagskruger pr. ende af 4,0x50mm.beslagskruer250stk.
-            material = materials.get(15);
-            m = new Material(material.getItem_id(), material.getItem_description(), material.getWidth(), material.getHeight(), material.getEntity(), material.getMaterialType(), material.getPrice());
-            m.setLength(0); //Ingen længde
-            m.setStyklistQty(1); //En pakke indholder 250 beslagskruger
-            arrList.add(m);
-
             if (shedLength != 0 || shedwidth != 0) {
                 //Montering af sternbrædder til begge carportens sider af 25x150mm.trykimp.Bræt
                 material = materials.get(23);
@@ -402,11 +395,97 @@ public class CarportAlgorithm {
                 arrList.add(m);
             }
 
-            //Skruger til montering af stern og vandbrædt af 4,5x60mm.skruer200stk.
+            //Montering af Vindskeder på rejsning af 25x150mm.trykimp.Bræt
+            material = materials.get(23);
+            m = new Material(material.getItem_id(), material.getItem_description(), material.getWidth(), material.getHeight(), material.getEntity(), material.getMaterialType(), material.getPrice());
+            m.setLength((int) ((width / 2) / Math.sin(70))); //Den ukende side for vores rejsningspærs hypotenuse.
+            m.setStyklistQty(2); //En til hver side af carportens front.
+            arrList.add(m);
+
+            //Montering af vandbrædt til vindskeder af 19x100mm.trykimp.Bræt
+            material = materials.get(7);
+            m = new Material(material.getItem_id(), material.getItem_description(), material.getWidth(), material.getHeight(), material.getEntity(), material.getMaterialType(), material.getPrice());
+            m.setLength((int) ((width / 2) / Math.sin(70))); //Den ukende side for vores rejsningspærs hypotenuse, samme størrelse som vindskeden.
+            m.setStyklistQty(2); //En til hver side af carportens front, samme som vindskeden.
+            arrList.add(m);
+
+            //Skruger til montering af stern, vindskeder, vindkryds/hulbånd & vandbræt af 4,5x60mm.skruer200stk.
             material = materials.get(14);
             m = new Material(material.getItem_id(), material.getItem_description(), material.getWidth(), material.getHeight(), material.getEntity(), material.getMaterialType(), material.getPrice());
             m.setLength(0); //Ingen længde
             m.setStyklistQty(1); //En pakke indholder 200 skruger
+            arrList.add(m);
+
+            ///////////////////////////////////////////
+            //Montering af læter på spær, med 307mm mellemrum for lægter på hver skiftevis 1 hel & 1 halv lægte af 38x73mm.taglægteT1
+            material = materials.get(26);
+            m = new Material(material.getItem_id(), material.getItem_description(), material.getWidth(), material.getHeight(), material.getEntity(), material.getMaterialType(), material.getPrice());
+            m.setLength((length / 3 * 2) + 300); //Skiftevis en en og en halv lægte til carportens bredde + 300mm i hver ende til overhæng samt tilskæring.
+            m.setStyklistQty(((int) Math.ceil(((int) Math.ceil(((((width / 2) / Math.sin(70)) - (350 + 30)) / (38 + 307))) + 1) * 1.5)) * 2); //Den ukende længde af carportens sidespær - længden for den første lægte der skal have en afstand på 350mm og den efterladte længde på toppen 30mm, udregninet med en uprundet gennemsnitsmængde med udgangspunkt i en mindsteafstand af 307mm + 38mm for lægdens tykkelse. Der er også taget udgangspunkt i at hvær længte af carporten bruger 1 og 1 halv lægte, pr. side
+            arrList.add(m);
+
+            //Montering af lægter med 2 pakker skruger af 5,0x100mm.skruer100stk.
+            material = materials.get(33);
+            m = new Material(material.getItem_id(), material.getItem_description(), material.getWidth(), material.getHeight(), material.getEntity(), material.getMaterialType(), material.getPrice());
+            m.setLength(0); //Ingen længde
+            m.setStyklistQty(2); //To pakker med 100 da intet andet er indikeret
+            arrList.add(m);
+
+            //Montering af toplægte til senere montering af rygsten lægges i toplægteholder af 38x73mm.taglægteT1
+            material = materials.get(26);
+            m = new Material(material.getItem_id(), material.getItem_description(), material.getWidth(), material.getHeight(), material.getEntity(), material.getMaterialType(), material.getPrice());
+            if (length + 300 * 2 > 6000) {
+                m.setLength((length + 300 * 2) / 2); //Hvis length + 300mm * 2 er størrer end 6m som er max ængde for træ, skal længden være carportens længde / 2 + 300mm i hver side til tilskæring og overhæng.
+            } else {
+                m.setLength(length + 300); //Hvis length + 300mm * 2 er under 6m er længden bare length + 300mm * 2
+            }
+            m.setStyklistQty((int) Math.ceil((length + 300 * 2) / 6000)); //Mængde baseret på om træet overstiger 6m
+            arrList.add(m);
+
+            //Montering af toplægteholdere for hvert spær under toplægten af B&CToplægteholder
+            material = materials.get(29);
+            m = new Material(material.getItem_id(), material.getItem_description(), material.getWidth(), material.getHeight(), material.getEntity(), material.getMaterialType(), material.getPrice());
+            m.setLength(0); //Ingen længde
+            m.setStyklistQty((int) Math.ceil((length - 45) / (45 + 1100)) + 1); //En toplægteholder pr spær.
+            arrList.add(m);
+
+            //Montering af brædt oven på tagfodslægte med 300mm udhæng af 25x50mm.trykimp.Bræt.
+            material = materials.get(25);
+            m = new Material(material.getItem_id(), material.getItem_description(), material.getWidth(), material.getHeight(), material.getEntity(), material.getMaterialType(), material.getPrice());
+            if (length + 300 * 2 > 6000) {
+                m.setLength((length + 300 * 2) / 2); //Hvis length + 300mm * 2 er størrer end 6m som er max ængde for træ, skal længden være carportens længde / 2 + 300mm i hver side til tilskæring og overhæng.
+            } else {
+                m.setLength(length + 300); //Hvis length + 300mm * 2 er under 6m er længden bare length + 300mm * 2
+            }
+            m.setStyklistQty((int) Math.ceil((length + 300 * 2) / 6000)); //Mængde baseret på om træet overstiger 6m
+            arrList.add(m);
+
+            //Montering for hvær række lægter af tagsten 300mm bredde af B&CDobbelt-ssort
+            material = materials.get(27);
+            m = new Material(material.getItem_id(), material.getItem_description(), material.getWidth(), material.getHeight(), material.getEntity(), material.getMaterialType(), material.getPrice());
+            m.setLength(0); //Ingen længde
+            m.setStyklistQty(((int) Math.ceil(((((width / 2) / Math.sin(70)) - (350 + 30)) / (38 + 307))) + 1) * ((int) Math.ceil(length / 300)) * 2); //Mængden af spær gange mængden af 300mm bredde tagsten på carportens længde, for begge sider.
+            arrList.add(m);
+
+            //Montering af tagstensbindere og nakkekroge til montering af tagsten hvor hveranden ydersten fastgøres af B&Ctagstensbindere&nakkekroge
+            material = materials.get(31);
+            m = new Material(material.getItem_id(), material.getItem_description(), material.getWidth(), material.getHeight(), material.getEntity(), material.getMaterialType(), material.getPrice());
+            m.setLength(0); //Ingen længde
+            m.setStyklistQty(2); //En pakke med tagstensbindere pr side af taget
+            arrList.add(m);
+
+            //Montering af rygsten 350mm bredde på taglægten af B&CRygstensort
+            material = materials.get(28);
+            m = new Material(material.getItem_id(), material.getItem_description(), material.getWidth(), material.getHeight(), material.getEntity(), material.getMaterialType(), material.getPrice());
+            m.setLength(0); //Ingen længde
+            m.setStyklistQty((int) Math.ceil(length / 350)); //Oprundet mængde af rygsten med 350mm bredde.
+            arrList.add(m);
+
+            //Montering af rygstensbeslag for hver rygsten på taglægten af B&Crygstensbeslag
+            material = materials.get(30);
+            m = new Material(material.getItem_id(), material.getItem_description(), material.getWidth(), material.getHeight(), material.getEntity(), material.getMaterialType(), material.getPrice());
+            m.setLength(0); //Ingen længde
+            m.setStyklistQty((int) Math.ceil(length / 350)); //Et beslag for hver rygsten.
             arrList.add(m);
 
         }
@@ -420,7 +499,7 @@ public class CarportAlgorithm {
             System.out.println(mat);
         }
 
-        System.out.println("");
+        System.out.println("Med skur og uden rejsning --->");
 
         CarportAlgorithm car = new CarportAlgorithm();
         Stykliste styk = car.carportAlgorithm(6000, 7800, 0, 5300, 2100, 1);
@@ -428,14 +507,14 @@ public class CarportAlgorithm {
             System.out.println(styk.getStyklist().get(i));
         }
 
-        System.out.println("");
+        System.out.println("Uden skur og med rejsning --->");
 
         Stykliste stykk = car.carportAlgorithm(3600, 7300, 35, 0, 0, 1);
         for (int i = 0; i < stykk.getStyklist().size(); i++) {
             System.out.println(stykk.getStyklist().get(i));
         }
 
-        System.out.println("");
+        System.out.println("Med skur og med rejsning --->");
 
         Stykliste styk1 = car.carportAlgorithm(3600, 7300, 35, 3200, 2100, 1);
         for (int i = 0; i < styk1.getStyklist().size(); i++) {
