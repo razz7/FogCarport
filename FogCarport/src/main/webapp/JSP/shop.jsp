@@ -17,7 +17,7 @@
 <h1>Velkommen til Fogs online bestillingsservice!</h1>
 <br><br>
 
-<form  class="container-fluid"   action="FrontController" method="POST">
+<form  class="container"   action="FrontController" method="POST">
     <input type="hidden" name="command" value="order">
     <h4>Carport mål: </h4>
     <h5>Højde</h5>
