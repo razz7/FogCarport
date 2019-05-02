@@ -33,8 +33,20 @@
     <h5>Skur bredde</h5>
     <input type="text" name="shedWidth" value="">
     
+    <%--
     <h5>Indtast 0 for fladt tag og 1 for højt tag</h5>
     <input type="text" name="shedTilt" value="">
+    --%>
+    
+    <span>
+        <fieldset id="roof">
+            <h5>Højt tag</h5>
+            <input type="radio" value="1" name="roof">
+
+            <h5>Lavt tag</h5>
+            <input type="radio" value="0" name="roof">
+        </fieldset>
+    </span>
     
     <br><br>
 

@@ -32,11 +32,13 @@ public class OrderPage extends Command{
            
            float shedLength = Float.parseFloat(request.getParameter("shedLength"));
            float shedWidth = Float.parseFloat(request.getParameter("shedWidth"));
-           float shedTilt = Float.parseFloat(request.getParameter("shedTilt"));
+           //float shedTilt = Float.parseFloat(request.getParameter("shedTilt"));
+           
+           int roof = Integer.parseInt(request.getParameter("roof"));
            
            CarportAlgorithm ca = new CarportAlgorithm();
 
-           Stykliste sl = ca.carportAlgorithm(width, length, shedTilt, shedWidth, shedLength, id);          
+           Stykliste sl = ca.carportAlgorithm(width, length, roof, shedWidth, shedLength, id);          
            id++;
            
            session.setAttribute("stykliste", sl);
