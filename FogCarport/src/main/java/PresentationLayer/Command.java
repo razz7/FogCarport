@@ -22,6 +22,8 @@ abstract class Command {
         commands.put( "createMaterial", new CreateStockMaterial() );
         commands.put( "styklistpage", new StyklistPage());
         commands.put( "order", new OrderPage());
+        commands.put( "editlineitem", new EditLineItem());
+        
     }
 
     Command from( HttpServletRequest request ) {
