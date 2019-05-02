@@ -51,7 +51,7 @@
             }
             
             if (session != null) {
-            session.invalidate();
+            session.removeAttribute("stykliste");
             }
         }
     %>
