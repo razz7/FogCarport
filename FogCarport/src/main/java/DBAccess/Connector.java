@@ -9,7 +9,7 @@ import java.sql.SQLException;
 public class Connector {
 
     private String driver = "com.mysql.cj.jdbc.Driver";
-    private String url = "jdbc:mysql://167.99.209.155/fog";
+    private String url = "jdbc:mysql://167.99.209.155/fog?useUnicode=yes&characterEncoding=utf-8";
     private String user = "fog";
     private String password = "projectFog:12345";
     private Connection conn = null;
