@@ -179,68 +179,70 @@ public class CarportAlgorithm {
             m.setStyklistQty(1); //En pakke indholder 200 skruger
             arrList.add(m);
 
-            //Montering af brædder til yderste bedækning af skur af 19x100mm.trykimp.Brædt
-            material = materials.get(7);
-            m = new Material(material.getItem_id(), material.getItem_description(), material.getWidth(), material.getHeight(), material.getEntity(), material.getMaterialType(), material.getPrice());
-            m.setLength(2100); //Skurets højde ændres ikke
-            m.setStyklistQty((int) (((shedLength / 60) * 2) + ((shedwidth / 60) * 2))); //Udregning af antal brædder på baggund af at beklædningsbrædder monteres med 6.cm mellemrum, med skurets mål.
-            arrList.add(m);
+            if (shedLength != 0 || shedwidth != 0) {
+                //Montering af brædder til yderste bedækning af skur af 19x100mm.trykimp.Brædt
+                material = materials.get(7);
+                m = new Material(material.getItem_id(), material.getItem_description(), material.getWidth(), material.getHeight(), material.getEntity(), material.getMaterialType(), material.getPrice());
+                m.setLength(2100); //Skurets højde ændres ikke
+                m.setStyklistQty((int) (((shedLength / 60) * 2) + ((shedwidth / 60) * 2))); //Udregning af antal brædder på baggund af at beklædningsbrædder monteres med 6.cm mellemrum, med skurets mål.
+                arrList.add(m);
 
-            //Montering af yderste bedækning med 6 skruger pr. planke af 4,5x70mm.Skruer400stk.
-            material = materials.get(18);
-            m = new Material(material.getItem_id(), material.getItem_description(), material.getWidth(), material.getHeight(), material.getEntity(), material.getMaterialType(), material.getPrice());
-            m.setLength(0); //Ingen længde
-            m.setStyklistQty((int) Math.ceil((((shedLength / 60) * 2) + ((shedwidth / 60) * 2)) * 6 / 400)); //Mængden af brædder divideret med 400 og rundet op til et helt tal, hvilket angiver hvor mange pakker af 400 vi så skal bruge hvis hvert brædt bruger 4 skruger.
-            arrList.add(m);
+                //Montering af yderste bedækning med 6 skruger pr. planke af 4,5x70mm.Skruer400stk.
+                material = materials.get(18);
+                m = new Material(material.getItem_id(), material.getItem_description(), material.getWidth(), material.getHeight(), material.getEntity(), material.getMaterialType(), material.getPrice());
+                m.setLength(0); //Ingen længde
+                m.setStyklistQty((int) Math.ceil((((shedLength / 60) * 2) + ((shedwidth / 60) * 2)) * 6 / 400)); //Mængden af brædder divideret med 400 og rundet op til et helt tal, hvilket angiver hvor mange pakker af 400 vi så skal bruge hvis hvert brædt bruger 4 skruger.
+                arrList.add(m);
 
-            //Montering af inderste bedækning med 3 skruger pr. planke af 4,5x50mm.Skruer300stk.
-            material = materials.get(19);
-            m = new Material(material.getItem_id(), material.getItem_description(), material.getWidth(), material.getHeight(), material.getEntity(), material.getMaterialType(), material.getPrice());
-            m.setLength(0); //Ingen længde
-            m.setStyklistQty((int) Math.ceil((((shedLength / 60) * 2) + ((shedwidth / 60) * 2)) * 3 / 300)); //Mængden af brædder divideret med 300 og rundet op til et helt tal, hvilket angiver hvor mange pakker af 300 vi så skal bruge hvis hvert brædt bruger 4 skruger.
-            arrList.add(m);
+                //Montering af inderste bedækning med 3 skruger pr. planke af 4,5x50mm.Skruer300stk.
+                material = materials.get(19);
+                m = new Material(material.getItem_id(), material.getItem_description(), material.getWidth(), material.getHeight(), material.getEntity(), material.getMaterialType(), material.getPrice());
+                m.setLength(0); //Ingen længde
+                m.setStyklistQty((int) Math.ceil((((shedLength / 60) * 2) + ((shedwidth / 60) * 2)) * 3 / 300)); //Mængden af brædder divideret med 300 og rundet op til et helt tal, hvilket angiver hvor mange pakker af 300 vi så skal bruge hvis hvert brædt bruger 4 skruger.
+                arrList.add(m);
 
-            //Montering af 12 løsholter til skur gavler af 45x95mm.Reglarub.
-            material = materials.get(4);
-            m = new Material(material.getItem_id(), material.getItem_description(), material.getWidth(), material.getHeight(), material.getEntity(), material.getMaterialType(), material.getPrice());
-            m.setLength(shedwidth / 2); //Længden af løsholtere med spllittelse i bjælkerne og lidt ekstra til tilskærelse og tilpadsning ud fra skurets bredde.
-            m.setStyklistQty(12); //Der skal uanset hvad bruges 12 løsholtere til gavlen for indersiden af skurets konstruktion.
-            arrList.add(m);
+                //Montering af 12 løsholter til skur gavler af 45x95mm.Reglarub.
+                material = materials.get(4);
+                m = new Material(material.getItem_id(), material.getItem_description(), material.getWidth(), material.getHeight(), material.getEntity(), material.getMaterialType(), material.getPrice());
+                m.setLength(shedwidth / 2); //Længden af løsholtere med spllittelse i bjælkerne og lidt ekstra til tilskærelse og tilpadsning ud fra skurets bredde.
+                m.setStyklistQty(12); //Der skal uanset hvad bruges 12 løsholtere til gavlen for indersiden af skurets konstruktion.
+                arrList.add(m);
 
-            //Montering af 4 løsholter til skur sider af 45x95mm.Reglarub.
-            material = materials.get(4);
-            m = new Material(material.getItem_id(), material.getItem_description(), material.getWidth(), material.getHeight(), material.getEntity(), material.getMaterialType(), material.getPrice());
-            m.setLength(shedLength); //Længden af løsholtere og lidt ekstra til tilskærelse og tilpadsning ud fra skurets længde.
-            m.setStyklistQty(4); //Der skal uanset hvad bruges 4 løsholtere til indersiden af skurets konstruktion.
-            arrList.add(m);
+                //Montering af 4 løsholter til skur sider af 45x95mm.Reglarub.
+                material = materials.get(4);
+                m = new Material(material.getItem_id(), material.getItem_description(), material.getWidth(), material.getHeight(), material.getEntity(), material.getMaterialType(), material.getPrice());
+                m.setLength(shedLength); //Længden af løsholtere og lidt ekstra til tilskærelse og tilpadsning ud fra skurets længde.
+                m.setStyklistQty(4); //Der skal uanset hvad bruges 4 løsholtere til indersiden af skurets konstruktion.
+                arrList.add(m);
 
-            //Montering af vinkelbeslag til montering af løsholter i skur med 2 beslag pr. lysholter af vinkelbeslag35
-            material = materials.get(22);
-            m = new Material(material.getItem_id(), material.getItem_description(), material.getWidth(), material.getHeight(), material.getEntity(), material.getMaterialType(), material.getPrice());
-            m.setLength(0); //Ingen længde.
-            m.setStyklistQty((12 + 4) * 2); //Der skal uanset hvad bruges 2 vinkelbeslag pr. lysholter i skuret.
-            arrList.add(m);
+                //Montering af vinkelbeslag til montering af løsholter i skur med 2 beslag pr. lysholter af vinkelbeslag35
+                material = materials.get(22);
+                m = new Material(material.getItem_id(), material.getItem_description(), material.getWidth(), material.getHeight(), material.getEntity(), material.getMaterialType(), material.getPrice());
+                m.setLength(0); //Ingen længde.
+                m.setStyklistQty((12 + 4) * 2); //Der skal uanset hvad bruges 2 vinkelbeslag pr. lysholter i skuret.
+                arrList.add(m);
 
-            //Montering af lægte til z på bagside af dør af 38x73mm.Lægteubh.
-            material = materials.get(3);
-            m = new Material(material.getItem_id(), material.getItem_description(), material.getWidth(), material.getHeight(), material.getEntity(), material.getMaterialType(), material.getPrice());
-            m.setLength(4200); //Fast længde på alle modeller.
-            m.setStyklistQty(1); //Fast mængde på alle modeller.
-            arrList.add(m);
+                //Montering af lægte til z på bagside af dør af 38x73mm.Lægteubh.
+                material = materials.get(3);
+                m = new Material(material.getItem_id(), material.getItem_description(), material.getWidth(), material.getHeight(), material.getEntity(), material.getMaterialType(), material.getPrice());
+                m.setLength(4200); //Fast længde på alle modeller.
+                m.setStyklistQty(1); //Fast mængde på alle modeller.
+                arrList.add(m);
 
-            //Montering af 2 t-hængseler til skur dør af thængsel390mm.
-            material = materials.get(21);
-            m = new Material(material.getItem_id(), material.getItem_description(), material.getWidth(), material.getHeight(), material.getEntity(), material.getMaterialType(), material.getPrice());
-            m.setLength(0); //Ingen længde.
-            m.setStyklistQty(2); //Fast mængde på alle modeller, da en dør skal bruge mindst 2 t-hængsler.
-            arrList.add(m);
+                //Montering af 2 t-hængseler til skur dør af thængsel390mm.
+                material = materials.get(21);
+                m = new Material(material.getItem_id(), material.getItem_description(), material.getWidth(), material.getHeight(), material.getEntity(), material.getMaterialType(), material.getPrice());
+                m.setLength(0); //Ingen længde.
+                m.setStyklistQty(2); //Fast mængde på alle modeller, da en dør skal bruge mindst 2 t-hængsler.
+                arrList.add(m);
 
-            //Montering af et sæt ståldørsgreb til lås på dør i skur af stalddørsgreb50x75
-            material = materials.get(20);
-            m = new Material(material.getItem_id(), material.getItem_description(), material.getWidth(), material.getHeight(), material.getEntity(), material.getMaterialType(), material.getPrice());
-            m.setLength(0); //Ingen længde.
-            m.setStyklistQty(1); //Fast mængde på alle modeller, da en dør kun skal et sæt ståldørsgreb.
-            arrList.add(m);
+                //Montering af et sæt ståldørsgreb til lås på dør i skur af stalddørsgreb50x75
+                material = materials.get(20);
+                m = new Material(material.getItem_id(), material.getItem_description(), material.getWidth(), material.getHeight(), material.getEntity(), material.getMaterialType(), material.getPrice());
+                m.setLength(0); //Ingen længde.
+                m.setStyklistQty(1); //Fast mængde på alle modeller, da en dør kun skal et sæt ståldørsgreb.
+                arrList.add(m);
+            }
 
         } else { //Roof tilt ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -416,7 +418,6 @@ public class CarportAlgorithm {
             m.setStyklistQty(1); //En pakke indholder 200 skruger
             arrList.add(m);
 
-            ///////////////////////////////////////////
             //Montering af læter på spær, med 307mm mellemrum for lægter på hver skiftevis 1 hel & 1 halv lægte af 38x73mm.taglægteT1
             material = materials.get(26);
             m = new Material(material.getItem_id(), material.getItem_description(), material.getWidth(), material.getHeight(), material.getEntity(), material.getMaterialType(), material.getPrice());
@@ -487,6 +488,71 @@ public class CarportAlgorithm {
             m.setLength(0); //Ingen længde
             m.setStyklistQty((int) Math.ceil(length / 350)); //Et beslag for hver rygsten.
             arrList.add(m);
+
+            if (shedLength != 0 || shedwidth != 0) {
+                //Montering af brædder til yderste bedækning af skur af 19x100mm.trykimp.Brædt
+                material = materials.get(7);
+                m = new Material(material.getItem_id(), material.getItem_description(), material.getWidth(), material.getHeight(), material.getEntity(), material.getMaterialType(), material.getPrice());
+                m.setLength(2100); //Skurets højde ændres ikke
+                m.setStyklistQty((int) (((shedLength / 60) * 2) + ((shedwidth / 60) * 2))); //Udregning af antal brædder på baggund af at beklædningsbrædder monteres med 6.cm mellemrum, med skurets mål.
+                arrList.add(m);
+
+                //Montering af yderste bedækning med 6 skruger pr. planke af 4,5x70mm.Skruer200stk.
+                material = materials.get(34);
+                m = new Material(material.getItem_id(), material.getItem_description(), material.getWidth(), material.getHeight(), material.getEntity(), material.getMaterialType(), material.getPrice());
+                m.setLength(0); //Ingen længde
+                m.setStyklistQty((int) Math.ceil((((shedLength / 60) * 2) + ((shedwidth / 60) * 2)) * 6 / 200)); //Mængden af brædder divideret med 200 og rundet op til et helt tal, hvilket angiver hvor mange pakker af 400 vi så skal bruge hvis hvert brædt bruger 4 skruger.
+                arrList.add(m);
+
+                //Montering af inderste bedækning med 3 skruger pr. planke af 4,5x50mm.Skruer350stk.
+                material = materials.get(35);
+                m = new Material(material.getItem_id(), material.getItem_description(), material.getWidth(), material.getHeight(), material.getEntity(), material.getMaterialType(), material.getPrice());
+                m.setLength(0); //Ingen længde
+                m.setStyklistQty((int) Math.ceil((((shedLength / 60) * 2) + ((shedwidth / 60) * 2)) * 3 / 350)); //Mængden af brædder divideret med 300 og rundet op til et helt tal, hvilket angiver hvor mange pakker af 350 vi så skal bruge hvis hvert brædt bruger 4 skruger.
+                arrList.add(m);
+
+                //Montering af 6 løsholter til skur gavler af 45x95mm.Reglarub.
+                material = materials.get(4);
+                m = new Material(material.getItem_id(), material.getItem_description(), material.getWidth(), material.getHeight(), material.getEntity(), material.getMaterialType(), material.getPrice());
+                m.setLength(shedwidth); //Bredden af carporten og lidt ekstra til tilskærelse og tilpadsning.
+                m.setStyklistQty(6); //Der skal uanset hvad bruges 6 løsholtere til gavlen for indersiden af skurets konstruktion.
+                arrList.add(m);
+
+                //Montering af 4 løsholter til skur sider af 45x95mm.Reglarub.
+                material = materials.get(4);
+                m = new Material(material.getItem_id(), material.getItem_description(), material.getWidth(), material.getHeight(), material.getEntity(), material.getMaterialType(), material.getPrice());
+                m.setLength(shedLength); //Længden af løsholtere og lidt ekstra til tilskærelse og tilpadsning ud fra skurets længde.
+                m.setStyklistQty(4); //Der skal uanset hvad bruges 4 løsholtere til indersiden af skurets konstruktion.
+                arrList.add(m);
+
+                //Montering af vinkelbeslag til montering af løsholter i skur med 2 beslag pr. lysholter af vinkelbeslag35
+                material = materials.get(22);
+                m = new Material(material.getItem_id(), material.getItem_description(), material.getWidth(), material.getHeight(), material.getEntity(), material.getMaterialType(), material.getPrice());
+                m.setLength(0); //Ingen længde.
+                m.setStyklistQty((6 + 4) * 2); //Der skal uanset hvad bruges 2 vinkelbeslag pr. lysholter i skuret.
+                arrList.add(m);
+
+                //Montering af lægte til z på bagside af dør af 38x73mm.taglægteT1
+                material = materials.get(26);
+                m = new Material(material.getItem_id(), material.getItem_description(), material.getWidth(), material.getHeight(), material.getEntity(), material.getMaterialType(), material.getPrice());
+                m.setLength(5400); //Fast længde på alle modeller.
+                m.setStyklistQty(1); //Fast mængde på alle modeller.
+                arrList.add(m);
+
+                //Montering af 2 t-hængseler til skur dør af thængsel390mm.
+                material = materials.get(21);
+                m = new Material(material.getItem_id(), material.getItem_description(), material.getWidth(), material.getHeight(), material.getEntity(), material.getMaterialType(), material.getPrice());
+                m.setLength(0); //Ingen længde.
+                m.setStyklistQty(2); //Fast mængde på alle modeller, da en dør skal bruge mindst 2 t-hængsler.
+                arrList.add(m);
+
+                //Montering af et sæt ståldørsgreb til lås på dør i skur af stalddørsgreb50x75
+                material = materials.get(20);
+                m = new Material(material.getItem_id(), material.getItem_description(), material.getWidth(), material.getHeight(), material.getEntity(), material.getMaterialType(), material.getPrice());
+                m.setLength(0); //Ingen længde.
+                m.setStyklistQty(1); //Fast mængde på alle modeller, da en dør kun skal et sæt ståldørsgreb.
+                arrList.add(m);
+            }
 
         }
         return styklist;
