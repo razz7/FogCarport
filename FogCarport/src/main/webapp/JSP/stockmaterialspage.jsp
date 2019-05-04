@@ -10,7 +10,6 @@
 
 <jsp:include page='/JSP/sitemenus.jsp'></jsp:include>
 
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <div class ="offset-sm-2">
     <br>
 <h3>All materials in stock</h3>
