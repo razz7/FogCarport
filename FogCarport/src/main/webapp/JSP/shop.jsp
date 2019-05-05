@@ -12,7 +12,7 @@
 
 <jsp:include page='/JSP/sitemenus.jsp'></jsp:include>
 
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+
 <div class="alert alert-primary"
 <br>
 <div class="container">
@@ -21,14 +21,14 @@
 <br>
 <div class="container">
     <form action="FrontController" method="POST">
-        <h4>Carport mÃ¥l </h4>
+        <h4>Carport mål </h4>
         <div class="form-row">
             <input type="hidden" name="command" value="order">
            
 
             <div class="col-md-3 mb-3">
-                <label for="">HÃ¸jde</label>
-                <input type="text" name="height"  value="" class="form-control" placeholder="Carport HÃ¸jde" >
+                <label for="">Højde</label>
+                <input type="text" name="height"  value="" class="form-control" placeholder="Carport Højde" >
             </div>
             <div class="col-md-3 mb-3">
 
@@ -37,17 +37,17 @@
             </div>
             <div class="col-md-3 mb-3">
 
-                <label for="">LÃ¦ngde</label>
-                <input type="text" name="length" value="" class="form-control" placeholder="Carport LÃ¦ngde">
+                <label for="">Længde</label>
+                <input type="text" name="length" value="" class="form-control" placeholder="Carport Længde">
             </div>
         </div>
         <br>
-        <h4>Skur mÃ¥l</h4>
+        <h4>Skur mål</h4>
         <div class="form-row">
             <div class="col-md-3 mb-3">
 
-                <label for="">LÃ¦ngde</label>
-                <input type="text" name="shedLength" value="" class="form-control" placeholder="Skur LÃ¦ngde">
+                <label for="">Længde</label>
+                <input type="text" name="shedLength" value="" class="form-control" placeholder="Skur Længde">
             </div>
             <div class="col-md-3 mb-3">
 
@@ -59,13 +59,13 @@
 
 
         <%--
-        <h5>Indtast 0 for fladt tag og 1 for hÃ¸jt tag</h5>
+        <h5>Indtast 0 for fladt tag og 1 for højt tag</h5>
         <input type="text" name="shedTilt" value="">
         --%>
 
         <span>
             <fieldset id="roof">
-                <h5>HÃ¸jt tag</h5>
+                <h5>Højt tag</h5>
                 <input type="radio" value="1" name="roof">
 
                 <h5>Lavt tag</h5>

@@ -13,7 +13,6 @@
 
 <jsp:include page='/JSP/sitemenus.jsp'></jsp:include>
 
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 
 
@@ -32,7 +31,7 @@
                         
                     out.println("<tr><th>ID</th>");
                     out.println("<th>Beskrivelse</th>");
-                    out.println("<th>HÃ¸jde</th>");
+                    out.println("<th>Højde</th>");
                     out.println("<th>Bredde</th>");
                     out.println("<th>Entity</th>");
                     out.println("<th>Type</th>");

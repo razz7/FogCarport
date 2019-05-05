@@ -5,7 +5,7 @@
 --%>
 
 <%@page import="FunctionLayer.Material"%>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <%
     if(session.getAttribute("lineitemToEdit")!=null) {
