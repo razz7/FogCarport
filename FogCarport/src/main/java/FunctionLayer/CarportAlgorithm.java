@@ -216,7 +216,7 @@ public class CarportAlgorithm {
             if (length + 50 * 2 < 6) {
                 m.setLength(length + 50 * 2); //Længde af carporten + 5 cm til hver ende, hvis carporten er under 6 meter og derfor kun bruger en plade på langs
                 m.setStyklistQty(((int) Math.ceil((width + 50 * 2) / (1090 - 20 * 2)))); //Der skal monteres nok plader til at dække hele carportens bredde med 2cm overlap og 5 cm ekstra på hver side
-            } else { //Da pladerne i dette tilfølde er længere ind de max 6m må der istedet være 2 set af plader istedet.
+            } else { //Da pladerne i dette tilfælde er længere ind de max 6m må der istedet være 2 set af plader istedet.
                 m.setLength((length / 2) + 50 * 2 + 20 * 2); //Længde af carporten + 5cm til hver side + 2 cm til overlap
                 m.setStyklistQty(((int) Math.ceil((width + 50 * 2) / (1090 - 20 * 2))) * 2); //Der skal monteres nok plader til at dække hele carportens bredde med 2cm overlap og 5 cm ekstra på hver side
             }

@@ -19,7 +19,7 @@ public class Order {
     private float shedWidth;
     private float shedLength;
     private User user;
-    private Stykliste sl;
+    private Stykliste styklist;
     private boolean orderStatus;
 
     public Order(int order_id, float width, float length, float height, float roofTilt, float shedWidth, float shedLength) {
@@ -40,8 +40,8 @@ public class Order {
         this.order_id = order_id;
     }
 
-    public void setSl(Stykliste sl) {
-        this.sl = sl;
+    public void setStyklist(Stykliste styklist) {
+        this.styklist = styklist;
     }
 
     public User getUser() {
@@ -80,9 +80,17 @@ public class Order {
         this.orderStatus = orderStatus;
     }
 
+    public Stykliste getStyklist() {
+        return styklist;
+    }
+
+    public boolean isOrderStatus() {
+        return orderStatus;
+    }
+
     @Override
     public String toString() {
-        return "Order{" + "order_id=" + order_id + ", width=" + width + ", length=" + length + ", height=" + height + ", roofTilt=" + roofTilt + ", shedWidth=" + shedWidth + ", shedLength=" + shedLength + ", user=" + user + ", sl=" + sl + ", orderStatus=" + orderStatus + '}';
+        return "Order{" + "order_id=" + order_id + ", width=" + width + ", length=" + length + ", height=" + height + ", roofTilt=" + roofTilt + ", shedWidth=" + shedWidth + ", shedLength=" + shedLength + ", user=" + user + ", styklist=" + styklist + ", orderStatus=" + orderStatus + '}';
     }
 
 }
