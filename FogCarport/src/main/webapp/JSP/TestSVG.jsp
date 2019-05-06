@@ -4,53 +4,46 @@
     Author     : Rasmus2
 --%>
 
+<%@page import="FunctionLayer.Stykliste"%>
+<%@page import="FunctionLayer.CarportAlgorithm"%>
+<%@page import="FunctionLayer.Order"%>
 <!DOCTYPE html>
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+
+        <title>Web Project Basic</title>
+
+        <base href="${pageContext.request.contextPath}/" >
+
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
     </head>
     <body>
         <h1>SVG!</h1>
 
         <%
-            int height = 1000;
-            int length = 1500;
-            int beamwidth = 100;
-            int width = 100;
-            int mindistance = 10;
-
-            double numberofbeams = Math.floor((length - width) / (width + mindistance)) + 1;
-            double space = ((length - numberofbeams * width) / (numberofbeams - 1));
-
-            out.println(numberofbeams);
-            out.println(space);
-
-        %>
-        <svg x="400mm" y="500mm">
-
-        <% out.print("<rect height=\"" + beamwidth + "mm\" width=\"" + length + "mm\""); %>
-        style="stroke:#006600; fill: #0000ff"/>
-
-        <% out.print("<rect y=\"" + (height - beamwidth) + "mm\" height=\"" + beamwidth + "mm\" width=\"" + length + "mm\""); %>
-        style="stroke:#006600; fill: #0000ff"/>
-
-        <%
-            double sum = 0;
-            for (int i = 0; i < numberofbeams; i++) {
-
+            Order order = new Order(1, 6000, 7800, 2300, 0, 5300, 2100);
+            //Order(int order_id, float width, float length, float height, float roofTilt, float shedWidth, float shedLength)
+            //carportAlgorithm(float width, float length, float roofTilt, float shedwidth, float shedLength, int styklist_id)
+            CarportAlgorithm car = new CarportAlgorithm();
+            Stykliste styklist = car.carportAlgorithm(order.getWidth(), order.getLength(), order.getRoofTilt(), order.getShedWidth(), order.getShedLength(), 1);
+            order.setStyklist(styklist);
 
         %>
 
-        <% out.print("<rect x=\"" + sum + "mm\" height=\"" + height + "mm\" width=\"" + width + "mm\""); %>
-        style="stroke:#006600; fill: #ff0000"/>
+        <div>
+            <svg width="<% order.getLength(); %>" height="2300">
 
-        <%
-                sum = sum + space + width;
-            }
-        %>
+            <circle cx="0" cy="0" r="4" stroke="black" stroke-width="3" fill="red" />
+            <circle cx="<% order.getLength(); %>" cy="0" r="4" stroke="black" stroke-width="3" fill="red" />
+            <circle cx="0" cy="2300" r="4" stroke="black" stroke-width="3" fill="red" />
+            <circle cx="<% order.getLength();%>" cy="2300" r="4" stroke="black" stroke-width="3" fill="red" />
 
-        </svg>
+            <rect x='0' y='0' width='<% out.println(order.getStyklist().getStyklist().get(13).getLength() * ((order.getStyklist().getStyklist().get(13).getStryklistQty() / 2) - (100 - 50))); %>'mm height='<% out.println(order.getStyklist().getStyklist().get(13).getHeight());%>'mm 
+                  transform='rotate( <% out.println(90 - Math.toDegrees(Math.atan((7800 / (2300 - 2200)))));%> 0 0)'/>
 
+            </svg>
+        </div>
     </body>
 </html>
