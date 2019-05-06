@@ -18,7 +18,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author Rumle
  */
-public class EditLineItem extends Command{
+public class EditLineItemCommand extends Command{
 
     @Override
     String execute(HttpServletRequest request, HttpServletResponse response) throws LoginSampleException, OrderSampleException, MaterialSampleException {
