@@ -71,6 +71,7 @@ public class StyklisteMapper {
             ps.setString(6, lineitems.get(i).getMaterialType());
             ps.setFloat(7, lineitems.get(i).getPrice());
             ps.setInt(8, lineitems.get(i).getStryklistQty());
+            
             ps.executeUpdate();
         }
         }catch(SQLException | ClassNotFoundException ex) {
