@@ -14,6 +14,7 @@ public class Material {
     private int styklistQty = 0;
     private int stockQty = 0;
     private float length = 0;
+    private String constructionDescription = "";
     private int item_id;
     private String item_description;
     private float width;
@@ -114,11 +115,15 @@ public class Material {
 
     public void setStockQty(int stockQty) {
         this.stockQty = stockQty;
-    }    
+    }
+
+    public void setConstructionDescription(String constructionDescription) {
+        this.constructionDescription = constructionDescription;
+    }
 
     @Override
     public String toString() {
-        return "Material{" + "styklistQty=" + styklistQty + ", stockQty=" + stockQty + ", length=" + length + ", item_id=" + item_id + ", item_description=" + item_description + ", width=" + width + ", height=" + height + ", entity=" + entity + ", materialtype=" + materialtype + ", price=" + price + '}';
+        return "Material{" + "styklistQty=" + styklistQty + ", stockQty=" + stockQty + ", length=" + length + ", item_id=" + item_id + ", item_description=" + item_description + ", width=" + width + ", height=" + height + ", entity=" + entity + ", materialtype=" + materialtype + ", constructionDescription=" + constructionDescription + ", price=" + price + '}';
     }
     
     public String toString1() {
