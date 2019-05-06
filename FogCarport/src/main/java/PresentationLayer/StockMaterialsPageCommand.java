@@ -6,10 +6,14 @@
 package PresentationLayer;
 
 import DBAccess.DatabaseFacade;
+import DBAccess.MaterialMapper;
+import FunctionLayer.LogicFacade;
 import FunctionLayer.LoginSampleException;
 import FunctionLayer.Material;
 import FunctionLayer.MaterialSampleException;
 import FunctionLayer.OrderSampleException;
+import FunctionLayer.User;
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -21,28 +25,21 @@ import javax.servlet.http.HttpSession;
  *
  * @author Rasmus2
  */
-public class CreateStockMaterial extends Command {
+public class StockMaterialsPageCommand extends Command {
 
     @Override
     String execute(HttpServletRequest request, HttpServletResponse response) throws LoginSampleException, OrderSampleException, MaterialSampleException {
-        HttpSession session = request.getSession();
-        
-        String description = request.getParameter("description");
-        float width = Float.parseFloat(request.getParameter("width"));
-        float height = Float.parseFloat(request.getParameter("height"));
-        String entity = request.getParameter("entity");
-        String type = request.getParameter("type");
-        float price = Float.parseFloat(request.getParameter("price"));
-        int qty = Integer.parseInt(request.getParameter("qty"));
+        //String email = request.getParameter("email");
+        //String password = request.getParameter("password");
+        //LogicFacade logic = new LogicFacade();
+        //User user = logic.login(email, password);
         
         DatabaseFacade df = new DatabaseFacade();
-        
-        df.addNewMaterial(description, width, height, entity, type, price, qty);
-        
         ArrayList<Material> materials = df.getAllMaterials();
+        HttpSession session = request.getSession();
         session.setAttribute("stockMaterialList", materials);
         
         return "stockmaterialspage";
     }
-
+    
 }
