@@ -23,8 +23,8 @@ abstract class Command {
         commands.put( "styklistpage", new StyklistPageCommand());
         commands.put( "order", new OrderPageCommand());
         commands.put( "editlineitem", new EditLineItemCommand());
-        commands.put("category", new categoryCommand());
-
+        commands.put( "category", new categoryCommand());
+        commands.put( "graphic", new GrafikCommand());
     }
 
     static Command from( HttpServletRequest request ) {

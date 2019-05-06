@@ -19,6 +19,7 @@
       <li class="nav-item">
         <a class="nav-link" href="/FogCarport/FrontController?command=styklistpage">Lineitems</a>
       </li>
+      
       <li class="nav-item">
         <a class="nav-link" href="JSP/shop.jsp">Shop</a>
               <li class="nav-item">
@@ -28,6 +29,7 @@
       </li>
        </li>
         <a class="nav-link" href="JSP/newjsp.jsp">Cat</a>
+        <a class="nav-link" href="JSP/graphicInput.jsp">Grafik</a>
       </li>
       </li>
     </ul>
