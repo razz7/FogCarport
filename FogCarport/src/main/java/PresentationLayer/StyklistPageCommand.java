@@ -20,7 +20,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author Rasmus2
  */
-public class StyklistPage extends Command {
+public class StyklistPageCommand extends Command {
 
     @Override
     String execute(HttpServletRequest request, HttpServletResponse response) throws LoginSampleException, OrderSampleException, MaterialSampleException {

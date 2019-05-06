@@ -18,7 +18,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author Ludvig
  */
-public class OrderPage extends Command{
+public class OrderPageCommand extends Command{
     
     private int id = 1;
 
