@@ -27,10 +27,10 @@
         
         out.println("<rect x=\"50\" y=\"0\" width=" + width + " height=\"30\" style=\"stroke: #000000; fill: #0033cc;/>");
         
-        out.println("<rect x=" + width + " y=\"30\" width=\"30\" height=\"500\" style=\"stroke: #000000; fill: #0033cc;\"/>");
+        out.println("<rect x=\"500\" y=\"30\" width=\"30\" height=\"500\" style=\"stroke: #000000; fill: #0033cc;\"/>");
         out.println("<rect x=\"50\" y=\"30\" width=\"30\" height=\"500\" style=\"stroke: #000000; fill: #FF0000;\"/>");   
                       
-        out.println("<rect x=\"50\" y=\"30\" width=" + shedWidth + " height=\"470\" style=\"stroke: #000000; fill: #01DF01;\"/>");
+        //out.println("<rect x=\"50\" y=\"30\" width=" + shedWidth + " height=\"470\" style=\"stroke: #000000; fill: #01DF01;\"/>");
         
         out.println("</svg>");
   
