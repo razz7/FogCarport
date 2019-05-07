@@ -30,7 +30,7 @@
         out.println("<tr><td> Material description: </tr></td>");
         out.println("<input type=\"text\" name=\"description\" value=" + material.getItem_description() + ">");
         out.println("</div>");
-         out.println("<div class=\"col-md-3 mb-3\">");
+        out.println("<div class=\"col-md-3 mb-3\">");
         out.println("<tr><td> Material width: </tr></td>");
         out.println("<input type=\"text\" name=\"width\" value=" + material.getWidth() + ">");
         out.println("</div>");
@@ -45,6 +45,7 @@
         out.println("<div class=\"col-md-3 mb-3\">");
         out.println("<tr><td> Material type: </tr></td>");
         out.println("<input type=\"text\" name=\"type\" value=" + material.getMaterialType() + ">");
+                out.println("<h5>" + material.getMaterialType() + "</h5>");
         out.println("</div>");
         out.println("<div class=\"col-md-3 mb-3\">");
         out.println("<tr><td> Material price: </tr></td>");

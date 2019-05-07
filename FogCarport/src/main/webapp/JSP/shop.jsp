@@ -25,11 +25,6 @@
         <div class="form-row">
             <input type="hidden" name="command" value="order">
            
-
-            <div class="col-md-3 mb-3">
-                <label for="">Højde</label>
-                <input type="text" name="height"  value="" class="form-control" placeholder="Carport Højde" >
-            </div>
             <div class="col-md-3 mb-3">
 
                 <label for="">Bredde</label>
@@ -74,6 +69,10 @@
         </span>
 
         <br>
+        
+                <input class="btn btn-primary" type="submit" value="Make order">
+        </div>
+    </form>
 
         <%
             if (session.getAttribute("stykliste") != null) {
@@ -93,9 +92,6 @@
             }
         %>
 
-        <input class="btn btn-primary" type="submit" value="Make order">
-        </div>
-    </form>
 </div>
 </div>
 <jsp:include page='/JSP/sitefooter.jsp'></jsp:include>
