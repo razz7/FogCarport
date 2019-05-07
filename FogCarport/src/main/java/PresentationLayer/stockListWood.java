@@ -10,33 +10,29 @@ import FunctionLayer.LoginSampleException;
 import FunctionLayer.Material;
 import FunctionLayer.MaterialSampleException;
 import FunctionLayer.OrderSampleException;
+import java.util.ArrayList;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author Rasmus2
+ * @author rh
  */
-public class EditStockMaterialPage extends Command {
+public class stockListWood extends Command {
 
     @Override
     String execute(HttpServletRequest request, HttpServletResponse response) throws LoginSampleException, OrderSampleException, MaterialSampleException {
-        //String email = request.getParameter("email");
-        //String password = request.getParameter("password");
-        //LogicFacade logic = new LogicFacade();
-        //User user = logic.login(email, password);
 
-        DatabaseFacade dbf = new DatabaseFacade();
-        Material mat = null;
-        if (!"".equals(request.getParameter("chosenStockMaterial"))) {
-            int id = Integer.parseInt(request.getParameter("chosenStockMaterial"));
-            mat = dbf.getMaterialbyID(id);
-        }
+        
+        DatabaseFacade df = new DatabaseFacade();
+        ArrayList<Material> materials = df.getAllMaterialbyType("Træ & Tagplader");
+        System.out.println(materials);
         HttpSession session = request.getSession();
-        session.setAttribute("stockMaterial", mat);
-
-        return "editMaterial";
-
+        session.setAttribute("stockListWood", materials);
+        
+        return "stockListWood";
     }
+    
 }
+    

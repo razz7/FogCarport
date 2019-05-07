@@ -9,8 +9,6 @@ import FunctionLayer.LoginSampleException;
 import FunctionLayer.MaterialSampleException;
 import FunctionLayer.OrderSampleException;
 import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -36,13 +34,7 @@ public class FrontController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
-            Command com = new Command() {
-                @Override
-                String execute(HttpServletRequest request, HttpServletResponse response) throws LoginSampleException, OrderSampleException, MaterialSampleException {
-                    throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-                }
-            };
-            Command action = com.from(request);
+            Command action = Command.from(request);
             String view = action.execute(request, response);
             request.getRequestDispatcher("/JSP/" + view + ".jsp").forward(request, response);
         } catch (LoginSampleException | OrderSampleException | MaterialSampleException ex) {
