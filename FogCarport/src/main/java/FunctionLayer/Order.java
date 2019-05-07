@@ -80,6 +80,11 @@ public class Order {
         this.orderStatus = orderStatus;
     }
 
+    public Stykliste getSl() {
+        return sl;
+    }
+    
+
     @Override
     public String toString() {
         return "Order{" + "order_id=" + order_id + ", width=" + width + ", length=" + length + ", height=" + height + ", roofTilt=" + roofTilt + ", shedWidth=" + shedWidth + ", shedLength=" + shedLength + ", user=" + user + ", sl=" + sl + ", orderStatus=" + orderStatus + '}';

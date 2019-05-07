@@ -88,6 +88,12 @@ public class OrderMapper {
             ps.setInt(7, order.getUser().getId());
             ps.executeUpdate();
             
+            StyklisteMapper mapper = new StyklisteMapper();
+            ResultSet rs = ps.getGeneratedKeys();
+            int key = 0;
+            if(rs != null && rs.next()) key = rs.getInt(1);
+            System.out.println(key);
+            mapper.saveLineItemsInDB(order.getSl(),key);
             
            
             
@@ -100,16 +106,18 @@ public class OrderMapper {
         Order order = new Order(6000, 7800, 0, 5300, 2100, 1, 1);
         OrderMapper map = new OrderMapper();
         StyklisteMapper mapper = new StyklisteMapper();
-//        User user = new User("derqe", "qwe", "qwe");
-//        user.setId(10);
-//        order.setUser(user);
-//        CarportAlgorithm algo = new CarportAlgorithm();
-//        FunctionLayer.Stykliste list = algo.carportAlgorithm(order.getWidth(), order.getLength(), order.getRoofTilt(), order.getShedWidth(), order.getShedLength(), 1);
-//        order.setSl(list);
-//        
-//        map.saveOrder(order);
-//        mapper.saveLineItemsInDB(list.getStyklist());
-System.out.println(map.getAllOrders());
+        User user = new User("derqe", "qwe", "qwe");
+        user.setId(10);
+        order.setUser(user);
+        CarportAlgorithm algo = new CarportAlgorithm();
+        FunctionLayer.Stykliste list = algo.carportAlgorithm(order.getWidth(), order.getLength(), order.getRoofTilt(), order.getShedWidth(), order.getShedLength(), 1);
+        order.setSl(list);
+        
+        map.saveOrder(order);
+        System.out.println(list);
+        
+        
+
         
     }
     
