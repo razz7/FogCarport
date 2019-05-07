@@ -216,7 +216,7 @@ public class CarportAlgorithm {
             if (length + 50 * 2 < 6) {
                 m.setLength(length + 50 * 2); //Længde af carporten + 5 cm til hver ende, hvis carporten er under 6 meter og derfor kun bruger en plade på langs
                 m.setStyklistQty(((int) Math.ceil((width + 50 * 2) / (1090 - 20 * 2)))); //Der skal monteres nok plader til at dække hele carportens bredde med 2cm overlap og 5 cm ekstra på hver side
-            } else { //Da pladerne i dette tilfølde er længere ind de max 6m må der istedet være 2 set af plader istedet.
+            } else { //Da pladerne i dette tilfælde er længere ind de max 6m må der istedet være 2 set af plader istedet.
                 m.setLength((length / 2) + 50 * 2 + 20 * 2); //Længde af carporten + 5cm til hver side + 2 cm til overlap
                 m.setStyklistQty(((int) Math.ceil((width + 50 * 2) / (1090 - 20 * 2))) * 2); //Der skal monteres nok plader til at dække hele carportens bredde med 2cm overlap og 5 cm ekstra på hver side
             }
@@ -696,7 +696,7 @@ public class CarportAlgorithm {
         CarportAlgorithm car = new CarportAlgorithm();
         Stykliste styk = car.carportAlgorithm(6000, 7800, 0, 0, 0, 1);
         for (int i = 0; i < styk.getStyklist().size(); i++) {
-            System.out.println(styk.getStyklist().get(i));
+            System.out.println("count=" + i + "_" + styk.getStyklist().get(i));
         }
 
         System.out.println("");
@@ -704,7 +704,7 @@ public class CarportAlgorithm {
 
         Stykliste stykl = car.carportAlgorithm(6000, 7800, 0, 5300, 2100, 1);
         for (int i = 0; i < stykl.getStyklist().size(); i++) {
-            System.out.println(stykl.getStyklist().get(i));
+            System.out.println("count=" + i + "_" + stykl.getStyklist().get(i));
         }
 
         System.out.println("");
@@ -712,7 +712,7 @@ public class CarportAlgorithm {
 
         Stykliste stykk = car.carportAlgorithm(3600, 7300, 35, 0, 0, 1);
         for (int i = 0; i < stykk.getStyklist().size(); i++) {
-            System.out.println(stykk.getStyklist().get(i));
+            System.out.println("count=" + i + "_" + stykk.getStyklist().get(i));
         }
 
         System.out.println("");
@@ -720,7 +720,7 @@ public class CarportAlgorithm {
 
         Stykliste styk1 = car.carportAlgorithm(3600, 7300, 35, 3200, 2100, 1);
         for (int i = 0; i < styk1.getStyklist().size(); i++) {
-            System.out.println(styk1.getStyklist().get(i));
+            System.out.println("count=" + i + "_" + styk1.getStyklist().get(i));
         }
 
     }
