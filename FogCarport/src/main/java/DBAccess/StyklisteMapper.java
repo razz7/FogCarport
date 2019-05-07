@@ -54,13 +54,13 @@ public class StyklisteMapper {
             
         }
     }
-    public void saveOrder(ArrayList<Material> lineitems) {
+    public void saveLineItemsInDB(ArrayList<Material> lineitems) {
         try {
             
         Connection con = dbc.connection();
         
-        String sql = "INSERT INTO lineitems(item_id, item_description, width, height, entity, materialtype, price, orderquantity)"
-                + " VALUES (?,?,?,?,?,?,?,?)";
+        String sql = "INSERT INTO lineitems(item_id, item_description, width, height, entity, materialtype, price, orderquantity, versionnr)"
+                + " VALUES (?,?,?,?,?,?,?,?,?)";
             PreparedStatement ps = dbc.connection().prepareStatement(sql);
             for(int i = 0; i < lineitems.size();i++) {
             ps.setInt(1, lineitems.get(i).getItem_id());
@@ -71,6 +71,7 @@ public class StyklisteMapper {
             ps.setString(6, lineitems.get(i).getMaterialType());
             ps.setFloat(7, lineitems.get(i).getPrice());
             ps.setInt(8, lineitems.get(i).getStryklistQty());
+            ps.setInt(9, 1);
             
             ps.executeUpdate();
         }
