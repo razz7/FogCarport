@@ -7,6 +7,8 @@ package DBAccess;
 
 import FunctionLayer.Material;
 import FunctionLayer.MaterialSampleException;
+import FunctionLayer.Order;
+import FunctionLayer.OrderSampleException;
 import FunctionLayer.Stykliste;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -36,10 +38,6 @@ public class DatabaseFacade {
         mapper.updateMaterialData(item_id, item_description, width, height, entity, materialtype, price, quantity);
     }
 
-    //public void updateQuantityToExistingMaterial(int item_id, int quantity) throws MaterialSampleException {
-    //    MaterialMapper mapper = new MaterialMapper();
-    //    mapper.updateQuantityToExistingMaterial(item_id, quantity);
-    //}
     
     public void deleteMaterial(int item_id) throws MaterialSampleException {
         MaterialMapper map = new MaterialMapper();
@@ -54,5 +52,10 @@ public class DatabaseFacade {
     public Stykliste getLineitemsByOrderId(int order_id) throws MaterialSampleException {
         MaterialMapper map = new MaterialMapper();
         return map.getLineitemsByOrderId(order_id);
+    }
+    
+    public void saveOrder(Order order) throws OrderSampleException{
+        OrderMapper map = new OrderMapper();
+        map.saveOrder(order);
     }
 }
