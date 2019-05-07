@@ -19,19 +19,19 @@ import javax.servlet.http.HttpSession;
  *
  * @author rh
  */
-public class stockListWood extends Command {
+public class stockListScrews extends Command {
 
     @Override
     String execute(HttpServletRequest request, HttpServletResponse response) throws LoginSampleException, OrderSampleException, MaterialSampleException {
 
         
         DatabaseFacade df = new DatabaseFacade();
-        ArrayList<Material> materials = df.getAllMaterialbyType("Træ & Tagplader");
+        ArrayList<Material> materials = df.getAllMaterialbyType("Beslag & Skruer");
         System.out.println(materials);
         HttpSession session = request.getSession();
-        session.setAttribute("stockListWood", materials);
+        session.setAttribute("stockListScrews", materials);
         
-        return "stockListWood";
+        return "stockListScrews";
     }
     
 }

@@ -25,6 +25,7 @@ abstract class Command {
         commands.put( "editlineitem", new EditLineItemCommand());
         commands.put("category", new categoryCommand());
         commands.put("stockListWood", new stockListWood());
+        commands.put("stockListScrews", new stockListScrews());
 
     }
 
