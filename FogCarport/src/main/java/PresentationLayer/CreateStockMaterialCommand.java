@@ -21,7 +21,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author Rasmus2
  */
-public class CreateStockMaterial extends Command {
+public class CreateStockMaterialCommand extends Command {
 
     @Override
     String execute(HttpServletRequest request, HttpServletResponse response) throws LoginSampleException, OrderSampleException, MaterialSampleException {

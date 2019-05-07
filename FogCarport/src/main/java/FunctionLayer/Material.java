@@ -122,7 +122,7 @@ public class Material {
     }
     
     public String toString1() {
-        return "Materiale information: " + "materiale id: " + item_id +  ", materiale beskrivelse: " + item_description + ", højde: " + height  + ", bredde: " + width + ", entity: " + entity + ", materialetype: " + materialtype + ", pris: " + price;
+        return "Materiale information: " + " materiale id: " + item_id +  ", materiale beskrivelse: " + item_description + ", højde: " + height  + ", bredde: " + width + ", entity: " + entity + ", materialetype: " + materialtype + ", pris: " + price;
     }
 
     

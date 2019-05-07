@@ -2,7 +2,7 @@
 
     
     
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg navbar-light " style="background-color: #e3f2fd;">
   <img src="img/logofog.png" width="53" height="50" alt="">
   
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -17,7 +17,7 @@
         <a class="nav-link" href="/FogCarport/FrontController?command=allmaterials">Materials</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="/FogCarport/FrontController?command=styklistpage">Admin page</a>
+        <a class="nav-link" href="/FogCarport/FrontController?command=styklistpage">Lineitems</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="JSP/shop.jsp">Shop</a>
@@ -25,6 +25,9 @@
         <a class="nav-link" href="JSP/loginRegistration.jsp" >Register</a>
       </li>
         <a class="nav-link" href="/Cupcake/FrontController?action=logOut">Log out</a>
+      </li>
+       </li>
+        <a class="nav-link" href="JSP/newjsp.jsp">Cat</a>
       </li>
       </li>
     </ul>
