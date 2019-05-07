@@ -31,7 +31,9 @@ public class MaterialMapper {
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 Material material = new Material(rs.getInt(1), rs.getString(2), rs.getFloat(3), rs.getFloat(4), rs.getString(5), rs.getString(6), rs.getFloat(7));
+                material.setVersionnr(rs.getInt(9));
                 material.setStockQty(rs.getInt(8));
+                
                 list.add(material);
             }
             return list;
@@ -138,6 +140,7 @@ public class MaterialMapper {
             Material material = null;
             while (rs.next()) {
                 material = new Material(rs.getInt(1), rs.getString(2), rs.getFloat(3), rs.getFloat(4), rs.getString(5), rs.getString(6), rs.getFloat(7));
+                System.out.println(rs.getInt(9));
                 material.setStockQty(rs.getInt(8));
             }
 
@@ -200,7 +203,12 @@ public class MaterialMapper {
 
         //map.updateMaterialData(42, "hey", 3.6f, 25.7f, "stk", "pakke", 45.6f, 500);
         //map.addNewMaterial("hey1", 3.6f, 25.7f, "stk", "pakke", 45.6f, 500);
-        map.updateMaterialData(49, "qwe", 1f, 1f, "qwe", "qwe", 1, 1);
+        //map.updateMaterialData(49, "qwe", 1f, 1f, "qwe", "qwe", 1, 1);
+        ArrayList<Material> list =  map.getAllMaterials();
+        for(int i = 0; i < list.size(); i++) {
+        
+        System.out.println(map.getAllMaterials().get(i).getVersionnr());
+        }
     }
 
 }
