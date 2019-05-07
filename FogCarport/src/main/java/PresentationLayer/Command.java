@@ -24,6 +24,7 @@ abstract class Command {
         commands.put( "order", new OrderPageCommand());
         commands.put( "editlineitem", new EditLineItemCommand());
         commands.put("category", new categoryCommand());
+        commands.put("stockListWood", new stockListWood());
 
     }
 

@@ -25,11 +25,6 @@
         <div class="form-row">
             <input type="hidden" name="command" value="order">
            
-
-            <div class="col-md-3 mb-3">
-                <label for="">Højde</label>
-                <input type="text" name="height"  value="" class="form-control" placeholder="Carport Højde" >
-            </div>
             <div class="col-md-3 mb-3">
 
                 <label for="">Bredde</label>

@@ -17,7 +17,7 @@
       <img class="card-img-top" src="img/bjaelke.jpg" alt="Card image cap" height="210" width="10" >
     <div class="card-body">
       <h5 class="card-title">Træ</h5>
-       <a href="JSP/newjsp.jsp" class="btn btn-primary stretched-link">Se alt træ på lager</a>
+       <a href="/FogCarport/FrontController?command=stockListWood" class="btn btn-primary stretched-link">Se alt træ på lager</a>
     </div>
 
   </div>

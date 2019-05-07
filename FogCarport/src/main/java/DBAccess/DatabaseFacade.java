@@ -55,4 +55,9 @@ public class DatabaseFacade {
         MaterialMapper map = new MaterialMapper();
         return map.getLineitemsByOrderId(order_id);
     }
+    
+    public ArrayList<Material> getAllMaterialbyType(String type) throws MaterialSampleException {
+        MaterialMapper map = new MaterialMapper();
+        return map.getAllMaterialbyType(type);
+    }
 }
