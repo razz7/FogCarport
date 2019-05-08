@@ -26,7 +26,6 @@ public class OrderPageCommand extends Command{
     String execute(HttpServletRequest request, HttpServletResponse response) throws LoginSampleException, OrderSampleException, MaterialSampleException {
            HttpSession session = request.getSession();
            
-           float height = Float.parseFloat(request.getParameter("height"));
            float width = Float.parseFloat(request.getParameter("width"));
            float length = Float.parseFloat(request.getParameter("length"));
            

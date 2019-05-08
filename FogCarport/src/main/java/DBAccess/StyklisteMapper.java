@@ -54,23 +54,28 @@ public class StyklisteMapper {
             
         }
     }
-    public void saveOrder(ArrayList<Material> lineitems) {
+    public void saveLineItemsInDB(Stykliste styklist, int order_id) {
         try {
+            ArrayList<Material> lineitems = styklist.getStyklist();
             
         Connection con = dbc.connection();
         
-        String sql = "INSERT INTO lineitems(item_id, item_description, width, height, entity, materialtype, price, orderquantity)"
-                + " VALUES (?,?,?,?,?,?,?,?)";
-            PreparedStatement ps = dbc.connection().prepareStatement(sql);
+        String sql = "INSERT INTO lineitems(item_id, order_id, item_description, width, height, entity, materialtype, price, orderquantity, versionnr)"
+                + "VALUES (?,?,?,?,?,?,?,?,?,?)";
+            PreparedStatement ps = con.prepareStatement(sql);
             for(int i = 0; i < lineitems.size();i++) {
             ps.setInt(1, lineitems.get(i).getItem_id());
-            ps.setString(2, lineitems.get(i).getItem_description());
-            ps.setFloat(3, lineitems.get(i).getWidth());
-            ps.setFloat(4, lineitems.get(i).getHeight());
-            ps.setString(5, lineitems.get(i).getEntity());
-            ps.setString(6, lineitems.get(i).getMaterialType());
-            ps.setFloat(7, lineitems.get(i).getPrice());
-            ps.setInt(8, lineitems.get(i).getStryklistQty());
+            ps.setInt(2, order_id);
+            ps.setString(3, lineitems.get(i).getItem_description());
+            ps.setFloat(4, lineitems.get(i).getWidth());
+            ps.setFloat(5, lineitems.get(i).getHeight());
+            ps.setString(6, lineitems.get(i).getEntity());
+            ps.setString(7, lineitems.get(i).getMaterialType());
+            ps.setFloat(8, lineitems.get(i).getPrice());
+            ps.setInt(9, lineitems.get(i).getStryklistQty());
+            ps.setInt(10, 0);
+               
+            
             
             ps.executeUpdate();
         }
