@@ -43,12 +43,7 @@
         out.println("</div>");
         out.println("<div class=\"col-md-3 mb-3\">");
         out.println("<tr><td> Material type: </tr></td>");
-
         out.println("<input type=\"text\" name=\"type\" value=" +  "\"" + material.getMaterialType() + "\"" + ">");
-
-        out.println("<input type=\"text\" name=\"type\" value=" + material.getMaterialType() + ">");
-                out.println("<h5>" + material.getMaterialType() + "</h5>");
-
         out.println("</div>");
         out.println("<div class=\"col-md-3 mb-3\">");
         out.println("<tr><td> Material price: </tr></td>");

@@ -30,7 +30,7 @@
                 for (int i = 0; i < list.size(); i++) {
                     //out.println("<tr><td>" + list.get(i).getItem_id() + ", " + list.get(i).getItem_description() + ", " + list.get(i).getWidth() + ", " + list.get(i).getHeight() + ", " + list.get(i).getEntity() + ", " + list.get(i).getMaterialType() + ", " + list.get(i).getPrice() + "</tr></td>");
                     out.println("<div class=\"alert alert-primary\" role=\"alert\">");
-                    out.println("<h5>" + " " + list.get(i).toString1() + ", StockQty: " + list.get(i).getStockQty() + ", Version Number: " +  list.get(i).getVersionnr() + "</h5>");
+                    out.println("<h5>" + " " + list.get(i).toString1() + ", StockQty: " + list.get(i).getStockQty() + "</h5>");
 
                     out.println("<form action=\"FrontController\" method=\"post\">");
                     out.println("<input type=\"hidden\" name=\"command\" value=\"editMaterial\">");
