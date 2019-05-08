@@ -2,9 +2,11 @@ package DBAccess;
 
 import FunctionLayer.CarportAlgorithm;
 import FunctionLayer.LoginSampleException;
+import FunctionLayer.Material;
 import FunctionLayer.MaterialSampleException;
 import FunctionLayer.Order;
 import FunctionLayer.OrderSampleException;
+import FunctionLayer.Stykliste;
 import FunctionLayer.User;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -38,39 +40,55 @@ public class OrderMapper {
         }
     }
 
-    public Order getOrderFromId(int order_id) throws LoginSampleException, ClassNotFoundException {
+    public Order getOrderFromId(int order_id) throws OrderSampleException{
         try {
             Connection con = dbc.connection();
-            String SQL = "SELECT * FROM 'order' WHERE id = " + id + ";";
+            String SQL = "SELECT * FROM orders WHERE order_id = ?";
             PreparedStatement ps = con.prepareStatement(SQL);
-
-            int ID = 0;
-            float length = 0;
-            float width = 0;
-            float height = 0;
-            float roofTilt = 0;
-            float shedWidth = 0;
-            float shedLength = 0;
-
+            ps.setInt(1, order_id);
+            ResultSet rs = ps.executeQuery();
             Order order = null;
 
-            ResultSet rs = ps.executeQuery();
+            while(rs.next()) {
+                order = new Order(rs.getInt(1), rs.getFloat(2), rs.getFloat(3), rs.getFloat(4), rs.getFloat(5), rs.getFloat(6), rs.getFloat(7));
+                //order.setUser(rs.getInt(8));
 
-            if (rs.next()) {
-                Order order = new Order(rs.getInt(2), width, length, height, roofTilt, shedWidth, shedLength);
-
-                order = new Order(ID, height, width, length, roofTilt, shedWidth, shedLength);
-
-            } else {
-                throw new LoginSampleException("Could not validate user");
+               
             }
-
+            OrderMapper map = new OrderMapper();
+            order.setSl(map.getStyklistForOrder(order_id));
             return order;
 
-        } catch (SQLException ex) {
-            throw new LoginSampleException(ex.getMessage());
+        } catch (SQLException | ClassNotFoundException ex) {
+            throw new OrderSampleException(ex.getMessage());
+        }
+        
+    }
+    
+    private Stykliste getStyklistForOrder(int order_id) throws OrderSampleException {
+        try{
+            String sql = "select * from lineitems where order_id = ?";
+            Connection conn = dbc.connection();
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setInt(1, order_id);
+            ResultSet rs = ps.executeQuery();
+            ArrayList<Material> lineitems = new ArrayList<>();
+            while(rs.next()) {
+                Material material = new Material(rs.getInt(2), rs.getString(4), rs.getFloat(5), rs.getFloat(6), rs.getString(7), rs.getString(8), rs.getFloat(9));
+                material.setStyklistQty(rs.getInt(10));
+//                material.setVersionnr(rs.getInt(11));
+                lineitems.add(material);
+                
+            }
+            Stykliste styklist = new Stykliste(lineitems, order_id);
+            return styklist;
+        } catch(SQLException | ClassNotFoundException ex) {
+            
+            throw new OrderSampleException(ex.getMessage());
         }
     }
+        
+    
         public void saveOrder(Order order) throws OrderSampleException{
         try {
             String sql = "INSERT INTO orders (width, length, rooftilt, shedwidth, shedlength, status, customer_id)"
@@ -102,19 +120,26 @@ public class OrderMapper {
         }
         
     }
-    public static void main(String[] args) throws OrderSampleException, MaterialSampleException{
-        Order order = new Order(6000, 7800, 0, 5300, 2100, 1, 1);
+    public static void main(String[] args) throws OrderSampleException, MaterialSampleException, LoginSampleException, ClassNotFoundException{
+//        Order order = new Order(6000, 7800, 0, 5300, 2100, 1, 1);
         OrderMapper map = new OrderMapper();
         StyklisteMapper mapper = new StyklisteMapper();
-        User user = new User("derqe", "qwe", "qwe");
-        user.setId(10);
-        order.setUser(user);
-        CarportAlgorithm algo = new CarportAlgorithm();
-        FunctionLayer.Stykliste list = algo.carportAlgorithm(order.getWidth(), order.getLength(), order.getRoofTilt(), order.getShedWidth(), order.getShedLength(), 1);
-        order.setSl(list);
+//        User user = new User("derqe", "qwe", "qwe");
+//        user.setId(10);
+//        order.setUser(user);
+//        CarportAlgorithm algo = new CarportAlgorithm();
+//        FunctionLayer.Stykliste list = algo.carportAlgorithm(order.getWidth(), order.getLength(), order.getRoofTilt(), order.getShedWidth(), order.getShedLength(), 1);
+//        order.setSl(list);
         
-        map.saveOrder(order);
-        System.out.println(list);
+//        map.saveOrder(order);
+//        System.out.println(list);
+//System.out.println(map.getAllOrders());
+//Order order = map.getOrderFromId(9);
+//System.out.println(order.toString());
+//        System.out.println(order.getSl().getStyklist());
+        
+        
+
         
         
 
