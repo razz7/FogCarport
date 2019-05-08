@@ -503,7 +503,7 @@ public class CarportAlgorithm {
             //Montering af Vindskeder på rejsning af 25x150mm.trykimp.Bræt
             material = materials.get(23);
             m = new Material(material.getItem_id(), material.getItem_description(), material.getWidth(), material.getHeight(), material.getEntity(), material.getMaterialType(), material.getPrice(), material.getVersionnr());
-            m.setLength((int) ((width / 2) / Math.sin(70))); //Den ukende side for vores rejsningspærs hypotenuse.
+            m.setLength((int) ((width / 2) / Math.sin(70*Math.PI/180))); //Den ukende side for vores rejsningspærs hypotenuse.
             m.setStyklistQty(2); //En til hver side af carportens front.
             m.setConstructionDescription("Vindskeder på rejsning");
             arrList.add(m);
@@ -511,7 +511,7 @@ public class CarportAlgorithm {
             //Montering af vandbrædt på vindskeder af 19x100mm.trykimp.Bræt
             material = materials.get(7);
             m = new Material(material.getItem_id(), material.getItem_description(), material.getWidth(), material.getHeight(), material.getEntity(), material.getMaterialType(), material.getPrice(), material.getVersionnr());
-            m.setLength((int) ((width / 2) / Math.sin(70))); //Den ukende side for vores rejsningspærs hypotenuse, samme størrelse som vindskeden.
+            m.setLength((int) ((width / 2) / Math.sin(70*Math.PI/180))); //Den ukende side for vores rejsningspærs hypotenuse, samme størrelse som vindskeden.
             m.setStyklistQty(2); //En til hver side af carportens front, samme som vindskeden.
             m.setConstructionDescription("Vandbræt på vindskeder");
             arrList.add(m);
@@ -528,7 +528,7 @@ public class CarportAlgorithm {
             material = materials.get(26);
             m = new Material(material.getItem_id(), material.getItem_description(), material.getWidth(), material.getHeight(), material.getEntity(), material.getMaterialType(), material.getPrice(), material.getVersionnr());
             m.setLength((length / 3 * 2) + 300); //Skiftevis en en og en halv lægte til carportens bredde + 300mm i hver ende til overhæng samt tilskæring.
-            m.setStyklistQty(((int) Math.ceil(((int) Math.ceil(((((width / 2) / Math.sin(70)) - (350 + 30)) / (38 + 307))) + 1) * 1.5)) * 2); //Den ukende længde af carportens sidespær - længden for den første lægte der skal have en afstand på 350mm og den efterladte længde på toppen 30mm, udregninet med en uprundet gennemsnitsmængde med udgangspunkt i en mindsteafstand af 307mm + 38mm for lægdens tykkelse. Der er også taget udgangspunkt i at hvær længte af carporten bruger 1 og 1 halv lægte, pr. side
+            m.setStyklistQty(((int) Math.ceil(((int) Math.ceil(((((width / 2) / Math.sin(70*Math.PI/180)) - (350 + 30)) / (38 + 307))) + 1) * 1.5)) * 2); //Den ukende længde af carportens sidespær - længden for den første lægte der skal have en afstand på 350mm og den efterladte længde på toppen 30mm, udregninet med en uprundet gennemsnitsmængde med udgangspunkt i en mindsteafstand af 307mm + 38mm for lægdens tykkelse. Der er også taget udgangspunkt i at hvær længte af carporten bruger 1 og 1 halv lægte, pr. side
             m.setConstructionDescription("Til montering på spær, på hver skiftevis 1 hel & 1 halv lægte");
             arrList.add(m);
 
@@ -576,7 +576,7 @@ public class CarportAlgorithm {
             material = materials.get(27);
             m = new Material(material.getItem_id(), material.getItem_description(), material.getWidth(), material.getHeight(), material.getEntity(), material.getMaterialType(), material.getPrice(), material.getVersionnr());
             m.setLength(0); //Ingen længde
-            m.setStyklistQty(((int) Math.ceil(((((width / 2) / Math.sin(70)) - (350 + 30)) / (38 + 307))) + 1) * ((int) Math.ceil(length / 300)) * 2); //Mængden af spær gange mængden af 300mm bredde tagsten på carportens længde, for begge sider.
+            m.setStyklistQty(((int) Math.ceil(((((width / 2) / Math.sin(70*Math.PI/180)) - (350 + 30)) / (38 + 307))) + 1) * ((int) Math.ceil(length / 300)) * 2); //Mængden af spær gange mængden af 300mm bredde tagsten på carportens længde, for begge sider.
             m.setConstructionDescription("Monteres på taglægter 6 rækker af 24 sten på hver side af taget");
             arrList.add(m);
 
