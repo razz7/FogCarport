@@ -23,6 +23,7 @@ public class Material {
     private String materialtype;
     private float price;
     private int versionnr;
+    private int lineItemID;
 
     public Material(int item_id, String item_description, float width, float height, String entity, String materialtype, float price, int versionnr) {
         this.item_id = item_id;
@@ -131,6 +132,16 @@ public class Material {
     public void setConstructionDescription(String constructionDescription) {
         this.constructionDescription = constructionDescription;
     }
+
+    public int getLineItemID() {
+        return lineItemID;
+    }
+
+    public void setLineItemID(int lineItemID) {
+        this.lineItemID = lineItemID;
+    }
+    
+    
 
 
     @Override

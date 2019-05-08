@@ -9,11 +9,8 @@ import FunctionLayer.Material;
 import FunctionLayer.MaterialSampleException;
 import FunctionLayer.Order;
 import FunctionLayer.OrderSampleException;
+import FunctionLayer.StyklistException;
 import FunctionLayer.Stykliste;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 
 /**
@@ -71,7 +68,7 @@ public class DatabaseFacade implements DBInterface{
     }
 
     @Override
-    public void saveOrder(Order order) throws OrderSampleException {
+    public void saveOrder(Order order) throws OrderSampleException, StyklistException {
         OrderMapper map = new OrderMapper();
         map.saveOrder(order);
     }
@@ -84,9 +81,15 @@ public class DatabaseFacade implements DBInterface{
     }
 
     @Override
-    public void saveLineItemsInDB(Stykliste styklist, int order_id) {
+    public void saveLineItemsInDB(Stykliste styklist, int order_id) throws StyklistException  {
          StyklisteMapper map = new StyklisteMapper();
          map.saveLineItemsInDB(styklist, order_id);
+    }
+
+    @Override
+    public Material getMaterialFromLineItems(int lineItemID) throws StyklistException {
+        StyklisteMapper map = new StyklisteMapper();
+        return map.getMaterialFromLineItems(lineItemID);
     }
 
    

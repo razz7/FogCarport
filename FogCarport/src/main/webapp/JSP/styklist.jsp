@@ -50,6 +50,8 @@
                     out.println("<td>" + list.getStyklist().get(i).getMaterialType() + "</td>");
                     out.println("<td>" + list.getStyklist().get(i).getStryklistQty() + "</td>");
                     out.println("<td>" + list.getStyklist().get(i).getPrice() + "</td>");
+                    out.println("<input type=\"hidden\" name=\"lineitemID\" value=" + list.getStyklist().get(i).getLineItemID() + ">");
+                    
                     
                     out.print("<td>");
                     out.println("<form action=\"FrontController\" method=\"post\">");

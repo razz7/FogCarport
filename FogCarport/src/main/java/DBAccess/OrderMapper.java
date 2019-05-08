@@ -6,6 +6,7 @@ import FunctionLayer.Material;
 import FunctionLayer.MaterialSampleException;
 import FunctionLayer.Order;
 import FunctionLayer.OrderSampleException;
+import FunctionLayer.StyklistException;
 import FunctionLayer.Stykliste;
 import FunctionLayer.User;
 import java.sql.Connection;
@@ -32,7 +33,7 @@ public class OrderMapper {
             while(rs.next()) {
                 Order order = new Order(rs.getInt(1), rs.getFloat(2), rs.getFloat(3), 0, rs.getFloat(4), rs.getInt(7), rs.getInt(8));
                 orders.add(order);
-                System.out.println(order.getRoofTilt());
+                
             }
                     return orders;
                     
@@ -77,6 +78,7 @@ public class OrderMapper {
             while(rs.next()) {
                 Material material = new Material(rs.getInt(2), rs.getString(4), rs.getFloat(5), rs.getFloat(6), rs.getString(7), rs.getString(8), rs.getFloat(9), rs.getInt(11));
                 material.setStyklistQty(rs.getInt(10));
+                material.setLineItemID(rs.getInt(1));
                 
                 lineitems.add(material);
                 
@@ -90,7 +92,7 @@ public class OrderMapper {
     }
         
     
-        public void saveOrder(Order order) throws OrderSampleException{
+        public void saveOrder(Order order) throws OrderSampleException, StyklistException{
         try {
             String sql = "INSERT INTO orders (width, length, rooftilt, shedwidth, shedlength, status, customer_id)"
                     + "VALUES(?,?,?,?,?,?,?)";
@@ -138,7 +140,10 @@ public class OrderMapper {
 //Order order = map.getOrderFromId(9);
 //System.out.println(order.toString());
 //        System.out.println(order.getSl().getStyklist());
-map.getAllOrders();
+ArrayList<Material> list = map.getStyklistForOrder(9).getStyklist();
+for(int i = 0; i < list.size(); i++) {
+    System.out.println(list.get(i).getLineItemID());
+}
         
         
 
