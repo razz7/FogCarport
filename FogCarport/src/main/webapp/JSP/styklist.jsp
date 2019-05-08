@@ -48,8 +48,9 @@
                     out.println("<td>" + list.getStyklist().get(i).getWidth() + "</td>");
                     out.println("<td>" + list.getStyklist().get(i).getEntity() + "</td>");
                     out.println("<td>" + list.getStyklist().get(i).getMaterialType() + "</td>");
+                    out.println("<td>" + list.getStyklist().get(i).getStryklistQty() + "</td>");
                     out.println("<td>" + list.getStyklist().get(i).getPrice() + "</td>");
-                    out.println("<td>" + list.getStyklist().get(i).getPrice() + "</td>");
+                    
                     out.print("<td>");
                     out.println("<form action=\"FrontController\" method=\"post\">");
                     out.println("<input type=\"hidden\" name=\"command\" value=\"editlineitem\">");

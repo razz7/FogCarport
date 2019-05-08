@@ -22,15 +22,6 @@ public class StyklisteMapper {
     
     private Connector dbc = new Connector();
     
-//    public ArrayList<Stykliste> getAllStykliste() throws ClassNotFoundException, SQLException{
-//        ArrayList<Stykliste> list = new ArrayList();
-//        
-//        try{
-//            Connection con = dbc.connection();
-//            String SQL = "SELECT * FROM fog.stock";
-//        }
-//    }
-    
     public void editLineItemsFromOrderID(int item_id, String item_description, float width, float height,
             String entity, String materialtype, float price, int orderquantity, int order_id) {
         try {

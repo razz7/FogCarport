@@ -151,47 +151,6 @@ public class MaterialMapper {
         }
     }
 
-    /**
-     * This methods return all the lineitems and information about the item.
-     *
-     * @param order_id
-     * @return
-     * @throws MaterialSampleException
-     */
-    public Stykliste getLineitemsByOrderId(int order_id) throws MaterialSampleException {
-        try {
-            String sql = "SELECT quantity, length, stock.item_id, item_description, width, height, entity, materialtype, price "
-                    + "FROM stock "
-                    + "INNER JOIN lineitems ON lineitems.item_id = stock.item_id where order_id = " + order_id + ";";
-            Connection con = dbc.connection();
-            PreparedStatement ps = con.prepareStatement(sql);
-            ResultSet rs = ps.executeQuery();
-            MaterialMapper mapper = new MaterialMapper();
-            ArrayList<Material> materials = new ArrayList<>();
-            while (rs.next()) {
-                Material material = new Material(0, "", 0, 0, "", "", 0, 0);
-                material.setStockQty(rs.getInt("quantity"));
-                material.setLength(rs.getFloat("length"));
-                material.setItem_id(rs.getInt("item_id"));
-                material.setItem_description(rs.getString("item_description"));
-                material.setWidth(rs.getFloat("width"));
-                material.setHeight(rs.getFloat("height"));
-                material.setEntity(rs.getString("entity"));
-                material.setMaterialtype(rs.getString("materialtype"));
-                material.setPrice(rs.getFloat("price"));
-                materials.add(material);
-
-            }
-            Stykliste styklist = new Stykliste(materials, order_id);
-            return styklist;
-
-        } catch (SQLException | ClassNotFoundException ex) {
-            throw new MaterialSampleException(ex.getMessage());
-
-        }
-
-    }
-    
     
         public ArrayList<Material> getAllMaterialbyType(String type) throws MaterialSampleException {
         try {
