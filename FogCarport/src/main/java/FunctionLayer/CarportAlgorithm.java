@@ -115,7 +115,7 @@ public class CarportAlgorithm {
             //Montering af spær med max 60 cm mellemrum af 45x195mm.spærtræubh
             material = materials.get(5);
             m = new Material(material.getItem_id(), material.getItem_description(), material.getWidth(), material.getHeight(), material.getEntity(), material.getMaterialType(), material.getPrice(), material.getVersionnr());
-            m.setLength(length); //så lange som selve carportens brede
+            m.setLength(width); //så lange som selve carportens brede
             m.setStyklistQty((int) Math.ceil((length - 45) / (45 + 600)) + 1); //Et spær pr. højest 0.60 meter af hele carport længden + 1 til enden
             m.setConstructionDescription("Spær, monteres på rem");
             arrList.add(m);
@@ -417,7 +417,7 @@ public class CarportAlgorithm {
             //Montering af fædigskåret byg-selvspær max 110 cm mellemrum af fædigskåret(byg-selv spær)
             material = materials.get(24);
             m = new Material(material.getItem_id(), material.getItem_description(), material.getWidth(), material.getHeight(), material.getEntity(), material.getMaterialType(), material.getPrice(), material.getVersionnr());
-            m.setLength(length); //så lange som selve carportens brede
+            m.setLength(width); //så lange som selve carportens brede
             m.setStyklistQty((int) Math.ceil((length - 45) / (45 + 1100)) + 1); //Et spær pr. højest 1.10 meter af hele carport længden + 1 til enden
             m.setConstructionDescription("Byg-selv spær (skal samles) 1 stk.");
             arrList.add(m);
