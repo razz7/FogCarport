@@ -126,17 +126,20 @@ public class Material {
     public void setVersionnr(int versionnr) {
         this.versionnr = versionnr;
     }
-    
+
 
     public void setConstructionDescription(String constructionDescription) {
         this.constructionDescription = constructionDescription;
     }
+
 
     @Override
     public String toString() {
         return "Material{" + "styklistQty=" + styklistQty + ", stockQty=" + stockQty + ", length=" + length + ", constructionDescription=" + constructionDescription + ", item_id=" + item_id + ", item_description=" + item_description + ", width=" + width + ", height=" + height + ", entity=" + entity + ", materialtype=" + materialtype + ", price=" + price + ", versionnr=" + versionnr + '}';
     }
 
+    
+    
     
     public String toString1() {
         return "Materiale information: " + " materiale id: " + item_id +  ", materiale beskrivelse: " + item_description + ", højde: " + height  + ", bredde: " + width + ", entity: " + entity + ", materialetype: " + materialtype + ", pris: " + price + ", versionnr: " + versionnr;
