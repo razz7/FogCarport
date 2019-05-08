@@ -54,8 +54,14 @@ public class DatabaseFacade {
         return map.getLineitemsByOrderId(order_id);
     }
     
+
     public void saveOrder(Order order) throws OrderSampleException{
         OrderMapper map = new OrderMapper();
         map.saveOrder(order);
+
+    public ArrayList<Material> getAllMaterialbyType(String type) throws MaterialSampleException {
+        MaterialMapper map = new MaterialMapper();
+        return map.getAllMaterialbyType(type);
+
     }
 }

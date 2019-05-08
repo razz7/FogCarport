@@ -1,6 +1,6 @@
 <%-- 
-    Document   : ordering
-    Created on : 16-04-2019, 23:11:39
+    Document   : graphicInput
+    Created on : 08-05-2019, 10:18:07
     Author     : Ludvig
 --%>
 
@@ -12,19 +12,12 @@
 
 <jsp:include page='/JSP/sitemenus.jsp'></jsp:include>
 
-
-<div class="alert alert-primary"
-<br>
-<div class="container">
-<h2>Velkommen til Fogs online bestillingsservice!</h2>
-</div>
-<br>
 <div class="container">
     <form action="FrontController" method="POST">
-        <h4>Carport mål </h4>
+        <h4>Lav en tegning af din carport</h4>
         <div class="form-row">
-            <input type="hidden" name="command" value="order">
-           
+            <input type="hidden" name="command" value="graphic">
+
             <div class="col-md-3 mb-3">
 
                 <label for="">Bredde</label>
@@ -52,12 +45,6 @@
             </div>
         </div>
 
-
-        <%--
-        <h5>Indtast 0 for fladt tag og 1 for højt tag</h5>
-        <input type="text" name="shedTilt" value="">
-        --%>
-
         <span>
             <fieldset id="roof">
                 <h5>Højt tag</h5>
@@ -69,29 +56,9 @@
         </span>
 
         <br>
-        
-                <input class="btn btn-primary" type="submit" value="Make order">
+
+        <input class="btn btn-primary" type="submit" value="Vis tegning">
         </div>
     </form>
-
-        <%
-            if (session.getAttribute("stykliste") != null) {
-                Stykliste sl = (Stykliste) session.getAttribute("stykliste");
-                out.println("<h4> Styklisten: </h4>");
-                out.println("<h4> Id:" + sl.getStyklist_id() + "</h4>");
-
-                ArrayList<Material> am = sl.getStyklist();
-
-                for (int i = 0; i < am.size(); i++) {
-                    out.println("<h5>" + am.get(i) + "</h5>");
-                }
-
-                if (session != null) {
-                    session.removeAttribute("stykliste");
-                }
-            }
-        %>
-
-</div>
-</div>
+    
 <jsp:include page='/JSP/sitefooter.jsp'></jsp:include>

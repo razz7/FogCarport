@@ -30,7 +30,7 @@ public class MaterialMapper {
             PreparedStatement ps = con.prepareStatement(SQL);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                Material material = new Material(rs.getInt(1), rs.getString(2), rs.getFloat(3), rs.getFloat(4), rs.getString(5), rs.getString(6), rs.getFloat(7));
+                Material material = new Material(rs.getInt(1), rs.getString(2), rs.getFloat(3), rs.getFloat(4), rs.getString(5), rs.getString(6), rs.getFloat(7), rs.getInt(9));
                 material.setStockQty(rs.getInt(8));
                 list.add(material);
             }
@@ -137,7 +137,7 @@ public class MaterialMapper {
             ResultSet rs = ps.executeQuery();
             Material material = null;
             while (rs.next()) {
-                material = new Material(rs.getInt(1), rs.getString(2), rs.getFloat(3), rs.getFloat(4), rs.getString(5), rs.getString(6), rs.getFloat(7));
+                material = new Material(rs.getInt(1), rs.getString(2), rs.getFloat(3), rs.getFloat(4), rs.getString(5), rs.getString(6), rs.getFloat(7), rs.getInt(9));
                 material.setStockQty(rs.getInt(8));
             }
 
@@ -165,7 +165,7 @@ public class MaterialMapper {
             MaterialMapper mapper = new MaterialMapper();
             ArrayList<Material> materials = new ArrayList<>();
             while (rs.next()) {
-                Material material = new Material(0, "", 0, 0, "", "", 0);
+                Material material = new Material(0, "", 0, 0, "", "", 0, 0);
                 material.setStockQty(rs.getInt("quantity"));
                 material.setLength(rs.getFloat("length"));
                 material.setItem_id(rs.getInt("item_id"));
@@ -187,6 +187,28 @@ public class MaterialMapper {
         }
 
     }
+    
+    
+        public ArrayList<Material> getAllMaterialbyType(String type) throws MaterialSampleException {
+        try {
+            ArrayList<Material> ML = new ArrayList();
+            Connection con = dbc.connection();
+            String SQL = "SELECT * FROM fog.stock WHERE materialtype = ?;";
+            PreparedStatement ps = con.prepareStatement(SQL);
+            ps.setString(1, type);
+            ResultSet rs = ps.executeQuery();
+            
+            while (rs.next()) {
+               Material material = new Material(rs.getInt(1), rs.getString(2), rs.getFloat(3), rs.getFloat(4), rs.getString(5), rs.getString(6), rs.getFloat(7), rs.getInt(9));
+                material.setStockQty(rs.getInt(8));
+                ML.add(material);
+            }
+
+            return ML;
+        } catch (ClassNotFoundException | SQLException ex) {
+            throw new MaterialSampleException(ex.getMessage());
+        }
+    }
 
     public static void main(String[] args) throws MaterialSampleException, ClassNotFoundException {
         MaterialMapper map = new MaterialMapper();
@@ -198,9 +220,16 @@ public class MaterialMapper {
         //System.out.println(map.getLineitemsByOrder_id(1));
         //map.updateMaterialData(42, "qwe", 1, 1, "stk", "qwe", 1000, 0);
 
+
         //map.updateMaterialData(42, "hey", 3.6f, 25.7f, "stk", "pakke", 45.6f, 500);
         //map.addNewMaterial("hey1", 3.6f, 25.7f, "stk", "pakke", 45.6f, 500);
         map.updateMaterialData(49, "qwe", 1f, 1f, "qwe", "qwe", 1, 1);
+
+        //System.out.println(map.getAllMaterialbyType("Træ"));
+        //map.updateMaterialData(42, "hey", 3.6f, 25.7f, "stk", "pakke", 45.6f, 500);
+        //map.addNewMaterial("hey1", 3.6f, 25.7f, "stk", "pakke", 45.6f, 500);
+        System.out.println(map.getAllMaterials());
+
     }
 
 }
