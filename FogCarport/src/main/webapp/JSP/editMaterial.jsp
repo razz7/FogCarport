@@ -18,7 +18,6 @@
     out.println("<div class=\"container\">");
     if (session.getAttribute("stockMaterial") != null) {
         Material material = (Material) session.getAttribute("stockMaterial");
-        
         out.println("<form action=\"FrontController\" method=\"POST\">");
         out.println("<div class=\"form-row\">");
         out.println("<input type=\"hidden\" name=\"command\" value=\"updateMaterial\">");
@@ -44,8 +43,12 @@
         out.println("</div>");
         out.println("<div class=\"col-md-3 mb-3\">");
         out.println("<tr><td> Material type: </tr></td>");
+
+        out.println("<input type=\"text\" name=\"type\" value=" +  "\"" + material.getMaterialType() + "\"" + ">");
+
         out.println("<input type=\"text\" name=\"type\" value=" + material.getMaterialType() + ">");
                 out.println("<h5>" + material.getMaterialType() + "</h5>");
+
         out.println("</div>");
         out.println("<div class=\"col-md-3 mb-3\">");
         out.println("<tr><td> Material price: </tr></td>");

@@ -66,35 +66,11 @@ public class MaterialMapper {
             ps.setInt(7, quantity);
             ps.executeUpdate();
 
-            //ResultSet rs = ps.getGeneratedKeys();
-            //int item_id = rs.next() ? rs.getInt(1) : 0;
-            //addStockQuantityToNewMaterial(item_id, quantity);
         } catch (SQLException | ClassNotFoundException ex) {
             throw new MaterialSampleException(ex.getMessage());
         }
     }
 
-    /**
-     * This method adds quantity to the stock with the given item_id. If the
-     * value given the quantity
-     *
-     * @param item_id
-     * @param quantity
-     * @throws MaterialSampleException
-     */
-    //private void addStockQuantityToNewMaterial(int item_id, int quantity) throws MaterialSampleException {
-    //    try {
-    //        String sql = "INSERT into fog.stockStatus(item_id, quantity) VALUES(?,?)";
-    //        Connection con = dbc.connection();
-    //        PreparedStatement ps = con.prepareStatement(sql);
-    //        ps.setInt(1, item_id);
-    //        ps.setInt(2, quantity);
-    //        ps.executeUpdate();
-    //        
-    //    } catch (SQLException | ClassNotFoundException ex) {
-    //        throw new MaterialSampleException(ex.getMessage());
-    //    }
-    //}
     /**
      * This method updates an item with the given item_id. All values given the
      * method as parameter replaces the data in the db, even values that are
@@ -113,7 +89,7 @@ public class MaterialMapper {
      */
     public void updateMaterialData(int item_id, String item_description, float width, float height, String entity, String materialtype, float price, int quantity) throws MaterialSampleException, ClassNotFoundException {
         try {
-            String sql = "UPDATE fog.stock SET item_description=?, width=?, height=?, entity=?, materialtype=?, price=?, stockquantity=? where item_id=?";
+            String sql = "UPDATE fog.stock SET item_description=?, width=?, height=?, entity=?, materialtype=?, price=?, stockquantity=?, versionnr = versionnr + 1 where item_id=?";
 
             Connection con = dbc.connection();
             PreparedStatement ps = con.prepareStatement(sql);
@@ -126,37 +102,13 @@ public class MaterialMapper {
             ps.setInt(7, quantity);
             ps.setInt(8, item_id);
             ps.executeUpdate();
-            //        if (quantity != 0 && item_id != 0) {
-            //            updateQuantityToExistingMaterial(item_id, quantity);
-            //        }
+           
 
         } catch (SQLException | ClassCastException ex) {
             throw new MaterialSampleException(ex.getMessage());
         }
     }
 
-    /**
-     * This Method updates the quantity of an item with the item_id given. The
-     * value set to quantity It is used in "updateMaterialData" and is only
-     * executed if the quantity is more or less than 0.
-     *
-     * @param item_idm
-     * @param quantity
-     * @throws MaterialSampleException
-     */
-    //public void updateQuantityToExistingMaterial(int item_id, int quantity) throws MaterialSampleException {
-    //    try {
-    //        String sql = "UPDATE fog.stockStatus SET quantity=quantity+? where item_id=?";
-    //        Connection con = dbc.connection();
-    //        PreparedStatement ps = con.prepareStatement(sql);
-    //       ps.setInt(1, quantity);
-    //       ps.setInt(2, item_id);
-    //        ps.executeUpdate();
-    //
-    //   } catch (SQLException | ClassNotFoundException ex) {
-    //        throw new MaterialSampleException(ex.getMessage());
-    //    }
-    //}
     /**
      * Delete the material in the databases along with the quantity in stock.
      *
@@ -267,10 +219,17 @@ public class MaterialMapper {
         //deleteMaterial(41);
         //System.out.println(map.getLineitemsByOrder_id(1));
         //map.updateMaterialData(42, "qwe", 1, 1, "stk", "qwe", 1000, 0);
+
+
+        //map.updateMaterialData(42, "hey", 3.6f, 25.7f, "stk", "pakke", 45.6f, 500);
+        //map.addNewMaterial("hey1", 3.6f, 25.7f, "stk", "pakke", 45.6f, 500);
+        map.updateMaterialData(49, "qwe", 1f, 1f, "qwe", "qwe", 1, 1);
+
         //System.out.println(map.getAllMaterialbyType("Træ"));
         //map.updateMaterialData(42, "hey", 3.6f, 25.7f, "stk", "pakke", 45.6f, 500);
         //map.addNewMaterial("hey1", 3.6f, 25.7f, "stk", "pakke", 45.6f, 500);
         System.out.println(map.getAllMaterials());
+
     }
 
 }

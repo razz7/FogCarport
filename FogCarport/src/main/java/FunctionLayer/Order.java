@@ -80,6 +80,12 @@ public class Order {
         this.orderStatus = orderStatus;
     }
 
+
+    public Stykliste getSl() {
+        return sl;
+    }
+    
+
     public Stykliste getStyklist() {
         return styklist;
     }
@@ -87,6 +93,7 @@ public class Order {
     public boolean isOrderStatus() {
         return orderStatus;
     }
+
 
     @Override
     public String toString() {
