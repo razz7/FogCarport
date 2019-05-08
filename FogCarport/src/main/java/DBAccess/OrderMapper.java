@@ -56,7 +56,7 @@ public class OrderMapper {
                
             }
             OrderMapper map = new OrderMapper();
-            order.setSl(map.getStyklistForOrder(order_id));
+            order.setStyklist(map.getStyklistForOrder(order_id));
             return order;
 
         } catch (SQLException | ClassNotFoundException ex) {
@@ -74,9 +74,9 @@ public class OrderMapper {
             ResultSet rs = ps.executeQuery();
             ArrayList<Material> lineitems = new ArrayList<>();
             while(rs.next()) {
-                Material material = new Material(rs.getInt(2), rs.getString(4), rs.getFloat(5), rs.getFloat(6), rs.getString(7), rs.getString(8), rs.getFloat(9));
+                Material material = new Material(rs.getInt(2), rs.getString(4), rs.getFloat(5), rs.getFloat(6), rs.getString(7), rs.getString(8), rs.getFloat(9), rs.getInt(11));
                 material.setStyklistQty(rs.getInt(10));
-//                material.setVersionnr(rs.getInt(11));
+                
                 lineitems.add(material);
                 
             }
@@ -111,7 +111,7 @@ public class OrderMapper {
             int key = 0;
             if(rs != null && rs.next()) key = rs.getInt(1);
             System.out.println(key);
-            mapper.saveLineItemsInDB(order.getSl(),key);
+            mapper.saveLineItemsInDB(order.getStyklist(),key);
             
            
             

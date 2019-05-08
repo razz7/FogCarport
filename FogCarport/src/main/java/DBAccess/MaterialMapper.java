@@ -30,12 +30,7 @@ public class MaterialMapper {
             PreparedStatement ps = con.prepareStatement(SQL);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-
-                Material material = new Material(rs.getInt(1), rs.getString(2), rs.getFloat(3), rs.getFloat(4), rs.getString(5), rs.getString(6), rs.getFloat(7));
-                material.setVersionnr(rs.getInt(9));
-
                 Material material = new Material(rs.getInt(1), rs.getString(2), rs.getFloat(3), rs.getFloat(4), rs.getString(5), rs.getString(6), rs.getFloat(7), rs.getInt(9));
-
                 material.setStockQty(rs.getInt(8));
                 
                 list.add(material);
@@ -144,12 +139,10 @@ public class MaterialMapper {
             Material material = null;
             while (rs.next()) {
 
-                material = new Material(rs.getInt(1), rs.getString(2), rs.getFloat(3), rs.getFloat(4), rs.getString(5), rs.getString(6), rs.getFloat(7));
-                System.out.println(rs.getInt(9));
-
                 material = new Material(rs.getInt(1), rs.getString(2), rs.getFloat(3), rs.getFloat(4), rs.getString(5), rs.getString(6), rs.getFloat(7), rs.getInt(9));
-
                 material.setStockQty(rs.getInt(8));
+
+                
             }
 
             return material;
@@ -236,13 +229,13 @@ public class MaterialMapper {
         //map.addNewMaterial("hey1", 3.6f, 25.7f, "stk", "pakke", 45.6f, 500);
 
         //map.updateMaterialData(49, "qwe", 1f, 1f, "qwe", "qwe", 1, 1);
-        ArrayList<Material> list =  map.getAllMaterials();
-        for(int i = 0; i < list.size(); i++) {
-        
-        System.out.println(map.getAllMaterials().get(i).getVersionnr());
-        }
-
-        map.updateMaterialData(49, "qwe", 1f, 1f, "qwe", "qwe", 1, 1);
+//        ArrayList<Material> list =  map.getAllMaterials();
+//        for(int i = 0; i < list.size(); i++) {
+//        
+//        System.out.println(map.getAllMaterials().get(i).getVersionnr());
+//        }
+//
+//        map.updateMaterialData(49, "qwe", 1f, 1f, "qwe", "qwe", 1, 1);
 
         //System.out.println(map.getAllMaterialbyType("Træ"));
         //map.updateMaterialData(42, "hey", 3.6f, 25.7f, "stk", "pakke", 45.6f, 500);
