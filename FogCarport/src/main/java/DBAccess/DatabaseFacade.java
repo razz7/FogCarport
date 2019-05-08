@@ -65,4 +65,14 @@ public class DatabaseFacade {
         return map.getAllMaterialbyType(type);
 
     }
+    public Order getOrderFromId(int order_id) throws OrderSampleException {
+        OrderMapper map = new OrderMapper();
+        return map.getOrderFromId(order_id);
+    }
+    
+    public ArrayList<Order> getAllOrders() throws OrderSampleException{
+        OrderMapper map = new OrderMapper();
+        return map.getAllOrders();
+    }
+    
 }

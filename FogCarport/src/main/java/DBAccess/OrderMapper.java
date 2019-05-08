@@ -30,8 +30,9 @@ public class OrderMapper {
             PreparedStatement ps = conn.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             while(rs.next()) {
-                Order order = new Order(rs.getInt(1), rs.getFloat(2), rs.getFloat(3), rs.getFloat(4), rs.getFloat(5), rs.getFloat(6), rs.getFloat(7));
+                Order order = new Order(rs.getInt(1), rs.getFloat(2), rs.getFloat(3), 0, rs.getFloat(4), rs.getInt(7), rs.getInt(8));
                 orders.add(order);
+                System.out.println(order.getRoofTilt());
             }
                     return orders;
                     
@@ -137,6 +138,7 @@ public class OrderMapper {
 //Order order = map.getOrderFromId(9);
 //System.out.println(order.toString());
 //        System.out.println(order.getSl().getStyklist());
+map.getAllOrders();
         
         
 
