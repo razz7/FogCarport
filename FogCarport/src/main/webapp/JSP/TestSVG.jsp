@@ -31,6 +31,7 @@
             order.setStyklist(styklist);
 
         %> 
+
         <div>
             <svg width="<% out.println(order.getLength() / 10); %>" height="<% out.println(order.getHeight() / 10); %>">
 
@@ -44,7 +45,7 @@
                 double sum = 0;
                 for (int i = 0; i < (int) (order.getShedLength() / 60); i++) {
             %>
-            <rect x=" <% out.println(((order.getLength() - order.getShedLength() - 300) + sum) / 10); %> " y=" <% out.println((order.getHeight() - (order.getStyklist().getStyklist().get(0).getLength() - 900)) / 10); %> " height=" <% out.println(((order.getStyklist().getStyklist().get(0).getLength() - 900) / 10)); %> " width=" <% out.println(order.getStyklist().getStyklist().get(0).getWidth() / 10); %> " stroke="black" fill="blue"/>
+            <rect x=" <% out.println(((order.getLength() - order.getShedLength() - 300) + sum) / 10); %> " y=" <% out.println((order.getHeight() - (order.getStyklist().getStyklist().get(0).getLength() - 900)) / 10); %> " height=" <% out.println(((order.getStyklist().getStyklist().get(0).getLength() - 900) / 10)); %> " width=" <% out.println(order.getStyklist().getStyklist().get(20).getHeight() / 10); %> " stroke="black" fill="blue"/>
             <%
                     sum += 60;
                 }
@@ -71,7 +72,7 @@
                 double sum2 = 0;
                 for (int j = 0; j < (int) (order.getShedWidth() / 60); j++) {
             %>
-            <rect x=" <% out.println(((700 / 2) + sum2) / 10); %> " y=" <% out.println((order.getHeight() - (order.getStyklist().getStyklist().get(0).getLength() - 900)) / 10); %> " height=" <% out.println(((order.getStyklist().getStyklist().get(0).getLength() - 900) / 10)); %> " width=" <% out.println(order.getStyklist().getStyklist().get(0).getWidth() / 10); %> " stroke="black" fill="blue"/>
+            <rect x=" <% out.println(((700 / 2) + sum2) / 10); %> " y=" <% out.println((order.getHeight() - (order.getStyklist().getStyklist().get(0).getLength() - 900)) / 10); %> " height=" <% out.println(((order.getStyklist().getStyklist().get(0).getLength() - 900) / 10)); %> " width=" <% out.println(order.getStyklist().getStyklist().get(20).getHeight() / 10); %> " stroke="black" fill="blue"/>
             <%
                     sum2 += 60;
                 }
@@ -100,9 +101,9 @@
                 double sum3 = 0;
                 for (int k = 0; k < (int) Math.ceil((order.getLength() - 45) / (45 + 600)) + 1; k++) {
             %>
-            <rect x=" <% out.println((sum3) / 10); %> " y="0" height=" <% out.println(order.getWidth() / 10); %> " width=" <% out.println(order.getStyklist().getStyklist().get(4).getWidth() / 10); %> " stroke="black" fill="blue"/>
+            <rect x=" <% out.println((sum3) / 10); %> " y="0" height=" <% out.println(order.getWidth() / 10); %> " width=" <% out.println(order.getStyklist().getStyklist().get(5).getWidth() / 10); %> " stroke="black" fill="blue"/>
             <%
-                    sum3 += (((order.getLength() - ((int) Math.ceil((order.getLength() - 45) / (45 + 600)) + 1) * order.getStyklist().getStyklist().get(5).getWidth()) / (((int) Math.ceil((order.getLength() - 45) / (45 + 600)) + 1) - 1)) + order.getStyklist().getStyklist().get(4).getWidth());
+                    sum3 += (((order.getLength() - ((int) Math.ceil((order.getLength() - 45) / (45 + 600)) + 1) * order.getStyklist().getStyklist().get(5).getWidth()) / (((int) Math.ceil((order.getLength() - 45) / (45 + 600)) + 1) - 1)) + order.getStyklist().getStyklist().get(5).getWidth());
                 }
             %>
             <rect x='0' y='0' width='<% out.println(order.getLength() / 10); %>' height='<% out.println((order.getStyklist().getStyklist().get(11).getWidth()) / 10);%>' stroke="black" fill="red"/>
@@ -117,6 +118,8 @@
             <rect x=" <% out.println(((1000.0 / 7800.0 * order.getLength()) + (order.getStyklist().getStyklist().get(0).getWidth()) + (3100.0 / 7800 * order.getLength())) / 10); %> " y=" <% out.println((order.getWidth() - order.getStyklist().getStyklist().get(0).getWidth() - (700 / 2)) / 10); %> " height=" <% out.println(order.getStyklist().getStyklist().get(0).getHeight() / 10); %> " width=" <% out.println(order.getStyklist().getStyklist().get(0).getWidth() / 10); %> " stroke="black" fill="red"/>
             <rect x="0" y=' <% out.println((700 / 2) / 10); %> ' width='<% out.println(order.getLength() / 10); %>' height='<% out.println((order.getStyklist().getStyklist().get(1).getWidth()) / 10);%>' stroke="black" fill="red"/>
             <rect x="0" y=' <% out.println(((order.getWidth() - order.getStyklist().getStyklist().get(0).getWidth() - (700 / 2)) + ((order.getStyklist().getStyklist().get(0).getWidth()) - order.getStyklist().getStyklist().get(1).getWidth())) / 10); %>  ' width='<% out.println(order.getLength() / 10); %>' height='<% out.println((order.getStyklist().getStyklist().get(1).getWidth()) / 10);%>' stroke="black" fill="red"/>
+            <rect x=" <% out.println((order.getLength() - order.getShedLength() - 300) / 10); %> " y=" <% out.println(((order.getWidth() / 2) - order.getStyklist().getStyklist().get(0).getWidth() / 2) / 10); %> " height=" <% out.println(order.getStyklist().getStyklist().get(0).getHeight() / 10); %> " width=" <% out.println(order.getStyklist().getStyklist().get(0).getWidth() / 10); %> " stroke="black" fill="red"/>
+            <rect x=" <% out.println((order.getLength() - 300) / 10); %> " y=" <% out.println(((order.getWidth() / 2) - order.getStyklist().getStyklist().get(0).getWidth() / 2) / 10); %> " height=" <% out.println(order.getStyklist().getStyklist().get(0).getHeight() / 10); %> " width=" <% out.println(order.getStyklist().getStyklist().get(0).getWidth() / 10); %> " stroke="black" fill="red"/>
             <%
                 double sum4 = 0;
                 for (int l = 0; l < (int) (order.getShedWidth() / 60); l++) {
@@ -137,7 +140,8 @@
                     sum5 += 60;
                 }
             %>
-
+            <rect x=" <% out.println((((700 / 2) / Math.sin(45 * Math.PI / 180)) + 180) / 10); %> " y=" -20" height=" <% out.println((order.getStyklist().getStyklist().get(9).getHeight() / 10)); %> " width=" <% out.println(((order.getWidth() - 700) / Math.sin(45 * Math.PI / 180)) / 10);%> " transform='rotate( 45 )'  />
+            <rect x=" <% out.println((((700 / 2) / Math.sin(45 * Math.PI / 180)) - 4060) / 10); %> " y=" 440" height=" <% out.println((order.getStyklist().getStyklist().get(9).getHeight() / 10)); %> " width=" <% out.println(((order.getWidth() - 700) / Math.sin(45 * Math.PI / 180)) / 10);%> " transform='rotate( 315 )'  />
             </svg>
         </div>
 
