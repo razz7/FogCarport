@@ -27,6 +27,7 @@ abstract class Command {
         commands.put("stockListWood", new stockListWood());
         commands.put("stockListScrews", new stockListScrews());
         commands.put("graphic", new GraphicCommand());
+
     }
 
     static Command from( HttpServletRequest request ) {

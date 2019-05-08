@@ -1,6 +1,6 @@
 <%-- 
     Document   : graphicInput
-    Created on : 08-05-2019, 10:18:07
+
     Author     : Ludvig
 --%>
 
@@ -14,7 +14,10 @@
 
 <div class="container">
     <form action="FrontController" method="POST">
+
+
         <h4>Lav en tegning af din carport</h4>
+
         <div class="form-row">
             <input type="hidden" name="command" value="graphic">
 
@@ -25,17 +28,17 @@
             </div>
             <div class="col-md-3 mb-3">
 
-                <label for="">Længde</label>
-                <input type="text" name="length" value="" class="form-control" placeholder="Carport Længde">
+                <label for="">LÃ¦ngde</label>
+                <input type="text" name="length" value="" class="form-control" placeholder="Carport LÃ¦ngde">
             </div>
         </div>
         <br>
-        <h4>Skur mål</h4>
+        <h4>Skur mÃ¥l</h4>
         <div class="form-row">
             <div class="col-md-3 mb-3">
 
-                <label for="">Længde</label>
-                <input type="text" name="shedLength" value="" class="form-control" placeholder="Skur Længde">
+                <label for="">LÃ¦ngde</label>
+                <input type="text" name="shedLength" value="" class="form-control" placeholder="Skur LÃ¦ngde">
             </div>
             <div class="col-md-3 mb-3">
 
@@ -47,7 +50,7 @@
 
         <span>
             <fieldset id="roof">
-                <h5>Højt tag</h5>
+                <h5>HÃ¸jt tag</h5>
                 <input type="radio" value="1" name="roof">
 
                 <h5>Lavt tag</h5>
@@ -61,4 +64,8 @@
         </div>
     </form>
     
+
 <jsp:include page='/JSP/sitefooter.jsp'></jsp:include>
+
+
+
