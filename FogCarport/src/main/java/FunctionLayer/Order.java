@@ -81,9 +81,6 @@ public class Order {
     }
 
 
-    public Stykliste getSl() {
-        return sl;
-    }
     
 
     public Stykliste getStyklist() {
