@@ -18,7 +18,6 @@
     out.println("<div class=\"container\">");
     if (session.getAttribute("stockMaterial") != null) {
         Material material = (Material) session.getAttribute("stockMaterial");
-        
         out.println("<form action=\"FrontController\" method=\"POST\">");
         out.println("<div class=\"form-row\">");
         out.println("<input type=\"hidden\" name=\"command\" value=\"updateMaterial\">");
@@ -28,7 +27,7 @@
         out.println("</div>");
         out.println("<div class=\"col-md-3 mb-3\">");
         out.println("<tr><td> Material description: </tr></td>");
-        out.println("<input type=\"text\" name=\"description\" value=" + material.getItem_description() + ">");
+        out.println("<input type=\"text\" name=\"description\" value=" + "\"" + material.getItem_description() + "\"" + ">");
         out.println("</div>");
         out.println("<div class=\"col-md-3 mb-3\">");
         out.println("<tr><td> Material width: </tr></td>");
@@ -40,16 +39,20 @@
         out.println("</div>");
         out.println("<div class=\"col-md-3 mb-3\">");
         out.println("<tr><td> Material entity: </tr></td>");
-        out.println("<input type=\"text\" name=\"entity\" value=" + material.getEntity() + ">");
+        out.println("<input type=\"text\" name=\"entity\" value=" + "\"" + material.getEntity() + "\"" + ">");
         out.println("</div>");
         out.println("<div class=\"col-md-3 mb-3\">");
         out.println("<tr><td> Material type: </tr></td>");
+
+        out.println("<input type=\"text\" name=\"type\" value=" +  "\"" + material.getMaterialType() + "\"" + ">");
+
         out.println("<input type=\"text\" name=\"type\" value=" + material.getMaterialType() + ">");
                 out.println("<h5>" + material.getMaterialType() + "</h5>");
+
         out.println("</div>");
         out.println("<div class=\"col-md-3 mb-3\">");
         out.println("<tr><td> Material price: </tr></td>");
-        out.println("<input type=\"text\" name=\"price\" value=" + material.getPrice() + ">");
+        out.println("<input type=\"text\" name=\"price\" value=" +  material.getPrice() + ">");
         out.println("</div>");
         out.println("<div class=\"col-md-3 mb-3\">");
         out.println("<tr><td> Material quantity: </tr></td>");
@@ -57,6 +60,8 @@
         out.println("</div>");
         out.println("<input class=\"btn btn-primary\" type=\"submit\" value=\"Submit changes\">");
         out.println("</div>");
+        
+        
         out.println("</form");
     } else {
 
