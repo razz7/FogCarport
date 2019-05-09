@@ -1,0 +1,82 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package FunctionLayer;
+
+import DBAccess.MaterialMapper;
+import DBAccess.OrderMapper;
+import DBAccess.StyklisteMapper;
+import java.util.ArrayList;
+
+/**
+ *
+ * @author Ludvig
+ */
+public class FunctionManager {
+    
+    private final StyklisteMapper StykMapper = StyklisteMapper.instance();
+    private final OrderMapper OrdMapper = OrderMapper.instance();
+    private final MaterialMapper MatMapper = MaterialMapper.instance();
+    
+    public void editLineItemsFromOrderID(int item_id, String item_description, float width, float height,
+            String entity, String materialtype, float price, int orderquantity, int order_id){
+        StykMapper.editLineItemsFromOrderID(item_id, item_description, width, height,
+            entity, materialtype, price, orderquantity, order_id);
+    }
+    
+    public void saveLineItemsInDB(Stykliste styklist, int order_id){
+        StykMapper.saveLineItemsInDB(styklist, order_id);
+    }
+    
+    public ArrayList<Order> getAllOrders() throws OrderSampleException{
+        return OrdMapper.getAllOrders();
+    }
+    
+    public Order getOrderFromId(int order_id) throws OrderSampleException {
+        return OrdMapper.getOrderFromId(order_id);
+    }
+    
+    public Stykliste getStyklistForOrder(int order_id) throws OrderSampleException {
+        return OrdMapper.getStyklistForOrder(order_id);
+    }
+    
+    public void saveOrder(Order order) throws OrderSampleException {
+        OrdMapper.saveOrder(order);
+    }
+    
+    public ArrayList<Material> getAllMaterials() throws MaterialSampleException {
+        return MatMapper.getAllMaterials();
+    }
+    
+    public void addNewMaterial(String item_description, float width, float height, String entity, String materialtype, float price, int quantity) throws MaterialSampleException{
+        MatMapper.addNewMaterial(item_description, width, height, entity, materialtype, price, quantity);
+    }
+    
+    public void updateMaterialData(int item_id, String item_description, float width, float height, String entity, String materialtype, float price, int quantity) throws MaterialSampleException, ClassNotFoundException{
+        MatMapper.updateMaterialData(item_id, item_description, width, height, entity, materialtype, price, quantity);
+    }
+    
+    public void deleteMaterial(int item_id) throws MaterialSampleException{
+        MatMapper.deleteMaterial(item_id);
+    }
+    
+    public Material getMaterialbyID(int item_id) throws MaterialSampleException {
+        return MatMapper.getMaterialbyID(item_id);
+    }
+    
+    public Stykliste getLineitemsByOrderId(int order_id) throws MaterialSampleException {
+        return MatMapper.getLineitemsByOrderId(order_id);
+    }
+    
+    public ArrayList<Material> getAllMaterialbyType(String type) throws MaterialSampleException {
+        return MatMapper.getAllMaterialbyType(type);
+    }
+    
+    public static void main(String[] args) throws MaterialSampleException, OrderSampleException {
+        FunctionManager fm = new FunctionManager();
+        
+        System.out.println(fm.getAllMaterials());
+    }
+}

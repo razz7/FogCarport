@@ -6,7 +6,8 @@
 package PresentationLayer;
 
 import DBAccess.DatabaseFacade;
-import DBAccess.MaterialMapper;
+import DBAccess.MaterialDBMapper;
+import FunctionLayer.FunctionManager;
 import FunctionLayer.LogicFacade;
 import FunctionLayer.LoginSampleException;
 import FunctionLayer.Material;
@@ -25,17 +26,13 @@ import javax.servlet.http.HttpSession;
  *
  * @author Rasmus2
  */
-public class StockMaterialsPageCommand extends Command {
+public class StockMaterialsPageCommand implements Command {
 
     @Override
-    String execute(HttpServletRequest request, HttpServletResponse response) throws LoginSampleException, OrderSampleException, MaterialSampleException {
-        //String email = request.getParameter("email");
-        //String password = request.getParameter("password");
-        //LogicFacade logic = new LogicFacade();
-        //User user = logic.login(email, password);
+    public String execute(HttpServletRequest request, FunctionManager manager) throws LoginSampleException, OrderSampleException, MaterialSampleException {
         
-        DatabaseFacade df = new DatabaseFacade();
-        ArrayList<Material> materials = df.getAllMaterials();
+        //DatabaseFacade df = new DatabaseFacade();
+        ArrayList<Material> materials = manager.getAllMaterials();
         HttpSession session = request.getSession();
         session.setAttribute("stockMaterialList", materials);
         

@@ -6,6 +6,7 @@
 package PresentationLayer;
 
 import FunctionLayer.CarportAlgorithm;
+import FunctionLayer.FunctionManager;
 import FunctionLayer.LoginSampleException;
 import FunctionLayer.MaterialSampleException;
 import FunctionLayer.OrderSampleException;
@@ -18,12 +19,12 @@ import javax.servlet.http.HttpSession;
  *
  * @author Ludvig
  */
-public class OrderPageCommand extends Command{
+class OrderPageCommand implements Command{
     
     private int id = 1;
 
     @Override
-    String execute(HttpServletRequest request, HttpServletResponse response) throws LoginSampleException, OrderSampleException, MaterialSampleException {
+    public String execute(HttpServletRequest request, FunctionManager manager) throws LoginSampleException, OrderSampleException, MaterialSampleException {
            HttpSession session = request.getSession();
            
            float width = Float.parseFloat(request.getParameter("width"));

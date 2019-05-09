@@ -6,6 +6,7 @@
 package PresentationLayer;
 
 import DBAccess.DatabaseFacade;
+import FunctionLayer.FunctionManager;
 import FunctionLayer.LoginSampleException;
 import FunctionLayer.Material;
 import FunctionLayer.MaterialSampleException;
@@ -21,10 +22,10 @@ import javax.servlet.http.HttpSession;
  *
  * @author Ludvig
  */
-public class UpdateMaterialCommand extends Command{
+public class UpdateMaterialCommand implements Command{
 
     @Override
-    String execute(HttpServletRequest request, HttpServletResponse response) throws LoginSampleException, OrderSampleException, MaterialSampleException {
+    public String execute(HttpServletRequest request, FunctionManager manager) throws LoginSampleException, OrderSampleException, MaterialSampleException {
         HttpSession session = request.getSession();
         
         int id = Integer.parseInt(request.getParameter("id"));
@@ -36,14 +37,14 @@ public class UpdateMaterialCommand extends Command{
         float price = Float.parseFloat(request.getParameter("price"));
         int qty = Integer.parseInt(request.getParameter("qty"));
         
-        DatabaseFacade df = new DatabaseFacade();
+        //DatabaseFacade df = new DatabaseFacade();
         try {
-            df.updateMaterialData(id, description, width, height, entity, type, price, qty);
+            manager.updateMaterialData(id, description, width, height, entity, type, price, qty);
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(UpdateMaterialCommand.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-        ArrayList<Material> materials = df.getAllMaterials();
+        ArrayList<Material> materials = manager.getAllMaterials();
         session.setAttribute("stockMaterialList", materials);
         
         return "stockmaterialspage";

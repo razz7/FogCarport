@@ -1,6 +1,6 @@
 package FunctionLayer;
 
-import DBAccess.UserMapper;
+import DBAccess.UserDBMapper;
 
 /**
  *
@@ -9,13 +9,13 @@ import DBAccess.UserMapper;
 public class LogicFacade {
 
     public User login(String email, String password) throws LoginSampleException {
-        UserMapper userMap = new UserMapper();
+        UserDBMapper userMap = new UserDBMapper();
         return userMap.login(email, password);
     }
 
     public User createUser(String email, String password) throws LoginSampleException {
         User user = new User(email, password, "customer");
-        UserMapper userMap = new UserMapper();
+        UserDBMapper userMap = new UserDBMapper();
         userMap.createUser(user);
         return user;
     }

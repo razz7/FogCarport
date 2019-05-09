@@ -6,6 +6,7 @@
 package PresentationLayer;
 
 import FunctionLayer.CarportAlgorithm;
+import FunctionLayer.FunctionManager;
 import FunctionLayer.LoginSampleException;
 import FunctionLayer.MaterialSampleException;
 import FunctionLayer.OrderSampleException;
@@ -18,10 +19,10 @@ import javax.servlet.http.HttpSession;
  *
  * @author Ludvig
  */
-public class GrafikCommand extends Command{
+public class GrafikCommand implements Command{
 
     @Override
-    String execute(HttpServletRequest request, HttpServletResponse response) throws LoginSampleException, OrderSampleException, MaterialSampleException {
+    public String execute(HttpServletRequest request, FunctionManager manager) throws LoginSampleException, OrderSampleException, MaterialSampleException {
                    HttpSession session = request.getSession();
            
            //float height = Float.parseFloat(request.getParameter("height"));

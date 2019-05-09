@@ -6,6 +6,7 @@
 package PresentationLayer;
 
 import DBAccess.DatabaseFacade;
+import FunctionLayer.FunctionManager;
 import FunctionLayer.LoginSampleException;
 import FunctionLayer.Material;
 import FunctionLayer.MaterialSampleException;
@@ -19,14 +20,13 @@ import javax.servlet.http.HttpSession;
  *
  * @author rh
  */
-public class stockListWood extends Command {
+public class stockListWood implements Command {
 
     @Override
-    String execute(HttpServletRequest request, HttpServletResponse response) throws LoginSampleException, OrderSampleException, MaterialSampleException {
-
-        
-        DatabaseFacade df = new DatabaseFacade();
-        ArrayList<Material> materials = df.getAllMaterialbyType("Træ & Tagplader");
+    public String execute(HttpServletRequest request, FunctionManager manager) throws LoginSampleException, OrderSampleException, MaterialSampleException {
+       
+        //DatabaseFacade df = new DatabaseFacade();
+        ArrayList<Material> materials = manager.getAllMaterialbyType("Træ & Tagplader");
         System.out.println(materials);
         HttpSession session = request.getSession();
         session.setAttribute("stockListWood", materials);

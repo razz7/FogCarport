@@ -5,6 +5,7 @@
  */
 package PresentationLayer;
 
+import FunctionLayer.FunctionManager;
 import FunctionLayer.LoginSampleException;
 import FunctionLayer.MaterialSampleException;
 import FunctionLayer.OrderSampleException;
@@ -21,6 +22,8 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet(name = "FrontController", urlPatterns = {"/FrontController"})
 public class FrontController extends HttpServlet {
+    
+    private final FunctionManager manager = new FunctionManager();
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -33,9 +36,10 @@ public class FrontController extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+            String command = request.getParameter("command");
+            Command action = CommandFactory.commandFrom(command);
         try {
-            Command action = Command.from(request);
-            String view = action.execute(request, response);
+            String view = action.execute(request, manager);
             request.getRequestDispatcher("/JSP/" + view + ".jsp").forward(request, response);
         } catch (LoginSampleException | OrderSampleException | MaterialSampleException ex) {
             request.setAttribute("error", ex.getMessage());

@@ -6,6 +6,7 @@
 package PresentationLayer;
 
 import DBAccess.DatabaseFacade;
+import FunctionLayer.FunctionManager;
 import FunctionLayer.LoginSampleException;
 import FunctionLayer.Material;
 import FunctionLayer.MaterialSampleException;
@@ -18,15 +19,10 @@ import javax.servlet.http.HttpSession;
  *
  * @author Rasmus2
  */
-public class EditStockMaterialPageCommand extends Command {
+public class EditStockMaterialPageCommand implements Command {
 
     @Override
-    String execute(HttpServletRequest request, HttpServletResponse response) throws LoginSampleException, OrderSampleException, MaterialSampleException {
-        //String email = request.getParameter("email");
-        //String password = request.getParameter("password");
-        //LogicFacade logic = new LogicFacade();
-        //User user = logic.login(email, password);
-
+    public String execute(HttpServletRequest request, FunctionManager manager) throws LoginSampleException, OrderSampleException, MaterialSampleException {
         DatabaseFacade dbf = new DatabaseFacade();
         Material mat = null;
         if (!"".equals(request.getParameter("chosenStockMaterial"))) {

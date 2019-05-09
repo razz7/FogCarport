@@ -5,6 +5,7 @@
  */
 package PresentationLayer;
 
+import FunctionLayer.FunctionManager;
 import FunctionLayer.LogicFacade;
 import FunctionLayer.LoginSampleException;
 import FunctionLayer.MaterialSampleException;
@@ -17,10 +18,10 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Rasmus2
  */
-public class MainPageCommand extends Command {
+public class MainPageCommand implements Command {
 
     @Override
-    String execute(HttpServletRequest request, HttpServletResponse response) throws LoginSampleException, OrderSampleException, MaterialSampleException {
+    public String execute(HttpServletRequest request, FunctionManager manager) throws LoginSampleException, OrderSampleException, MaterialSampleException {
         String email = request.getParameter("email");
         String password = request.getParameter("password");
         LogicFacade logic = new LogicFacade();

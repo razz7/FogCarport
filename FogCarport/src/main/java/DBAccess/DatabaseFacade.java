@@ -23,45 +23,45 @@ import java.util.ArrayList;
 public class DatabaseFacade {
 
     public ArrayList<Material> getAllMaterials() throws MaterialSampleException {
-        MaterialMapper mapper = new MaterialMapper();
+        MaterialDBMapper mapper = new MaterialDBMapper();
         return mapper.getAllMaterials();
     }
 
     public void addNewMaterial(String item_description, float width, float height, String entity, String materialtype, float price, int quantity) throws MaterialSampleException {
-        MaterialMapper mapper = new MaterialMapper();
+        MaterialDBMapper mapper = new MaterialDBMapper();
         mapper.addNewMaterial(item_description, width, height, entity, materialtype, price, quantity);
 
     }
 
     public void updateMaterialData(int item_id, String item_description, float width, float height, String entity, String materialtype, float price, int quantity) throws MaterialSampleException, ClassNotFoundException {
-        MaterialMapper mapper = new MaterialMapper();
+        MaterialDBMapper mapper = new MaterialDBMapper();
         mapper.updateMaterialData(item_id, item_description, width, height, entity, materialtype, price, quantity);
     }
 
     
     public void deleteMaterial(int item_id) throws MaterialSampleException {
-        MaterialMapper map = new MaterialMapper();
+        MaterialDBMapper map = new MaterialDBMapper();
         map.deleteMaterial(item_id);
     }
 
     public Material getMaterialbyID(int item_id) throws MaterialSampleException {
-        MaterialMapper map = new MaterialMapper();
+        MaterialDBMapper map = new MaterialDBMapper();
         return map.getMaterialbyID(item_id);
     }
 
     public Stykliste getLineitemsByOrderId(int order_id) throws MaterialSampleException {
-        MaterialMapper map = new MaterialMapper();
+        MaterialDBMapper map = new MaterialDBMapper();
         return map.getLineitemsByOrderId(order_id);
     }
     
 
     public void saveOrder(Order order) throws OrderSampleException{
-        OrderMapper map = new OrderMapper();
+        OrderDBMapper map = new OrderDBMapper();
         map.saveOrder(order);
     }
 
     public ArrayList<Material> getAllMaterialbyType(String type) throws MaterialSampleException {
-        MaterialMapper map = new MaterialMapper();
+        MaterialDBMapper map = new MaterialDBMapper();
         return map.getAllMaterialbyType(type);
 
     }

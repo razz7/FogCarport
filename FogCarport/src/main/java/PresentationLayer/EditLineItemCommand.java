@@ -6,6 +6,7 @@
 package PresentationLayer;
 
 import DBAccess.DatabaseFacade;
+import FunctionLayer.FunctionManager;
 import FunctionLayer.LoginSampleException;
 import FunctionLayer.Material;
 import FunctionLayer.MaterialSampleException;
@@ -18,14 +19,14 @@ import javax.servlet.http.HttpSession;
  *
  * @author Rumle
  */
-public class EditLineItemCommand extends Command{
+public class EditLineItemCommand implements Command{
 
     @Override
-    String execute(HttpServletRequest request, HttpServletResponse response) throws LoginSampleException, OrderSampleException, MaterialSampleException {
-            DatabaseFacade dbf = new DatabaseFacade();
+    public String execute(HttpServletRequest request, FunctionManager manager) throws LoginSampleException, OrderSampleException, MaterialSampleException {
+            //DatabaseFacade dbf = new DatabaseFacade();
             Material material = null;
             int id = Integer.parseInt(request.getParameter("lineitemToEdit"));
-            material = dbf.getMaterialbyID(id);
+            material = manager.getMaterialbyID(id);
             
             HttpSession session = request.getSession();
             session.setAttribute("lineitemToEdit", material);
