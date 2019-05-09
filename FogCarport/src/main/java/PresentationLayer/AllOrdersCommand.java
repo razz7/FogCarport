@@ -6,14 +6,10 @@
 package PresentationLayer;
 
 import DBAccess.DatabaseFacade;
-import FunctionLayer.CarportAlgorithm;
-import FunctionLayer.LogicFacade;
 import FunctionLayer.LoginSampleException;
-import FunctionLayer.Material;
 import FunctionLayer.MaterialSampleException;
+import FunctionLayer.Order;
 import FunctionLayer.OrderSampleException;
-import FunctionLayer.Stykliste;
-import FunctionLayer.User;
 import java.util.ArrayList;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -21,26 +17,18 @@ import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author Rasmus2
+ * @author Rumle
  */
-public class StyklistPageCommand extends Command {
+public class AllOrdersCommand extends Command{
 
     @Override
     String execute(HttpServletRequest request, HttpServletResponse response) throws LoginSampleException, OrderSampleException, MaterialSampleException {
-//        String email = request.getParameter("email");
-//        String password = request.getParameter("password");
-//        
-//        LogicFacade logic = new LogicFacade();
-//        User user = logic.login(email, password);
-        
-        int order_id = Integer.parseInt(request.getParameter("specificOrder"));
-        HttpSession session = request.getSession();
         DatabaseFacade dbf = new DatabaseFacade();
-        Stykliste stykliste = dbf.getOrderFromId(order_id).getStyklist();
-        session.setAttribute("list", stykliste);
+        ArrayList<Order> allOrders = dbf.getAllOrders();
+        //HttpSession session = request.getSession();
+        request.setAttribute("allOrders", allOrders);
         
-
-        return "styklist";
+        return "allOrdersPage";
     }
     
 }
