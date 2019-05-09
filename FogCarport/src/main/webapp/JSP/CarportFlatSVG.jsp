@@ -22,7 +22,7 @@
 
     </head>
     <body>
-        <h1>SVG!</h1>
+        <h1>SVG FLAT!</h1>
 
         <%
             Order order = new Order(1, 6000, 7800, 2300, 0, 5300, 2100);
@@ -44,7 +44,7 @@
             <circle cx="0" cy="<% out.println(2300 / 10); %>" r="4" stroke="black" stroke-width="3" fill="red" />
             <circle cx="<% out.println(order.getLength() / 10); %>" cy=" <% out.println(2300 / 10); %> " r="4" stroke="black" stroke-width="3" fill="red" />
 
-            <rect x='<% out.println(25 / 10); %>' y=' <% out.println((((materials.get(2).getHeight()) / 3) + materials.get(1).getHeight()) / 10); %> ' width='<% out.println(((Math.sqrt(Math.pow(2300 - 2200, 2) + Math.pow(order.getLength(), 2))) - 50) / 10); %>' height='<% out.println((materials.get(5).getHeight()) / 10);%>'  transform='rotate( <% out.println(90 - Math.toDegrees(Math.atan((7800 / (2300 - 2200)))));%> )' stroke="black" fill="red"/>
+            <rect x='<% out.println(25 / 10); %>' y=' <% out.println((((materials.get(2).getHeight()) / 3) + materials.get(1).getHeight()) / 10); %> ' width='<% out.println(((Math.sqrt(Math.pow(2300 - 2200, 2) + Math.pow(order.getLength(), 2))) - 50) / 10); %>' height='<% out.println((materials.get(5).getHeight()) / 10);%>'  transform='rotate( <% out.println(90 - Math.toDegrees(Math.atan((7800 / (2300 - 2200)))));%> )' stroke="black" fill="green"/>
             <%
                 double sum = 0;
                 for (int i = 0; i < (int) (order.getShedLength() / 60); i++) {
