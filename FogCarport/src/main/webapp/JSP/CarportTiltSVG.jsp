@@ -35,7 +35,7 @@
                 materials.put(m.getItem_id(), m);
             }
         %> 
-        <% out.println((order.getWidth() / 2 / Math.sin((180 - 90 - order.getRoofTilt()) * Math.PI / 180)) / 10); %>
+        <% out.println(Math.tan(order.getRoofTilt() * Math.PI / 180)); %>
 
         <div>
             <svg width="<% out.println(order.getLength() / 10); %>" height="<% out.println((order.getHeight() + (Math.tan(order.getRoofTilt() * Math.PI / 180) * (order.getWidth() / 2))) / 10); %>">
@@ -45,7 +45,7 @@
             <circle cx="0" cy="<% out.println((order.getHeight() + (Math.tan(order.getRoofTilt() * Math.PI / 180) * (order.getWidth() / 2))) / 10); %>" r="4" stroke="black" stroke-width="3" fill="red" />
             <circle cx="<% out.println(order.getLength() / 10); %>" cy=" <% out.println((order.getHeight() + (Math.tan(order.getRoofTilt() * Math.PI / 180) * (order.getWidth() / 2))) / 10); %> " r="4" stroke="black" stroke-width="3" fill="red" />
 
-            <rect x='<% out.println((300 - (materials.get(6).getWidth())) / 10); %>' y=' <% out.println(((Math.tan(order.getRoofTilt() * Math.PI / 180) * (order.getWidth() / 2))) / 10); %> ' width='<% out.println((order.getLength() - 300 * 2 + +(materials.get(6).getWidth()) * 2) / 10); %>' height='<% out.println((materials.get(5).getHeight()) / 10);%>' stroke="black" fill="red"/>
+            <rect x='<% out.println((300 - (materials.get(6).getWidth())) / 10); %>' y=' <% out.println(((Math.tan(order.getRoofTilt() * Math.PI / 180) * (order.getWidth() / 2))) / 10); %> ' width='<% out.println((order.getLength() - 300 * 2 + +(materials.get(6).getWidth()) * 2) / 10); %>' height='<% out.println((materials.get(5).getHeight()) / 10);%>' stroke="black" fill="green"/>
             <%
                 double sum = 0;
                 for (int i = 0; i < (int) (order.getShedLength() / 60); i++) {
@@ -72,7 +72,7 @@
             %>
             <rect x='<% out.println((materials.get(23).getWidth()) / 10); %>' y=' <% out.println((((Math.tan(order.getRoofTilt() * Math.PI / 180) * (order.getWidth() / 2))) - materials.get(23).getHeight()) / 10); %> ' width='<% out.println((order.getLength() - materials.get(23).getWidth() * 2) / 10); %>' height='<% out.println((materials.get(23).getHeight()) / 10);%>' stroke="black" fill="red"/>
             <rect x='0' y='0' width='<% out.println((materials.get(23).getWidth()) / 10); %>' height='<% out.println((((Math.tan(order.getRoofTilt() * Math.PI / 180) * (order.getWidth() / 2))) - materials.get(23).getHeight()) / 10); %>' stroke="black" fill="red"/>
-            <rect x='<% out.println((order.getLength() - materials.get(23).getWidth()) / 10); %>' y='0' width='<% out.println((materials.get(23).getWidth()) / 10); %>' height='<% out.println((((Math.tan(order.getRoofTilt() * Math.PI / 180) * (order.getWidth() / 2))) - materials.get(23).getHeight()) / 10);%>' stroke="black" fill="green"/>
+            <rect x='<% out.println((order.getLength() - materials.get(23).getWidth()) / 10); %>' y='0' width='<% out.println((materials.get(23).getWidth()) / 10); %>' height='<% out.println((((Math.tan(order.getRoofTilt() * Math.PI / 180) * (order.getWidth() / 2))) - materials.get(23).getHeight()) / 10);%>' stroke="black" fill="red"/>
             <%
                 double sum2 = 0;
                 for (int j = 0; j < Math.floor((order.getLength() - materials.get(23).getWidth() * 2) / materials.get(7).getHeight()); j++) {
@@ -108,14 +108,27 @@
             %>
             <rect x=" <% out.println(((order.getWidth() - order.getShedWidth()) / 2) / 10); %> " y=" <% out.println(((Math.tan(order.getRoofTilt() * Math.PI / 180) * (order.getWidth() / 2))) / 10); %> " height=" <% out.println(((materials.get(6).getLength() - 900) / 10)); %> " width=" <% out.println(materials.get(6).getWidth() / 10); %> " stroke="black" fill="red"/>
             <rect x=" <% out.println((order.getWidth() - materials.get(6).getWidth() - ((order.getWidth() - order.getShedWidth()) / 2)) / 10); %> " y=" <% out.println(((Math.tan(order.getRoofTilt() * Math.PI / 180) * (order.getWidth() / 2))) / 10); %> " height=" <% out.println(((materials.get(6).getLength() - 900) / 10)); %> " width=" <% out.println(materials.get(6).getWidth() / 10); %> " stroke="black" fill="red"/>
-            <rect x='0' y=' 0 ' width='<% out.println(((order.getWidth() / 2 / Math.sin((180 - 90 - order.getRoofTilt()) * Math.PI / 180))-30) / 10); %>' height='<% out.println((materials.get(23).getHeight()) / 10);%>' transform='translate(<% out.println((materials.get(23).getWidth()) / 10); %>, <% out.println((((Math.tan(order.getRoofTilt() * Math.PI / 180) * (order.getWidth() / 2))) - materials.get(23).getHeight()) / 10);%>) rotate( <% out.println(-order.getRoofTilt());%> ) skewX(-30)' stroke="black" fill="red"/>
-            <rect x='0' y=' 0 ' width='<% out.println(((order.getWidth() / 2 / Math.sin((180 - 90 - order.getRoofTilt()) * Math.PI / 180))-30) / 10); %>' height='<% out.println((materials.get(23).getHeight()) / 10);%>' transform='translate(<% out.println((order.getWidth() - materials.get(23).getWidth()) / 10); %>, <% out.println((((Math.tan(order.getRoofTilt() * Math.PI / 180) * (order.getWidth() / 2)))+materials.get(23).getWidth()) / 10);%>) rotate( <% out.println(180 + order.getRoofTilt());%> ) skewX(30)' stroke="black" fill="red"/>
+            <rect x='0' y=' 0 ' width='<% out.println(((order.getWidth() / 2 / Math.sin((180 - 90 - order.getRoofTilt()) * Math.PI / 180)) - 30) / 10); %>' height='<% out.println((materials.get(23).getHeight()) / 10);%>' transform='translate(<% out.println((materials.get(23).getWidth()) / 10); %>, <% out.println((((Math.tan(order.getRoofTilt() * Math.PI / 180) * (order.getWidth() / 2))) - materials.get(23).getHeight() - (materials.get(23).getHeight())) / 10);%>) rotate( <% out.println(-order.getRoofTilt());%> ) skewX(-30)' stroke="black" fill="red"/>
+            <rect x='0' y=' 0 ' width='<% out.println(((order.getWidth() / 2 / Math.sin((180 - 90 - order.getRoofTilt()) * Math.PI / 180)) - 30) / 10); %>' height='<% out.println((materials.get(23).getHeight()) / 10);%>' transform='translate(<% out.println((order.getWidth() - materials.get(23).getWidth()) / 10); %>, <% out.println((((Math.tan(order.getRoofTilt() * Math.PI / 180) * (order.getWidth() / 2))) + materials.get(23).getWidth() - (materials.get(23).getHeight())) / 10);%>) rotate( <% out.println(180 + order.getRoofTilt());%> ) skewX(30)' stroke="black" fill="red"/>
+            <rect x='0' y='<% out.println(((Math.tan(order.getRoofTilt() * Math.PI / 180) * (order.getWidth() / 2)) - (materials.get(23).getHeight())) / 10); %>' width='<% out.println((materials.get(23).getWidth()) / 10); %>' height='<% out.println((materials.get(23).getHeight()) / 10); %>' stroke="black" fill="red"/>
+            <rect x='<% out.println((order.getWidth() - materials.get(23).getWidth()) / 10); %>' y='<% out.println(((Math.tan(order.getRoofTilt() * Math.PI / 180) * (order.getWidth() / 2)) - (materials.get(23).getHeight())) / 10); %>' width='<% out.println((materials.get(23).getWidth()) / 10); %>' height='<% out.println((materials.get(23).getHeight()) / 10); %>' stroke="black" fill="red"/>
+            <rect x=" <% out.println(((order.getWidth() - order.getShedWidth()) / 2) / 10); %> " y=" <% out.println(((Math.tan(order.getRoofTilt() * Math.PI / 180) * (order.getWidth() / 2))) / 10); %> " height=" <% out.println(((materials.get(5).getHeight()) / 10)); %> " width=" <% out.println(materials.get(5).getWidth() / 10); %> " stroke="black" fill="green"/>
+            <rect x=" <% out.println((order.getWidth() - materials.get(5).getWidth() - ((order.getWidth() - order.getShedWidth()) / 2)) / 10); %> " y=" <% out.println(((Math.tan(order.getRoofTilt() * Math.PI / 180) * (order.getWidth() / 2))) / 10); %> " height=" <% out.println(((materials.get(5).getHeight()) / 10)); %> " width=" <% out.println(materials.get(5).getWidth() / 10); %> " stroke="black" fill="green"/>
 
-            
-            <rect x='0' y='<% out.println(((Math.tan(order.getRoofTilt() * Math.PI / 180) * (order.getWidth() / 2))) / 10); %>' width='<% out.println((materials.get(23).getWidth()) / 10); %>' height='<% out.println((materials.get(23).getHeight()) / 10); %>' stroke="black" fill="red"/>
-            <rect x='<% out.println((order.getWidth() - materials.get(23).getWidth()) / 10); %>' y='<% out.println(((Math.tan(order.getRoofTilt() * Math.PI / 180) * (order.getWidth() / 2))) / 10); %>' width='<% out.println((materials.get(23).getWidth()) / 10); %>' height='<% out.println((materials.get(23).getHeight()) / 10); %>' stroke="black" fill="red"/>
-            
-            
+
+            <%
+                double widthPrPlank = (order.getWidth()) / 60;
+                double currentWidth = materials.get(23).getHeight()*2;
+                double sum4 = 0;
+                for (int j = 0; j < (int) ((order.getWidth()/2) / 60) -1; j++) {
+            %>
+            <rect x="0" y="0" height=" <% out.println(((Math.tan(order.getRoofTilt() * Math.PI / 180) * currentWidth) / 10)); %> " width=" <% out.println(materials.get(7).getHeight() / 10); %> " transform="translate( <% out.println(((materials.get(23).getWidth()) + sum4) / 10); %> , <% out.println(((Math.tan(order.getRoofTilt() * Math.PI / 180) * (order.getWidth() / 2))) / 10); %>) scale(1,-1)" stroke="black" fill="blue"/>
+            <%
+                    currentWidth += widthPrPlank;
+                    sum4 += 60;
+                }
+            %>
+
             </svg>
         </div>
 
