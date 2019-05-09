@@ -26,7 +26,7 @@ public class GraphicCommand extends Command {
     String execute(HttpServletRequest request, HttpServletResponse response) throws LoginSampleException, OrderSampleException, MaterialSampleException {
 
         HttpSession session = request.getSession();
-        int orderId = Integer.parseInt(request.getParameter("specificOrder"));
+        int orderId = Integer.parseInt(request.getParameter("thisOrder"));
 
         OrderMapper om = new OrderMapper();
         Order order = om.getOrderFromId(orderId);

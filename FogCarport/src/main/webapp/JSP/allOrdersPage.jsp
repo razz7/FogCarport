@@ -50,7 +50,7 @@
                     
                     out.println("<form action=\"FrontController\" method=\"post\">");
                     out.println("<input type=\"hidden\" name=\"command\" value=\"graphic\">");
-                    out.println("<input type=\"hidden\" name=\"specificOrder\" value=\"" + orders.get(i).getOrder_id() + "\">");
+                    out.println("<input type=\"hidden\" name=\"thisOrder\" value=\"" + orders.get(i).getOrder_id() + "\">");
                     out.println("<input class=\"btn btn-info  btn-sm\" type=\"submit\" value=\"Se tegning\" >");
                     out.println("</form>");
 
