@@ -255,14 +255,6 @@ public class CarportAlgorithm {
             m.setConstructionDescription("Til montering af stern&vandbrædt");
             arrList.add(m);
 
-            //Montering af brædder til yderste bedækning af gavle af 19x100mm.trykimp.Brædt
-            material = materials.get(7);
-            m = new Material(material.getItem_id(), material.getItem_description(), material.getWidth(), material.getHeight(), material.getEntity(), material.getMaterialType(), material.getPrice(), material.getVersionnr());
-            m.setLength(2100); //Skurets højde ændres ikke
-            m.setStyklistQty((int) ((width / 60) * 2)); //Udregning af antal brædder på baggund af at beklædningsbrædder monteres med 6.cm mellemrum, med skurets mål.
-            m.setConstructionDescription("Til beklædning af gavle 1 på 2");
-            arrList.add(m);
-
             if (shedLength != 0 || shedwidth != 0) {
                 //Montering af brædder til yderste bedækning af skur af 19x100mm.trykimp.Brædt
                 material = materials.get(7);
@@ -612,6 +604,14 @@ public class CarportAlgorithm {
             m.setConstructionDescription("Til montering af rygsten");
             arrList.add(m);
 
+            //Montering af brædder til yderste bedækning af gavle af 19x100mm.trykimp.Brædt
+            material = materials.get(7);
+            m = new Material(material.getItem_id(), material.getItem_description(), material.getWidth(), material.getHeight(), material.getEntity(), material.getMaterialType(), material.getPrice(), material.getVersionnr());
+            m.setLength(2100); //Skurets højde ændres ikke
+            m.setStyklistQty((int) ((width / 60) * 2)); //Udregning af antal brædder på baggund af at beklædningsbrædder monteres med 6.cm mellemrum, med skurets mål.
+            m.setConstructionDescription("Til beklædning af gavle 1 på 2");
+            arrList.add(m);
+
             if (shedLength != 0 || shedwidth != 0) {
                 //Montering af brædder til yderste bedækning af skur af 19x100mm.trykimp.Brædt
                 material = materials.get(7);
@@ -730,8 +730,6 @@ public class CarportAlgorithm {
         for (int i = 0; i < styk1.getStyklist().size(); i++) {
             System.out.println("count=" + i + "_" + styk1.getStyklist().get(i));
         }
-        
-        System.out.println(((6000 / 2) / Math.sin((180 - 90 - 30) * Math.PI / 180)));
 
     }
 }
