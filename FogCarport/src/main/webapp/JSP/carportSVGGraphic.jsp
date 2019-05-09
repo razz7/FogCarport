@@ -80,5 +80,4 @@
         </svg>
     </div>
 
-
 <jsp:include page='/JSP/sitefooter.jsp'></jsp:include>
