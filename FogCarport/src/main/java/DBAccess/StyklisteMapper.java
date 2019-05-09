@@ -111,7 +111,7 @@ public class StyklisteMapper {
 //        
 //        long elapsedTimeMillis = System.currentTimeMillis()-start;
 //        System.out.println(elapsedTimeMillis/1000F);
-mapper.editLineItemsFromOrderID(3, "træ", 10f, 10f, "træ", "træ", 10f, 100, 1);
+//mapper.editLineItemsFromOrderID(3, "træ", 10f, 10f, "træ", "træ", 10f, 100, 1);
         System.out.println(mapper.getMaterialFromLineItems(129));
     }
     

@@ -37,8 +37,7 @@ public class StyklistPageCommand extends Command {
         HttpSession session = request.getSession();
         DatabaseFacade dbf = new DatabaseFacade();
         Stykliste stykliste = dbf.getOrderFromId(order_id).getStyklist();
-        session.setAttribute("list", stykliste);
-        
+        session.setAttribute("list", stykliste);        
 
         return "styklist";
     }

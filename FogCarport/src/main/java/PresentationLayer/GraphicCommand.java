@@ -5,6 +5,7 @@
  */
 package PresentationLayer;
 
+import DBAccess.OrderMapper;
 import FunctionLayer.CarportAlgorithm;
 import FunctionLayer.LoginSampleException;
 import FunctionLayer.MaterialSampleException;
@@ -20,30 +21,22 @@ import javax.servlet.http.HttpSession;
  * @author Ludvig
  */
 public class GraphicCommand extends Command {
-    
+
     @Override
     String execute(HttpServletRequest request, HttpServletResponse response) throws LoginSampleException, OrderSampleException, MaterialSampleException {
-                   HttpSession session = request.getSession();
-           
-            //float height = Float.parseFloat(request.getParameter("height"));
-            float width = Float.parseFloat(request.getParameter("width"));
-            float length = Float.parseFloat(request.getParameter("length"));
-           
-            float shedLength = Float.parseFloat(request.getParameter("shedLength"));
-            float shedWidth = Float.parseFloat(request.getParameter("shedWidth"));
-            //float shedTilt = Float.parseFloat(request.getParameter("shedTilt"));
-           
-            //int roof = Integer.parseInt(request.getParameter("roof"));   
-           
-            Order order = new Order(1, width, length, 2300, 0, shedWidth, shedLength);
-           
-            CarportAlgorithm car = new CarportAlgorithm();
-            Stykliste styklist = car.carportAlgorithm(order.getWidth(), order.getLength(), order.getRoofTilt(), order.getShedWidth(), order.getShedLength(), 1);
-            order.setStyklist(styklist);
-           
-           session.setAttribute("order", order);
-           
-           return "carportSVGGraphic";
+
+        HttpSession session = request.getSession();
+        int orderId = Integer.parseInt(request.getParameter("specificOrder"));
+
+        OrderMapper om = new OrderMapper();
+        Order order = om.getOrderFromId(orderId);
+
+        CarportAlgorithm car = new CarportAlgorithm();
+        Stykliste styklist = car.carportAlgorithm(order.getWidth(), order.getLength(), order.getRoofTilt(), order.getShedWidth(), order.getShedLength(), 1);
+        order.setStyklist(styklist);
+
+        session.setAttribute("order", order);
+
+        return "carportSVGGraphic";
     }
-    
 }
