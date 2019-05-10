@@ -8,6 +8,7 @@
 <%@page import="FunctionLayer.Material"%>
 <%@page import="FunctionLayer.Material"%>
 <%@page import="FunctionLayer.Stykliste"%>
+<%@page import="FunctionLayer.CarportAlgorithm"%>
 <jsp:include page='/JSP/siteheader.jsp'></jsp:include>
 
 <jsp:include page='/JSP/sitemenus.jsp'></jsp:include>
@@ -29,7 +30,7 @@
 
                 <label for="">Bredde</label>
                 <input type="text" name="width" value="" class="form-control" 
-                       placeholder="Carport Bredde">
+                       placeholder="Carport Bredde"  >
             </div>
             <div class="col-md-3 mb-3">
 
@@ -83,19 +84,56 @@
                 Stykliste sl = (Stykliste) session.getAttribute("stykliste");
                 out.println("<h4> Styklisten: </h4>");
                 out.println("<h4> Id:" + sl.getStyklist_id() + "</h4>");
-
+                out.println("<div class=\"container\">");
                 ArrayList<Material> am = sl.getStyklist();
-
+                    out.println("<table class=\"table table-striped\"> "
+                            + "<thead><tr class=\"bg-primary\">"
+                            + "<th>Matriale id</th>"
+                            + "<th>Styklist Qty</th>"
+                            + "<th>Stock Qty</th>"
+                            + "<th>Mat type</th>"
+                            
+                            + "<th> Mat beskrivelse</th>"
+                            + "<th> Con beskrivelse</th>"
+                            +"<th>Bredde</th>"
+                            +"<th>Højde</th>"
+                            +"<th>Længde</th>"
+                            +"<th>Entity</th>"
+                            +"<th>Pris</th>"
+                            +"<th>Version</th>"
+                            + "</th></thead>");
                 for (int i = 0; i < am.size(); i++) {
-                    out.println("<h5>" + am.get(i) + "</h5>");
+                    out.println("<tr>");
+                    out.println("<td> " + am.get(i).getItem_id() + "</td>");
+                    out.println("<td> " + am.get(i).getStryklistQty()+ "</td>");
+                    out.println("<td> " + am.get(i).getStockQty()+ "</td>");
+                    out.println("<td> " + am.get(i).getMaterialType()+ "</td>");
+                    out.println("<td> " + am.get(i).getItem_description()+ "</td>");
+                    out.println("<td> " + am.get(i).GettConstructionDescription() + "</td>");
+                    out.println("<td> " + am.get(i).getWidth()+ "</td>");
+                    out.println("<td> " + am.get(i).getHeight()+ "</td>");
+                    out.println("<td> " + am.get(i).getLength()+ "</td>");
+                    out.println("<td> " + am.get(i).getEntity()+ "</td>");
+                    out.println("<td> " + am.get(i).getPrice()+ "</td>");
+                    out.println("<td> " + am.get(i).getVersionnr() + "</td>");
+                    out.println("</tr>");
                 }
-
+                    out.println("</table>");
+                    out.println("</div>");
                 if (session != null) {
                     session.removeAttribute("stykliste");
                 }
             }
         %>
 
+        
+           <%--     return "Materiale information: " + " materiale id: " + item_id + 
+                ", materiale beskrivelse: " + item_description + ", højde: " +
+                height  + ", bredde: " + width + ", entity: " + entity + ", materialetype: " + 
+                materialtype + ", pris: " + price + ", versionnr: " + versionnr; --%>
+        
+        
+        
 </div>
 </div>
 <jsp:include page='/JSP/sitefooter.jsp'></jsp:include>

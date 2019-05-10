@@ -29,7 +29,7 @@
 %>
 
     <div>
-        <svg width="<% out.println(order.getLength() / 10); %>" height="<% out.println(order.getHeight() / 10); %>">
+           <svg width="<% out.println(order.getLength() / 10); %>" height="<% out.println(order.getHeight() / 10); %>">
 
         <circle cx="0" cy="0" r="4" stroke="black" stroke-width="3" fill="red" />
         <circle cx="<% out.println(order.getLength() / 10); %>" cy="0" r="4" stroke="black" stroke-width="3" fill="red" />
