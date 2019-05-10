@@ -23,8 +23,7 @@
       </li>
         <a class="nav-link" href="/Cupcake/FrontController?action=logOut">Log out</a>
       </li>
-       </li>
-        <a class="nav-link" href="JSP/newjsp.jsp">Cat</a>
+       
         <a class="nav-link" href="JSP/graphicInput.jsp">Grafik</a>
       </li>
       <li class="nav-item">
