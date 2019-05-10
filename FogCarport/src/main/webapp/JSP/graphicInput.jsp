@@ -28,16 +28,16 @@
             </div>
             <div class="col-md-3 mb-3">
 
-                <label for="">LÃ¦ngde</label>
+                <label for="">Længde</label>
                 <input type="text" name="length" value="" class="form-control" placeholder="Carport LÃ¦ngde">
             </div>
         </div>
         <br>
-        <h4>Skur mÃ¥l</h4>
+        <h4>Skur mål</h4>
         <div class="form-row">
             <div class="col-md-3 mb-3">
 
-                <label for="">LÃ¦ngde</label>
+                <label for="">Længde</label>
                 <input type="text" name="shedLength" value="" class="form-control" placeholder="Skur LÃ¦ngde">
             </div>
             <div class="col-md-3 mb-3">
@@ -50,7 +50,7 @@
 
         <span>
             <fieldset id="roof">
-                <h5>HÃ¸jt tag</h5>
+                <h5>Højt tag</h5>
                 <input type="radio" value="1" name="roof">
 
                 <h5>Lavt tag</h5>

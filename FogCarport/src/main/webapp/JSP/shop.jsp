@@ -28,12 +28,14 @@
             <div class="col-md-3 mb-3">
 
                 <label for="">Bredde</label>
-                <input type="text" name="width" value="" class="form-control" placeholder="Carport Bredde">
+                <input type="text" name="width" value="" class="form-control" 
+                       placeholder="Carport Bredde">
             </div>
             <div class="col-md-3 mb-3">
 
                 <label for="">Længde</label>
-                <input type="text" name="length" value="" class="form-control" placeholder="Carport Længde">
+                <input type="text" name="length" value="" class="form-control" 
+                       placeholder="Carport Længde">
             </div>
         </div>
         <br>
@@ -42,13 +44,15 @@
             <div class="col-md-3 mb-3">
 
                 <label for="">Længde</label>
-                <input type="text" name="shedLength" value="" class="form-control" placeholder="Skur Længde">
+                <input type="text" name="shedLength" value="" class="form-control" 
+                       placeholder="Skur Længde">
             </div>
             <div class="col-md-3 mb-3">
 
 
                 <label for="">Skur bredde</label>
-                <input type="text" name="shedWidth" value="" class="form-control" placeholder="Skur Bredde">
+                <input type="text" name="shedWidth" value="" class="form-control" 
+                       placeholder="Skur Bredde">
             </div>
         </div>
 
