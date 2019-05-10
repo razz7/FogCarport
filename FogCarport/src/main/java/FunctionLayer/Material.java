@@ -141,8 +141,6 @@ public class Material {
         this.lineItemID = lineItemID;
     }
     
-    
-
 
     @Override
     public String toString() {
