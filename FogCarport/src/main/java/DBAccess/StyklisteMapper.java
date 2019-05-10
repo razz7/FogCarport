@@ -8,9 +8,11 @@ package DBAccess;
 import FunctionLayer.CarportAlgorithm;
 import FunctionLayer.Material;
 import FunctionLayer.MaterialSampleException;
+import FunctionLayer.StyklistException;
 import FunctionLayer.Stykliste;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -21,15 +23,6 @@ import java.util.ArrayList;
 public class StyklisteMapper {
     
     private Connector dbc = new Connector();
-    
-//    public ArrayList<Stykliste> getAllStykliste() throws ClassNotFoundException, SQLException{
-//        ArrayList<Stykliste> list = new ArrayList();
-//        
-//        try{
-//            Connection con = dbc.connection();
-//            String SQL = "SELECT * FROM fog.stock";
-//        }
-//    }
     
     public void editLineItemsFromOrderID(int item_id, String item_description, float width, float height,
             String entity, String materialtype, float price, int orderquantity, int order_id) {
@@ -54,7 +47,7 @@ public class StyklisteMapper {
             
         }
     }
-    public void saveLineItemsInDB(Stykliste styklist, int order_id) {
+    public void saveLineItemsInDB(Stykliste styklist, int order_id) throws StyklistException {
         try {
             ArrayList<Material> lineitems = styklist.getStyklist();
             
@@ -80,11 +73,34 @@ public class StyklisteMapper {
             ps.executeUpdate();
         }
         }catch(SQLException | ClassNotFoundException ex) {
-            
+            throw new StyklistException(ex.getMessage());
         }
         
     }
-    public static void main(String[] args) throws MaterialSampleException {
+    
+    public Material getMaterialFromLineItems(int lineItemID) throws StyklistException {
+        try{
+            String sql = "Select * from lineitems where lineitems_id=?";
+            Connection conn = dbc.connection();
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setInt(1, lineItemID);
+            ResultSet rs = ps.executeQuery();
+            Material material = null;
+            while(rs.next()) {
+                material = new Material(rs.getInt(2), rs.getString(4), rs.getFloat(5), rs.getFloat(6), rs.getString(7), rs.getString(8), rs.getFloat(9), rs.getInt(11));
+                material.setStyklistQty(rs.getInt(10));
+                material.setLineItemID(rs.getInt(1));
+            }
+            return material;
+            
+        } catch(SQLException | ClassNotFoundException ex) {
+            throw new StyklistException(ex.getMessage());
+                    
+        }
+        
+    }
+    
+    public static void main(String[] args) throws MaterialSampleException, Exception {
         long start = System.currentTimeMillis();
         StyklisteMapper mapper = new StyklisteMapper();
 //        CarportAlgorithm car = new CarportAlgorithm();
@@ -95,7 +111,8 @@ public class StyklisteMapper {
 //        
 //        long elapsedTimeMillis = System.currentTimeMillis()-start;
 //        System.out.println(elapsedTimeMillis/1000F);
-mapper.editLineItemsFromOrderID(3, "træ", 10f, 10f, "træ", "træ", 10f, 100, 1);
+//mapper.editLineItemsFromOrderID(3, "træ", 10f, 10f, "træ", "træ", 10f, 100, 1);
+        System.out.println(mapper.getMaterialFromLineItems(129));
     }
     
 }

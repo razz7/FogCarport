@@ -17,10 +17,6 @@
         <a class="nav-link" href="JSP/categories.jsp">Materials</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="/FogCarport/FrontController?command=styklistpage">Lineitems</a>
-      </li>
-      
-      <li class="nav-item">
         <a class="nav-link" href="JSP/shop.jsp">Shop</a>
               <li class="nav-item">
         <a class="nav-link" href="JSP/loginRegistration.jsp" >Register</a>
@@ -30,6 +26,9 @@
        </li>
         <a class="nav-link" href="JSP/newjsp.jsp">Cat</a>
         <a class="nav-link" href="JSP/graphicInput.jsp">Grafik</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/FogCarport/FrontController?command=AllOrders">Allorders</a>
       </li>
       </li>
     </ul>

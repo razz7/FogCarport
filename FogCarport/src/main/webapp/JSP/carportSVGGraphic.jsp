@@ -17,18 +17,14 @@
     <h2>Din tegning!</h2>
 
 <%
-    Order order = new Order(1, 6000, 7800, 2300, 0, 5300, 2100);
+    //Order order = new Order(1, 6000, 7800, 2300, 0, 5300, 2100);
     //Order(int order_id, float width, float length, float height, float roofTilt, float shedWidth, float shedLength)
     //carportAlgorithm(float width, float length, float roofTilt, float shedwidth, float shedLength, int styklist_id)
-    CarportAlgorithm car = new CarportAlgorithm();
-    Stykliste styklist = car.carportAlgorithm(order.getWidth(), order.getLength(), order.getRoofTilt(), order.getShedWidth(), order.getShedLength(), 1);
-    order.setStyklist(styklist);
+    
+    Order order = null;
 
-    if (session.getAttribute("width") != null && session.getAttribute("shedWidth") != null && session.getAttribute("length") != null && session.getAttribute("shedLength") != null) {
-        float width = (float) session.getAttribute("width");
-        float shedWidth = (float) session.getAttribute("shedWidth");
-        float length = (float) session.getAttribute("length");
-        float shedLength = (float) session.getAttribute("shedLength");
+    if (session.getAttribute("order") != null) {
+        order = (Order) session.getAttribute("order");
     }
 %>
 
@@ -83,6 +79,5 @@
 
         </svg>
     </div>
-
 
 <jsp:include page='/JSP/sitefooter.jsp'></jsp:include>
