@@ -31,7 +31,7 @@ public class OrderMapper {
             PreparedStatement ps = conn.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             while(rs.next()) {
-                Order order = new Order(rs.getInt(1), rs.getFloat(2), rs.getFloat(3), 0, rs.getFloat(4), rs.getInt(7), rs.getInt(8));
+                Order order = new Order(rs.getInt(1), rs.getFloat(2), rs.getFloat(3), 0, rs.getFloat(4), rs.getInt(5), rs.getInt(6));
                 orders.add(order);
                 
             }
@@ -140,10 +140,10 @@ public class OrderMapper {
 //Order order = map.getOrderFromId(9);
 //System.out.println(order.toString());
 //        System.out.println(order.getSl().getStyklist());
-ArrayList<Material> list = map.getStyklistForOrder(9).getStyklist();
-for(int i = 0; i < list.size(); i++) {
-    System.out.println(list.get(i).getLineItemID());
-}
+System.out.println(map.getAllOrders());
+//for(int i = 0; i < list.size(); i++) {
+//    System.out.println(list.get(i).getLineItemID());
+//}
         
         
 
