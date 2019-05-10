@@ -87,7 +87,7 @@
                 out.println("<div class=\"container\">");
                 ArrayList<Material> am = sl.getStyklist();
                     out.println("<table class=\"table table-striped\"> "
-                            + "<thead><tr class=\"bg-warning\">"
+                            + "<thead><tr class=\"bg-primary\">"
                             + "<th>Matriale id</th>"
                             + "<th>Styklist Qty</th>"
                             + "<th>Stock Qty</th>"
@@ -108,7 +108,6 @@
                     out.println("<td> " + am.get(i).getStryklistQty()+ "</td>");
                     out.println("<td> " + am.get(i).getStockQty()+ "</td>");
                     out.println("<td> " + am.get(i).getMaterialType()+ "</td>");
-                    
                     out.println("<td> " + am.get(i).getItem_description()+ "</td>");
                     out.println("<td> " + am.get(i).GettConstructionDescription() + "</td>");
                     out.println("<td> " + am.get(i).getWidth()+ "</td>");
