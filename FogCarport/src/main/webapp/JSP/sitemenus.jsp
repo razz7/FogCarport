@@ -14,7 +14,7 @@
         <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="/FogCarport/FrontController?command=allmaterials">Materials</a>
+        <a class="nav-link" href="JSP/categories.jsp">Materials</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="/FogCarport/FrontController?command=styklistpage">Lineitems</a>
