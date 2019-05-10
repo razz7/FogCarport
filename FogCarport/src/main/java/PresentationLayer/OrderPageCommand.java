@@ -36,9 +36,9 @@ class OrderPageCommand implements Command{
            
            int roof = Integer.parseInt(request.getParameter("roof"));
            
-           CarportAlgorithm ca = new CarportAlgorithm();
+           //CarportAlgorithm ca = new CarportAlgorithm();
 
-           Stykliste sl = ca.carportAlgorithm(width, length, roof, shedWidth, shedLength, id);          
+           Stykliste sl = manager.carportAlgorithm(width, length, roof, shedWidth, shedLength, id);          
            id++;
            
            session.setAttribute("stykliste", sl);

@@ -19,6 +19,7 @@ public class FunctionManager {
     private final StyklisteMapper StykMapper = StyklisteMapper.instance();
     private final OrderMapper OrdMapper = OrderMapper.instance();
     private final MaterialMapper MatMapper = MaterialMapper.instance();
+    private CarportAlgorithm ca = new CarportAlgorithm();
     
     public void editLineItemsFromOrderID(int item_id, String item_description, float width, float height,
             String entity, String materialtype, float price, int orderquantity, int order_id){
@@ -72,6 +73,10 @@ public class FunctionManager {
     
     public ArrayList<Material> getAllMaterialbyType(String type) throws MaterialSampleException {
         return MatMapper.getAllMaterialbyType(type);
+    }
+    
+    public Stykliste carportAlgorithm(float width, float length, float roofTilt, float shedwidth, float shedLength, int styklist_id) throws MaterialSampleException {
+        return ca.carportAlgorithm(width, length, roofTilt, shedwidth, shedLength, styklist_id);
     }
     
     public static void main(String[] args) throws MaterialSampleException, OrderSampleException {

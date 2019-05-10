@@ -38,8 +38,7 @@ public class GraphicCommand implements Command {
            
             Order order = new Order(1, width, length, 2300, 0, shedWidth, shedLength);
            
-            CarportAlgorithm car = new CarportAlgorithm();
-            Stykliste styklist = car.carportAlgorithm(order.getWidth(), order.getLength(), order.getRoofTilt(), order.getShedWidth(), order.getShedLength(), 1);
+            Stykliste styklist = manager.carportAlgorithm(order.getWidth(), order.getLength(), order.getRoofTilt(), order.getShedWidth(), order.getShedLength(), 1);
             order.setStyklist(styklist);
            
            session.setAttribute("order", order);
