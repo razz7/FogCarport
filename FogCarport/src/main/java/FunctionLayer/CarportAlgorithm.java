@@ -27,11 +27,17 @@ public class CarportAlgorithm {
         Stykliste styklist = new Stykliste(arrList, styklist_id);
         Material material;
         Material m;
-
+        
+        
+        if(width > 7.5 || length > 7.8) 
+        {
+            throw new MaterialSampleException("Fejl i mål");
+        } else {
+        
         if (roofTilt == 0) { //Flat roof
 
             //CAROPRT MED SKUR
-            if (shedLength != 0 || shedwidth != 0) {
+            if (shedLength != 0 || shedwidth != 0 ) {
                 // Tilføj 10 stolper til hvert hjørne af 97x97mm.trykimp.Stolpe
                 material = materials.get(6);
                 m = new Material(material.getItem_id(), material.getItem_description(), material.getWidth(), material.getHeight(), material.getEntity(), material.getMaterialType(), material.getPrice(), material.getVersionnr());
@@ -687,6 +693,7 @@ public class CarportAlgorithm {
                 arrList.add(m);
             }
 
+        }
         }
         return styklist;
     }
