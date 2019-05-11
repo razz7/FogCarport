@@ -32,9 +32,9 @@ public class OrderPageCommand extends Command {
         float length = Float.parseFloat(request.getParameter("length"));
         float shedLength = Float.parseFloat(request.getParameter("shedLength"));
         float shedWidth = Float.parseFloat(request.getParameter("shedWidth"));
-        int roofTilt = Integer.parseInt(request.getParameter("roof"));
+        float roofTilt = Integer.parseInt(request.getParameter("roof"));
 
-        if (width > 7500 || width < 2400 || length > 7800 || length < 2400 || shedLength > 690 || shedLength < 150 || shedWidth > 720 || shedWidth < 210 || roofTilt > 45 || roofTilt < 0) {
+        if (width > 7500 || width < 2400 || length > 7800 || length < 2400 || shedLength > 6900 || shedLength < 1500 || shedWidth > 7200 || shedWidth < 2100 || roofTilt > 45 || roofTilt < 0) {
             //throw new MaterialSampleException("Fejl i mål");
             return "shop";
         } else {
