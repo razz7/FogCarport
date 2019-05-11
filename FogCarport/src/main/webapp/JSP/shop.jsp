@@ -56,20 +56,20 @@
                                placeholder="0.0">
                     </div>
                     <div class="col-md-3 mb-3">
-                    <label for="">Fulde navn</label>
-                    <input type="text" name="shedWidth" value="" class="form-control" 
-                           placeholder="">
-                </div>
+                        <label for="">Fulde navn</label>
+                        <input type="text" name="shedWidth" value="" class="form-control" 
+                               placeholder="">
+                    </div>
                     <div class="col-md-3 mb-3">
-                <label for="">Adresse</label>
-                <input type="text" name="shedWidth" value="" class="form-control" 
-                       placeholder="">
-                </div>
+                        <label for="">Adresse</label>
+                        <input type="text" name="shedWidth" value="" class="form-control" 
+                               placeholder="">
+                    </div>
                     <div class="col-md-3 mb-3">
-                <label for="">Email</label>
-                <input type="text" name="shedWidth" value="" class="form-control" 
-                       placeholder="">
-                </div>
+                        <label for="">Email</label>
+                        <input type="text" name="shedWidth" value="" class="form-control" 
+                               placeholder="">
+                    </div>
                 </div>
 
 
@@ -91,6 +91,15 @@
             <br>
 
             <input class="btn btn-primary" type="submit" value="Make order">
+            <%
+                if (session.getAttribute("order") != null) {
+            %>
+            <input type="hidden" name="command" value="graphic">
+            <input class="btn btn-primary" type="submit" value="See visual order">
+            <%
+                }
+            %>
+
             </div>
         </form>
 

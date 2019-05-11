@@ -28,12 +28,6 @@ public class CarportAlgorithm {
         Material material;
         Material m;
         
-        
-        if(width > 7.5 || length > 7.8) 
-        {
-            throw new MaterialSampleException("Fejl i mål");
-        } else {
-        
         if (roofTilt == 0) { //Flat roof
 
             //CAROPRT MED SKUR
@@ -694,7 +688,7 @@ public class CarportAlgorithm {
             }
 
         }
-        }
+        
         return styklist;
     }
 

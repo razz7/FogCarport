@@ -25,8 +25,8 @@
         <h1>SVG TILT!</h1>
 
         <%
-            Order order = new Order(1, 3600, 7300, 2100, 30, 3200, 2250);
-            //Order order = new Order(1, 3600, 7300, 2100, 30, 0, 0);
+            Order order = new Order(1, 3600, 7300, 2300, 30, 3200, 2250);
+            //Order order = new Order(1, 3600, 7300, 2300, 30, 0, 0);
             CarportAlgorithm car = new CarportAlgorithm();
             Stykliste styklist = car.carportAlgorithm(order.getWidth(), order.getLength(), order.getRoofTilt(), order.getShedWidth(), order.getShedLength(), 1);
             order.setStyklist(styklist);
@@ -248,7 +248,7 @@
             <%
                 }
             %>
-            
+
             <%
                 double sum8 = 0;
                 for (int m = 0; m < (((int) Math.ceil(((float) Math.ceil(((((order.getWidth() / 2) / Math.sin((180 - 90 - order.getRoofTilt()) * Math.PI / 180)) - (350 + 30)) / (38 + 307))) + 1))) * 2) + 1; m++) {
@@ -258,7 +258,7 @@
                     sum8 += ((order.getWidth() - materials.get(26).getWidth()) / (((int) Math.ceil(((float) Math.ceil(((((order.getWidth() / 2) / Math.sin((180 - 90 - order.getRoofTilt()) * Math.PI / 180)) - (350 + 30)) / (38 + 307))) + 1))) * 2));
                 }
             %>
-            <rect x="" y=" <% out.println((((order.getWidth() / 2) - (materials.get(26).getHeight())/2 ) / 10)); %> " height=" <% out.println(materials.get(26).getHeight() / 10); %> " width=" <% out.println(order.getLength() / 10); %> " />
+            <rect x="" y=" <% out.println((((order.getWidth() / 2) - (materials.get(26).getHeight()) / 2) / 10)); %> " height=" <% out.println(materials.get(26).getHeight() / 10); %> " width=" <% out.println(order.getLength() / 10);%> " />
             </svg>
         </div>
 
