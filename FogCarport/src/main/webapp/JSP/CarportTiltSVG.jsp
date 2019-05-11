@@ -163,20 +163,20 @@
             <circle cx="<% out.println(order.getLength() / 10); %>" cy=" <% out.println(order.getWidth() / 10);%> " r="4" stroke="black" stroke-width="3" fill="red" />
 
             <%
-                double sum3 = 0;
+                double sum7 = 0;
                 if (order.getShedLength() != 0 || order.getShedWidth() != 0) {
-                    sum3 = ((order.getWidth() - order.getShedWidth()) / 2);
+                    sum7 = ((order.getWidth() - order.getShedWidth()) / 2);
                 } else {
-                    sum3 = (700 / 2);
+                    sum7 = (700 / 2);
                 }
                 for (int k = 0; k < materials.get(24).getStryklistQty(); k++) {
             %>
-            <rect x=" <% out.println((sum3) / 10); %> " y="0" height=" <% out.println(order.getWidth() / 10); %> " width=" <% out.println(materials.get(5).getWidth() / 10); %> " stroke="black" fill="blue"/>
+            <rect x=" <% out.println((sum7) / 10); %> " y="0" height=" <% out.println(order.getWidth() / 10); %> " width=" <% out.println(materials.get(5).getWidth() / 10); %> " stroke="black" fill="blue"/>
             <%
                     if (order.getShedLength() != 0 || order.getShedWidth() != 0) {
-                        sum3 += (((order.getLength() - (order.getWidth() - order.getShedWidth()) - ((int) Math.ceil((order.getLength() - 45) / (45 + 1100)) + 1) * materials.get(5).getWidth()) / (((int) Math.ceil((order.getLength() - 45) / (45 + 1100)) + 1) - 1)) + materials.get(5).getWidth());
+                        sum7 += (((order.getLength() - (order.getWidth() - order.getShedWidth()) - ((int) Math.ceil((order.getLength() - 45) / (45 + 1100)) + 1) * materials.get(5).getWidth()) / (((int) Math.ceil((order.getLength() - 45) / (45 + 1100)) + 1) - 1)) + materials.get(5).getWidth());
                     } else {
-                        sum3 += (((order.getLength() - (700) - ((int) Math.ceil((order.getLength() - 45) / (45 + 1100)) + 1) * materials.get(5).getWidth()) / (((int) Math.ceil((order.getLength() - 45) / (45 + 1100)) + 1) - 1)) + materials.get(5).getWidth());
+                        sum7 += (((order.getLength() - (700) - ((int) Math.ceil((order.getLength() - 45) / (45 + 1100)) + 1) * materials.get(5).getWidth()) / (((int) Math.ceil((order.getLength() - 45) / (45 + 1100)) + 1) - 1)) + materials.get(5).getWidth());
                     }
                 }
             %>
@@ -219,8 +219,8 @@
                 double sum5 = 0;
                 for (int l = 0; l < (int) (order.getShedWidth() / 60); l++) {
             %>
-            <rect x=" <% out.println((order.getLength() - order.getShedLength() - materials.get(7).getWidth() - 300) / 10); %> " y=" <% out.println(((((order.getWidth() - order.getShedWidth()) / 2) - materials.get(7).getWidth()) + sum4) / 10); %> " height=" <% out.println((materials.get(7).getHeight() / 10)); %> " width=" <% out.println(materials.get(7).getWidth() / 10); %> " />
-            <rect x=" <% out.println((order.getLength() + materials.get(6).getWidth() - 300) / 10); %> " y=" <% out.println(((((order.getWidth() - order.getShedWidth()) / 2) - materials.get(7).getWidth()) + sum4) / 10); %> " height=" <% out.println((materials.get(7).getHeight() / 10)); %> " width=" <% out.println(materials.get(7).getWidth() / 10); %> " />
+            <rect x=" <% out.println((order.getLength() - order.getShedLength() - materials.get(7).getWidth() - 300) / 10); %> " y=" <% out.println(((((order.getWidth() - order.getShedWidth()) / 2) - materials.get(7).getWidth()) + sum5) / 10); %> " height=" <% out.println((materials.get(7).getHeight() / 10)); %> " width=" <% out.println(materials.get(7).getWidth() / 10); %> " />
+            <rect x=" <% out.println((order.getLength() + materials.get(6).getWidth() - 300) / 10); %> " y=" <% out.println(((((order.getWidth() - order.getShedWidth()) / 2) - materials.get(7).getWidth()) + sum5) / 10); %> " height=" <% out.println((materials.get(7).getHeight() / 10)); %> " width=" <% out.println(materials.get(7).getWidth() / 10); %> " />
             <%
                     sum5 += 60;
                 }
@@ -232,8 +232,8 @@
                 double sum6 = 0;
                 for (int h = 0; h < (int) ((order.getShedLength() + materials.get(6).getWidth()) / 60); h++) {
             %>
-            <rect x=" <% out.println(((order.getLength() - order.getShedLength() - materials.get(7).getWidth() - 300) + sum5) / 10); %> " y=" <% out.println(((((order.getWidth() - order.getShedWidth()) / 2) - materials.get(7).getWidth())) / 10); %> " height=" <% out.println(materials.get(7).getWidth() / 10); %> " width=" <% out.println((materials.get(7).getHeight() / 10)); %> " />
-            <rect x=" <% out.println(((order.getLength() - order.getShedLength() - materials.get(7).getWidth() - 300) + sum5) / 10); %> " y=" <% out.println((order.getWidth() - ((order.getWidth() - order.getShedWidth()) / 2)) / 10); %> " height=" <% out.println(materials.get(7).getWidth() / 10); %> " width=" <% out.println((materials.get(7).getHeight() / 10)); %> " />
+            <rect x=" <% out.println(((order.getLength() - order.getShedLength() - materials.get(7).getWidth() - 300) + sum6) / 10); %> " y=" <% out.println(((((order.getWidth() - order.getShedWidth()) / 2) - materials.get(7).getWidth())) / 10); %> " height=" <% out.println(materials.get(7).getWidth() / 10); %> " width=" <% out.println((materials.get(7).getHeight() / 10)); %> " />
+            <rect x=" <% out.println(((order.getLength() - order.getShedLength() - materials.get(7).getWidth() - 300) + sum6) / 10); %> " y=" <% out.println((order.getWidth() - ((order.getWidth() - order.getShedWidth()) / 2)) / 10); %> " height=" <% out.println(materials.get(7).getWidth() / 10); %> " width=" <% out.println((materials.get(7).getHeight() / 10)); %> " />
             <%
                     sum6 += 60;
                 }
@@ -248,6 +248,17 @@
             <%
                 }
             %>
+            
+            <%
+                double sum8 = 0;
+                for (int m = 0; m < (((int) Math.ceil(((float) Math.ceil(((((order.getWidth() / 2) / Math.sin((180 - 90 - order.getRoofTilt()) * Math.PI / 180)) - (350 + 30)) / (38 + 307))) + 1))) * 2) + 1; m++) {
+            %>
+            <rect x="" y=" <% out.println(((sum8) / 10)); %> " height=" <% out.println(materials.get(26).getWidth() / 10); %> " width=" <% out.println(order.getLength() / 10); %> " />
+            <%
+                    sum8 += ((order.getWidth() - materials.get(26).getWidth()) / (((int) Math.ceil(((float) Math.ceil(((((order.getWidth() / 2) / Math.sin((180 - 90 - order.getRoofTilt()) * Math.PI / 180)) - (350 + 30)) / (38 + 307))) + 1))) * 2));
+                }
+            %>
+            <rect x="" y=" <% out.println((((order.getWidth() / 2) - (materials.get(26).getHeight())/2 ) / 10)); %> " height=" <% out.println(materials.get(26).getHeight() / 10); %> " width=" <% out.println(order.getLength() / 10); %> " />
             </svg>
         </div>
 
