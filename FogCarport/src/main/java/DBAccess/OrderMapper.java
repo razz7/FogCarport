@@ -66,8 +66,7 @@ public class OrderMapper {
                 user = new User(rs.getString(10), "", "");
                 
                 //order.setUser(rs.getInt(8));
-
-               
+              
             }
             order.setUser(user);
             OrderMapper map = new OrderMapper();
@@ -139,10 +138,30 @@ public class OrderMapper {
         }
         
     }
+        
+    public void finalizeOrder(int order_id) throws OrderSampleException {
+        try {
+            String sql = "UPDATE fog.orders SET status=true WHERE order_id=?";
+
+            Connection con = dbc.connection();
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, order_id);
+            ps.executeUpdate();
+           
+        } catch(SQLException | ClassNotFoundException ex) {
+            throw new OrderSampleException(ex.getMessage());
+        }
+    }
+        
     public static void main(String[] args) throws OrderSampleException, MaterialSampleException, LoginSampleException, ClassNotFoundException, StyklistException{
         Order order = new Order(6000, 7800, 0, 5300, 2100, 1, 1);
         OrderMapper map = new OrderMapper();
+        
+        map.finalizeOrder(22);
+        
         StyklisteMapper mapper = new StyklisteMapper();
+        
+        
 //        User user = new User("derqe", "qwe", "qwe");
 //        user.setId(10);
 //        order.setUser(user);
@@ -156,18 +175,11 @@ public class OrderMapper {
 //Order order = map.getOrderFromId(9);
 //System.out.println(order.toString());
 //        System.out.println(order.getSl().getStyklist());
-map.getOrderFromId(10).getUser().getEmail();
-ArrayList<Order> list = map.getAllOrders();
-for(int i = 0; i < list.size(); i++) {
-    System.out.println(list.get(i).getUser().getEmail());
-}
-        
-        
-
-        
-        
-
-        
+//map.getOrderFromId(10).getUser().getEmail();
+//ArrayList<Order> list = map.getAllOrders();
+//for(int i = 0; i < list.size(); i++) {
+//    System.out.println(list.get(i).getUser().getEmail());
+//}      
     }
 }
     

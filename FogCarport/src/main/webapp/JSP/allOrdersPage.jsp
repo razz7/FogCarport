@@ -47,8 +47,7 @@
                 } else {
                         out.println("<td>ikke sendt</td>");
                     }
-                  
-                                    
+                                                      
                     out.print("<td>" + orders.get(i).getOrderdate() + "</td>");
                     out.print("<td>"  + orders.get(i).getUser().getEmail() + "</td>");
                     out.print("<td>");
@@ -56,19 +55,21 @@
                     out.println("<input type=\"hidden\" name=\"command\" value=\"styklistpage\">");
                     out.println("<input type=\"hidden\" name=\"specificOrder\" value=\"" + orders.get(i).getOrder_id() + "\">");
                     out.println("<input class=\"btn btn-info  btn-sm\" type=\"submit\" value=\"Se stykliste\" >");
-                    out.println("</form>");
-                    
+                    out.println("</form>");                    
                     
                     out.println("<form action=\"FrontController\" method=\"post\">");
                     out.println("<input type=\"hidden\" name=\"command\" value=\"graphic\">");
                     out.println("<input type=\"hidden\" name=\"thisOrder\" value=\"" + orders.get(i).getOrder_id() + "\">");
                     out.println("<input class=\"btn btn-info  btn-sm\" type=\"submit\" value=\"Se tegning\" >");
                     out.println("</form>");
+                    
+                    out.println("<form action=\"FrontController\" method=\"post\">");
+                    out.println("<input type=\"hidden\" name=\"command\" value=\"final\">");
+                    out.println("<input type=\"hidden\" name=\"thisOrder\" value=\"" + orders.get(i).getOrder_id() + "\">");
+                    out.println("<input class=\"btn btn-info  btn-sm\" type=\"submit\" value=\"Godkend ordre\" >");
+                    out.println("</form>");
                     out.print("</td>");
                     
-                    
-                    
-
                     out.print("</tr>");
                 }
             }

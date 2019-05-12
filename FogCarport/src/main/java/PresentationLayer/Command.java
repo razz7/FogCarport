@@ -31,7 +31,7 @@ abstract class Command {
         commands.put("stockListTagpakke", new stockListTagpakke());
         commands.put("AllOrders", new AllOrdersCommand());
         commands.put("updateLineitem", new UpdateLineitem());
-
+        commands.put("final", new FinalizeOrder());
 
     }
 
