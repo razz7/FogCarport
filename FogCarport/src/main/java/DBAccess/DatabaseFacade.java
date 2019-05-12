@@ -74,9 +74,9 @@ public class DatabaseFacade implements DatabaseFacadeInterface {
     }
 
     @Override
-    public void editLineItemsFromOrderID(int item_id, String item_description, float width, float height, String entity, String materialtype, float price, int orderquantity, int order_id) {
+    public void editLineItemsFromOrderID(int lineitem_id, String item_description, float width, float height, String entity, String materialtype, float price, int orderquantity, int order_id) {
         StyklisteMapper map = new StyklisteMapper();
-        map.editLineItemsFromOrderID(item_id, item_description, width, height, entity, materialtype, price, orderquantity, order_id);
+        map.editLineItemsFromOrderID(lineitem_id, item_description, width, height, entity, materialtype, price, orderquantity, order_id);
 
     }
 

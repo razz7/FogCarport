@@ -22,20 +22,31 @@
         <h2>Stykliste</h2>
         <table class="table">
 
-
         <%
 
             if (session.getAttribute("list") != null) {
                 Stykliste list = (Stykliste) session.getAttribute("list");
-
+                    out.print("<th>");
+                    out.println("<form action=\"FrontController\" method=\"post\">");
+                    out.println("<input type=\"hidden\" name=\"command\" value=\"AllOrders\">");
+                    out.println("<input class=\"btn btn-info  btn-sm\" type=\"submit\" value=\"Se all ordrer\" >");
+                    out.println("</form>");
+                    out.println("<form action=\"FrontController\" method=\"post\">");
+                    out.println("<input type=\"hidden\" name=\"command\" value=\"graphic\">");
+                    out.println("<input type=\"hidden\" name=\"command\" value=\"graphic\">");
+                    out.println("<input class=\"btn btn-info  btn-sm\" type=\"submit\" value=\"See visual order\" >");
+                    out.println("</form>");                    
+                    out.print("</th>");
+                
                 out.println("<tr><th>ID</th>");
-                out.println("<th>Beskrivelse</th>");
-                out.println("<th>Højde</th>");
-                out.println("<th>Bredde</th>");
-                out.println("<th>Entity</th>");
+                out.println("<th>Description</th>");
+                out.println("<th>Width</th>");
+                out.println("<th>Length</th>");
+                out.println("<th>Height</th>");
                 out.println("<th>Type</th>");
                 out.println("<th>Styk</th>"); 
                 out.println("<th>Pris</th></tr>");
+               
                 for (int i = 0; i < list.getStyklist().size(); i++) {
 
                     out.println("<form action=\"FrontController\" method=\"POST\">");
@@ -44,8 +55,9 @@
                     out.println("<td>" + list.getStyklist().get(i).getItem_description() + "</td>");
 
                     
-                    out.println("<td>" + list.getStyklist().get(i).getHeight() + "</td>");
                     out.println("<td>" + list.getStyklist().get(i).getWidth() + "</td>");
+                    out.println("<td>" + list.getStyklist().get(i).getLength()+ "</td>");
+                    out.println("<td>" + list.getStyklist().get(i).getHeight() + "</td>");
                     out.println("<td>" + list.getStyklist().get(i).getEntity() + "</td>");
                     out.println("<td>" + list.getStyklist().get(i).getMaterialType() + "</td>");
                     out.println("<td>" + list.getStyklist().get(i).getStryklistQty() + "</td>");
