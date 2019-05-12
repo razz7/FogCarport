@@ -67,17 +67,17 @@
             <div class="form-row">
                 <div class="col-md-3 mb-3">
                     <label for="">Fulde navn</label>
-                    <input type="text" name="shedWidth" value="j" class="form-control" 
+                    <input type="text" name="name" value="j" class="form-control" 
                            placeholder="">
                 </div>
                 <div class="col-md-3 mb-3">
                     <label for="">Adresse</label>
-                    <input type="text" name="shedWidth" value="f" class="form-control" 
+                    <input type="text" name="adress" value="f" class="form-control" 
                            placeholder="">
                 </div>
                 <div class="col-md-3 mb-3">
                     <label for="">Email</label>
-                    <input type="text" name="shedWidth" value="k" class="form-control" 
+                    <input type="text" name="email" value="k" class="form-control" 
                            placeholder="">
                 </div>
             </div>
