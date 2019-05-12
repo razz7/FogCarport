@@ -5,11 +5,13 @@
  */
 package PresentationLayer;
 
+import DBAccess.DatabaseFacade;
 import FunctionLayer.CarportAlgorithm;
 import FunctionLayer.LoginSampleException;
 import FunctionLayer.MaterialSampleException;
 import FunctionLayer.Order;
 import FunctionLayer.OrderSampleException;
+import FunctionLayer.StyklistException;
 import FunctionLayer.Stykliste;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -25,7 +27,7 @@ public class OrderPageCommand extends Command {
     private float height = 2300;
 
     @Override
-    String execute(HttpServletRequest request, HttpServletResponse response) throws LoginSampleException, OrderSampleException, MaterialSampleException {
+    String execute(HttpServletRequest request, HttpServletResponse response) throws LoginSampleException, OrderSampleException, MaterialSampleException, StyklistException {
         HttpSession session = request.getSession();
 
         float width = Float.parseFloat(request.getParameter("width"));
@@ -46,11 +48,13 @@ public class OrderPageCommand extends Command {
             Stykliste sl = ca.carportAlgorithm(width, length, roofTilt, shedWidth, shedLength, id);
             order.setStyklist(sl);
 
+            DatabaseFacade dbf = new DatabaseFacade();
+            dbf.saveOrder(order);
+
             session.setAttribute("order", order);
             session.setAttribute("stykliste", sl);
         }
-            return "shop";
-        }
-        
-
+        return "shop";
     }
+
+}

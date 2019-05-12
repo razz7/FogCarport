@@ -96,7 +96,6 @@
             } else {
             %>
             <input type="hidden" name="command" value="graphic">
-            <%--<input type="hidden" name="thisOrder" value=" <% orders.get(i).getOrder_id(); %> ">--%>
             <input class="btn btn-primary" type="submit" value="See visual order">
             <%
                 }

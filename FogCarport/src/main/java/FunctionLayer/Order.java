@@ -82,10 +82,7 @@ public class Order {
     public void setOrderStatus(boolean orderStatus) {
         this.orderStatus = orderStatus;
     }
-
-
     
-
     public Stykliste getStyklist() {
         return styklist;
     }
@@ -102,9 +99,6 @@ public class Order {
         this.orderdate = orderdate;
     }
     
-    
-
-
     @Override
     public String toString() {
         return "Order{" + "order_id=" + order_id + ", width=" + width + ", length=" + length + ", height=" + height + ", roofTilt=" + roofTilt + ", shedWidth=" + shedWidth + ", shedLength=" + shedLength + ", user=" + user + ", styklist=" + styklist + ", orderStatus=" + orderStatus + '}';

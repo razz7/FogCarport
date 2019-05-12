@@ -17,7 +17,7 @@ import java.util.ArrayList;
  *
  * @author rasmu
  */
-public class DatabaseFacade implements DBInterface{
+public class DatabaseFacade implements DatabaseFacadeInterface {
 
     @Override
     public ArrayList<Material> getAllMaterials() throws MaterialSampleException {
@@ -33,14 +33,14 @@ public class DatabaseFacade implements DBInterface{
 
     @Override
     public void deleteMaterial(int item_id) throws MaterialSampleException {
-       MaterialMapper map = new MaterialMapper();
-       map.deleteMaterial(item_id);
+        MaterialMapper map = new MaterialMapper();
+        map.deleteMaterial(item_id);
     }
 
     @Override
     public Material getMaterialbyID(int item_id) throws MaterialSampleException {
-      MaterialMapper map = new MaterialMapper();
-      return map.getMaterialbyID(item_id);
+        MaterialMapper map = new MaterialMapper();
+        return map.getMaterialbyID(item_id);
     }
 
     @Override
@@ -63,8 +63,8 @@ public class DatabaseFacade implements DBInterface{
 
     @Override
     public Order getOrderFromId(int order_id) throws OrderSampleException {
-       OrderMapper map = new OrderMapper();
-       return map.getOrderFromId(order_id);
+        OrderMapper map = new OrderMapper();
+        return map.getOrderFromId(order_id);
     }
 
     @Override
@@ -77,13 +77,13 @@ public class DatabaseFacade implements DBInterface{
     public void editLineItemsFromOrderID(int item_id, String item_description, float width, float height, String entity, String materialtype, float price, int orderquantity, int order_id) {
         StyklisteMapper map = new StyklisteMapper();
         map.editLineItemsFromOrderID(item_id, item_description, width, height, entity, materialtype, price, orderquantity, order_id);
-        
+
     }
 
     @Override
-    public void saveLineItemsInDB(Stykliste styklist, int order_id) throws StyklistException  {
-         StyklisteMapper map = new StyklisteMapper();
-         map.saveLineItemsInDB(styklist, order_id);
+    public void saveLineItemsInDB(Stykliste styklist, int order_id) throws StyklistException {
+        StyklisteMapper map = new StyklisteMapper();
+        map.saveLineItemsInDB(styklist, order_id);
     }
 
     @Override
@@ -92,6 +92,4 @@ public class DatabaseFacade implements DBInterface{
         return map.getMaterialFromLineItems(lineItemID);
     }
 
-   
-    
 }
