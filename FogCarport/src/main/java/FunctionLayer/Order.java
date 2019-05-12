@@ -5,6 +5,8 @@
  */
 package FunctionLayer;
 
+import java.sql.Date;
+
 /**
  *
  * @author Ludvig
@@ -21,6 +23,7 @@ public class Order {
     private User user;
     private Stykliste styklist;
     private boolean orderStatus;
+    private Date orderdate;
 
     public Order(int order_id, float width, float length, float height, float roofTilt, float shedWidth, float shedLength) {
         this.order_id = order_id;
@@ -90,6 +93,16 @@ public class Order {
     public boolean isOrderStatus() {
         return orderStatus;
     }
+
+    public Date getOrderdate() {
+        return orderdate;
+    }
+
+    public void setOrderdate(Date orderdate) {
+        this.orderdate = orderdate;
+    }
+    
+    
 
 
     @Override
