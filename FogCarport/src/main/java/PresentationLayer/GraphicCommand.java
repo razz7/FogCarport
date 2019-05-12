@@ -25,17 +25,22 @@ public class GraphicCommand extends Command {
     @Override
     String execute(HttpServletRequest request, HttpServletResponse response) throws LoginSampleException, OrderSampleException, MaterialSampleException {
 
-        HttpSession session = request.getSession();
-        int orderId = Integer.parseInt(request.getParameter("thisOrder"));
+        
 
-        OrderMapper om = new OrderMapper();
-        Order order = om.getOrderFromId(orderId);
+        if (request.getParameter("thisOrder") != null) {
+            HttpSession session = request.getSession();
+            int orderId = Integer.parseInt(request.getParameter("thisOrder"));
 
-        CarportAlgorithm car = new CarportAlgorithm();
-        Stykliste styklist = car.carportAlgorithm(order.getWidth(), order.getLength(), order.getRoofTilt(), order.getShedWidth(), order.getShedLength(), 1);
-        order.setStyklist(styklist);
+            OrderMapper om = new OrderMapper();
+            Order order = om.getOrderFromId(orderId);
 
-        session.setAttribute("order", order);
+            CarportAlgorithm car = new CarportAlgorithm();
+            Stykliste styklist = car.carportAlgorithm(order.getWidth(), order.getLength(), order.getRoofTilt(), order.getShedWidth(), order.getShedLength(), 1);
+            System.out.println(order.toString());
+            order.setStyklist(styklist);
+
+            session.setAttribute("order", order);
+        }
 
         return "carportSVGGraphic";
     }

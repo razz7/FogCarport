@@ -9,13 +9,16 @@
 <%@page import="FunctionLayer.Order"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="FunctionLayer.Material"%>
-<%@page import="FunctionLayer.Material"%>
 <%@page import="FunctionLayer.Stykliste"%>
 <jsp:include page='/JSP/siteheader.jsp'></jsp:include>
 
 <jsp:include page='/JSP/sitemenus.jsp'></jsp:include>
 
+    <br>
+
     <h2>Din tegning!</h2>
+
+    <br>
 
 <%
     //Order order = new Order(1, 6000, 7800, 2300, 0, 5300, 2100);
@@ -36,14 +39,17 @@
 <%
     if (order.getRoofTilt() == 0) {
 %>
+
+<h4><% out.println( "getHeight" + order.getHeight()); %> </h4>
+<h4><% out.println( "getLength" + order.getLength()); %> </h4>
+<h4><% out.println( "getOrder_id" + order.getOrder_id()); %> </h4>
+<h4><% out.println( "getWidth" + order.getWidth()); %> </h4>
+<h4><% out.println( "getRoofTilt" + order.getRoofTilt()); %> </h4>
+<h4><% out.println( "getShedLength" + order.getShedLength()); %> </h4>
+<h4><% out.println( "getShedWidth" + order.getShedWidth()); %> </h4>
+
 <div>
     <svg width="<% out.println(order.getLength() / 10); %>" height="<% out.println(order.getHeight() / 10); %>">
-
-    <circle cx="0" cy="0" r="4" stroke="black" stroke-width="3" fill="red" />
-    <circle cx="<% out.println(order.getLength() / 10); %>" cy="0" r="4" stroke="black" stroke-width="3" fill="red" />
-    <circle cx="0" cy="<% out.println(2300 / 10); %>" r="4" stroke="black" stroke-width="3" fill="red" />
-    <circle cx="<% out.println(order.getLength() / 10); %>" cy=" <% out.println(2300 / 10); %> " r="4" stroke="black" stroke-width="3" fill="red" />
-
     <rect x='<% out.println(25 / 10); %>' y=' <% out.println((((materials.get(2).getHeight()) / 3) + materials.get(1).getHeight()) / 10); %> ' width='<% out.println(((Math.sqrt(Math.pow(2300 - 2200, 2) + Math.pow(order.getLength(), 2))) - 50) / 10); %>' height='<% out.println((materials.get(5).getHeight()) / 10);%>'  transform='rotate( <% out.println(90 - Math.toDegrees(Math.atan((7800 / (2300 - 2200)))));%> )' stroke="black" fill="red"/>
     <%
         double sum = 0;
@@ -78,11 +84,6 @@
 
 <div>
     <svg width="<% out.println(order.getWidth() / 10); %>" height="<% out.println(order.getHeight() / 10); %>">
-    <circle cx="0" cy="0" r="4" stroke="black" stroke-width="3" fill="red" />
-    <circle cx="<% out.println(order.getWidth() / 10); %>" cy="0" r="4" stroke="black" stroke-width="3" fill="red" />
-    <circle cx="0" cy="<% out.println(2300 / 10); %>" r="4" stroke="black" stroke-width="3" fill="red" />
-    <circle cx="<% out.println(order.getWidth() / 10); %>" cy=" <% out.println(2300 / 10);%> " r="4" stroke="black" stroke-width="3" fill="red" />
-
     <%
         double sum2 = 0;
         for (int j = 0; j < (int) (order.getShedWidth() / 60); j++) {
@@ -128,11 +129,6 @@
 
 <div>
     <svg width="<% out.println(order.getLength() / 10); %>" height="<% out.println(order.getWidth() / 10); %>">
-    <circle cx="0" cy="0" r="4" stroke="black" stroke-width="3" fill="red" />
-    <circle cx="<% out.println(order.getLength() / 10); %>" cy="0" r="4" stroke="black" stroke-width="3" fill="red" />
-    <circle cx="0" cy="<% out.println(order.getWidth() / 10); %>" r="4" stroke="black" stroke-width="3" fill="red" />
-    <circle cx="<% out.println(order.getLength() / 10); %>" cy=" <% out.println(order.getWidth() / 10);%> " r="4" stroke="black" stroke-width="3" fill="red" />
-
     <%
         double sum3 = 0;
         for (int k = 0; k < (int) Math.ceil((order.getLength() - 45) / (45 + 600)) + 1; k++) {
@@ -215,12 +211,6 @@
 %>
 <div>
     <svg width="<% out.println(order.getLength() / 10); %>" height="<% out.println((order.getHeight() + (Math.tan(order.getRoofTilt() * Math.PI / 180) * (order.getWidth() / 2))) / 10); %>">
-
-    <circle cx="0" cy="0" r="4" stroke="black" stroke-width="3" fill="red" />
-    <circle cx="<% out.println(order.getLength() / 10); %>" cy="0" r="4" stroke="black" stroke-width="3" fill="red" />
-    <circle cx="0" cy="<% out.println((order.getHeight() + (Math.tan(order.getRoofTilt() * Math.PI / 180) * (order.getWidth() / 2))) / 10); %>" r="4" stroke="black" stroke-width="3" fill="red" />
-    <circle cx="<% out.println(order.getLength() / 10); %>" cy=" <% out.println((order.getHeight() + (Math.tan(order.getRoofTilt() * Math.PI / 180) * (order.getWidth() / 2))) / 10); %> " r="4" stroke="black" stroke-width="3" fill="red" />
-
     <rect x='<% out.println((300 - (materials.get(6).getWidth())) / 10); %>' y=' <% out.println(((Math.tan(order.getRoofTilt() * Math.PI / 180) * (order.getWidth() / 2))) / 10); %> ' width='<% out.println((order.getLength() - 300 * 2 + +(materials.get(6).getWidth()) * 2) / 10); %>' height='<% out.println((materials.get(5).getHeight()) / 10);%>' stroke="black" fill="green"/>
     <%
         double sum = 0;
@@ -267,12 +257,6 @@
 
 <div>
     <svg width="<% out.println(order.getWidth() / 10); %>" height="<% out.println((order.getHeight() + (Math.tan(order.getRoofTilt() * Math.PI / 180) * (order.getWidth() / 2))) / 10); %>">
-
-    <circle cx="0" cy="0" r="4" stroke="black" stroke-width="3" fill="red" />
-    <circle cx="<% out.println(order.getWidth() / 10); %>" cy="0" r="4" stroke="black" stroke-width="3" fill="red" />
-    <circle cx="0" cy="<% out.println((order.getHeight() + (Math.tan(order.getRoofTilt() * Math.PI / 180) * (order.getWidth() / 2))) / 10); %>" r="4" stroke="black" stroke-width="3" fill="red" />
-    <circle cx="<% out.println(order.getWidth() / 10); %>" cy=" <% out.println((order.getHeight() + (Math.tan(order.getRoofTilt() * Math.PI / 180) * (order.getWidth() / 2))) / 10); %> " r="4" stroke="black" stroke-width="3" fill="red" />
-
     <%
         double widthPrPlank = (order.getWidth()) / 60;
         double currentWidth = materials.get(23).getHeight() * 2;
@@ -334,11 +318,6 @@
 
 <div>
     <svg width="<% out.println(order.getLength() / 10); %>" height="<% out.println(order.getWidth() / 10); %>">
-    <circle cx="0" cy="0" r="4" stroke="black" stroke-width="3" fill="red" />
-    <circle cx="<% out.println(order.getLength() / 10); %>" cy="0" r="4" stroke="black" stroke-width="3" fill="red" />
-    <circle cx="0" cy="<% out.println(order.getWidth() / 10); %>" r="4" stroke="black" stroke-width="3" fill="red" />
-    <circle cx="<% out.println(order.getLength() / 10); %>" cy=" <% out.println(order.getWidth() / 10);%> " r="4" stroke="black" stroke-width="3" fill="red" />
-
     <%
         double sum7 = 0;
         if (order.getShedLength() != 0 || order.getShedWidth() != 0) {

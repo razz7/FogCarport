@@ -22,7 +22,7 @@ import javax.servlet.http.HttpSession;
 public class OrderPageCommand extends Command {
 
     private int id = 1;
-    private float height = 7300;
+    private float height = 2300;
 
     @Override
     String execute(HttpServletRequest request, HttpServletResponse response) throws LoginSampleException, OrderSampleException, MaterialSampleException {

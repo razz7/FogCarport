@@ -15,8 +15,7 @@ import java.util.HashMap;
  */
 public class CarportAlgorithm {
 
-    public Stykliste carportAlgorithm(float width, float length, 
-            float roofTilt, float shedwidth, float shedLength, int styklist_id) throws MaterialSampleException {
+    public Stykliste carportAlgorithm(float width, float length, float roofTilt, float shedwidth, float shedLength, int styklist_id) throws MaterialSampleException {
         MaterialMapper materialMap = new MaterialMapper();
         ArrayList<Material> mat = materialMap.getAllMaterials();
         HashMap<Integer, Material> materials = new HashMap<>();
@@ -27,11 +26,11 @@ public class CarportAlgorithm {
         Stykliste styklist = new Stykliste(arrList, styklist_id);
         Material material;
         Material m;
-        
+
         if (roofTilt == 0) { //Flat roof
 
             //CAROPRT MED SKUR
-            if (shedLength != 0 || shedwidth != 0 ) {
+            if (shedLength != 0 || shedwidth != 0) {
                 // Tilføj 10 stolper til hvert hjørne af 97x97mm.trykimp.Stolpe
                 material = materials.get(6);
                 m = new Material(material.getItem_id(), material.getItem_description(), material.getWidth(), material.getHeight(), material.getEntity(), material.getMaterialType(), material.getPrice(), material.getVersionnr());
@@ -688,7 +687,7 @@ public class CarportAlgorithm {
             }
 
         }
-        
+
         return styklist;
     }
 
