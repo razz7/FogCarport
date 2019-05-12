@@ -24,12 +24,14 @@
             <th>shedwidth</th>
             <th>shedlength</th>
             <th>status</th>
-            <th>customer</th>
+            <th>orderdate</th>
+            <th>customername</th>
 
         <% if (request.getAttribute("allOrders") != null) {
                 ArrayList<Order> orders = (ArrayList<Order>) request.getAttribute("allOrders");
 
                 for (int i = 0; i < orders.size(); i++) {
+                    
 
                     //out.println("<form action=\"FrontController\" method=\"POST\">");
                     out.print("<tr><td>" + orders.get(i).getOrder_id() + "</td>");
@@ -39,7 +41,9 @@
                     out.print("<td><a href=\"#\">" + orders.get(i).getShedWidth() + "</a></td>");
                     out.print("<td><a href=\"#\">" + orders.get(i).getShedLength() + "</a></td>");
                     out.print("<td><a href=\"#\">" + orders.get(i).isOrderStatus() + "</a></td>");
-                    out.print("<td><a href=\"#\">" + orders.get(i).getUser() + "</a></td>");
+                    out.print("<td><a href=\"#\">" + orders.get(i).getOrderdate() + "</a></td>");
+                    
+                    out.print("<td><a href=\"#\">"  + orders.get(i).getUser().getEmail() + "</a></td>");
                     out.print("<td>");
                     
                     out.println("<form action=\"FrontController\" method=\"post\">");

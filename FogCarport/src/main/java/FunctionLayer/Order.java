@@ -5,6 +5,8 @@
  */
 package FunctionLayer;
 
+import java.sql.Date;
+
 /**
  *
  * @author Ludvig
@@ -21,6 +23,7 @@ public class Order {
     private User user;
     private Stykliste styklist;
     private boolean orderStatus;
+    private Date orderdate;
 
     public Order(int order_id, float width, float length, float height, float roofTilt, float shedWidth, float shedLength) {
         this.order_id = order_id;
@@ -79,10 +82,7 @@ public class Order {
     public void setOrderStatus(boolean orderStatus) {
         this.orderStatus = orderStatus;
     }
-
-
     
-
     public Stykliste getStyklist() {
         return styklist;
     }
@@ -91,7 +91,14 @@ public class Order {
         return orderStatus;
     }
 
+    public Date getOrderdate() {
+        return orderdate;
+    }
 
+    public void setOrderdate(Date orderdate) {
+        this.orderdate = orderdate;
+    }
+    
     @Override
     public String toString() {
         return "Order{" + "order_id=" + order_id + ", width=" + width + ", length=" + length + ", height=" + height + ", roofTilt=" + roofTilt + ", shedWidth=" + shedWidth + ", shedLength=" + shedLength + ", user=" + user + ", styklist=" + styklist + ", orderStatus=" + orderStatus + '}';

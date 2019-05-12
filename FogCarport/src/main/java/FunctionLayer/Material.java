@@ -160,6 +160,12 @@ public class Material {
         return "Materiale information: " + " materiale id: " + item_id +  ", materiale beskrivelse: " + item_description + ", højde: " + height  + ", bredde: " + width + ", entity: " + entity + ", materialetype: " + materialtype + ", pris: " + price + ", versionnr: " + versionnr;
     }
 
+    public String toString2() {
+        return "Materiale information: " + " materiale id: " + item_id + 
+                ", materiale beskrivelse: " + item_description + ", højde: " +
+                height  + ", bredde: " + width + ", entity: " + entity + ", materialetype: " + 
+                materialtype + ", pris: " + price + ", versionnr: " + versionnr + ", constructionDescription: " + constructionDescription;
+    }
     
 
 }

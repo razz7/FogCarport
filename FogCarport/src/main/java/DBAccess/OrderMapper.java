@@ -10,9 +10,11 @@ import FunctionLayer.StyklistException;
 import FunctionLayer.Stykliste;
 import FunctionLayer.User;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 /**
@@ -33,6 +35,10 @@ public class OrderMapper {
             while(rs.next()) {
                 Order order = new Order(rs.getInt(1), rs.getFloat(2), rs.getFloat(3), 0, rs.getFloat(4), rs.getInt(5), rs.getInt(6));
                 orders.add(order);
+                order.setOrderdate(rs.getDate(9));
+                User user = new User(rs.getString(10), "", "");
+                order.setUser(user);
+                
                 
             }
                     return orders;
@@ -50,13 +56,17 @@ public class OrderMapper {
             ps.setInt(1, order_id);
             ResultSet rs = ps.executeQuery();
             Order order = null;
+            User user = null;
 
             while(rs.next()) {
                 order = new Order(rs.getInt(1), rs.getFloat(2), rs.getFloat(3), rs.getFloat(4), rs.getFloat(5), rs.getFloat(6), rs.getFloat(7));
+                user = new User(rs.getString(10), "", "");
+                
                 //order.setUser(rs.getInt(8));
 
                
             }
+            order.setUser(user);
             OrderMapper map = new OrderMapper();
             order.setStyklist(map.getStyklistForOrder(order_id));
             return order;
@@ -94,8 +104,8 @@ public class OrderMapper {
     
         public void saveOrder(Order order) throws OrderSampleException, StyklistException{
         try {
-            String sql = "INSERT INTO orders (width, length, rooftilt, shedwidth, shedlength, status, customer_id)"
-                    + "VALUES(?,?,?,?,?,?,?)";
+            String sql = "INSERT INTO orders (width, length, rooftilt, shedwidth, shedlength, status, customer_id, orderdate, customername)"
+                    + "VALUES(?,?,?,?,?,?,?,?,?)";
             
             Connection conn = dbc.connection();
             PreparedStatement ps = conn.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
@@ -107,6 +117,8 @@ public class OrderMapper {
             ps.setFloat(5, order.getLength());
             ps.setFloat(6, 0);
             ps.setInt(7, order.getUser().getId());
+            ps.setDate(8, Date.valueOf(LocalDate.now()));
+            ps.setString(9, order.getUser().getEmail());
             ps.executeUpdate();
             
             StyklisteMapper mapper = new StyklisteMapper();
@@ -123,8 +135,8 @@ public class OrderMapper {
         }
         
     }
-    public static void main(String[] args) throws OrderSampleException, MaterialSampleException, LoginSampleException, ClassNotFoundException{
-//        Order order = new Order(6000, 7800, 0, 5300, 2100, 1, 1);
+    public static void main(String[] args) throws OrderSampleException, MaterialSampleException, LoginSampleException, ClassNotFoundException, StyklistException{
+        Order order = new Order(6000, 7800, 0, 5300, 2100, 1, 1);
         OrderMapper map = new OrderMapper();
         StyklisteMapper mapper = new StyklisteMapper();
 //        User user = new User("derqe", "qwe", "qwe");
@@ -132,18 +144,19 @@ public class OrderMapper {
 //        order.setUser(user);
 //        CarportAlgorithm algo = new CarportAlgorithm();
 //        FunctionLayer.Stykliste list = algo.carportAlgorithm(order.getWidth(), order.getLength(), order.getRoofTilt(), order.getShedWidth(), order.getShedLength(), 1);
-//        order.setSl(list);
-        
+//        order.setStyklist(list);
+//        
 //        map.saveOrder(order);
 //        System.out.println(list);
 //System.out.println(map.getAllOrders());
 //Order order = map.getOrderFromId(9);
 //System.out.println(order.toString());
 //        System.out.println(order.getSl().getStyklist());
-System.out.println(map.getAllOrders());
-//for(int i = 0; i < list.size(); i++) {
-//    System.out.println(list.get(i).getLineItemID());
-//}
+map.getOrderFromId(10).getUser().getEmail();
+ArrayList<Order> list = map.getAllOrders();
+for(int i = 0; i < list.size(); i++) {
+    System.out.println(list.get(i).getUser().getEmail());
+}
         
         
 
@@ -152,5 +165,6 @@ System.out.println(map.getAllOrders());
 
         
     }
-    
 }
+    
+
