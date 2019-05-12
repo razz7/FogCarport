@@ -59,7 +59,10 @@ public class OrderMapper {
             User user = null;
 
             while(rs.next()) {
-                order = new Order(rs.getInt(1), rs.getFloat(2), rs.getFloat(3), rs.getFloat(4), rs.getFloat(5), rs.getFloat(6), rs.getFloat(7));
+                order = new Order(rs.getInt(1), rs.getFloat(2), rs.getFloat(3), 2300, rs.getFloat(4), rs.getFloat(5), rs.getFloat(6));
+                boolean bool = (rs.getInt(7) == 1);
+                order.setOrderStatus(bool);
+                order.setOrderdate(rs.getDate(9));
                 user = new User(rs.getString(10), "", "");
                 
                 //order.setUser(rs.getInt(8));
@@ -115,7 +118,7 @@ public class OrderMapper {
             ps.setFloat(2, order.getLength());
             ps.setFloat(3, order.getRoofTilt());
             ps.setFloat(4, order.getShedWidth());
-            ps.setFloat(5, order.getLength());
+            ps.setFloat(5, order.getShedLength());
             ps.setFloat(6, 0);
             ps.setInt(7, order.getUser().getId());
             ps.setDate(8, Date.valueOf(LocalDate.now()));

@@ -11,6 +11,7 @@ import FunctionLayer.LogicFacade;
 import FunctionLayer.LoginSampleException;
 import FunctionLayer.Material;
 import FunctionLayer.MaterialSampleException;
+import FunctionLayer.Order;
 import FunctionLayer.OrderSampleException;
 import FunctionLayer.Stykliste;
 import FunctionLayer.User;
@@ -33,12 +34,21 @@ public class StyklistPageCommand extends Command {
 //        LogicFacade logic = new LogicFacade();
 //        User user = logic.login(email, password);
         
+        //int order_id = Integer.parseInt(request.getParameter("specificOrder"));
+        //HttpSession session = request.getSession();
+        //DatabaseFacade dbf = new DatabaseFacade();
+        //Stykliste stykliste = dbf.getOrderFromId(order_id).getStyklist();
+        //session.setAttribute("specificOrder", order_id);
+        //session.setAttribute("list", stykliste);        
+
+        //return "styklist";
+        
         int order_id = Integer.parseInt(request.getParameter("specificOrder"));
         HttpSession session = request.getSession();
         DatabaseFacade dbf = new DatabaseFacade();
-        Stykliste stykliste = dbf.getOrderFromId(order_id).getStyklist();
-        session.setAttribute("specificOrder", order_id);
-        session.setAttribute("list", stykliste);        
+        Order order = dbf.getOrderFromId(order_id);
+        session.setAttribute("order", order);
+        session.setAttribute("list", order.getStyklist());        
 
         return "styklist";
     }
