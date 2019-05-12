@@ -8,6 +8,7 @@ package PresentationLayer;
 import DBAccess.DatabaseFacade;
 import FunctionLayer.LoginSampleException;
 import FunctionLayer.MaterialSampleException;
+import FunctionLayer.Order;
 import FunctionLayer.OrderSampleException;
 import FunctionLayer.StyklistException;
 import FunctionLayer.Stykliste;
@@ -38,9 +39,14 @@ public class UpdateLineitem extends Command{
         
         
         
-        Stykliste list = dbf.getOrderFromId(order_id).getStyklist();
+        //Stykliste list = dbf.getOrderFromId(order_id).getStyklist();
+        //HttpSession session = request.getSession();
+        //session.setAttribute("list", list);
+        
         HttpSession session = request.getSession();
-        session.setAttribute("list", list);
+        Order order = dbf.getOrderFromId(order_id);
+        session.setAttribute("order", order);
+        session.setAttribute("list", order.getStyklist()); 
       
       return "styklist";
     }

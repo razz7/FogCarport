@@ -22,7 +22,6 @@
         <h2>Stykliste</h2>
         <table class="table">
 
-
         <%
 
             if (session.getAttribute("list") != null) {
@@ -32,6 +31,11 @@
                     out.println("<input type=\"hidden\" name=\"command\" value=\"AllOrders\">");
                     out.println("<input class=\"btn btn-info  btn-sm\" type=\"submit\" value=\"Se all ordrer\" >");
                     out.println("</form>");
+                    out.println("<form action=\"FrontController\" method=\"post\">");
+                    out.println("<input type=\"hidden\" name=\"command\" value=\"graphic\">");
+                    out.println("<input type=\"hidden\" name=\"command\" value=\"graphic\">");
+                    out.println("<input class=\"btn btn-info  btn-sm\" type=\"submit\" value=\"See visual order\" >");
+                    out.println("</form>");                    
                     out.print("</th>");
                 
                 out.println("<tr><th>ID</th>");

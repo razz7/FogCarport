@@ -34,10 +34,11 @@ public class GraphicCommand extends Command {
             OrderMapper om = new OrderMapper();
             Order order = om.getOrderFromId(orderId);
 
-            CarportAlgorithm car = new CarportAlgorithm();
-            Stykliste styklist = car.carportAlgorithm(order.getWidth(), order.getLength(), order.getRoofTilt(), order.getShedWidth(), order.getShedLength(), 1);
+            //CarportAlgorithm car = new CarportAlgorithm();
+            //Stykliste styklist = car.carportAlgorithm(order.getWidth(), order.getLength(), order.getRoofTilt(), order.getShedWidth(), order.getShedLength(), 1);
+            //System.out.println(order.toString());
+            //order.setStyklist(styklist);
             System.out.println(order.toString());
-            order.setStyklist(styklist);
 
             session.setAttribute("order", order);
         }

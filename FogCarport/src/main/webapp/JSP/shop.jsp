@@ -108,7 +108,7 @@
         if (session.getAttribute("stykliste") != null) {
             Stykliste sl = (Stykliste) session.getAttribute("stykliste");
             out.println("<h4> Styklisten: </h4>");
-            out.println("<h4> Id:" + sl.getStyklist_id() + "</h4>");
+            //out.println("<h4> Id:" + sl.getStyklist_id() + "</h4>");
             out.println("<div class=\"container\">");
             ArrayList<Material> am = sl.getStyklist();
             out.println("<table class=\"table table-striped\"> "
