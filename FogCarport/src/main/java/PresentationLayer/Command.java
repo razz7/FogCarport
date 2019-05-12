@@ -30,6 +30,7 @@ abstract class Command {
         commands.put("graphic", new GraphicCommand());
         commands.put("stockListTagpakke", new stockListTagpakke());
         commands.put("AllOrders", new AllOrdersCommand());
+        commands.put("updateLineitem", new UpdateLineitem());
 
 
     }

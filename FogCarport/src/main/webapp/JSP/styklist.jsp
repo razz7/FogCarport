@@ -27,7 +27,13 @@
 
             if (session.getAttribute("list") != null) {
                 Stykliste list = (Stykliste) session.getAttribute("list");
-
+                    out.print("<th>");
+                    out.println("<form action=\"FrontController\" method=\"post\">");
+                    out.println("<input type=\"hidden\" name=\"command\" value=\"AllOrders\">");
+                    out.println("<input class=\"btn btn-info  btn-sm\" type=\"submit\" value=\"Se all ordrer\" >");
+                    out.println("</form>");
+                    out.print("</th>");
+                
                 out.println("<tr><th>ID</th>");
                 out.println("<th>Beskrivelse</th>");
                 out.println("<th>Højde</th>");
@@ -36,6 +42,7 @@
                 out.println("<th>Type</th>");
                 out.println("<th>Styk</th>"); 
                 out.println("<th>Pris</th></tr>");
+               
                 for (int i = 0; i < list.getStyklist().size(); i++) {
 
                     out.println("<form action=\"FrontController\" method=\"POST\">");

@@ -24,23 +24,22 @@ public class StyklisteMapper {
     
     private Connector dbc = new Connector();
     
-    public void editLineItemsFromOrderID(int item_id, String item_description, float width, float height,
+    public void editLineItemsFromOrderID(int lineitem_id, String item_description, float width, float height,
             String entity, String materialtype, float price, int orderquantity, int order_id) {
         try {
         Connection con = dbc.connection();
-        String sql = "UPDATE lineitems SET item_id=?, item_description=?, width=?, "
-                + "height=?, entity=?, materialtype=?, price=?, orderquantity=? where order_id=? and item_id=?";
+        String sql = "UPDATE lineitems SET item_description=?, width=?, "
+                + "height=?, entity=?, materialtype=?, price=?, orderquantity=? where order_id=? and lineitems_id=?";
         PreparedStatement ps = con.prepareStatement(sql);
-        ps.setInt(1, item_id);
-            ps.setString(2, item_description);
-            ps.setFloat(3, width);
-            ps.setFloat(4, height);
-            ps.setString(5, entity);
-            ps.setString(6, materialtype);
-            ps.setFloat(7, price);
-            ps.setInt(8, orderquantity);
-            ps.setInt(9, order_id);
-            ps.setInt(10, item_id);
+        ps.setString(1, item_description);
+            ps.setFloat(2, width);
+            ps.setFloat(3, height);
+            ps.setString(4, entity);
+            ps.setString(5, materialtype);
+            ps.setFloat(6, price);
+            ps.setFloat(7, orderquantity);
+            ps.setInt(8, order_id);
+            ps.setInt(9, lineitem_id);
             ps.executeUpdate();
         
         }catch(SQLException | ClassNotFoundException ex) {

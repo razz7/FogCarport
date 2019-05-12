@@ -26,6 +26,8 @@
             <th>status</th>
             <th>orderdate</th>
             <th>customername</th>
+            
+            
 
         <% if (request.getAttribute("allOrders") != null) {
                 ArrayList<Order> orders = (ArrayList<Order>) request.getAttribute("allOrders");
@@ -35,28 +37,37 @@
 
                     //out.println("<form action=\"FrontController\" method=\"POST\">");
                     out.print("<tr><td>" + orders.get(i).getOrder_id() + "</td>");
-                    out.print("<td><a href=\"#\">" + orders.get(i).getWidth() + "</a></td>");
-                    out.print("<td><a href=\"#\">" + orders.get(i).getLength() + "</a></td>");
-                    out.print("<td><a href=\"#\">" + orders.get(i).getRoofTilt() + "</a></td>");
-                    out.print("<td><a href=\"#\">" + orders.get(i).getShedWidth() + "</a></td>");
-                    out.print("<td><a href=\"#\">" + orders.get(i).getShedLength() + "</a></td>");
-                    out.print("<td><a href=\"#\">" + orders.get(i).isOrderStatus() + "</a></td>");
-                    out.print("<td><a href=\"#\">" + orders.get(i).getOrderdate() + "</a></td>");
-                    
-                    out.print("<td><a href=\"#\">"  + orders.get(i).getUser().getEmail() + "</a></td>");
+                    out.print("<td>" + orders.get(i).getWidth() + "</td>");
+                    out.print("<td>" + orders.get(i).getLength() + "</td>");
+                    out.print("<td>" + orders.get(i).getRoofTilt() + "</td>");
+                    out.print("<td>" + orders.get(i).getShedWidth() + "</td>");
+                    out.print("<td>" + orders.get(i).getShedLength() + "</td>");
+                    if(orders.get(i).isOrderStatus() == true) {
+                    out.println("<td>sendt</td>");
+                } else {
+                        out.println("<td>ikke sendt</td>");
+                    }
+                  
+                                    
+                    out.print("<td>" + orders.get(i).getOrderdate() + "</td>");
+                    out.print("<td>"  + orders.get(i).getUser().getEmail() + "</td>");
                     out.print("<td>");
-                    
                     out.println("<form action=\"FrontController\" method=\"post\">");
                     out.println("<input type=\"hidden\" name=\"command\" value=\"styklistpage\">");
                     out.println("<input type=\"hidden\" name=\"specificOrder\" value=\"" + orders.get(i).getOrder_id() + "\">");
                     out.println("<input class=\"btn btn-info  btn-sm\" type=\"submit\" value=\"Se stykliste\" >");
                     out.println("</form>");
                     
+                    
                     out.println("<form action=\"FrontController\" method=\"post\">");
                     out.println("<input type=\"hidden\" name=\"command\" value=\"graphic\">");
                     out.println("<input type=\"hidden\" name=\"thisOrder\" value=\"" + orders.get(i).getOrder_id() + "\">");
                     out.println("<input class=\"btn btn-info  btn-sm\" type=\"submit\" value=\"Se tegning\" >");
                     out.println("</form>");
+                    out.print("</td>");
+                    
+                    
+                    
 
                     out.print("</tr>");
                 }

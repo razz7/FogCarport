@@ -27,6 +27,7 @@ public class EditLineItemCommand extends Command{
             HttpSession session = request.getSession();
             session.setAttribute("lineitemToEdit", material);
             
+            
             return "editlineitem";
        
         
