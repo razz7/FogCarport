@@ -52,20 +52,21 @@ public class StyklisteMapper {
             
         Connection con = dbc.connection();
         
-        String sql = "INSERT INTO lineitems(item_id, order_id, item_description, width, height, entity, materialtype, price, orderquantity, versionnr)"
-                + "VALUES (?,?,?,?,?,?,?,?,?,?)";
+        String sql = "INSERT INTO lineitems(item_id, order_id, item_description, width, length, height, entity, materialtype, price, orderquantity, versionnr)"
+                + "VALUES (?,?,?,?,?,?,?,?,?,?,?)";
             PreparedStatement ps = con.prepareStatement(sql);
             for(int i = 0; i < lineitems.size();i++) {
             ps.setInt(1, lineitems.get(i).getItem_id());
             ps.setInt(2, order_id);
             ps.setString(3, lineitems.get(i).getItem_description());
             ps.setFloat(4, lineitems.get(i).getWidth());
-            ps.setFloat(5, lineitems.get(i).getHeight());
-            ps.setString(6, lineitems.get(i).getEntity());
-            ps.setString(7, lineitems.get(i).getMaterialType());
-            ps.setFloat(8, lineitems.get(i).getPrice());
-            ps.setInt(9, lineitems.get(i).getStryklistQty());
-            ps.setInt(10, 0);
+            ps.setFloat(5, lineitems.get(i).getLength());
+            ps.setFloat(6, lineitems.get(i).getHeight());
+            ps.setString(7, lineitems.get(i).getEntity());
+            ps.setString(8, lineitems.get(i).getMaterialType());
+            ps.setFloat(9, lineitems.get(i).getPrice());
+            ps.setInt(10, lineitems.get(i).getStryklistQty());
+            ps.setInt(11, lineitems.get(i).getVersionnr());
                
             
             
@@ -86,9 +87,10 @@ public class StyklisteMapper {
             ResultSet rs = ps.executeQuery();
             Material material = null;
             while(rs.next()) {
-                material = new Material(rs.getInt(2), rs.getString(4), rs.getFloat(5), rs.getFloat(6), rs.getString(7), rs.getString(8), rs.getFloat(9), rs.getInt(11));
+                material = new Material(rs.getInt(2), rs.getString(4), rs.getFloat(5), rs.getFloat(7), rs.getString(7), rs.getString(8), rs.getFloat(9), rs.getInt(11));
                 material.setStyklistQty(rs.getInt(10));
                 material.setLineItemID(rs.getInt(1));
+                material.setLength(rs.getFloat(6));
             }
             return material;
             

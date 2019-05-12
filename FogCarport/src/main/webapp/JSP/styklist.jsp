@@ -35,10 +35,10 @@
                     out.print("</th>");
                 
                 out.println("<tr><th>ID</th>");
-                out.println("<th>Beskrivelse</th>");
-                out.println("<th>Højde</th>");
-                out.println("<th>Bredde</th>");
-                out.println("<th>Entity</th>");
+                out.println("<th>Description</th>");
+                out.println("<th>Width</th>");
+                out.println("<th>Length</th>");
+                out.println("<th>Height</th>");
                 out.println("<th>Type</th>");
                 out.println("<th>Styk</th>"); 
                 out.println("<th>Pris</th></tr>");
@@ -51,8 +51,9 @@
                     out.println("<td>" + list.getStyklist().get(i).getItem_description() + "</td>");
 
                     
-                    out.println("<td>" + list.getStyklist().get(i).getHeight() + "</td>");
                     out.println("<td>" + list.getStyklist().get(i).getWidth() + "</td>");
+                    out.println("<td>" + list.getStyklist().get(i).getLength()+ "</td>");
+                    out.println("<td>" + list.getStyklist().get(i).getHeight() + "</td>");
                     out.println("<td>" + list.getStyklist().get(i).getEntity() + "</td>");
                     out.println("<td>" + list.getStyklist().get(i).getMaterialType() + "</td>");
                     out.println("<td>" + list.getStyklist().get(i).getStryklistQty() + "</td>");

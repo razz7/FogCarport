@@ -86,9 +86,10 @@ public class OrderMapper {
             ResultSet rs = ps.executeQuery();
             ArrayList<Material> lineitems = new ArrayList<>();
             while(rs.next()) {
-                Material material = new Material(rs.getInt(2), rs.getString(4), rs.getFloat(5), rs.getFloat(6), rs.getString(7), rs.getString(8), rs.getFloat(9), rs.getInt(11));
-                material.setStyklistQty(rs.getInt(10));
+                Material material = new Material(rs.getInt(2), rs.getString(4), rs.getFloat(5), rs.getFloat(7), rs.getString(8), rs.getString(9), rs.getFloat(10), rs.getInt(12));
+                material.setStyklistQty(rs.getInt(11));
                 material.setLineItemID(rs.getInt(1));
+                material.setLength(rs.getFloat(6));
                 
                 lineitems.add(material);
                 
