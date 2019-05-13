@@ -36,6 +36,14 @@
             }
         %> 
 
+        <h4><% out.println("getHeight" + order.getHeight()); %> </h4>
+        <h4><% out.println("getLength" + order.getLength()); %> </h4>
+        <h4><% out.println("getOrder_id" + order.getOrder_id()); %> </h4>
+        <h4><% out.println("getWidth" + order.getWidth()); %> </h4>
+        <h4><% out.println("getRoofTilt" + order.getRoofTilt()); %> </h4>
+        <h4><% out.println("getShedLength" + order.getShedLength()); %> </h4>
+        <h4><% out.println("getShedWidth" + order.getShedWidth()); %> </h4>
+
         <div>
             <svg width="<% out.println(order.getLength() / 10); %>" height="<% out.println(order.getHeight() / 10); %>">
 

@@ -25,7 +25,8 @@
         <h1>SVG TILT!</h1>
 
         <%
-            Order order = new Order(1, 3600, 7300, 2300, 30, 3200, 2250);
+            //Order order = new Order(1, 3600, 7300, 2300, 30, 3200, 2100);
+            Order order = new Order(1, 6000, 7800, 2300, 30, 5300, 2100);
             //Order order = new Order(1, 3600, 7300, 2300, 30, 0, 0);
             CarportAlgorithm car = new CarportAlgorithm();
             Stykliste styklist = car.carportAlgorithm(order.getWidth(), order.getLength(), order.getRoofTilt(), order.getShedWidth(), order.getShedLength(), 1);
@@ -35,6 +36,14 @@
                 materials.put(m.getItem_id(), m);
             }
         %> 
+
+        <h4><% out.println("getHeight" + order.getHeight()); %> </h4>
+        <h4><% out.println("getLength" + order.getLength()); %> </h4>
+        <h4><% out.println("getOrder_id" + order.getOrder_id()); %> </h4>
+        <h4><% out.println("getWidth" + order.getWidth()); %> </h4>
+        <h4><% out.println("getRoofTilt" + order.getRoofTilt()); %> </h4>
+        <h4><% out.println("getShedLength" + order.getShedLength()); %> </h4>
+        <h4><% out.println("getShedWidth" + order.getShedWidth()); %> </h4>
 
         <div>
             <svg width="<% out.println(order.getLength() / 10); %>" height="<% out.println((order.getHeight() + (Math.tan(order.getRoofTilt() * Math.PI / 180) * (order.getWidth() / 2))) / 10); %>">
