@@ -37,6 +37,7 @@ public class OrderMapper {
                 orders.add(order);
                 order.setOrderdate(rs.getDate(9));
                 User user = new User(rs.getString(10), "", "");
+                order.setOrderStatus(rs.getBoolean(7));
                 order.setUser(user);
                 
                 
