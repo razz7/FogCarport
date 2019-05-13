@@ -18,10 +18,11 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Rumle
  */
-public class LoginCommand extends Command{
+public class LoginCommand implements Command{
 
     @Override
-    String execute(HttpServletRequest request, HttpServletResponse response) throws LoginSampleException, OrderSampleException, MaterialSampleException, StyklistException {
+    String execute(HttpServletRequest request, HttpServletResponse response) 
+            throws LoginSampleException, OrderSampleException, MaterialSampleException, StyklistException {
         String email = request.getParameter("email");
         String password = request.getParameter("password");
         

@@ -16,26 +16,19 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-<<<<<<< HEAD
+
 /**
  *
  * @author Rumle
  */
+
 public class EditLineItemCommand implements Command{
 
     @Override
-    public String execute(HttpServletRequest request, FunctionManager manager) throws LoginSampleException, OrderSampleException, MaterialSampleException {
-            //DatabaseFacade dbf = new DatabaseFacade();
-            Material material = null;
-            int id = Integer.parseInt(request.getParameter("lineitemToEdit"));
-            material = manager.getMaterialbyID(id);
-=======
-public class EditLineItemCommand extends Command{
-
-    @Override
-    String execute(HttpServletRequest request, HttpServletResponse response) throws LoginSampleException, OrderSampleException, MaterialSampleException, StyklistException {
+     public String execute(HttpServletRequest request, FunctionManager manager) 
+            throws LoginSampleException, OrderSampleException, MaterialSampleException {
             DatabaseFacade dbf = new DatabaseFacade();
->>>>>>> newCommand
+
             
             int id = Integer.parseInt(request.getParameter("lineitemID"));
             

@@ -19,10 +19,11 @@ import javax.servlet.http.HttpSession;
  *
  * @author rh
  */
-public class stockListTagpakke extends Command {
+public class stockListTagpakke implements Command {
 
     @Override
-    String execute(HttpServletRequest request, HttpServletResponse response) throws LoginSampleException, OrderSampleException, MaterialSampleException {
+    public String execute(HttpServletRequest request, HttpServletResponse response) 
+            throws LoginSampleException, OrderSampleException, MaterialSampleException {
 
         
         DatabaseFacade df = new DatabaseFacade();

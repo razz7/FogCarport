@@ -22,7 +22,8 @@ import javax.servlet.http.HttpSession;
 public class EditStockMaterialPageCommand implements Command {
 
     @Override
-    public String execute(HttpServletRequest request, FunctionManager manager) throws LoginSampleException, OrderSampleException, MaterialSampleException {
+    public String execute(HttpServletRequest request, FunctionManager manager) 
+            throws LoginSampleException, OrderSampleException, MaterialSampleException {
         DatabaseFacade dbf = new DatabaseFacade();
         Material mat = null;
         if (!"".equals(request.getParameter("chosenStockMaterial"))) {

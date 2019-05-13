@@ -22,10 +22,10 @@ import javax.servlet.http.HttpSession;
  *
  * @author Ludvig
  */
-public class FinalizeOrder extends Command{
+public class FinalizeOrder implements Command{
 
     @Override
-    String execute(HttpServletRequest request, HttpServletResponse response) throws LoginSampleException, OrderSampleException, MaterialSampleException, StyklistException {       
+    public String execute(HttpServletRequest request, HttpServletResponse response) throws LoginSampleException, OrderSampleException, MaterialSampleException, StyklistException {       
         
         if(request.getParameter("thisOrder") != null){
             int orderId = Integer.parseInt(request.getParameter("thisOrder"));

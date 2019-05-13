@@ -19,10 +19,10 @@ import javax.servlet.http.HttpSession;
  *
  * @author Rumle
  */
-public class AllOrdersCommand extends Command{
+public class AllOrdersCommand implements Command{
 
     @Override
-    String execute(HttpServletRequest request, HttpServletResponse response) throws LoginSampleException, OrderSampleException, MaterialSampleException {
+    public String execute(HttpServletRequest request, HttpServletResponse response) throws LoginSampleException, OrderSampleException, MaterialSampleException {
         DatabaseFacade dbf = new DatabaseFacade();
         ArrayList<Order> allOrders = dbf.getAllOrders();
         //HttpSession session = request.getSession();

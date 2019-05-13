@@ -23,7 +23,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author Ludvig
  */
-<<<<<<< HEAD
+
 class OrderPageCommand implements Command{
     
     private int id = 1;

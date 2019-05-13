@@ -20,7 +20,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author Rumle
  */
-public class UpdateLineitem extends Command{
+public class UpdateLineitem implements Command{
 
     @Override
     String execute(HttpServletRequest request, HttpServletResponse response) throws LoginSampleException, OrderSampleException, MaterialSampleException, StyklistException {
