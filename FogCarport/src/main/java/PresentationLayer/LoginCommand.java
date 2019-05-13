@@ -29,7 +29,6 @@ public class LoginCommand extends Command{
         
         if(dbf.verifyUser(email, password)) {
             User user = dbf.getUserByEmail(email);
-            
             request.getSession().setAttribute("user", user);
             return "mainpage";
         }
