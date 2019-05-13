@@ -6,6 +6,7 @@
 package PresentationLayer;
 
 import DBAccess.DatabaseFacade;
+import FunctionLayer.FunctionManager;
 import FunctionLayer.LoginSampleException;
 import FunctionLayer.Material;
 import FunctionLayer.MaterialSampleException;
@@ -24,15 +25,13 @@ import javax.servlet.http.HttpServletResponse;
 public class PriceCommand implements Command{
 
     @Override
-    String execute(HttpServletRequest request, HttpServletResponse response) throws LoginSampleException, OrderSampleException, MaterialSampleException, StyklistException {
-         
+    public String execute(HttpServletRequest request, FunctionManager manager) throws LoginSampleException, OrderSampleException, MaterialSampleException {
+                 
         if(request.getParameter("thisOrder") != null){
             int orderId = Integer.parseInt(request.getParameter("thisOrder"));
             
-            DatabaseFacade dbf = new DatabaseFacade();
-            
-            Order order = dbf.getOrderFromId(orderId);
-            Stykliste sl = dbf.getStyklistForOrder(orderId);
+            Order order = manager.getOrderFromId(orderId);
+            Stykliste sl = manager.getStyklistForOrder(orderId);
             
             ArrayList<Material> materials = sl.getStyklist();           
             float price = 0;

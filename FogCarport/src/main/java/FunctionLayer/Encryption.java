@@ -66,15 +66,12 @@ public class Encryption {
        String newSecurePassword = generateSecurePassword(providedPassword, salt);
        
        returnValue = newSecurePassword.equalsIgnoreCase(securepassword);
-       
-       
+              
        return returnValue;
    }
    
     public static void main(String[] args) {
-        
-//    
-//   
+
 //   String myPassword = "hejhej";
 //   String myPassword1 = "hejhej";
 //   String salt = Encryption.getSalt(30);
@@ -88,10 +85,7 @@ public class Encryption {
 //        System.out.println(mySecurePassword1);
 //        
 //   
-//   boolean passwordMatch = Encryption.verifyUserPassword(myPassword, mySecurePassword, salt);
-//   
-//   
-//   
+//   boolean passwordMatch = Encryption.verifyUserPassword(myPassword, mySecurePassword, salt);  
 //   Scanner scanner = new Scanner(System.in);
 //        String input = scanner.nextLine();
 //        
@@ -101,10 +95,7 @@ public class Encryption {
 //       
 //   } else {System.out.println("Incorrect password");
 //   
-//   }
-//       
-//        
-//   
+//   }  
 //   }
 }
 }

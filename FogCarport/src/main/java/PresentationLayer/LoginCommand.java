@@ -6,6 +6,7 @@
 package PresentationLayer;
 
 import DBAccess.DatabaseFacade;
+import FunctionLayer.FunctionManager;
 import FunctionLayer.LoginSampleException;
 import FunctionLayer.MaterialSampleException;
 import FunctionLayer.OrderSampleException;
@@ -21,15 +22,13 @@ import javax.servlet.http.HttpServletResponse;
 public class LoginCommand implements Command{
 
     @Override
-    String execute(HttpServletRequest request, HttpServletResponse response) 
+    public String execute(HttpServletRequest request, FunctionManager manager) 
             throws LoginSampleException, OrderSampleException, MaterialSampleException, StyklistException {
         String email = request.getParameter("email");
         String password = request.getParameter("password");
         
-        DatabaseFacade dbf = new DatabaseFacade();
-        
-        if(dbf.verifyUser(email, password)) {
-            User user = dbf.getUserByEmail(email);
+        if(manager.verifyUser(email, password)) {
+            User user = manager.getUserByEmail(email);
             request.getSession().setAttribute("user", user);
             return "mainpage";
         }

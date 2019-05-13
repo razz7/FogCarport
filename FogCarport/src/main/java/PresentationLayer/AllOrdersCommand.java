@@ -6,6 +6,7 @@
 package PresentationLayer;
 
 import DBAccess.DatabaseFacade;
+import FunctionLayer.FunctionManager;
 import FunctionLayer.LoginSampleException;
 import FunctionLayer.MaterialSampleException;
 import FunctionLayer.Order;
@@ -22,9 +23,8 @@ import javax.servlet.http.HttpSession;
 public class AllOrdersCommand implements Command{
 
     @Override
-    public String execute(HttpServletRequest request, HttpServletResponse response) throws LoginSampleException, OrderSampleException, MaterialSampleException {
-        DatabaseFacade dbf = new DatabaseFacade();
-        ArrayList<Order> allOrders = dbf.getAllOrders();
+    public String execute(HttpServletRequest request, FunctionManager manager) throws LoginSampleException, OrderSampleException, MaterialSampleException {
+        ArrayList<Order> allOrders = manager.getAllOrders();
         //HttpSession session = request.getSession();
         request.setAttribute("allOrders", allOrders);
         

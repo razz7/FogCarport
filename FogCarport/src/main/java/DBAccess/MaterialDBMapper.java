@@ -29,6 +29,7 @@ public class MaterialDBMapper extends MaterialMapper{
         return instance;
     }
 
+    @Override
     public ArrayList<Material> getAllMaterials() throws MaterialSampleException {
         ArrayList<Material> list = new ArrayList();
         try {
@@ -59,6 +60,7 @@ public class MaterialDBMapper extends MaterialMapper{
      * @param quantity
      * @throws MaterialSampleException
      */
+    @Override
     public void addNewMaterial(String item_description, float width, float height, String entity, String materialtype, float price, int quantity) throws MaterialSampleException {
         try {
             String sql = "INSERT into fog.stock (item_description, width, height, entity, materialtype, price, stockquantity)"
@@ -96,6 +98,7 @@ public class MaterialDBMapper extends MaterialMapper{
      * @throws MaterialSampleException
      * @throws ClassNotFoundException
      */
+    @Override
     public void updateMaterialData(int item_id, String item_description, float width, float height, String entity, String materialtype, float price, int quantity) throws MaterialSampleException, ClassNotFoundException {
         try {
             String sql = "UPDATE fog.stock SET item_description=?, width=?, height=?, entity=?, materialtype=?, price=?, stockquantity=?, versionnr = versionnr + 1 where item_id=?";
@@ -124,6 +127,7 @@ public class MaterialDBMapper extends MaterialMapper{
      * @param item_id
      * @throws MaterialSampleException
      */
+    @Override
     public void deleteMaterial(int item_id) throws MaterialSampleException {
         try {
             String sql = "DELETE FROM fog.stock WHERE item_id = ?";
@@ -137,6 +141,7 @@ public class MaterialDBMapper extends MaterialMapper{
         }
     }
 
+    @Override
     public Material getMaterialbyID(int item_id) throws MaterialSampleException {
         try {
             Connection con = dbc.connection();
@@ -166,6 +171,7 @@ public class MaterialDBMapper extends MaterialMapper{
      * @return
      * @throws MaterialSampleException
      */
+    @Override
     public Stykliste getLineitemsByOrderId(int order_id) throws MaterialSampleException {
         try {
             String sql = "SELECT quantity, length, stock.item_id, item_description, width, height, entity, materialtype, price "
@@ -188,19 +194,17 @@ public class MaterialDBMapper extends MaterialMapper{
                 material.setMaterialtype(rs.getString("materialtype"));
                 material.setPrice(rs.getFloat("price"));
                 materials.add(material);
-
             }
             Stykliste styklist = new Stykliste(materials, order_id);
             return styklist;
 
         } catch (SQLException | ClassNotFoundException ex) {
             throw new MaterialSampleException(ex.getMessage());
-
         }
-
     }
     
     
+    @Override
         public ArrayList<Material> getAllMaterialbyType(String type) throws MaterialSampleException {
         try {
             ArrayList<Material> ML = new ArrayList();
@@ -249,8 +253,5 @@ public class MaterialDBMapper extends MaterialMapper{
         //map.updateMaterialData(42, "hey", 3.6f, 25.7f, "stk", "pakke", 45.6f, 500);
         //map.addNewMaterial("hey1", 3.6f, 25.7f, "stk", "pakke", 45.6f, 500);
         System.out.println(map.getAllMaterials());
-
-
     }
-
 }

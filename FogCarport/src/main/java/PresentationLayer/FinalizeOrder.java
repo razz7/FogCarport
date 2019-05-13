@@ -7,6 +7,7 @@ package PresentationLayer;
 
 import DBAccess.DatabaseFacade;
 import DBAccess.OrderMapper;
+import FunctionLayer.FunctionManager;
 import FunctionLayer.LoginSampleException;
 import FunctionLayer.Material;
 import FunctionLayer.MaterialSampleException;
@@ -25,20 +26,19 @@ import javax.servlet.http.HttpSession;
 public class FinalizeOrder implements Command{
 
     @Override
-    public String execute(HttpServletRequest request, HttpServletResponse response) throws LoginSampleException, OrderSampleException, MaterialSampleException, StyklistException {       
+    public String execute(HttpServletRequest request, FunctionManager manager) throws LoginSampleException, OrderSampleException, MaterialSampleException, StyklistException {       
         
         if(request.getParameter("thisOrder") != null){
             int orderId = Integer.parseInt(request.getParameter("thisOrder"));
             float percent = Float.parseFloat(request.getParameter("percent"));
             float price = Float.parseFloat(request.getParameter("price"));
             
-            DatabaseFacade dbf = new DatabaseFacade();
-            dbf.finalizeOrder(orderId);
+            manager.finalizeOrder(orderId);
             
-            Order order = dbf.getOrderFromId(orderId);
+            Order order = manager.getOrderFromId(orderId);
             order.setPrice(price * ((percent/100)+1));
             
-            ArrayList<Order> allOrders = dbf.getAllOrders();
+            ArrayList<Order> allOrders = manager.getAllOrders();
             request.setAttribute("allOrders", allOrders);
         }
         

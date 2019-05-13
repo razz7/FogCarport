@@ -28,42 +28,20 @@ import javax.servlet.http.HttpSession;
 public class StyklistPageCommand implements Command {
 
     @Override
-<<<<<<< HEAD
     public String execute(HttpServletRequest request, FunctionManager manager) throws LoginSampleException, OrderSampleException, MaterialSampleException {
-        
-        //CarportAlgorithm car = new CarportAlgorithm();
-        Stykliste styk = manager.carportAlgorithm(6000, 7800, 0, 5300, 2100, 1);
+        //Stykliste styk = manager.carportAlgorithm(6000, 7800, 0, 5300, 2100, 1);
         HttpSession session = request.getSession();
-        session.setAttribute("list", styk);
-        
-=======
-    String execute(HttpServletRequest request, HttpServletResponse response) throws LoginSampleException, OrderSampleException, MaterialSampleException {
-//        String email = request.getParameter("email");
-//        String password = request.getParameter("password");
-//        
-//        LogicFacade logic = new LogicFacade();
-//        User user = logic.login(email, password);
+        //session.setAttribute("list", styk);
 
-        //int order_id = Integer.parseInt(request.getParameter("specificOrder"));
-        //HttpSession session = request.getSession();
-        //DatabaseFacade dbf = new DatabaseFacade();
-        //Stykliste stykliste = dbf.getOrderFromId(order_id).getStyklist();
-        //session.setAttribute("specificOrder", order_id);
-        //session.setAttribute("list", stykliste);        
-        //return "styklist";
-        
-        HttpSession session = request.getSession();
         if (request.getParameter("specificOrder") != null) {
             int order_id = Integer.parseInt(request.getParameter("specificOrder"));
-            DatabaseFacade dbf = new DatabaseFacade();
-            Order order = dbf.getOrderFromId(order_id);
+            Order order = manager.getOrderFromId(order_id);
             session.setAttribute("order", order);
             session.setAttribute("list", order.getStyklist());
         } else if (session.getAttribute("order") != null) {
             Order order = (Order) session.getAttribute("specificOrder");
             session.setAttribute("list", order.getStyklist());
         }
->>>>>>> newCommand
         return "styklist";
     }
 

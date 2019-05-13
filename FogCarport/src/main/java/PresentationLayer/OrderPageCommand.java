@@ -40,8 +40,6 @@ class OrderPageCommand implements Command{
            //float shedTilt = Float.parseFloat(request.getParameter("shedTilt"));
            
            int roof = Integer.parseInt(request.getParameter("roof"));
-           
-           //CarportAlgorithm ca = new CarportAlgorithm();
 
            Stykliste sl = manager.carportAlgorithm(width, length, roof, shedWidth, shedLength, id);          
            id++;
@@ -49,8 +47,7 @@ class OrderPageCommand implements Command{
            session.setAttribute("stykliste", sl);
            
            return "shop";
-=======
-public class OrderPageCommand extends Command {
+    }
 
 
     @Override
@@ -85,8 +82,7 @@ public class OrderPageCommand extends Command {
             session.setAttribute("list", sl);
             return "shop";
         }
-        
->>>>>>> newCommand
+
     }
 
 }

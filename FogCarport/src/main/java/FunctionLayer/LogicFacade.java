@@ -5,11 +5,8 @@
  */
 package FunctionLayer;
 
-<<<<<<< HEAD
 import DBAccess.UserDBMapper;
-=======
 import java.util.ArrayList;
->>>>>>> newCommand
 
 /**
  *
