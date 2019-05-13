@@ -35,9 +35,9 @@ public class FogTest {
 
     private String url = "jdbc:mysql://167.99.209.155/fog?useUnicode=yes&characterEncoding=utf-8";
     private String user = "fog";
-    private String password = "projectFog:12345";
+    private String password = "projectFog:1234_5";
 
-    // Fields for adding and removing materials and orders.
+    // Fields for adding and removing materials and orders to share between unit tests.
     private int testMaterialDescription;
 
     @Before
@@ -52,43 +52,37 @@ public class FogTest {
         //MockitoAnnotations.initMocks(this);
     }
 
-    /*
-    
-    @Test
-    public ArrayList<Material> testGetAllMaterials() throws MaterialSampleException {
-        MaterialMapper map = new MaterialMapper();
-        return map.getAllMaterials();
-    }
-
-    @Test
-    public void updateMaterialData(int item_id, String item_description, float width, float height, String entity, String materialtype, float price, int quantity) throws MaterialSampleException, ClassNotFoundException {
-        MaterialMapper map = new MaterialMapper();
-        map.updateMaterialData(item_id, item_description, width, height, entity, materialtype, price, quantity);
-    }
-
-    @Test
-    public void deleteMaterial(int item_id) throws MaterialSampleException {
-        MaterialMapper map = new MaterialMapper();
-        map.deleteMaterial(item_id);
-    }
-     */
     @Test
     public void testGetMaterialbyID() throws MaterialSampleException {
         MaterialMapper map = new MaterialMapper();
-        Material materialById = map.getMaterialbyID(10);
-        String materialName = "hulbånd 1x20 mm. 10 mtr.";
-        assertNotNull(materialById);
-        assertThat(materialById.getItem_description(), is(materialName));
+        try {
+            Material materialById = map.getMaterialbyID(10);
+            String materialName = "hulbånd 1x20 mm. 10 mtr.";
+            assertNotNull(materialById);
+            assertThat(materialById.getItem_description(), is(materialName));
+        } catch (MaterialSampleException me) {
+            fail("Caught a mertialsException");
+        }
     }
 
-    /*
     @Test
-    public ArrayList<Material> getAllMaterialbyType(String type) throws MaterialSampleException {
+    public void teastGetAllMaterialbyType() throws MaterialSampleException {
         MaterialMapper map = new MaterialMapper();
-        return map.getAllMaterialbyType(type);
+        try {
+            ArrayList<Material> testArr1 = map.getAllMaterialbyType("Træ & Tagplader");
+            assertThat(testArr1.get(1).getMaterialType(), is("Træ & Tagplader"));
+
+            ArrayList<Material> testArr2 = map.getAllMaterialbyType("Beslag & Skruer");
+            assertThat(testArr2.get(2).getMaterialType(), is("Beslag & Skruer"));
+
+            ArrayList<Material> testArr3 = map.getAllMaterialbyType("Tagpakken");
+            assertThat(testArr3.get(3).getMaterialType(), is("Tagpakken"));
+
+        } catch (MaterialSampleException me) {
+            fail("Caught a mertialsException");
+        }
     }
 
-     */
     @Test
     public void testAddNewMaterial() throws MaterialSampleException {
         MaterialMapper map = new MaterialMapper();
@@ -109,6 +103,21 @@ public class FogTest {
                     testMaterialDescription = mats.getItem_id();
                 }
             }
+        } catch (MaterialSampleException me) {
+            fail("Caught a mertialsException");
+        }
+    }
+
+    @Test
+    public void testUpdateMaterialData() throws MaterialSampleException, ClassNotFoundException {
+        MaterialMapper map = new MaterialMapper();
+        try {
+            map.updateMaterialData(testMaterialDescription, "TestMaterial", 0.0f, 0.0f, "testEntity", "changed!", 0f, 1);
+
+            Material changedMaterialById = map.getMaterialbyID(testMaterialDescription);
+            String changedMaterialName = "changed!";
+            assertNotNull(changedMaterialById);
+            assertThat(changedMaterialById.getMaterialType(), is(changedMaterialName));
         } catch (MaterialSampleException me) {
             fail("Caught a mertialsException");
         }
