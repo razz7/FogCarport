@@ -4,6 +4,7 @@
     Author     : Rasmus2
 --%>
 
+<%@page import="FunctionLayer.Order"%>
 <%@page import="FunctionLayer.CarportAlgorithm"%>
 <%@page import="FunctionLayer.Stykliste"%>
 <%@page import="FunctionLayer.Material"%>
@@ -24,8 +25,11 @@
 
         <%
 
-            if (session.getAttribute("list") != null) {
-                Stykliste list = (Stykliste) session.getAttribute("list");
+            //if (session.getAttribute("list") != null) {
+            if (session.getAttribute("order") != null) {
+                //Stykliste list = (Stykliste) session.getAttribute("list");
+                Order order = (Order) session.getAttribute("order");
+                Stykliste list = order.getStyklist();
                     out.print("<th>");
                     out.println("<form action=\"FrontController\" method=\"post\">");
                     out.println("<input type=\"hidden\" name=\"command\" value=\"AllOrders\">");
@@ -33,8 +37,9 @@
                     out.println("</form>");
                     out.println("<form action=\"FrontController\" method=\"post\">");
                     out.println("<input type=\"hidden\" name=\"command\" value=\"graphic\">");
-                    out.println("<input class=\"btn btn-info  btn-sm\" type=\"submit\" value=\"See visual order\" >");
-                    out.println("</form>");                    
+                    out.println("<input type=\"hidden\" name=\"thisOrder\" value=\"" + order.getOrder_id() + "\">");
+                    out.println("<input class=\"btn btn-info  btn-sm\" type=\"submit\" value=\"Se tegning\" >");
+                    out.println("</form>");                  
                     out.print("</th>");
                 
                 out.println("<tr><th>ID</th>");

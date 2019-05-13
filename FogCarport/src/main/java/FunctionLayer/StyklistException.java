@@ -10,7 +10,18 @@ package FunctionLayer;
  * @author Rumle
  */
 public class StyklistException extends Exception{
-    public StyklistException(String msg) {
-        super(msg);
+   
+         private final String target;
+  
+    public StyklistException(String message, String target) {
+    super(message);
+    this.target = target;
     }
-}
+  
+    public StyklistException(String message) {
+    this(message, "error.jsp");
+    }
+  
+  public final String getTarget() { return target; }
+  
+  }

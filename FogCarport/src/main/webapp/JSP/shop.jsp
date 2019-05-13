@@ -4,6 +4,7 @@
     Author     : Ludvig
 --%>
 
+<%@page import="FunctionLayer.Order"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="FunctionLayer.Material"%>
 <%@page import="FunctionLayer.Material"%>
@@ -105,8 +106,10 @@
     </form>
 
     <%
-        if (session.getAttribute("list") != null) {
-            Stykliste sl = (Stykliste) session.getAttribute("stykliste");
+        if (session.getAttribute("order") != null) {
+                //Stykliste list = (Stykliste) session.getAttribute("list");
+                Order order = (Order) session.getAttribute("order");
+                Stykliste sl = order.getStyklist();
             out.println("<h4> Styklisten: </h4>");
             //out.println("<h4> Id:" + sl.getStyklist_id() + "</h4>");
             out.println("<div class=\"container\">");
