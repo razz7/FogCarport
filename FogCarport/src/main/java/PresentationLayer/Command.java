@@ -21,18 +21,18 @@ abstract class Command {
         commands.put( "updateMaterial", new UpdateMaterialCommand() );
         commands.put( "deleteMaterial", new DeleteStockMaterialCommand() );
         commands.put( "createMaterial", new CreateStockMaterialCommand() );
-        commands.put( "styklistpage", new StyklistPageCommand());
-        commands.put( "order", new OrderPageCommand());
-        commands.put( "editlineitem", new EditLineItemCommand());
-        commands.put("category", new categoryCommand());
-        commands.put("stockListWood", new stockListWood());
-        commands.put("stockListScrews", new stockListScrews());
-        commands.put("graphic", new GraphicCommand());
-        commands.put("stockListTagpakke", new stockListTagpakke());
-        commands.put("AllOrders", new AllOrdersCommand());
-        commands.put("updateLineitem", new UpdateLineitem());
-        commands.put("finalPrice", new PriceCommand());
-        commands.put("percentPrice", new FinalizeOrder());
+        commands.put( "styklistpage", new StyklistPageCommand() );
+        commands.put( "order", new OrderPageCommand() );
+        commands.put( "editlineitem", new EditLineItemCommand() );
+        commands.put( "category", new categoryCommand() );
+        commands.put( "stockListWood", new stockListWood() );
+        commands.put( "stockListScrews", new stockListScrews() );
+        commands.put( "graphic", new GraphicCommand() );
+        commands.put( "stockListTagpakke", new stockListTagpakke() );
+        commands.put( "AllOrders", new AllOrdersCommand() );
+        commands.put( "updateLineitem", new UpdateLineitem() );
+        commands.put( "finalPrice", new PriceCommand() );
+        commands.put( "percent", new FinalizeOrder() );
     }
 
     static Command from( HttpServletRequest request ) {

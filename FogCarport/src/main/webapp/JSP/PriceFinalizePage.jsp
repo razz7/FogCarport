@@ -24,7 +24,7 @@
                 out.println("<form action=\"FrontController\" method=\"post\">");
                 out.println("<input type=\"text\" name=\"percent\" value=\"\">");
                 out.println("<input type=\"hidden\" name=\"price\" value=\"" + price + ">");
-                out.println("<input type=\"hidden\" name=\"command\" value=\"percentPrice\">");
+                out.println("<input type=\"hidden\" name=\"command\" value=\"percent\">");
                 out.println("<input type=\"hidden\" name=\"thisOrder\" value=\"" + order.getOrder_id() + "\">");
                 out.println("<input type=\"submit\" value=\"Godkend ordre\" >");
                 out.println("</form>");

@@ -48,14 +48,11 @@ public interface DatabaseFacadeInterface {
     
     public void finalizeOrder(int order_id) throws OrderSampleException;
     
-<<<<<<< HEAD
     public Stykliste getStyklistForOrder(int order_id) throws OrderSampleException;
-=======
+
     public void createUser(User user) throws LoginSampleException;
     
     public boolean verifyUser(String email, String password) throws LoginSampleException;
-    
-    
->>>>>>> 59a2200423bd85d9a24d260c76f4e87d9c3bcbe8
+
 
 }
