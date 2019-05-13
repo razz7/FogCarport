@@ -5,12 +5,14 @@
  */
 package DBAccess;
 
+import FunctionLayer.LoginSampleException;
 import FunctionLayer.Material;
 import FunctionLayer.MaterialSampleException;
 import FunctionLayer.Order;
 import FunctionLayer.OrderSampleException;
 import FunctionLayer.StyklistException;
 import FunctionLayer.Stykliste;
+import FunctionLayer.User;
 import java.util.ArrayList;
 
 /**
@@ -45,5 +47,11 @@ public interface DatabaseFacadeInterface {
     public Material getMaterialFromLineItems(int lineItemID) throws StyklistException;
     
     public void finalizeOrder(int order_id) throws OrderSampleException;
+    
+    public void createUser(User user) throws LoginSampleException;
+    
+    public boolean verifyUser(String email, String password) throws LoginSampleException;
+    
+    
 
 }

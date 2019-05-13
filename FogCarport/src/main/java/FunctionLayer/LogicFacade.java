@@ -43,4 +43,22 @@ public class LogicFacade implements LogicFacadeInterface {
         return user;
     }
 
+    @Override
+    public String getSalt(int length) {
+        Encryption enc = new Encryption();
+        return enc.getSalt(length);
+    }
+
+    @Override
+    public String generateSecurePassword(String password, String salt) {
+        Encryption enc = new Encryption();
+        return enc.generateSecurePassword(password, salt);
+    }
+
+    @Override
+    public boolean verifyUserPassword(String providedPassword, String securepassword, String salt) {
+        Encryption enc = new Encryption();
+        return enc.verifyUserPassword(providedPassword, securepassword, salt);
+    }
+
 }

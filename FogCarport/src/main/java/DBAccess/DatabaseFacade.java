@@ -5,12 +5,14 @@
  */
 package DBAccess;
 
+import FunctionLayer.LoginSampleException;
 import FunctionLayer.Material;
 import FunctionLayer.MaterialSampleException;
 import FunctionLayer.Order;
 import FunctionLayer.OrderSampleException;
 import FunctionLayer.StyklistException;
 import FunctionLayer.Stykliste;
+import FunctionLayer.User;
 import java.util.ArrayList;
 
 /**
@@ -96,6 +98,18 @@ public class DatabaseFacade implements DatabaseFacadeInterface {
     public void finalizeOrder(int order_id) throws OrderSampleException{
         OrderMapper map = new OrderMapper();
         map.finalizeOrder(order_id);
+    }
+
+    @Override
+    public void createUser(User user) throws LoginSampleException {
+        UserMapper map = new UserMapper();
+        map.createUser(user);
+    }
+
+    @Override
+    public boolean verifyUser(String email, String password) throws LoginSampleException {
+        UserMapper map = new UserMapper();
+        return map.verifyUser(email, password);
     }
 
 }
