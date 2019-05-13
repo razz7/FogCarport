@@ -20,6 +20,7 @@ public class Order {
     private float roofTilt;
     private float shedWidth;
     private float shedLength;
+    private float price;
     private User user;
     private Stykliste styklist;
     private boolean orderStatus;
@@ -35,6 +36,14 @@ public class Order {
         this.shedLength = shedLength;
     }
 
+    public void setPrice(float price) {
+        this.price = price;
+    }
+
+    public float getPrice() {
+        return price;
+    }
+    
     public void setUser(User user) {
         this.user = user;
     }

@@ -25,15 +25,12 @@
             <th>shedlength</th>
             <th>status</th>
             <th>orderdate</th>
-            <th>customername</th>
-            
-            
+            <th>customername</th>                       
 
         <% if (request.getAttribute("allOrders") != null) {
                 ArrayList<Order> orders = (ArrayList<Order>) request.getAttribute("allOrders");
 
-                for (int i = 0; i < orders.size(); i++) {
-                    
+                for (int i = 0; i < orders.size(); i++) {                    
 
                     //out.println("<form action=\"FrontController\" method=\"POST\">");
                     out.print("<tr><td>" + orders.get(i).getOrder_id() + "</td>");
@@ -64,9 +61,9 @@
                     out.println("</form>");
                     
                     out.println("<form action=\"FrontController\" method=\"post\">");
-                    out.println("<input type=\"hidden\" name=\"command\" value=\"final\">");
+                    out.println("<input type=\"hidden\" name=\"command\" value=\"finalPrice\">");
                     out.println("<input type=\"hidden\" name=\"thisOrder\" value=\"" + orders.get(i).getOrder_id() + "\">");
-                    out.println("<input class=\"btn btn-info  btn-sm\" type=\"submit\" value=\"Godkend ordre\" >");
+                    out.println("<input class=\"btn btn-info  btn-sm\" type=\"submit\" value=\"Prissæt ordre\" >");
                     out.println("</form>");
                     out.print("</td>");
                     

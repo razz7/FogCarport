@@ -45,5 +45,7 @@ public interface DatabaseFacadeInterface {
     public Material getMaterialFromLineItems(int lineItemID) throws StyklistException;
     
     public void finalizeOrder(int order_id) throws OrderSampleException;
+    
+    public Stykliste getStyklistForOrder(int order_id) throws OrderSampleException;
 
 }

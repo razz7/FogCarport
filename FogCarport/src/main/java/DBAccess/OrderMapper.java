@@ -80,7 +80,7 @@ public class OrderMapper {
         
     }
     
-    private Stykliste getStyklistForOrder(int order_id) throws OrderSampleException {
+    public Stykliste getStyklistForOrder(int order_id) throws OrderSampleException {
         try{
             String sql = "select * from lineitems where order_id = ?";
             Connection conn = dbc.connection();

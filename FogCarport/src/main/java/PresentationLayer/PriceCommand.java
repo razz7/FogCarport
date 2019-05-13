@@ -6,43 +6,45 @@
 package PresentationLayer;
 
 import DBAccess.DatabaseFacade;
-import DBAccess.OrderMapper;
 import FunctionLayer.LoginSampleException;
 import FunctionLayer.Material;
 import FunctionLayer.MaterialSampleException;
 import FunctionLayer.Order;
 import FunctionLayer.OrderSampleException;
 import FunctionLayer.StyklistException;
+import FunctionLayer.Stykliste;
 import java.util.ArrayList;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author Ludvig
  */
-public class FinalizeOrder extends Command{
+public class PriceCommand extends Command{
 
     @Override
-    String execute(HttpServletRequest request, HttpServletResponse response) throws LoginSampleException, OrderSampleException, MaterialSampleException, StyklistException {       
-        
+    String execute(HttpServletRequest request, HttpServletResponse response) throws LoginSampleException, OrderSampleException, MaterialSampleException, StyklistException {
+         
         if(request.getParameter("thisOrder") != null){
             int orderId = Integer.parseInt(request.getParameter("thisOrder"));
-            float percent = Float.parseFloat(request.getParameter("percent"));
-            float price = Float.parseFloat(request.getParameter("price"));
             
             DatabaseFacade dbf = new DatabaseFacade();
-            dbf.finalizeOrder(orderId);
             
             Order order = dbf.getOrderFromId(orderId);
-            order.setPrice(price * ((percent/100)+1));
+            Stykliste sl = dbf.getStyklistForOrder(orderId);
             
-            ArrayList<Order> allOrders = dbf.getAllOrders();
-            request.setAttribute("allOrders", allOrders);
+            ArrayList<Material> materials = sl.getStyklist();           
+            float price = 0;
+            for(int i = 0; i < materials.size(); i++){
+                price = price + materials.get(i).getPrice();
+            }
+            
+            request.setAttribute("price", price);
+            request.setAttribute("order", order);
         }
         
-        return "allOrdersPage";
+        return "PriceFinalizePage";
     }
     
 }

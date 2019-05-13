@@ -97,5 +97,11 @@ public class DatabaseFacade implements DatabaseFacadeInterface {
         OrderMapper map = new OrderMapper();
         map.finalizeOrder(order_id);
     }
+    
+    @Override
+    public Stykliste getStyklistForOrder(int order_id) throws OrderSampleException{
+        OrderMapper map = new OrderMapper();
+        return map.getStyklistForOrder(order_id);
+    }
 
 }
