@@ -29,5 +29,13 @@ public interface LogicFacadeInterface {
     public Stykliste Stykliste(ArrayList<Material> styklist, int styklist_id);
 
     public User User(String email, String password, String role);
+    
+    public String getSalt(int length);
+    
+    public String generateSecurePassword(String password, String salt);
+     
+    public boolean verifyUserPassword(String providedPassword, String securepassword, String salt);
+    
+    
 
 }
