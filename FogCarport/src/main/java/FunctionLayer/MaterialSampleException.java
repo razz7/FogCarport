@@ -10,8 +10,17 @@ package FunctionLayer;
  * @author Rasmus2
  */
 public class MaterialSampleException extends Exception {
-
-    public MaterialSampleException(String msg) {
-        super(msg);
+      private final String target;
+  
+    public MaterialSampleException(String message, String target) {
+    super(message);
+    this.target = target;
     }
-}
+  
+    public MaterialSampleException(String message) {
+    this(message, "error.jsp");
+    }
+  
+  public final String getTarget() { return target; }
+  
+  }

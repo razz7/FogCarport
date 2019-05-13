@@ -23,6 +23,7 @@ public class Material {
     private String materialtype;
     private float price;
     private int versionnr;
+    private int lineItemID;
 
     public Material(int item_id, String item_description, float width, float height, String entity, String materialtype, float price, int versionnr) {
         this.item_id = item_id;
@@ -131,13 +132,27 @@ public class Material {
     public void setConstructionDescription(String constructionDescription) {
         this.constructionDescription = constructionDescription;
     }
-
-
-    @Override
-    public String toString() {
-        return "Material{" + "styklistQty=" + styklistQty + ", stockQty=" + stockQty + ", length=" + length + ", constructionDescription=" + constructionDescription + ", item_id=" + item_id + ", item_description=" + item_description + ", width=" + width + ", height=" + height + ", entity=" + entity + ", materialtype=" + materialtype + ", price=" + price + ", versionnr=" + versionnr + '}';
+    
+        public String GettConstructionDescription() {
+        return constructionDescription;
     }
 
+    public int getLineItemID() {
+        return lineItemID;
+    }
+
+    public void setLineItemID(int lineItemID) {
+        this.lineItemID = lineItemID;
+    }
+    
+
+    @Override
+   public String toString() {
+        return "Materiale information: " + " materiale id: " + item_id + 
+                ", materiale beskrivelse: " + item_description + ", højde: " +
+                height  + ", bredde: " + width + ", entity: " + entity + ", materialetype: " + 
+                materialtype + ", pris: " + price + ", versionnr: " + versionnr;
+    }
     
     
     
@@ -145,6 +160,12 @@ public class Material {
         return "Materiale information: " + " materiale id: " + item_id +  ", materiale beskrivelse: " + item_description + ", højde: " + height  + ", bredde: " + width + ", entity: " + entity + ", materialetype: " + materialtype + ", pris: " + price + ", versionnr: " + versionnr;
     }
 
+    public String toString2() {
+        return "Materiale information: " + " materiale id: " + item_id + 
+                ", materiale beskrivelse: " + item_description + ", højde: " +
+                height  + ", bredde: " + width + ", entity: " + entity + ", materialetype: " + 
+                materialtype + ", pris: " + price + ", versionnr: " + versionnr + ", constructionDescription: " + constructionDescription;
+    }
     
 
 }

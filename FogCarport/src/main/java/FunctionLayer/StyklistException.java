@@ -7,18 +7,18 @@ package FunctionLayer;
 
 /**
  *
- * @author Rasmus2
+ * @author Rumle
  */
-public class OrderSampleException extends Exception {
-
-      private final String target;
+public class StyklistException extends Exception{
+   
+         private final String target;
   
-  public OrderSampleException(String message, String target) {
+    public StyklistException(String message, String target) {
     super(message);
     this.target = target;
     }
   
-  public OrderSampleException(String message) {
+    public StyklistException(String message) {
     this(message, "error.jsp");
     }
   

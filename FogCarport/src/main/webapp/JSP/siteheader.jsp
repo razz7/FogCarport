@@ -4,7 +4,7 @@
 <html>
     <head>
 
-        <title>CupcakeShop</title>
+        <title>Fogcarportshop</title>
 
         <base href="${pageContext.request.contextPath}/" />
 

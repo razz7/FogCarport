@@ -21,11 +21,19 @@ import javax.servlet.http.HttpServletResponse;
 public class MainPageCommand implements Command {
 
     @Override
+<<<<<<< HEAD
     public String execute(HttpServletRequest request, FunctionManager manager) throws LoginSampleException, OrderSampleException, MaterialSampleException {
         String email = request.getParameter("email");
         String password = request.getParameter("password");
         LogicFacade logic = new LogicFacade();
         User user = logic.login(email, password);
+=======
+    String execute(HttpServletRequest request, HttpServletResponse response) throws LoginSampleException, OrderSampleException, MaterialSampleException {
+        //String email = request.getParameter("email");
+        //String password = request.getParameter("password");
+        //LogicFacade logic = new LogicFacade();
+        //User user = logic.login(email, password);
+>>>>>>> newCommand
 
         return "mainpage";
         //return user.getRole() + "page";

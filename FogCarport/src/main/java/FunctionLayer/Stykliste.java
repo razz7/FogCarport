@@ -38,7 +38,7 @@ public class Stykliste {
 
     @Override
     public String toString() {
-        return "Stykliste{" + "styklist=" + styklist + ", styklist_id=" + styklist_id + '}';
+        return "Stykliste{ " + "styklist= " + styklist + ", styklist_id= " + styklist_id + '}';
     }
 
 }

@@ -11,6 +11,9 @@
 
 
 <br>
+<br>
+<br>
+<br>
 <div class="container">
 <div class="card-deck">
   <div class="card">
@@ -30,10 +33,10 @@
 
   </div>
   <div class="card">
-    <img class="card-img-top" src="img/rulle.jpg" alt="Card image cap" height="210" width="10">
+    <img class="card-img-top" src="img/tagplade.jpg" alt="Card image cap" height="210" width="10">
     <div class="card-body">
-      <h5 class="card-title">Ruller</h5>
-      <a href="JSP/newjsp.jsp" class="btn btn-primary stretched-link">Se alle ruller på lager</a>
+      <h5 class="card-title">Tagpakker</h5>
+      <a href="/FogCarport/FrontController?command=stockListTagpakke" class="btn btn-primary stretched-link">Se alle ruller på lager</a>
     </div>
   </div>
 </div>

@@ -9,6 +9,7 @@ import FunctionLayer.FunctionManager;
 import FunctionLayer.LoginSampleException;
 import FunctionLayer.MaterialSampleException;
 import FunctionLayer.OrderSampleException;
+import FunctionLayer.StyklistException;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -41,7 +42,7 @@ public class FrontController extends HttpServlet {
         try {
             String view = action.execute(request, manager);
             request.getRequestDispatcher("/JSP/" + view + ".jsp").forward(request, response);
-        } catch (LoginSampleException | OrderSampleException | MaterialSampleException ex) {
+        } catch (LoginSampleException | OrderSampleException | MaterialSampleException | StyklistException ex) {
             request.setAttribute("error", ex.getMessage());
             request.getRequestDispatcher("index.jsp").forward(request, response);
         }

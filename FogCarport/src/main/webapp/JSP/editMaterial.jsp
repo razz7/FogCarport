@@ -23,7 +23,7 @@
         out.println("<input type=\"hidden\" name=\"command\" value=\"updateMaterial\">");
         out.println("<div class=\"col-md-3 mb-3\">");
         out.println("<tr><td> Material id: </tr></td>");
-        out.println("<input type=\"text\" name=\"id\" value=" + material.getItem_id() + ">");
+        out.println("<input type=\"text\" name=\"id\" value=" + "\"" + material.getItem_id() + "\""+ "readonly>");
         out.println("</div>");
         out.println("<div class=\"col-md-3 mb-3\">");
         out.println("<tr><td> Material description: </tr></td>");
