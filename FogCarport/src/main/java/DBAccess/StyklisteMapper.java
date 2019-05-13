@@ -87,7 +87,7 @@ public class StyklisteMapper {
             ResultSet rs = ps.executeQuery();
             Material material = null;
             while(rs.next()) {
-                material = new Material(rs.getInt(2), rs.getString(4), rs.getFloat(5), rs.getFloat(7), rs.getString(7), rs.getString(8), rs.getFloat(9), rs.getInt(11));
+                material = new Material(rs.getInt(2), rs.getString(4), rs.getFloat(5), rs.getFloat(7), rs.getString(8), rs.getString(9), rs.getFloat(10), rs.getInt(11));
                 material.setStyklistQty(rs.getInt(10));
                 material.setLineItemID(rs.getInt(1));
                 material.setLength(rs.getFloat(6));
@@ -113,7 +113,7 @@ public class StyklisteMapper {
 //        long elapsedTimeMillis = System.currentTimeMillis()-start;
 //        System.out.println(elapsedTimeMillis/1000F);
 //mapper.editLineItemsFromOrderID(3, "træ", 10f, 10f, "træ", "træ", 10f, 100, 1);
-        System.out.println(mapper.getMaterialFromLineItems(129));
+        System.out.println(mapper.getMaterialFromLineItems(531));
     }
     
 }
