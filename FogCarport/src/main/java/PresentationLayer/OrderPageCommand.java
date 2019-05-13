@@ -24,11 +24,10 @@ import javax.servlet.http.HttpSession;
  */
 public class OrderPageCommand extends Command {
 
-    private int id = 1;
-    private float height = 2300;
 
     @Override
     String execute(HttpServletRequest request, HttpServletResponse response) throws LoginSampleException, OrderSampleException, MaterialSampleException, StyklistException {
+        
         HttpSession session = request.getSession();
 
         float width = Float.parseFloat(request.getParameter("width"));
@@ -37,6 +36,8 @@ public class OrderPageCommand extends Command {
         float shedWidth = Float.parseFloat(request.getParameter("shedWidth"));
         float roofTilt = Integer.parseInt(request.getParameter("roof"));
         String name = request.getParameter("name");
+        float height = 2300;
+        int id = 0;
 
         if (width > 7500 || width < 2400 || length > 7800 || length < 2400 || shedLength > 6900 || shedLength < 1500 || shedWidth > 7200 || shedWidth < 2100 || roofTilt > 45 || roofTilt < 0) {
             //throw new MaterialSampleException("Fejl i mål");
@@ -54,9 +55,10 @@ public class OrderPageCommand extends Command {
             dbf.saveOrder(order);
 
             session.setAttribute("order", order);
-            session.setAttribute("stykliste", sl);
+            session.setAttribute("list", sl);
+            return "shop";
         }
-        return "shop";
+        
     }
 
 }

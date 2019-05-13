@@ -33,7 +33,6 @@
                     out.println("</form>");
                     out.println("<form action=\"FrontController\" method=\"post\">");
                     out.println("<input type=\"hidden\" name=\"command\" value=\"graphic\">");
-                    out.println("<input type=\"hidden\" name=\"command\" value=\"graphic\">");
                     out.println("<input class=\"btn btn-info  btn-sm\" type=\"submit\" value=\"See visual order\" >");
                     out.println("</form>");                    
                     out.print("</th>");

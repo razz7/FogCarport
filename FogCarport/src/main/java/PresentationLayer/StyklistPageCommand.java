@@ -33,24 +33,27 @@ public class StyklistPageCommand extends Command {
 //        
 //        LogicFacade logic = new LogicFacade();
 //        User user = logic.login(email, password);
-        
+
         //int order_id = Integer.parseInt(request.getParameter("specificOrder"));
         //HttpSession session = request.getSession();
         //DatabaseFacade dbf = new DatabaseFacade();
         //Stykliste stykliste = dbf.getOrderFromId(order_id).getStyklist();
         //session.setAttribute("specificOrder", order_id);
         //session.setAttribute("list", stykliste);        
-
         //return "styklist";
         
-        int order_id = Integer.parseInt(request.getParameter("specificOrder"));
         HttpSession session = request.getSession();
-        DatabaseFacade dbf = new DatabaseFacade();
-        Order order = dbf.getOrderFromId(order_id);
-        session.setAttribute("order", order);
-        session.setAttribute("list", order.getStyklist());        
-
+        if (request.getParameter("specificOrder") != null) {
+            int order_id = Integer.parseInt(request.getParameter("specificOrder"));
+            DatabaseFacade dbf = new DatabaseFacade();
+            Order order = dbf.getOrderFromId(order_id);
+            session.setAttribute("order", order);
+            session.setAttribute("list", order.getStyklist());
+        } else if (session.getAttribute("order") != null) {
+            Order order = (Order) session.getAttribute("specificOrder");
+            session.setAttribute("list", order.getStyklist());
+        }
         return "styklist";
     }
-    
+
 }
