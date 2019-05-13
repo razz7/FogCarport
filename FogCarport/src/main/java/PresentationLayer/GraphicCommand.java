@@ -26,10 +26,9 @@ public class GraphicCommand extends Command {
 
     @Override
     String execute(HttpServletRequest request, HttpServletResponse response) throws LoginSampleException, OrderSampleException, MaterialSampleException {
+        
         HttpSession session = request.getSession();
-
-        session.setAttribute("order", null);
-
+        
         if (request.getParameter("thisOrder") != null) {
             int orderId = Integer.parseInt(request.getParameter("thisOrder"));
             OrderMapper om = new OrderMapper();

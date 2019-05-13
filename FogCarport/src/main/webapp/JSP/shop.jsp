@@ -105,7 +105,7 @@
     </form>
 
     <%
-        if (session.getAttribute("stykliste") != null) {
+        if (session.getAttribute("list") != null) {
             Stykliste sl = (Stykliste) session.getAttribute("stykliste");
             out.println("<h4> Styklisten: </h4>");
             //out.println("<h4> Id:" + sl.getStyklist_id() + "</h4>");
