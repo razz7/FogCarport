@@ -82,14 +82,16 @@ public class UserMapper {
                 
             }
             
+            if(securePassword != "" && salt != "") {
             return lfc.verifyUserPassword(password, securePassword, salt);
-                
+            }
                     
             
         } catch(SQLException | ClassNotFoundException ex) {
             throw new LoginSampleException(ex.getMessage());
         
     }
+        return false;
     }
     
     public void removeUser(User user) throws LoginSampleException {
