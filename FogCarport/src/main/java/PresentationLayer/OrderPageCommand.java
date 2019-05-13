@@ -44,7 +44,7 @@ public class OrderPageCommand extends Command {
         } else {
             
             CarportAlgorithm ca = new CarportAlgorithm();
-            User user = new User(name, "", "");
+            User user = new User(name, 0, "");
             Order order = new Order(id, width, length, height, roofTilt, shedWidth, shedLength);
             order.setUser(user);
             Stykliste sl = ca.carportAlgorithm(width, length, roofTilt, shedWidth, shedLength, id);

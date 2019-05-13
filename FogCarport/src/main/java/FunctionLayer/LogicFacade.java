@@ -38,12 +38,6 @@ public class LogicFacade implements LogicFacadeInterface {
     }
 
     @Override
-    public FunctionLayer.User User(String email, String password, String role) {
-        User user = new User(email, password, role);
-        return user;
-    }
-
-    @Override
     public String getSalt(int length) {
         Encryption enc = new Encryption();
         return enc.getSalt(length);
@@ -59,6 +53,12 @@ public class LogicFacade implements LogicFacadeInterface {
     public boolean verifyUserPassword(String providedPassword, String securepassword, String salt) {
         Encryption enc = new Encryption();
         return enc.verifyUserPassword(providedPassword, securepassword, salt);
+    }
+
+    @Override
+    public FunctionLayer.User User(String email, int id, String role) {
+        User user = new User(email, id, role);
+        return user;
     }
 
 }

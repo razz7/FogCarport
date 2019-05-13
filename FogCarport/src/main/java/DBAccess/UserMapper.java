@@ -52,7 +52,7 @@ public class UserMapper {
             if (rs.next()) {
                 String role = rs.getString("role");
                 int id = rs.getInt("id");
-                User user = new User(email, password, role);
+                User user = new User(email, 0, role);
                 user.setId(id);
                 return user;
             } else {
@@ -73,17 +73,23 @@ public class UserMapper {
             String securePassword = "";
             String salt = "";
             LogicFacade lfc = new LogicFacade();
+            
+            
                     
             while(rs.next()) {
                 securePassword = rs.getString(4);
                 salt = rs.getString(5);
                 
             }
+            
             return lfc.verifyUserPassword(password, securePassword, salt);
+                
+                    
             
         } catch(SQLException | ClassNotFoundException ex) {
             throw new LoginSampleException(ex.getMessage());
-        }
+        
+    }
     }
     
     public void removeUser(User user) throws LoginSampleException {
@@ -97,13 +103,34 @@ public class UserMapper {
         } catch (SQLException | ClassNotFoundException ex) {
             throw new LoginSampleException(ex.getMessage());
         }
+        
+    }
+    
+    public User getUserByEmail(String email) throws LoginSampleException {
+        try{
+            String sql = "select * from users where email=?";
+            Connection conn = dbc.connection();
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setString(1, email);
+            ResultSet rs = ps.executeQuery();
+            
+            while(rs.next()) {
+                User user = new User(rs.getString(2), rs.getInt(1), rs.getString(3));
+               return user;
+            }
+            return null;
+            
+        } catch(SQLException | ClassNotFoundException ex) {
+            throw new LoginSampleException(ex.getMessage());
+        }
     }
     public static void main(String[] args) throws LoginSampleException {
         UserMapper map = new UserMapper();
-        User user = new User("John123@johnmail.com", "qweq", "boss");
+        User user = new User("John123@johnmail.com", 5, "boss");
+        String password = "qwe";
         
-        
-     System.out.println(map.verifyUser(user.getEmail(), user.getPassword()));
+     System.out.println(map.verifyUser(user.getEmail(), password));
+        System.out.println(map.getUserByEmail(user.getEmail()));
     }
 
 }

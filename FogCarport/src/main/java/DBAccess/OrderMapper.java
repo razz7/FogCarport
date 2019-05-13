@@ -36,7 +36,7 @@ public class OrderMapper {
                 Order order = new Order(rs.getInt(1), rs.getFloat(2), rs.getFloat(3), 0, rs.getFloat(4), rs.getInt(5), rs.getInt(6));
                 orders.add(order);
                 order.setOrderdate(rs.getDate(9));
-                User user = new User(rs.getString(10), "", "");
+                User user = new User(rs.getString(10), 0, "");
                 order.setOrderStatus(rs.getBoolean(7));
                 order.setUser(user);
                 
@@ -64,7 +64,7 @@ public class OrderMapper {
                 boolean bool = (rs.getInt(7) == 1);
                 order.setOrderStatus(bool);
                 order.setOrderdate(rs.getDate(9));
-                user = new User(rs.getString(10), "", "");
+                user = new User(rs.getString(10), 0, "");
                 
                 //order.setUser(rs.getInt(8));
               

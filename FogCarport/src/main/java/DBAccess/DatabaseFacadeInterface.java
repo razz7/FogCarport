@@ -53,6 +53,8 @@ public interface DatabaseFacadeInterface {
     public void createUser(User user) throws LoginSampleException;
     
     public boolean verifyUser(String email, String password) throws LoginSampleException;
+    
+     public User getUserByEmail(String email) throws LoginSampleException;
 
 
 }

@@ -118,4 +118,10 @@ public class DatabaseFacade implements DatabaseFacadeInterface {
         return map.verifyUser(email, password);
     }
 
+    @Override
+    public User getUserByEmail(String email) throws LoginSampleException {
+        UserMapper map = new UserMapper();
+        return map.getUserByEmail(email);
+    }
+
 }

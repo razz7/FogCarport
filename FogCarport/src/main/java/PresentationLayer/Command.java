@@ -33,6 +33,7 @@ abstract class Command {
         commands.put( "updateLineitem", new UpdateLineitem() );
         commands.put( "finalPrice", new PriceCommand() );
         commands.put( "percent", new FinalizeOrder() );
+        commands.put( "login", new LoginCommand());
     }
 
     static Command from( HttpServletRequest request ) {
