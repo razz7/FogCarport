@@ -54,6 +54,7 @@ public class DatabaseFacade implements DatabaseFacadeInterface {
     }
 
 
+    @Override
     public Stykliste getLineitemsByOrderId(int order_id) throws MaterialSampleException {
         MaterialDBMapper map = new MaterialDBMapper();
         return map.getLineitemsByOrderId(order_id);
@@ -84,6 +85,7 @@ public class DatabaseFacade implements DatabaseFacadeInterface {
     }
 
 
+    @Override
     public void saveOrder(Order order) throws OrderSampleException{
         OrderDBMapper map = new OrderDBMapper();
         map.saveOrder(order);
@@ -128,26 +130,23 @@ public class DatabaseFacade implements DatabaseFacadeInterface {
         map.createUser(user);
     }
 
-//    @Override
-//    public boolean verifyUser(String email, String password) throws LoginSampleException {
-//        UserDBMapper map = new UserDBMapper();
-//        return map.verifyUser(email, password);
-//    }
-
-//    @Override
-//    public User getUserByEmail(String email) throws LoginSampleException {
-//        UserMapper map = new UserMapper();
-//        return map.getUserByEmail(email);
-//    }
-
     @Override
     public boolean verifyUser(String email, String password) throws LoginSampleException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        UserDBMapper map = new UserDBMapper();
+        return map.verifyUser(email, password);
     }
 
     @Override
     public User getUserByEmail(String email) throws LoginSampleException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        UserDBMapper map = new UserDBMapper();
+        return map.getUserByEmail(email);
+    }
+
+
+    @Override
+    public void deleteOrder(int order_id) throws OrderSampleException {
+        OrderDBMapper map = new OrderDBMapper();
+        map.deleteOrder(order_id);
     }
 
 }
