@@ -39,7 +39,7 @@ public class FogDataTest {
 
     private String url = "jdbc:mysql://167.99.209.155/fog?useUnicode=yes&characterEncoding=utf-8";
     private String user = "fog";
-    private String password = "projectFog:1234_5";
+    private String password = "projectFog:12345";
 
     // Fields for adding and removing materials and orders to share between unit tests.
     private int testMaterialId;
