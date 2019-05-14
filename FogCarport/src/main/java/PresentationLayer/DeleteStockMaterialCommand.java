@@ -6,6 +6,7 @@
 package PresentationLayer;
 
 import DBAccess.DatabaseFacade;
+import FunctionLayer.FunctionManager;
 import FunctionLayer.LoginSampleException;
 import FunctionLayer.Material;
 import FunctionLayer.MaterialSampleException;
@@ -21,6 +22,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author Rasmus2
  */
+<<<<<<< HEAD
 public class DeleteStockMaterialCommand extends Command {
     
     private String target;
@@ -28,17 +30,20 @@ public class DeleteStockMaterialCommand extends Command {
     DeleteStockMaterialCommand(String target) {
         this.target = target;
     }
+=======
+public class DeleteStockMaterialCommand implements Command {
+>>>>>>> b220211488bca6e491fc22002b4601c1560e931f
 
     @Override
-    String execute(HttpServletRequest request, HttpServletResponse response) throws LoginSampleException, OrderSampleException, MaterialSampleException {
+    public String execute(HttpServletRequest request, FunctionManager manager) throws LoginSampleException, OrderSampleException, MaterialSampleException {
         HttpSession session = request.getSession();
 
         int id = Integer.parseInt(request.getParameter("chosenStockMaterial"));
 
-        DatabaseFacade df = new DatabaseFacade();
-        df.deleteMaterial(id);
+        //DatabaseFacade df = new DatabaseFacade();
+        manager.deleteMaterial(id);
 
-        ArrayList<Material> materials = df.getAllMaterials();
+        ArrayList<Material> materials = manager.getAllMaterials();
         session.setAttribute("stockMaterialList", materials);
 
         return target;

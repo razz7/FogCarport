@@ -5,7 +5,7 @@
  */
 package FunctionLayer;
 
-import DBAccess.MaterialMapper;
+import DBAccess.MaterialDBMapper;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -16,7 +16,7 @@ import java.util.HashMap;
 public class CarportAlgorithm {
 
     public Stykliste carportAlgorithm(float width, float length, float roofTilt, float shedwidth, float shedLength, int styklist_id) throws MaterialSampleException {
-        MaterialMapper materialMap = new MaterialMapper();
+        MaterialDBMapper materialMap = new MaterialDBMapper();
         ArrayList<Material> mat = materialMap.getAllMaterials();
         HashMap<Integer, Material> materials = new HashMap<>();
         for (Material m : mat) {
@@ -692,7 +692,7 @@ public class CarportAlgorithm {
     }
 
     public static void main(String[] args) throws MaterialSampleException { //Main til at teste algoritme
-        MaterialMapper materialMap = new MaterialMapper();
+        MaterialDBMapper materialMap = new MaterialDBMapper();
         System.out.println("Material list");
         ArrayList<Material> materials = materialMap.getAllMaterials();
         for (Material mat : materials) {

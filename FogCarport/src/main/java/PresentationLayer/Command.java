@@ -1,16 +1,20 @@
 package PresentationLayer;
 
+import FunctionLayer.FunctionManager;
 import FunctionLayer.LoginSampleException;
 import FunctionLayer.MaterialSampleException;
 import FunctionLayer.OrderSampleException;
 import FunctionLayer.StyklistException;
-import java.util.HashMap;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
-abstract class Command {
+public interface Command {
 
+<<<<<<< HEAD
     abstract String execute( HttpServletRequest request, FunctionManager manager ) 
+=======
+
+    String execute( HttpServletRequest request, FunctionManager manager ) 
+>>>>>>> b220211488bca6e491fc22002b4601c1560e931f
             throws LoginSampleException, OrderSampleException, MaterialSampleException, StyklistException;
 
 }
