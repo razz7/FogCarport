@@ -30,7 +30,6 @@ public class DatabaseFacade implements DatabaseFacadeInterface {
     public void addNewMaterial(String item_description, float width, float height, String entity, String materialtype, float price, int quantity) throws MaterialSampleException {
         MaterialDBMapper mapper = new MaterialDBMapper();
         mapper.addNewMaterial(item_description, width, height, entity, materialtype, price, quantity);
-
     }
 
     @Override
