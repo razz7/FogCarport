@@ -23,19 +23,15 @@ import javax.servlet.http.HttpServletResponse;
 /**
  *
  * @author Rasmus2
- * 
+ *
  */
-
-
 @WebServlet(name = "FrontController", urlPatterns = {"/FrontController"})
 public class FrontController extends HttpServlet {
 
     private final FunctionManager manager = new FunctionManager();
 
-
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, StyklistException {
-
 
         String commandKey = request.getParameter("command");
         Command command = CommandFactory.commandFrom(commandKey);
@@ -43,7 +39,7 @@ public class FrontController extends HttpServlet {
             String target = command.execute(request, manager);
             RequestDispatcher dispatcher = request.getRequestDispatcher(target);
             dispatcher.forward(request, response);
-            
+
         } catch (CommandException ce) {
             request.setAttribute("message", ce.getMessage());
             RequestDispatcher dispatcher = request.getRequestDispatcher(
