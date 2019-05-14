@@ -71,13 +71,9 @@ public class CommandFactory {
     }
 
     public static synchronized Command commandFrom(String key) {
-        if (key == null) {
-            key = "back";
-        }
-        if (instance == null) {
-            instance = new CommandFactory();
-        }
-        return instance.commands.get(key);
+    if (key == null) key = "back";
+    if (instance == null) instance = new CommandFactory();
+    return instance.commands.get(key);
     }
 
 }
