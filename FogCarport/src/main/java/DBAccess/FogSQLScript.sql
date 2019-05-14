@@ -14,7 +14,7 @@ CREATE TABLE `fog`.`stock`(
   PRIMARY KEY (`item_id`));
 
 INSERT INTO `stock`(`item_id`, `item_description`, `width`, `height`, `entity`, `materialtype`, `price`, `stockquantity`) VALUES
-((1,'25x200 mm. trykimp. Brædt',25,200,'stk','Træ & Tagplader',0,0),
+(1,'25x200 mm. trykimp. Brædt',25,200,'stk','Træ & Tagplader',0,0),
 (2,'25x125mm. trykimp. Brædt.',25,125,'stk','Træ & Tagplader',0,0),
 (3,'38x73 mm. Lægte ubh.',38,73,'stk','Træ & Tagplader',0,0),
 (4,'45x95 mm. Reglar ub.',45,95,'stk','Træ & Tagplader',0,0),
@@ -49,17 +49,44 @@ INSERT INTO `stock`(`item_id`, `item_description`, `width`, `height`, `entity`, 
 (34,'4,5 x 70 mm. Skruer 200 stk.',4.5,70,'pk','Beslag & Skruer',0,0),
 (35,'4,5 x 50 mm. Skruer 350 stk.',4.5,50,'pk','Beslag & Skruer',0,0);
 
+CREATE TABLE IF NOT EXISTS `fog`.`orders` (
+  `order_id` INT(11) NOT NULL AUTO_INCREMENT,
+  `width` FLOAT NULL DEFAULT NULL,
+  `length` FLOAT NULL DEFAULT NULL,
+  `rooftilt` FLOAT NULL DEFAULT NULL,
+  `shedwidth` FLOAT NULL DEFAULT NULL,
+  `shedlength` FLOAT NULL DEFAULT NULL,
+  `status` TINYINT(4) NULL DEFAULT '0',
+  `customer_id` INT(11) NULL DEFAULT NULL,
+  `orderdate` DATE NULL DEFAULT NULL,
+  `customername` VARCHAR(45) NULL DEFAULT NULL,
+  PRIMARY KEY (`order_id`));
+
 
 CREATE TABLE `fog`.`lineitems` (
   `lineitems_id` INT(11) NOT NULL AUTO_INCREMENT,
   `item_id` INT(11) NULL DEFAULT NULL,
-  `order_id` INT(11) NULL DEFAULT NULL,
+  `order_id` INT(11) NOT NULL,
+foreign key(`order_id`) references orders(`order_id`),
   `item_description` TEXT NULL DEFAULT NULL,
   `width` FLOAT NULL DEFAULT NULL,
+  `length`FLOAT NULL DEFAULT NULL,
   `height` FLOAT NULL DEFAULT NULL,
   `entity` VARCHAR(45) NULL DEFAULT NULL,
   `materialtype` VARCHAR(45) NULL DEFAULT NULL,
   `price` FLOAT NULL DEFAULT NULL,
   `orderquantity` INT(11) NULL DEFAULT NULL,
   `versionnr` INT(11) NULL DEFAULT NULL,
-  PRIMARY KEY (`lineitems_id`));
+  PRIMARY KEY (`lineitems_id`, `order_id`),
+  CONSTRAINT `deleteOrder`
+    FOREIGN KEY (`order_id`)
+    REFERENCES `orders` (`order_id`)
+    ON DELETE CASCADE);
+
+CREATE TABLE IF NOT EXISTS `fog`.`users` (
+  `user_id` INT(11) NOT NULL AUTO_INCREMENT,
+  `email` VARCHAR(200) NULL DEFAULT NULL,
+  `role` VARCHAR(45) NULL DEFAULT NULL,
+  `securepassword` VARCHAR(45) NULL DEFAULT NULL,
+  `salt` VARCHAR(45) NULL DEFAULT NULL,
+  PRIMARY KEY (`user_id`));
