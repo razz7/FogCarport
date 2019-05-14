@@ -11,6 +11,8 @@ import FunctionLayer.MaterialSampleException;
 import FunctionLayer.OrderSampleException;
 import FunctionLayer.StyklistException;
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -36,7 +38,7 @@ public class FrontController extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException, StyklistException {
             String command = request.getParameter("command");
             Command action = CommandFactory.commandFrom(command);
         try {
@@ -62,7 +64,12 @@ public class FrontController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (StyklistException ex) {
+            Logger.getLogger(FrontController.class.getName()).log(Level.SEVERE,
+                    null, ex);
+        }
     }
 
     /**
@@ -76,7 +83,12 @@ public class FrontController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (StyklistException ex) {
+            Logger.getLogger(FrontController.class.getName()).log(Level.SEVERE,
+                    null, ex);
+        }
     }
 
     /**

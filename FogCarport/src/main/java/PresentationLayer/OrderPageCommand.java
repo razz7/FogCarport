@@ -51,7 +51,11 @@ class OrderPageCommand implements Command{
 
 
 //    @Override
+<<<<<<< HEAD
 //    String execute(HttpServletRequest request, HttpServletResponse response) throws LoginSampleException, OrderSampleException, MaterialSampleException, StyklistException {
+=======
+//    Public String execute(HttpServletRequest request, HttpServletResponse response) throws LoginSampleException, OrderSampleException, MaterialSampleException, StyklistException {
+>>>>>>> 0bbfbb8c0e5a43b6de7474f72376da773490a9cb
 //        
 //        HttpSession session = request.getSession();
 //
@@ -82,7 +86,12 @@ class OrderPageCommand implements Command{
 //            session.setAttribute("list", sl);
 //            return "shop";
 //        }
+<<<<<<< HEAD
 //
 //    }
+=======
 
-}
+    }
+>>>>>>> 0bbfbb8c0e5a43b6de7474f72376da773490a9cb
+
+
