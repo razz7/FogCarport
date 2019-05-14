@@ -54,7 +54,12 @@ public interface DatabaseFacadeInterface {
     
     public boolean verifyUser(String email, String password) throws LoginSampleException;
     
-     public User getUserByEmail(String email) throws LoginSampleException;
-
+    public User getUserByEmail(String email) throws LoginSampleException;
+    
+    public abstract void deleteOrder(int order_id) throws OrderSampleException;
+             
+    public abstract Stykliste getLineitemsByOrderId(int order_id)throws MaterialSampleException;
+            
+ 
 
 }
