@@ -30,8 +30,8 @@ public class MainPageCommand implements Command {
     public String execute(HttpServletRequest request, FunctionManager manager) throws LoginSampleException, OrderSampleException, MaterialSampleException {
         String email = request.getParameter("email");
         String password = request.getParameter("password");
-        LogicFacade logic = new LogicFacade();
-        User user = logic.login(email, password);
+        //LogicFacade logic = new LogicFacade();
+        User user = manager.login(email, password);
 
         return target;
         //return user.getRole() + "page";

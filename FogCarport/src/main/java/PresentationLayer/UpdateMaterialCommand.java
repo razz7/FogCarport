@@ -22,8 +22,8 @@ import javax.servlet.http.HttpSession;
  *
  * @author Ludvig
  */
-public class UpdateMaterialCommand implements Command{
-    
+public class UpdateMaterialCommand implements Command {
+
     private String target;
 
     UpdateMaterialCommand(String target) {
@@ -31,9 +31,9 @@ public class UpdateMaterialCommand implements Command{
     }
 
     @Override
-    public String execute(HttpServletRequest request, FunctionManager manager) throws LoginSampleException, OrderSampleException, MaterialSampleException {
+    public String execute(HttpServletRequest request, FunctionManager manager) throws LoginSampleException, OrderSampleException, MaterialSampleException, ClassNotFoundException {
         HttpSession session = request.getSession();
-        
+
         int id = Integer.parseInt(request.getParameter("id"));
         String description = request.getParameter("description");
         float width = Float.parseFloat(request.getParameter("width"));
@@ -42,20 +42,13 @@ public class UpdateMaterialCommand implements Command{
         String type = request.getParameter("type");
         float price = Float.parseFloat(request.getParameter("price"));
         int qty = Integer.parseInt(request.getParameter("qty"));
-        
-        DatabaseFacade df = new DatabaseFacade();
-        try {
-            df.updateMaterialData(id, description, width, height, entity, type, price, qty);
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(UpdateMaterialCommand.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-        ArrayList<Material> materials = df.getAllMaterials();
+
+        //DatabaseFacade df = new DatabaseFacade();
+        manager.updateMaterialData(id, description, width, height, entity, type, price, qty);
+
+        ArrayList<Material> materials = manager.getAllMaterials();
         session.setAttribute("stockMaterialList", materials);
-        
+
         return target;
     }
-    
-    
-    
 }

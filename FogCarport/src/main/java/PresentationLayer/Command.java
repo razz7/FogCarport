@@ -10,6 +10,6 @@ import javax.servlet.http.HttpServletRequest;
 public interface Command {
 
     String execute( HttpServletRequest request, FunctionManager manager ) 
-            throws LoginSampleException, OrderSampleException, MaterialSampleException, StyklistException, CommandException;
+            throws LoginSampleException, OrderSampleException, MaterialSampleException, StyklistException, CommandException, ClassNotFoundException;
 
 }

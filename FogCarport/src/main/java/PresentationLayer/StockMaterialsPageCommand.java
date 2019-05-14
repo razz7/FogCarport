@@ -41,8 +41,8 @@ public class StockMaterialsPageCommand implements Command {
         //LogicFacade logic = new LogicFacade();
         //User user = logic.login(email, password);
         
-        DatabaseFacade df = new DatabaseFacade();
-        ArrayList<Material> materials = df.getAllMaterials();
+        //DatabaseFacade df = new DatabaseFacade();
+        ArrayList<Material> materials = manager.getAllMaterials();
         HttpSession session = request.getSession();
         session.setAttribute("stockMaterialList", materials);
         

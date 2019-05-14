@@ -27,10 +27,7 @@ public class DatabaseFacade implements DatabaseFacadeInterface {
         return mapper.getAllMaterials();
     }
 
-<<<<<<< HEAD
-=======
     @Override
->>>>>>> 1467600b61c97a4ad4a3c67bd00b10d6e1aeb8df
     public void addNewMaterial(String item_description, float width, float height, String entity, String materialtype, float price, int quantity) throws MaterialSampleException {
         MaterialDBMapper mapper = new MaterialDBMapper();
         mapper.addNewMaterial(item_description, width, height, entity, materialtype, price, quantity);
@@ -66,14 +63,11 @@ public class DatabaseFacade implements DatabaseFacadeInterface {
         return map.getAllMaterialbyType(type);
     }
 
-<<<<<<< HEAD
 //    @Override
 //    public void addNewMaterial(String item_description, float width, float height, String entity, String materialtype, float price, int quantity) throws MaterialSampleException {
 //        MaterialDBMapper map = new MaterialDBMapper();
 //        map.addNewMaterial(item_description, width, height, entity, materialtype, price, quantity);
 //    }
-=======
->>>>>>> 1467600b61c97a4ad4a3c67bd00b10d6e1aeb8df
     @Override
     public ArrayList<Order> getAllOrders() throws OrderSampleException {
         OrderDBMapper map = new OrderDBMapper();

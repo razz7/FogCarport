@@ -57,8 +57,8 @@ class OrderPageCommand implements Command {
             Stykliste sl = manager.carportAlgorithm(width, length, roofTilt, shedWidth, shedLength, id);
             order.setStyklist(sl);
 
-            DatabaseFacade dbf = new DatabaseFacade();
-            dbf.saveOrder(order);
+            //DatabaseFacade dbf = new DatabaseFacade();
+            manager.saveOrder(order);
 
             session.setAttribute("order", order);
             session.setAttribute("stykliste", sl);

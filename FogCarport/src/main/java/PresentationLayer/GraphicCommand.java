@@ -32,14 +32,13 @@ public class GraphicCommand implements Command {
     
     @Override
     public String execute(HttpServletRequest request, FunctionManager manager) throws LoginSampleException, OrderSampleException, MaterialSampleException {
-            HttpSession session = request.getSession();
-
+        HttpSession session = request.getSession();
         session.setAttribute("order", null);
 
         if (request.getParameter("thisOrder") != null) {
             int orderId = Integer.parseInt(request.getParameter("thisOrder"));
-            OrderDBMapper om = new OrderDBMapper();
-            Order order = om.getOrderFromId(orderId);
+            //OrderDBMapper om = new OrderDBMapper();
+            Order order = manager.getOrderFromId(orderId);
             session.setAttribute("order", order);
 
             //CarportAlgorithm car = new CarportAlgorithm();
@@ -61,9 +60,9 @@ public class GraphicCommand implements Command {
                 //throw new MaterialSampleException("Fejl i mål");
                 return target;
             } else {
-                CarportAlgorithm ca = new CarportAlgorithm();
+                //CarportAlgorithm ca = new CarportAlgorithm();
                 Order order = new Order(0, width, length, height, roofTilt, shedWidth, shedLength);
-                Stykliste sl = ca.carportAlgorithm(width, length, roofTilt, shedWidth, shedLength, 0);
+                Stykliste sl = manager.carportAlgorithm(width, length, roofTilt, shedWidth, shedLength, 0);
                 order.setStyklist(sl);
 
                 session.setAttribute("order", order);

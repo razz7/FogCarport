@@ -11,6 +11,7 @@ import FunctionLayer.LoginSampleException;
 import FunctionLayer.Material;
 import FunctionLayer.MaterialSampleException;
 import FunctionLayer.OrderSampleException;
+import FunctionLayer.StyklistException;
 import java.util.ArrayList;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -20,25 +21,23 @@ import javax.servlet.http.HttpSession;
  *
  * @author rh
  */
-public class stockListScrews implements Command {
+public class StockListTagpakkeCommand implements Command {
     
     private String target;
 
-    stockListScrews(String target) {
+    StockListTagpakkeCommand(String target) {
         this.target = target;
     }
 
     @Override
-    public String execute(HttpServletRequest request, FunctionManager manager) throws LoginSampleException, OrderSampleException, MaterialSampleException {
-        
-        DatabaseFacade df = new DatabaseFacade();
-        ArrayList<Material> materials = df.getAllMaterialbyType("Beslag & Skruer");
+    public String execute(HttpServletRequest request, FunctionManager manager) throws LoginSampleException, OrderSampleException, MaterialSampleException, StyklistException {
+        //DatabaseFacade df = new DatabaseFacade();
+        ArrayList<Material> materials = manager.getAllMaterialbyType("Træ & Tagplader");
         System.out.println(materials);
         HttpSession session = request.getSession();
-        session.setAttribute("stockListScrews", materials);
+        session.setAttribute("stockListWood", materials);
         
         return target;
     }
-    
 }
-    
+   

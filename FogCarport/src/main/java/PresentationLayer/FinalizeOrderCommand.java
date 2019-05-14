@@ -23,11 +23,11 @@ import javax.servlet.http.HttpSession;
  *
  * @author Ludvig
  */
-public class FinalizeOrder implements Command{
+public class FinalizeOrderCommand implements Command{
     
     private String target;
 
-    FinalizeOrder(String target) {
+    FinalizeOrderCommand(String target) {
         this.target = target;
     }
 
@@ -37,13 +37,13 @@ public class FinalizeOrder implements Command{
         if(request.getParameter("thisOrder") != null){
             int orderId = Integer.parseInt(request.getParameter("thisOrder"));
             
-            DatabaseFacade dbf = new DatabaseFacade();
-            dbf.finalizeOrder(orderId);
+            //DatabaseFacade dbf = new DatabaseFacade();
+            manager.finalizeOrder(orderId);
             
-            Order order = dbf.getOrderFromId(orderId);           
+            Order order = manager.getOrderFromId(orderId);           
             order.setOrderStatus(true);
             
-            ArrayList<Order> allOrders = dbf.getAllOrders();
+            ArrayList<Order> allOrders = manager.getAllOrders();
             request.setAttribute("allOrders", allOrders);
         }
         

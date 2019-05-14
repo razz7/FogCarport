@@ -36,10 +36,10 @@ public class DeleteStockMaterialCommand implements Command {
 
         int id = Integer.parseInt(request.getParameter("chosenStockMaterial"));
 
-        DatabaseFacade df = new DatabaseFacade();
-        df.deleteMaterial(id);
+        //DatabaseFacade df = new DatabaseFacade();
+        manager.deleteMaterial(id);
 
-        ArrayList<Material> materials = df.getAllMaterials();
+        ArrayList<Material> materials = manager.getAllMaterials();
         session.setAttribute("stockMaterialList", materials);
 
         return target;

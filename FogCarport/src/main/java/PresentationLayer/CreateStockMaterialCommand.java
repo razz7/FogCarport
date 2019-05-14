@@ -43,11 +43,11 @@ public class CreateStockMaterialCommand implements Command {
         float price = Float.parseFloat(request.getParameter("price"));
         int qty = Integer.parseInt(request.getParameter("qty"));
         
-        DatabaseFacade df = new DatabaseFacade();
+        //DatabaseFacade df = new DatabaseFacade();
         
-        df.addNewMaterial(description, width, height, entity, type, price, qty);
+        manager.addNewMaterial(description, width, height, entity, type, price, qty);
         
-        ArrayList<Material> materials = df.getAllMaterials();
+        ArrayList<Material> materials = manager.getAllMaterials();
         session.setAttribute("stockMaterialList", materials);
         
         return target;
