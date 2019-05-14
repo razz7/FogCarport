@@ -46,7 +46,7 @@
                     }
                                                       
                     out.print("<td>" + orders.get(i).getOrderdate() + "</td>");
-                    out.print("<td>"  + orders.get(i).getUser().getEmail() + "</td>");
+                    //out.print("<td>"  + orders.get(i).getUser().getEmail() + "</td>");
                     out.print("<td>");
                     out.println("<form action=\"FrontController\" method=\"post\">");
                     out.println("<input type=\"hidden\" name=\"command\" value=\"styklistpage\">");

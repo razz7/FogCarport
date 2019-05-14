@@ -50,11 +50,11 @@ class OrderPageCommand implements Command {
             return target;
         } else {
 
-            CarportAlgorithm ca = new CarportAlgorithm();
+            //CarportAlgorithm ca = new CarportAlgorithm();
             User user = new User(name, 1, "");
             Order order = new Order(id, width, length, height, roofTilt, shedWidth, shedLength);
             order.setUser(user);
-            Stykliste sl = ca.carportAlgorithm(width, length, roofTilt, shedWidth, shedLength, id);
+            Stykliste sl = manager.carportAlgorithm(width, length, roofTilt, shedWidth, shedLength, id);
             order.setStyklist(sl);
 
             DatabaseFacade dbf = new DatabaseFacade();
