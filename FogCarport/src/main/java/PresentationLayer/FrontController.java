@@ -24,21 +24,24 @@ import javax.servlet.http.HttpServletResponse;
 /**
  *
  * @author Rasmus2
+ * 
  */
+
+
 @WebServlet(name = "FrontController", urlPatterns = {"/FrontController"})
 public class FrontController extends HttpServlet {
 
     private final FunctionManager manager = new FunctionManager();
 
-    @Override
-    protected void service(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException, StyklistException {
         String commandKey = request.getParameter("command");
         Command command = CommandFactory.commandFrom(commandKey);
         try {
             String target = command.execute(request, manager);
             RequestDispatcher dispatcher = request.getRequestDispatcher(target);
             dispatcher.forward(request, response);
+            
         } catch (CommandException ce) {
             request.setAttribute("message", ce.getMessage());
             RequestDispatcher dispatcher = request.getRequestDispatcher(ce.getTarget());
@@ -55,6 +58,7 @@ public class FrontController extends HttpServlet {
             request.setAttribute("message", se.getMessage());
             RequestDispatcher dispatcher = request.getRequestDispatcher(se.getTarget());
             dispatcher.forward(request, response);
+
         } catch (Exception e) {
             PrintWriter out = response.getWriter();
             out.println("<!DOCTYPE html>");
@@ -70,9 +74,53 @@ public class FrontController extends HttpServlet {
         }
     }
 
+    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+    /**
+     * Handles the HTTP <code>GET</code> method.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        try {
+            processRequest(request, response);
+        } catch (StyklistException ex) {
+            Logger.getLogger(FrontController.class.getName()).log(Level.SEVERE,
+                    null, ex);
+        }
+    }
+
+    /**
+     * Handles the HTTP <code>POST</code> method.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        try {
+            processRequest(request, response);
+        } catch (StyklistException ex) {
+            Logger.getLogger(FrontController.class.getName()).log(Level.SEVERE,
+                    null, ex);
+        }
+    }
+
+    /**
+     * Returns a short description of the servlet.
+     *
+     * @return a String containing servlet description
+     */
     @Override
     public String getServletInfo() {
         return "Short description";
-    }
+    }// </editor-fold>
 
 }
