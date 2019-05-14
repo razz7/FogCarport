@@ -20,7 +20,7 @@ import java.util.ArrayList;
  *
  * @author Ludvig
  */
-class StyklisteDBMapper extends StyklisteMapper {
+public class StyklisteDBMapper extends StyklisteMapper {
 
     private Connector dbc = new Connector();
 

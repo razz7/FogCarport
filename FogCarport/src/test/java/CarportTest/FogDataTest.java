@@ -1,9 +1,12 @@
 package CarportTest;
 
 import DBAccess.Connector;
+import DBAccess.MaterialDBMapper;
 import DBAccess.MaterialMapper;
+import DBAccess.OrderDBMapper;
 import DBAccess.OrderMapper;
 import DBAccess.StyklisteMapper;
+import DBAccess.StyklisteDBMapper;
 import DBAccess.UserMapper;
 import FunctionLayer.LogicFacade;
 import FunctionLayer.LoginSampleException;
@@ -58,7 +61,7 @@ public class FogDataTest {
      */
     @Test
     public void testGetMaterialbyID() throws MaterialSampleException {
-        MaterialMapper map = new MaterialMapper();
+        MaterialDBMapper map = new MaterialDBMapper();
         try {
             Material materialById = map.getMaterialbyID(10);
             String materialName = "hulbånd 1x20 mm. 10 mtr.";
@@ -71,7 +74,7 @@ public class FogDataTest {
 
     @Test
     public void teastGetAllMaterialbyType() throws MaterialSampleException {
-        MaterialMapper map = new MaterialMapper();
+        MaterialDBMapper map = new MaterialDBMapper();
         try {
             ArrayList<Material> testArr1 = map.getAllMaterialbyType("Træ & Tagplader");
             assertThat(testArr1.get(1).getMaterialType(), is("Træ & Tagplader"));
@@ -89,7 +92,7 @@ public class FogDataTest {
 
     @Test
     public void testAddNewMaterial() throws MaterialSampleException {
-        MaterialMapper map = new MaterialMapper();
+        MaterialDBMapper map = new MaterialDBMapper();
         try {
             map.addNewMaterial("TestMaterial", 0.0f, 0.0f, "testEntity", "tesType", 0f, 1);
         } catch (MaterialSampleException me) {
@@ -99,7 +102,7 @@ public class FogDataTest {
 
     @Test
     public void testGetAllMaterials() throws MaterialSampleException {
-        MaterialMapper map = new MaterialMapper();
+        MaterialDBMapper map = new MaterialDBMapper();
         try {
             ArrayList<Material> testArr = map.getAllMaterials();
             for (Material mats : testArr) {
@@ -114,7 +117,7 @@ public class FogDataTest {
 
     @Test
     public void testUpdateMaterialData() throws MaterialSampleException, ClassNotFoundException {
-        MaterialMapper map = new MaterialMapper();
+        MaterialDBMapper map = new MaterialDBMapper();
         try {
             map.updateMaterialData(testMaterialId, "TestMaterial", 0.0f, 0.0f, "testEntity", "changed!", 0f, 1);
 
@@ -129,7 +132,7 @@ public class FogDataTest {
 
     @Test
     public void teatDeleteMaterial() throws MaterialSampleException {
-        MaterialMapper map = new MaterialMapper();
+        MaterialDBMapper map = new MaterialDBMapper();
         try {
             map.deleteMaterial(testMaterialId);
         } catch (MaterialSampleException me) {
@@ -139,7 +142,7 @@ public class FogDataTest {
 
     @Test
     public void testGetOrderFromId() throws OrderSampleException {
-        OrderMapper omap = new OrderMapper();
+        OrderDBMapper omap = new OrderDBMapper();
         try {
             Order orderById = omap.getOrderFromId(23);
             float orderLength = 7800;
@@ -153,20 +156,18 @@ public class FogDataTest {
 
     @Test
     public void testSaveOrder() throws OrderSampleException, StyklistException {
-        OrderMapper map = new OrderMapper();
+        OrderDBMapper map = new OrderDBMapper();
         try {
             Order testOrder = new Order(1, 6000, 7800, 2300, 0, 3333, 2100);
             map.saveOrder(testOrder);
         } catch (OrderSampleException oe) {
             fail("Caught a OrderSampleException");
-        } catch (StyklistException se) {
-            fail("Caught a StyklistException");
         }
     }
 
     @Test
     public void testGetAllOrders() throws OrderSampleException {
-        OrderMapper map = new OrderMapper();
+        OrderDBMapper map = new OrderDBMapper();
         try {
             ArrayList<Order> testOrderArr = map.getAllOrders();
             for (Order orders : testOrderArr) {
@@ -199,8 +200,8 @@ public class FogDataTest {
      */
     @Test
     public void testSaveLineItemsInDB() throws StyklistException, OrderSampleException, MaterialSampleException {
-        StyklisteMapper map = new StyklisteMapper();
-        OrderMapper omap = new OrderMapper();
+        StyklisteDBMapper map = new StyklisteDBMapper();
+        OrderDBMapper omap = new OrderDBMapper();
         LogicFacade logic = new LogicFacade();
         try {
             Order orderById = omap.getOrderFromId(testOrderId);
@@ -208,8 +209,6 @@ public class FogDataTest {
             Stykliste styk = logic.carportAlgorithm(orderById.getWidth(), orderById.getLength(), orderById.getRoofTilt(), orderById.getShedWidth(), orderById.getShedLength(), 1);
             assertNotNull(styk);
             map.saveLineItemsInDB(styk, testOrderId);
-        } catch (StyklistException se) {
-            fail("Caught a StyklistException");
         } catch (OrderSampleException oe) {
             fail("Caught a OrderSampleException");
         } catch (MaterialSampleException me) {
@@ -219,8 +218,8 @@ public class FogDataTest {
 
     @Test
     public void testEditLineItemsFromOrderID() throws OrderSampleException {
-        OrderMapper omap = new OrderMapper();
-        StyklisteMapper map = new StyklisteMapper();
+        OrderDBMapper omap = new OrderDBMapper();
+        StyklisteDBMapper map = new StyklisteDBMapper();
         try {
             Order orderById = omap.getOrderFromId(testOrderId);
             assertNotNull(orderById);
@@ -234,7 +233,7 @@ public class FogDataTest {
 
     @Test
     public void testGetMaterialFromLineItems() throws StyklistException {
-        StyklisteMapper map = new StyklisteMapper();
+        StyklisteDBMapper map = new StyklisteDBMapper();
         try {
             Material lineMat = map.getMaterialFromLineItems(testLineitem);
             assertNotNull(lineMat);
@@ -246,7 +245,7 @@ public class FogDataTest {
 
     @Test
     public void testGetStyklistFromOrder() throws OrderSampleException {
-        OrderMapper map = new OrderMapper();
+        OrderDBMapper map = new OrderDBMapper();
         try {
             Stykliste styk = map.getStyklistForOrder(testOrderId);
             assertNotNull(styk);
@@ -258,7 +257,7 @@ public class FogDataTest {
 
     @Test
     public void testFinalizeOrder() throws OrderSampleException {
-        OrderMapper omap = new OrderMapper();
+        OrderDBMapper omap = new OrderDBMapper();
         try {
             Order orderById = omap.getOrderFromId(testOrderId);
             assertFalse(orderById.isOrderStatus());
