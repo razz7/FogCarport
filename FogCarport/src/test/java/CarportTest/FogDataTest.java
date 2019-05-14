@@ -155,7 +155,7 @@ public class FogDataTest {
     }
 
     @Test
-    public void testSaveOrder() throws OrderSampleException, StyklistException {
+    public void testSaveOrder() throws OrderSampleException {
         OrderDBMapper map = new OrderDBMapper();
         try {
             Order testOrder = new Order(1, 6000, 7800, 2300, 0, 3333, 2100);
@@ -199,7 +199,7 @@ public class FogDataTest {
     }
      */
     @Test
-    public void testSaveLineItemsInDB() throws StyklistException, OrderSampleException, MaterialSampleException {
+    public void testSaveLineItemsInDB() throws OrderSampleException, MaterialSampleException {
         StyklisteDBMapper map = new StyklisteDBMapper();
         OrderDBMapper omap = new OrderDBMapper();
         LogicFacade logic = new LogicFacade();
