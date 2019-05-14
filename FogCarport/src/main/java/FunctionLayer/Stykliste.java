@@ -12,8 +12,8 @@ import java.util.ArrayList;
  * @author rasmu
  */
 public class Stykliste {
-    private ArrayList<Material> styklist;
-    private int styklist_id;
+    private final ArrayList<Material> styklist;
+    private final int styklist_id;
 
     public Stykliste(ArrayList<Material> styklist, int styklist_id) {
         this.styklist = styklist;

@@ -6,7 +6,6 @@
 package PresentationLayer;
 
 import FunctionLayer.FunctionManager;
-import FunctionLayer.LoginSampleException;
 import FunctionLayer.MaterialSampleException;
 import FunctionLayer.OrderSampleException;
 import FunctionLayer.StyklistException;
@@ -33,8 +32,11 @@ public class FrontController extends HttpServlet {
 
     private final FunctionManager manager = new FunctionManager();
 
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, StyklistException {
+
+
         String commandKey = request.getParameter("command");
         Command command = CommandFactory.commandFrom(commandKey);
         try {
@@ -44,19 +46,23 @@ public class FrontController extends HttpServlet {
             
         } catch (CommandException ce) {
             request.setAttribute("message", ce.getMessage());
-            RequestDispatcher dispatcher = request.getRequestDispatcher(ce.getTarget());
+            RequestDispatcher dispatcher = request.getRequestDispatcher(
+                    ce.getTarget());
             dispatcher.forward(request, response);
         } catch (OrderSampleException oe) {
             request.setAttribute("message", oe.getMessage());
-            RequestDispatcher dispatcher = request.getRequestDispatcher(oe.getTarget());
+            RequestDispatcher dispatcher = request.getRequestDispatcher(
+                    oe.getTarget());
             dispatcher.forward(request, response);
         } catch (MaterialSampleException me) {
             request.setAttribute("message", me.getMessage());
-            RequestDispatcher dispatcher = request.getRequestDispatcher(me.getTarget());
+            RequestDispatcher dispatcher = request.getRequestDispatcher(
+                    me.getTarget());
             dispatcher.forward(request, response);
         } catch (StyklistException se) {
             request.setAttribute("message", se.getMessage());
-            RequestDispatcher dispatcher = request.getRequestDispatcher(se.getTarget());
+            RequestDispatcher dispatcher = request.getRequestDispatcher(
+                    se.getTarget());
             dispatcher.forward(request, response);
 
         } catch (Exception e) {
