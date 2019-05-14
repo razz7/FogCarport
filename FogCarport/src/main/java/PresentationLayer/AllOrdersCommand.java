@@ -20,6 +20,12 @@ import javax.servlet.http.HttpSession;
  * @author Rumle
  */
 public class AllOrdersCommand extends Command{
+    
+    private String target;
+
+    AllOrdersCommand(String target) {
+        this.target = target;
+    }
 
     @Override
     String execute(HttpServletRequest request, HttpServletResponse response) throws LoginSampleException, OrderSampleException, MaterialSampleException {
@@ -28,7 +34,7 @@ public class AllOrdersCommand extends Command{
         //HttpSession session = request.getSession();
         request.setAttribute("allOrders", allOrders);
         
-        return "allOrdersPage";
+        return target;
     }
     
 }

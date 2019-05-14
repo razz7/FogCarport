@@ -22,6 +22,12 @@ import javax.servlet.http.HttpSession;
  * @author Rasmus2
  */
 public class DeleteStockMaterialCommand extends Command {
+    
+    private String target;
+
+    DeleteStockMaterialCommand(String target) {
+        this.target = target;
+    }
 
     @Override
     String execute(HttpServletRequest request, HttpServletResponse response) throws LoginSampleException, OrderSampleException, MaterialSampleException {
@@ -35,6 +41,6 @@ public class DeleteStockMaterialCommand extends Command {
         ArrayList<Material> materials = df.getAllMaterials();
         session.setAttribute("stockMaterialList", materials);
 
-        return "stockmaterialspage";
+        return target;
     }
 }

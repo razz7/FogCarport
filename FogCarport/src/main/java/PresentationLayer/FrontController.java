@@ -35,7 +35,8 @@ public class FrontController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
-            Command action = Command.from(request);
+            String commandKey = request.getParameter("command");
+            Command action = CommandFactory.commandFrom(commandKey);
             String view = action.execute(request, response);
             request.getRequestDispatcher(view).forward(request, response);
         } catch (LoginSampleException | OrderSampleException | MaterialSampleException | StyklistException ex) {
