@@ -22,6 +22,9 @@ public class FunctionManager {
     private final MaterialMapper MatMapper = MaterialMapper.instance();
     private final UserMapper UseMapper = UserMapper.instance();
     private CarportAlgorithm ca = new CarportAlgorithm();
+    private EncryptionFacade ef = new EncryptionFacade();
+
+    
 
     public void editLineItemsFromOrderID(int item_id, String item_description, float width, float height,
             String entity, String materialtype, float price, int orderquantity, int order_id) {

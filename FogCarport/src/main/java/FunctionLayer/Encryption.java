@@ -19,7 +19,7 @@ import javax.crypto.SecretKeyFactory;
  *
  * @author Rumle
  */
-public class Encryption {
+public class Encryption extends EncryptionFacade{
 
    private static final Random Random = new SecureRandom();
    private static final String alphabet =
@@ -28,6 +28,7 @@ public class Encryption {
    private static final int KEY_LENGTH= 256;
    private Scanner scanner = new Scanner(System.in);
    
+   @Override
    public String getSalt(int length) {
        StringBuilder returnValue = new StringBuilder(length);
        
@@ -37,6 +38,8 @@ public class Encryption {
        }
        return new String(returnValue);
    }
+   
+   @Override
    public byte[] hash(char[] password, byte[] salt) {
        PBEKeySpec spec = new PBEKeySpec(password, salt, ITERATIONS, KEY_LENGTH);
        Arrays.fill(password, Character.MIN_VALUE );
@@ -51,6 +54,8 @@ public class Encryption {
            }
            
        }
+   
+   @Override
    public String generateSecurePassword(String password, String salt) {
        String returnValue = null;
        
@@ -60,6 +65,7 @@ public class Encryption {
        return returnValue;
    }
    
+   @Override
    public boolean verifyUserPassword(String providedPassword, String securepassword, String salt) {
        boolean returnValue = false;
        
