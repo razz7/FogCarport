@@ -6,14 +6,11 @@
 package PresentationLayer;
 
 import FunctionLayer.FunctionManager;
-import FunctionLayer.LoginSampleException;
 import FunctionLayer.MaterialSampleException;
 import FunctionLayer.OrderSampleException;
 import FunctionLayer.StyklistException;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -31,7 +28,8 @@ public class FrontController extends HttpServlet {
     private final FunctionManager manager = new FunctionManager();
 
     @Override
-    protected void service(HttpServletRequest request, HttpServletResponse response)
+    protected void service(HttpServletRequest request,
+            HttpServletResponse response)
             throws ServletException, IOException {
         String commandKey = request.getParameter("command");
         Command command = CommandFactory.commandFrom(commandKey);
@@ -41,19 +39,23 @@ public class FrontController extends HttpServlet {
             dispatcher.forward(request, response);
         } catch (CommandException ce) {
             request.setAttribute("message", ce.getMessage());
-            RequestDispatcher dispatcher = request.getRequestDispatcher(ce.getTarget());
+            RequestDispatcher dispatcher = request.getRequestDispatcher(
+                    ce.getTarget());
             dispatcher.forward(request, response);
         } catch (OrderSampleException oe) {
             request.setAttribute("message", oe.getMessage());
-            RequestDispatcher dispatcher = request.getRequestDispatcher(oe.getTarget());
+            RequestDispatcher dispatcher = request.getRequestDispatcher(
+                    oe.getTarget());
             dispatcher.forward(request, response);
         } catch (MaterialSampleException me) {
             request.setAttribute("message", me.getMessage());
-            RequestDispatcher dispatcher = request.getRequestDispatcher(me.getTarget());
+            RequestDispatcher dispatcher = request.getRequestDispatcher(
+                    me.getTarget());
             dispatcher.forward(request, response);
         } catch (StyklistException se) {
             request.setAttribute("message", se.getMessage());
-            RequestDispatcher dispatcher = request.getRequestDispatcher(se.getTarget());
+            RequestDispatcher dispatcher = request.getRequestDispatcher(
+                    se.getTarget());
             dispatcher.forward(request, response);
         } catch (Exception e) {
             PrintWriter out = response.getWriter();
