@@ -146,5 +146,20 @@ public class OrderDBMapper extends OrderMapper {
             throw new OrderSampleException(ex.getMessage());
         }
     }
+    
+    @Override
+    public void deleteOrder(int order_id) throws OrderSampleException {
+        try {
+            String sql = "DELETE FROM fog.orders WHERE order_id=?";
+
+            Connection con = dbc.connection();
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, order_id);
+            ps.executeUpdate();
+
+        } catch (SQLException | ClassNotFoundException ex) {
+            throw new OrderSampleException(ex.getMessage());
+        }
+    }
 
 }

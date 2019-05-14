@@ -39,6 +39,8 @@ public abstract class OrderMapper {
     public abstract void saveOrder(Order order) throws OrderSampleException;
         
     public abstract void finalizeOrder(int order_id) throws OrderSampleException;
+    
+    public abstract void deleteOrder(int order_id) throws OrderSampleException;
         
     public static void main(String[] args) throws OrderSampleException, MaterialSampleException, LoginSampleException, ClassNotFoundException, StyklistException{
         Order order = new Order(6000, 7800, 0, 5300, 2100, 1, 1);

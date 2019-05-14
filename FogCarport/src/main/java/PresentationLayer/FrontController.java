@@ -45,6 +45,8 @@ public class FrontController extends HttpServlet {
         } catch (LoginSampleException | OrderSampleException | MaterialSampleException ex) {
             request.setAttribute("error", ex.getMessage());
             request.getRequestDispatcher("index.jsp").forward(request, response);
+        } catch(StyklistException e) {
+            request.setAttribute("error", e.getMessage());
         }
     }
 

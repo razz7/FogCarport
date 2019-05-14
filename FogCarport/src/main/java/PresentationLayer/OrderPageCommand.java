@@ -50,39 +50,39 @@ class OrderPageCommand implements Command{
     }
 
 
-    @Override
-    String execute(HttpServletRequest request, HttpServletResponse response) throws LoginSampleException, OrderSampleException, MaterialSampleException, StyklistException {
-        
-        HttpSession session = request.getSession();
-
-        float width = Float.parseFloat(request.getParameter("width"));
-        float length = Float.parseFloat(request.getParameter("length"));
-        float shedLength = Float.parseFloat(request.getParameter("shedLength"));
-        float shedWidth = Float.parseFloat(request.getParameter("shedWidth"));
-        float roofTilt = Integer.parseInt(request.getParameter("roof"));
-        String name = request.getParameter("name");
-        float height = 2300;
-        int id = 0;
-
-        if (width > 7500 || width < 2400 || length > 7800 || length < 2400 || shedLength > 6900 || shedLength < 1500 || shedWidth > 7200 || shedWidth < 2100 || roofTilt > 45 || roofTilt < 0) {
-            throw new MaterialSampleException("Fejl i mål");
-        } else {
-            
-            CarportAlgorithm ca = new CarportAlgorithm();
-            User user = new User(name, 0, "");
-            Order order = new Order(id, width, length, height, roofTilt, shedWidth, shedLength);
-            order.setUser(user);
-            Stykliste sl = ca.carportAlgorithm(width, length, roofTilt, shedWidth, shedLength, id);
-            order.setStyklist(sl);
-
-            DatabaseFacade dbf = new DatabaseFacade();
-            dbf.saveOrder(order);
-
-            session.setAttribute("order", order);
-            session.setAttribute("list", sl);
-            return "shop";
-        }
-
-    }
+//    @Override
+//    String execute(HttpServletRequest request, HttpServletResponse response) throws LoginSampleException, OrderSampleException, MaterialSampleException, StyklistException {
+//        
+//        HttpSession session = request.getSession();
+//
+//        float width = Float.parseFloat(request.getParameter("width"));
+//        float length = Float.parseFloat(request.getParameter("length"));
+//        float shedLength = Float.parseFloat(request.getParameter("shedLength"));
+//        float shedWidth = Float.parseFloat(request.getParameter("shedWidth"));
+//        float roofTilt = Integer.parseInt(request.getParameter("roof"));
+//        String name = request.getParameter("name");
+//        float height = 2300;
+//        int id = 0;
+//
+//        if (width > 7500 || width < 2400 || length > 7800 || length < 2400 || shedLength > 6900 || shedLength < 1500 || shedWidth > 7200 || shedWidth < 2100 || roofTilt > 45 || roofTilt < 0) {
+//            throw new MaterialSampleException("Fejl i mål");
+//        } else {
+//            
+//            CarportAlgorithm ca = new CarportAlgorithm();
+//            User user = new User(name, 0, "");
+//            Order order = new Order(id, width, length, height, roofTilt, shedWidth, shedLength);
+//            order.setUser(user);
+//            Stykliste sl = ca.carportAlgorithm(width, length, roofTilt, shedWidth, shedLength, id);
+//            order.setStyklist(sl);
+//
+//            DatabaseFacade dbf = new DatabaseFacade();
+//            dbf.saveOrder(order);
+//
+//            session.setAttribute("order", order);
+//            session.setAttribute("list", sl);
+//            return "shop";
+//        }
+//
+//    }
 
 }

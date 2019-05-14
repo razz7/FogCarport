@@ -56,6 +56,10 @@ public class FunctionManager {
     public void finalizeOrder(int order_id) throws OrderSampleException {
         OrdMapper.finalizeOrder(order_id);
     }
+    
+    public void deleteOrder(int order_id) throws OrderSampleException{
+        OrdMapper.deleteOrder(order_id);
+    }
 
     public ArrayList<Material> getAllMaterials() throws MaterialSampleException {
         return MatMapper.getAllMaterials();
@@ -112,6 +116,6 @@ public class FunctionManager {
     public static void main(String[] args) throws MaterialSampleException, OrderSampleException {
         FunctionManager fm = new FunctionManager();
 
-        System.out.println(fm.getAllMaterials());
+        fm.deleteOrder(19);
     }
 }
