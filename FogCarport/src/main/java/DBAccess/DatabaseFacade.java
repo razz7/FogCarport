@@ -27,13 +27,11 @@ public class DatabaseFacade implements DatabaseFacadeInterface {
         return mapper.getAllMaterials();
     }
 
-
     public void addNewMaterial(String item_description, float width, float height, String entity, String materialtype, float price, int quantity) throws MaterialSampleException {
         MaterialDBMapper mapper = new MaterialDBMapper();
         mapper.addNewMaterial(item_description, width, height, entity, materialtype, price, quantity);
 
     }
-
 
     @Override
     public void updateMaterialData(int item_id, String item_description, float width, float height, String entity, String materialtype, float price, int quantity) throws MaterialSampleException, ClassNotFoundException {
@@ -42,7 +40,7 @@ public class DatabaseFacade implements DatabaseFacadeInterface {
     }
 
     @Override
-   public void deleteMaterial(int item_id) throws MaterialSampleException {
+    public void deleteMaterial(int item_id) throws MaterialSampleException {
         MaterialDBMapper map = new MaterialDBMapper();
         map.deleteMaterial(item_id);
     }
@@ -53,12 +51,12 @@ public class DatabaseFacade implements DatabaseFacadeInterface {
         return map.getMaterialbyID(item_id);
     }
 
-
     @Override
     public Stykliste getLineitemsByOrderId(int order_id) throws MaterialSampleException {
         MaterialDBMapper map = new MaterialDBMapper();
         return map.getLineitemsByOrderId(order_id);
     }
+
     @Override
     public ArrayList<Material> getAllMaterialbyType(String type) throws MaterialSampleException {
         MaterialDBMapper map = new MaterialDBMapper();
@@ -70,7 +68,6 @@ public class DatabaseFacade implements DatabaseFacadeInterface {
 //        MaterialDBMapper map = new MaterialDBMapper();
 //        map.addNewMaterial(item_description, width, height, entity, materialtype, price, quantity);
 //    }
-
     @Override
     public ArrayList<Order> getAllOrders() throws OrderSampleException {
         OrderDBMapper map = new OrderDBMapper();
@@ -84,13 +81,11 @@ public class DatabaseFacade implements DatabaseFacadeInterface {
 
     }
 
-
     @Override
-    public void saveOrder(Order order) throws OrderSampleException{
+    public void saveOrder(Order order) throws OrderSampleException {
         OrderDBMapper map = new OrderDBMapper();
         map.saveOrder(order);
     }
-
 
     @Override
     public void editLineItemsFromOrderID(int lineitem_id, String item_description, float width, float height, String entity, String materialtype, float price, int orderquantity, int order_id) {
@@ -110,19 +105,18 @@ public class DatabaseFacade implements DatabaseFacadeInterface {
         StyklisteDBMapper map = new StyklisteDBMapper();
         return map.getMaterialFromLineItems(lineItemID);
     }
-    
+
     @Override
-    public void finalizeOrder(int order_id) throws OrderSampleException{
+    public void finalizeOrder(int order_id) throws OrderSampleException {
         OrderDBMapper map = new OrderDBMapper();
         map.finalizeOrder(order_id);
     }
-    
+
     @Override
-    public Stykliste getStyklistForOrder(int order_id) throws OrderSampleException{
+    public Stykliste getStyklistForOrder(int order_id) throws OrderSampleException {
         OrderDBMapper map = new OrderDBMapper();
         return map.getStyklistForOrder(order_id);
     }
-
 
     @Override
     public void createUser(User user) throws LoginSampleException {
@@ -141,7 +135,6 @@ public class DatabaseFacade implements DatabaseFacadeInterface {
         UserDBMapper map = new UserDBMapper();
         return map.getUserByEmail(email);
     }
-
 
     @Override
     public void deleteOrder(int order_id) throws OrderSampleException {

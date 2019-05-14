@@ -24,15 +24,15 @@ public class CommandFactory {
     private CommandFactory() {
         commands.put( "main", new MainPageCommand("mainpage.jsp") );
         commands.put( "styklist", new StyklistPageCommand("styklist.jsp") );
-        commands.put( "allmaterials", new StockMaterialsPageCommand("stockmaterialspage.jsp") );
-        commands.put( "editMaterial", new EditStockMaterialPageCommand("editlineitem.jsp") );
+        commands.put( "allmaterials", new StockMaterialsPageCommand("stockmaterialspage.jsp"));
+        //commands.put( "editMaterial", new EditStockMaterialPageCommand("editlineitem.jsp") );
         commands.put( "updateMaterial", new UpdateMaterialCommand("stockmaterialspage.jsp") );
         commands.put( "deleteMaterial", new DeleteStockMaterialCommand("stockmaterialspage.jsp") );
         commands.put( "createMaterial", new CreateStockMaterialCommand("stockmaterialspage.jsp") );
         commands.put( "editMaterial", new EditStockMaterialPageCommand("editMaterial.jsp") );
         //commands.put( "updateMaterial", new UpdateMaterialCommand() );
-        commands.put( "deleteMaterial", new DeleteStockMaterialCommand("stockmaterialspage.jsp") );
-        commands.put( "createMaterial", new CreateStockMaterialCommand("stockmaterialspage.jsp") );
+        //commands.put( "deleteMaterial", new DeleteStockMaterialCommand("stockmaterialspage.jsp") );
+        //commands.put( "createMaterial", new CreateStockMaterialCommand("stockmaterialspage.jsp") );
         //commands.put( "styklistpage", new StyklistPageCommand() );
         commands.put( "order", new OrderPageCommand("shop.jsp") );
         commands.put( "editlineitem", new EditLineItemCommand("editlineitem.jsp") );
