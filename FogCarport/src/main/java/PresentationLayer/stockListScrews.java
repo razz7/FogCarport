@@ -31,8 +31,8 @@ public class stockListScrews implements Command {
     @Override
     public String execute(HttpServletRequest request, FunctionManager manager) throws LoginSampleException, OrderSampleException, MaterialSampleException {
         
-        //DatabaseFacade df = new DatabaseFacade();
-        ArrayList<Material> materials = manager.getAllMaterialbyType("Beslag & Skruer");
+        DatabaseFacade df = new DatabaseFacade();
+        ArrayList<Material> materials = df.getAllMaterialbyType("Beslag & Skruer");
         System.out.println(materials);
         HttpSession session = request.getSession();
         session.setAttribute("stockListScrews", materials);

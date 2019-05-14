@@ -36,15 +36,14 @@ public class FinalizeOrder implements Command{
         
         if(request.getParameter("thisOrder") != null){
             int orderId = Integer.parseInt(request.getParameter("thisOrder"));
-            float percent = Float.parseFloat(request.getParameter("percent"));
-            float price = Float.parseFloat(request.getParameter("price"));
             
-            manager.finalizeOrder(orderId);
+            DatabaseFacade dbf = new DatabaseFacade();
+            dbf.finalizeOrder(orderId);
             
-            Order order = manager.getOrderFromId(orderId);
-            order.setPrice(price * ((percent/100)+1));
+            Order order = dbf.getOrderFromId(orderId);           
+            order.setOrderStatus(true);
             
-            ArrayList<Order> allOrders = manager.getAllOrders();
+            ArrayList<Order> allOrders = dbf.getAllOrders();
             request.setAttribute("allOrders", allOrders);
         }
         

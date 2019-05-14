@@ -19,7 +19,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 public class EditLineItemCommand implements Command {
-    
+
     private String target;
 
     EditLineItemCommand(String target) {
@@ -27,46 +27,16 @@ public class EditLineItemCommand implements Command {
     }
 
     @Override
-    public String execute(HttpServletRequest request, FunctionManager manager)
-            throws LoginSampleException, OrderSampleException, MaterialSampleException {
+    public String execute(HttpServletRequest request, FunctionManager manager) throws LoginSampleException, OrderSampleException, MaterialSampleException, StyklistException{
+        DatabaseFacade dbf = new DatabaseFacade();
 
         int id = Integer.parseInt(request.getParameter("lineitemID"));
 
-        Material material;
-        try {
-            material = manager.getMaterialFromLineItems(id);
-
-            HttpSession session = request.getSession();
-            session.setAttribute("lineitemToEdit", material);
-        } catch (StyklistException ex) {
-            Logger.getLogger(EditLineItemCommand.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        Material material = dbf.getMaterialFromLineItems(id);
+        HttpSession session = request.getSession();
+        session.setAttribute("lineitemToEdit", material);
 
         return target;
     }
-
-//public class EditLineItemCommand implements Command {
-//
-//    private String target;
-//
-//    EditLineItemCommand(String target) {
-//        this.target = target;
-//    }
-//
-//    @Override
-//    String execute(HttpServletRequest request, HttpServletResponse response) throws LoginSampleException, OrderSampleException, MaterialSampleException, StyklistException {
-//        DatabaseFacade dbf = new DatabaseFacade();
-//
-//        int id = Integer.parseInt(request.getParameter("lineitemID"));
-//
-//        Material material = dbf.getMaterialFromLineItems(id);
-//        HttpSession session = request.getSession();
-//        session.setAttribute("lineitemToEdit", material);
-//
-//        return target;
-//    }
-    /**
-     *
-     * @author Rumle
-     */
+    
 }

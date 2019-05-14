@@ -28,8 +28,12 @@ public class EditStockMaterialPageCommand implements Command {
     }
 
     @Override
-    public String execute(HttpServletRequest request, FunctionManager manager) 
-            throws LoginSampleException, OrderSampleException, MaterialSampleException {
+    public String execute(HttpServletRequest request, FunctionManager manager) throws LoginSampleException, OrderSampleException, MaterialSampleException {
+        //String email = request.getParameter("email");
+        //String password = request.getParameter("password");
+        //LogicFacade logic = new LogicFacade();
+        //User user = logic.login(email, password);
+
         DatabaseFacade dbf = new DatabaseFacade();
         Material mat = null;
         if (!"".equals(request.getParameter("chosenStockMaterial"))) {
