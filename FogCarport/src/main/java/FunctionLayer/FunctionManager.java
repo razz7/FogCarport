@@ -7,14 +7,6 @@ package FunctionLayer;
 
 import DBAccess.DatabaseFacade;
 import DBAccess.DatabaseFacadeInterface;
-import DBAccess.MaterialDBMapper;
-import DBAccess.MaterialMapper;
-import DBAccess.OrderDBMapper;
-import DBAccess.OrderMapper;
-import DBAccess.StyklisteDBMapper;
-import DBAccess.StyklisteMapper;
-import DBAccess.UserDBMapper;
-import DBAccess.UserMapper;
 import java.util.ArrayList;
 
 /**
@@ -23,11 +15,6 @@ import java.util.ArrayList;
  */
 public class FunctionManager implements DatabaseFacadeInterface, LogicFacadeInterface {
 
-    private final StyklisteMapper StykMapper = StyklisteMapper.instance();
-    private final OrderMapper OrdMapper = OrderMapper.instance();
-    private final MaterialMapper MatMapper = MaterialMapper.instance();
-    private final UserMapper UseMapper = UserMapper.instance();
-    private CarportAlgorithm ca = new CarportAlgorithm();
 
     @Override
     public ArrayList<FunctionLayer.Material> getAllMaterials() throws MaterialSampleException {
