@@ -7,6 +7,7 @@ package PresentationLayer;
 
 import DBAccess.DatabaseFacade;
 import FunctionLayer.CarportAlgorithm;
+import FunctionLayer.FunctionManager;
 import FunctionLayer.LogicFacade;
 import FunctionLayer.LoginSampleException;
 import FunctionLayer.Material;
@@ -24,29 +25,17 @@ import javax.servlet.http.HttpSession;
  *
  * @author Rasmus2
  */
-public class StyklistPageCommand extends Command {
+public class StyklistPageCommand implements Command {
 
     @Override
-    String execute(HttpServletRequest request, HttpServletResponse response) throws LoginSampleException, OrderSampleException, MaterialSampleException {
-//        String email = request.getParameter("email");
-//        String password = request.getParameter("password");
-//        
-//        LogicFacade logic = new LogicFacade();
-//        User user = logic.login(email, password);
-
-        //int order_id = Integer.parseInt(request.getParameter("specificOrder"));
-        //HttpSession session = request.getSession();
-        //DatabaseFacade dbf = new DatabaseFacade();
-        //Stykliste stykliste = dbf.getOrderFromId(order_id).getStyklist();
-        //session.setAttribute("specificOrder", order_id);
-        //session.setAttribute("list", stykliste);        
-        //return "styklist";
-        
+    public String execute(HttpServletRequest request, FunctionManager manager) throws LoginSampleException, OrderSampleException, MaterialSampleException {
+        //Stykliste styk = manager.carportAlgorithm(6000, 7800, 0, 5300, 2100, 1);
         HttpSession session = request.getSession();
+        //session.setAttribute("list", styk);
+
         if (request.getParameter("specificOrder") != null) {
             int order_id = Integer.parseInt(request.getParameter("specificOrder"));
-            DatabaseFacade dbf = new DatabaseFacade();
-            Order order = dbf.getOrderFromId(order_id);
+            Order order = manager.getOrderFromId(order_id);
             session.setAttribute("order", order);
             session.setAttribute("list", order.getStyklist());
         } else if (session.getAttribute("order") != null) {

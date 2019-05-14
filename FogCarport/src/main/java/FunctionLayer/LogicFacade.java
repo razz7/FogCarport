@@ -5,6 +5,7 @@
  */
 package FunctionLayer;
 
+import DBAccess.UserDBMapper;
 import java.util.ArrayList;
 
 /**
@@ -31,7 +32,18 @@ public class LogicFacade implements LogicFacadeInterface {
         return order;
     }
 
-    @Override
+
+    public User login(String email, String password) throws LoginSampleException {
+        UserDBMapper userMap = new UserDBMapper();
+        return userMap.login(email, password);
+    }
+
+//    public User createUser(String email, String password) throws LoginSampleException {
+//        User user = new User(email, password, "customer");
+//        UserDBMapper userMap = new UserDBMapper();
+//        userMap.createUser(user);
+//    }
+   
     public FunctionLayer.Stykliste Stykliste(ArrayList<FunctionLayer.Material> styklist, int styklist_id) {
         Stykliste styk = new Stykliste(styklist, styklist_id);
         return styk;
@@ -58,6 +70,7 @@ public class LogicFacade implements LogicFacadeInterface {
     @Override
     public FunctionLayer.User User(String email, int id, String role) {
         User user = new User(email, id, role);
+
         return user;
     }
 

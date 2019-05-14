@@ -5,11 +5,14 @@
  */
 package PresentationLayer;
 
+import FunctionLayer.FunctionManager;
 import FunctionLayer.LoginSampleException;
 import FunctionLayer.MaterialSampleException;
 import FunctionLayer.OrderSampleException;
 import FunctionLayer.StyklistException;
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -22,6 +25,8 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet(name = "FrontController", urlPatterns = {"/FrontController"})
 public class FrontController extends HttpServlet {
+    
+    private final FunctionManager manager = new FunctionManager();
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -33,14 +38,17 @@ public class FrontController extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException, StyklistException {
+            String command = request.getParameter("command");
+            Command action = CommandFactory.commandFrom(command);
         try {
-            Command action = Command.from(request);
-            String view = action.execute(request, response);
+            String view = action.execute(request, manager);
             request.getRequestDispatcher("/JSP/" + view + ".jsp").forward(request, response);
-        } catch (LoginSampleException | OrderSampleException | MaterialSampleException | StyklistException ex) {
+        } catch (LoginSampleException | OrderSampleException | MaterialSampleException ex) {
             request.setAttribute("error", ex.getMessage());
             request.getRequestDispatcher("index.jsp").forward(request, response);
+        } catch(StyklistException e) {
+            request.setAttribute("error", e.getMessage());
         }
     }
 
@@ -56,7 +64,12 @@ public class FrontController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (StyklistException ex) {
+            Logger.getLogger(FrontController.class.getName()).log(Level.SEVERE,
+                    null, ex);
+        }
     }
 
     /**
@@ -70,7 +83,12 @@ public class FrontController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (StyklistException ex) {
+            Logger.getLogger(FrontController.class.getName()).log(Level.SEVERE,
+                    null, ex);
+        }
     }
 
     /**
