@@ -179,5 +179,4 @@ public class OrderDBMapper extends OrderMapper {
             throw new OrderSampleException(ex.getMessage());
         }
     }
-
 }

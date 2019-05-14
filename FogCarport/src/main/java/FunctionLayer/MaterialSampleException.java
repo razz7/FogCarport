@@ -16,9 +16,9 @@ public class MaterialSampleException extends Exception {
     super(message);
     this.target = target;
     }
-  
+  //"error.jsp"
     public MaterialSampleException(String message) {
-    this(message, "error.jsp");
+    this(message, "JSP/stockmaterialspage.jsp");
     }
   
   public final String getTarget() { return target; }
