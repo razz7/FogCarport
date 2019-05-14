@@ -22,7 +22,7 @@ public class FunctionManager {
     private final MaterialMapper MatMapper = MaterialMapper.instance();
     private final UserMapper UseMapper = UserMapper.instance();
     private CarportAlgorithm ca = new CarportAlgorithm();
-    private EncryptionFacade ef = new EncryptionFacade();
+    private Encryption ec = new Encryption();
 
     
 
