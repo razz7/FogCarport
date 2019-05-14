@@ -59,7 +59,6 @@ public class FrontController extends HttpServlet {
             RequestDispatcher dispatcher = request.getRequestDispatcher(
                     se.getTarget());
             dispatcher.forward(request, response);
-
         } catch (Exception e) {
             PrintWriter out = response.getWriter();
             out.println("<!DOCTYPE html>");

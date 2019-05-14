@@ -33,6 +33,7 @@ import org.junit.Before;
  * @author Rasmus2
  */
 public class FogFunktionTest {
+    /*
 
     private String url = "jdbc:mysql://167.99.209.155/fog?useUnicode=yes&characterEncoding=utf-8";
     private String user = "fog";
@@ -47,7 +48,7 @@ public class FogFunktionTest {
         Connection conn = DriverManager.getConnection(url, user, password);
         con.setConnection(conn);
     }
-
+*/
     /*
     @Before
     public void setUp2() {
