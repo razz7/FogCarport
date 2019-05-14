@@ -43,14 +43,14 @@ public class UpdateMaterialCommand implements Command{
         float price = Float.parseFloat(request.getParameter("price"));
         int qty = Integer.parseInt(request.getParameter("qty"));
         
-        //DatabaseFacade df = new DatabaseFacade();
+        DatabaseFacade df = new DatabaseFacade();
         try {
-            manager.updateMaterialData(id, description, width, height, entity, type, price, qty);
+            df.updateMaterialData(id, description, width, height, entity, type, price, qty);
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(UpdateMaterialCommand.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-        ArrayList<Material> materials = manager.getAllMaterials();
+        ArrayList<Material> materials = df.getAllMaterials();
         session.setAttribute("stockMaterialList", materials);
         
         return target;

@@ -32,10 +32,11 @@ public class StyklistPageCommand implements Command {
     StyklistPageCommand(String target) {
         this.target = target;
     }
-    
+
     @Override
     public String execute(HttpServletRequest request, FunctionManager manager) throws LoginSampleException, OrderSampleException, MaterialSampleException {
-        //Stykliste styk = manager.carportAlgorithm(6000, 7800, 0, 5300, 2100, 1);
+        /*        
+//Stykliste styk = manager.carportAlgorithm(6000, 7800, 0, 5300, 2100, 1);
         HttpSession session = request.getSession();
         //session.setAttribute("list", styk);
 
@@ -48,6 +49,28 @@ public class StyklistPageCommand implements Command {
             Order order = (Order) session.getAttribute("specificOrder");
             session.setAttribute("list", order.getStyklist());
         }
+         */
+
+//        String email = request.getParameter("email");
+//        String password = request.getParameter("password");
+//        
+//        LogicFacade logic = new LogicFacade();
+//        User user = logic.login(email, password);
+        //int order_id = Integer.parseInt(request.getParameter("specificOrder"));
+        //HttpSession session = request.getSession();
+        //DatabaseFacade dbf = new DatabaseFacade();
+        //Stykliste stykliste = dbf.getOrderFromId(order_id).getStyklist();
+        //session.setAttribute("specificOrder", order_id);
+        //session.setAttribute("list", stykliste);        
+        //return "styklist";
+        
+        int order_id = Integer.parseInt(request.getParameter("specificOrder"));
+        HttpSession session = request.getSession();
+        DatabaseFacade dbf = new DatabaseFacade();
+        Order order = dbf.getOrderFromId(order_id);
+        session.setAttribute("order", order);
+        session.setAttribute("list", order.getStyklist());
+
         return target;
     }
 

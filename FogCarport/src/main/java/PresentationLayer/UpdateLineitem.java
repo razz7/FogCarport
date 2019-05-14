@@ -40,15 +40,15 @@ public class UpdateLineitem implements Command{
         String type = request.getParameter("type");
         float price = Float.parseFloat(request.getParameter("price"));
         int qty = Integer.parseInt(request.getParameter("qty"));
+        DatabaseFacade dbf = new DatabaseFacade();
+        dbf.editLineItemsFromOrderID(lineitem_id, description, width, height, entity, type, price, qty, order_id);
         
-        manager.editLineItemsFromOrderID(lineitem_id, description, width, height, entity, type, price, qty, order_id);
-
         //Stykliste list = dbf.getOrderFromId(order_id).getStyklist();
         //HttpSession session = request.getSession();
         //session.setAttribute("list", list);
         
         HttpSession session = request.getSession();
-        Order order = manager.getOrderFromId(order_id);
+        Order order = dbf.getOrderFromId(order_id);
         session.setAttribute("order", order);
         session.setAttribute("list", order.getStyklist()); 
       

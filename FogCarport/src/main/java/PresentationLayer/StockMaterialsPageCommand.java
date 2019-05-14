@@ -36,9 +36,13 @@ public class StockMaterialsPageCommand implements Command {
 
     @Override
     public String execute(HttpServletRequest request, FunctionManager manager) throws LoginSampleException, OrderSampleException, MaterialSampleException {
+        //String email = request.getParameter("email");
+        //String password = request.getParameter("password");
+        //LogicFacade logic = new LogicFacade();
+        //User user = logic.login(email, password);
         
-        //DatabaseFacade df = new DatabaseFacade();
-        ArrayList<Material> materials = manager.getAllMaterials();
+        DatabaseFacade df = new DatabaseFacade();
+        ArrayList<Material> materials = df.getAllMaterials();
         HttpSession session = request.getSession();
         session.setAttribute("stockMaterialList", materials);
         
