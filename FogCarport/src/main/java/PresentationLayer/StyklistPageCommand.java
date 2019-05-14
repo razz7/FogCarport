@@ -27,6 +27,12 @@ import javax.servlet.http.HttpSession;
  */
 public class StyklistPageCommand implements Command {
 
+    private String target;
+
+    StyklistPageCommand(String target) {
+        this.target = target;
+    }
+    
     @Override
     public String execute(HttpServletRequest request, FunctionManager manager) throws LoginSampleException, OrderSampleException, MaterialSampleException {
         //Stykliste styk = manager.carportAlgorithm(6000, 7800, 0, 5300, 2100, 1);
@@ -42,7 +48,7 @@ public class StyklistPageCommand implements Command {
             Order order = (Order) session.getAttribute("specificOrder");
             session.setAttribute("list", order.getStyklist());
         }
-        return "styklist";
+        return target;
     }
 
 }

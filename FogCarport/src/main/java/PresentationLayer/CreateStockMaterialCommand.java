@@ -22,17 +22,14 @@ import javax.servlet.http.HttpSession;
  *
  * @author Rasmus2
  */
-<<<<<<< HEAD
-public class CreateStockMaterialCommand extends Command {
-    
+
+public class CreateStockMaterialCommand implements Command {
+        
     private String target;
 
     CreateStockMaterialCommand(String target) {
         this.target = target;
     }
-=======
-public class CreateStockMaterialCommand implements Command {
->>>>>>> b220211488bca6e491fc22002b4601c1560e931f
 
     @Override
     public String execute(HttpServletRequest request, FunctionManager manager) throws LoginSampleException, OrderSampleException, MaterialSampleException {

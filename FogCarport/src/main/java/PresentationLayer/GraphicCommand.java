@@ -22,6 +22,12 @@ import javax.servlet.http.HttpSession;
  */
 public class GraphicCommand implements Command {
     
+    private String target;
+
+    GraphicCommand(String target) {
+        this.target = target;
+    }
+    
     @Override
     public String execute(HttpServletRequest request, FunctionManager manager) 
             throws LoginSampleException, OrderSampleException, MaterialSampleException {
@@ -44,7 +50,7 @@ public class GraphicCommand implements Command {
            
            session.setAttribute("order", order);
            
-           return "carportSVGGraphic";
+           return target;
     }
     
 }

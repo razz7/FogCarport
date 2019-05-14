@@ -20,17 +20,20 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class MainPageCommand implements Command {
 
-    @Override
+    private String target;
 
+    MainPageCommand(String target) {
+        this.target = target;
+    }
+    
+    @Override
     public String execute(HttpServletRequest request, FunctionManager manager) throws LoginSampleException, OrderSampleException, MaterialSampleException {
         String email = request.getParameter("email");
         String password = request.getParameter("password");
         LogicFacade logic = new LogicFacade();
         User user = logic.login(email, password);
 
-
-        return "mainpage";
+        return target;
         //return user.getRole() + "page";
     }
-
 }

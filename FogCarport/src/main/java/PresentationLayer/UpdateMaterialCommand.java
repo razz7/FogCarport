@@ -23,6 +23,12 @@ import javax.servlet.http.HttpSession;
  * @author Ludvig
  */
 public class UpdateMaterialCommand implements Command{
+    
+    private String target;
+
+    UpdateMaterialCommand(String target) {
+        this.target = target;
+    }
 
     @Override
     public String execute(HttpServletRequest request, FunctionManager manager) throws LoginSampleException, OrderSampleException, MaterialSampleException {
@@ -47,7 +53,7 @@ public class UpdateMaterialCommand implements Command{
         ArrayList<Material> materials = manager.getAllMaterials();
         session.setAttribute("stockMaterialList", materials);
         
-        return "stockmaterialspage";
+        return target;
     }
     
     

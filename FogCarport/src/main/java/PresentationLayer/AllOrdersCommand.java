@@ -20,17 +20,14 @@ import javax.servlet.http.HttpSession;
  *
  * @author Rumle
  */
-<<<<<<< HEAD
-public class AllOrdersCommand extends Command{
+
+public class AllOrdersCommand implements Command{
     
     private String target;
 
     AllOrdersCommand(String target) {
         this.target = target;
     }
-=======
-public class AllOrdersCommand implements Command{
->>>>>>> b220211488bca6e491fc22002b4601c1560e931f
 
     @Override
     public String execute(HttpServletRequest request, FunctionManager manager) throws LoginSampleException, OrderSampleException, MaterialSampleException {
@@ -39,6 +36,5 @@ public class AllOrdersCommand implements Command{
         request.setAttribute("allOrders", allOrders);
         
         return target;
-    }
-    
+    }   
 }

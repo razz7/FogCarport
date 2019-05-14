@@ -20,6 +20,12 @@ import javax.servlet.http.HttpSession;
  * @author Rasmus2
  */
 public class EditStockMaterialPageCommand implements Command {
+    
+    private String target;
+
+    EditStockMaterialPageCommand(String target) {
+        this.target = target;
+    }
 
     @Override
     public String execute(HttpServletRequest request, FunctionManager manager) 
@@ -33,7 +39,7 @@ public class EditStockMaterialPageCommand implements Command {
         HttpSession session = request.getSession();
         session.setAttribute("stockMaterial", mat);
 
-        return "editMaterial";
+        return target;
 
     }
 }

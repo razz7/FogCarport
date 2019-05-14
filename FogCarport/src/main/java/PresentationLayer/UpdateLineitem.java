@@ -22,6 +22,12 @@ import javax.servlet.http.HttpSession;
  * @author Rumle
  */
 public class UpdateLineitem implements Command{
+    
+    private String target;
+
+    UpdateLineitem(String target) {
+        this.target = target;
+    }
 
     @Override
     public String execute(HttpServletRequest request, FunctionManager manager) throws LoginSampleException, OrderSampleException, MaterialSampleException, StyklistException {
@@ -46,7 +52,7 @@ public class UpdateLineitem implements Command{
         session.setAttribute("order", order);
         session.setAttribute("list", order.getStyklist()); 
       
-      return "styklist";
+      return target;
     }
     
 }

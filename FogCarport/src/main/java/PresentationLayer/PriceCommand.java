@@ -23,6 +23,12 @@ import javax.servlet.http.HttpServletResponse;
  * @author Ludvig
  */
 public class PriceCommand implements Command{
+    
+    private String target;
+
+    PriceCommand(String target) {
+        this.target = target;
+    }
 
     @Override
     public String execute(HttpServletRequest request, FunctionManager manager) throws LoginSampleException, OrderSampleException, MaterialSampleException {
@@ -43,7 +49,7 @@ public class PriceCommand implements Command{
             request.setAttribute("order", order);
         }
         
-        return "PriceFinalizePage";
+        return target;
     }
     
 }

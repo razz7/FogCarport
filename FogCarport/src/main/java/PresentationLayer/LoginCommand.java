@@ -20,6 +20,12 @@ import javax.servlet.http.HttpServletResponse;
  * @author Rumle
  */
 public class LoginCommand implements Command{
+    
+    private String target;
+
+    LoginCommand(String target) {
+        this.target = target;
+    }
 
     @Override
     public String execute(HttpServletRequest request, FunctionManager manager) 
@@ -32,9 +38,6 @@ public class LoginCommand implements Command{
             request.getSession().setAttribute("user", user);
             return "mainpage";
         }
-        return "index";
-        
-        
-    }
-    
+        return target;                
+    }   
 }

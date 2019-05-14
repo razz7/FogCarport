@@ -24,6 +24,12 @@ import javax.servlet.http.HttpSession;
  * @author Ludvig
  */
 public class FinalizeOrder implements Command{
+    
+    private String target;
+
+    FinalizeOrder(String target) {
+        this.target = target;
+    }
 
     @Override
     public String execute(HttpServletRequest request, FunctionManager manager) throws LoginSampleException, OrderSampleException, MaterialSampleException, StyklistException {       
@@ -42,7 +48,6 @@ public class FinalizeOrder implements Command{
             request.setAttribute("allOrders", allOrders);
         }
         
-        return "allOrdersPage";
-    }
-    
+        return target;
+    }   
 }

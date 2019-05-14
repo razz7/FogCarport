@@ -27,6 +27,12 @@ import javax.servlet.http.HttpSession;
 class OrderPageCommand implements Command{
     
     private int id = 1;
+    
+    private String target;
+
+    OrderPageCommand(String target) {
+        this.target = target;
+    }
 
     @Override
     public String execute(HttpServletRequest request, FunctionManager manager) throws LoginSampleException, OrderSampleException, MaterialSampleException {
@@ -46,7 +52,7 @@ class OrderPageCommand implements Command{
            
            session.setAttribute("stykliste", sl);
            
-           return "shop";
+           return target;
     }
 
 

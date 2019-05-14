@@ -21,6 +21,12 @@ import javax.servlet.http.HttpSession;
  * @author rh
  */
 public class stockListWood implements Command {
+    
+    private String target;
+
+    stockListWood(String target) {
+        this.target = target;
+    }
 
     @Override
     public String execute(HttpServletRequest request, FunctionManager manager) throws LoginSampleException, OrderSampleException, MaterialSampleException {
@@ -31,7 +37,7 @@ public class stockListWood implements Command {
         HttpSession session = request.getSession();
         session.setAttribute("stockListWood", materials);
         
-        return "stockListWood";
+        return target;
     }
     
 }

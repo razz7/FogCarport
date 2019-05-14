@@ -22,7 +22,12 @@ import javax.servlet.http.HttpSession;
  * @author rh
  */
 public class stockListTagpakke implements Command {
+    
+    private String target;
 
+    stockListTagpakke(String target) {
+        this.target = target;
+    }
 
     @Override
     public String execute(HttpServletRequest request, FunctionManager manager) throws LoginSampleException, OrderSampleException, MaterialSampleException, StyklistException {
@@ -31,7 +36,7 @@ public class stockListTagpakke implements Command {
         HttpSession session = request.getSession();
         session.setAttribute("stockListTagpakke", materials);
         
-        return "stockListTagpakke";
+        return target;
     }
 }
    

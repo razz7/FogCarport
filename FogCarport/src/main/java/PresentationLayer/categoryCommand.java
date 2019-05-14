@@ -22,12 +22,16 @@ import javax.servlet.http.HttpSession;
  */
 public class categoryCommand implements Command{
     
-        @Override
-    public String execute(HttpServletRequest request, FunctionManager manager) throws LoginSampleException, OrderSampleException, MaterialSampleException {
+    private String target;
 
+    categoryCommand(String target) {
+        this.target = target;
+    }
+    
+    @Override
+    public String execute(HttpServletRequest request, FunctionManager manager) throws LoginSampleException, OrderSampleException, MaterialSampleException {        
         
-        
-        return "category";
+        return target;
     }
     
 }

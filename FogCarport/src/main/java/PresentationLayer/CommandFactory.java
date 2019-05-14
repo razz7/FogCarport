@@ -5,12 +5,9 @@
  */
 package PresentationLayer;
 
-<<<<<<< HEAD
-=======
 import FunctionLayer.FunctionManager;
 import FunctionLayer.MaterialSampleException;
 import FunctionLayer.OrderSampleException;
->>>>>>> b220211488bca6e491fc22002b4601c1560e931f
 import java.util.HashMap;
 import java.util.Map;
 
@@ -18,65 +15,47 @@ import java.util.Map;
  *
  * @author Ludvig
  */
-<<<<<<< HEAD
-public class CommandFactory {   
-    
-=======
-public class CommandFactory {
 
->>>>>>> b220211488bca6e491fc22002b4601c1560e931f
+public class CommandFactory {   
+
     private static CommandFactory instance = null;
     private final Map<String, Command> commands = new HashMap();
 
     private CommandFactory() {
-        commands.put( "main", new MainPageCommand() );
-        commands.put( "styklist", new StyklistPageCommand() );
-        commands.put( "allmaterials", new StockMaterialsPageCommand() );
-<<<<<<< HEAD
+        commands.put( "main", new MainPageCommand("mainpage.jsp") );
+        commands.put( "styklist", new StyklistPageCommand("styklist.jsp") );
+        commands.put( "allmaterials", new StockMaterialsPageCommand("stockmaterialspage.jsp") );
         commands.put( "editMaterial", new EditStockMaterialPageCommand("editlineitem.jsp") );
-        commands.put( "updateMaterial", new UpdateMaterialCommand() );
+        commands.put( "updateMaterial", new UpdateMaterialCommand("stockmaterialspage.jsp") );
         commands.put( "deleteMaterial", new DeleteStockMaterialCommand("stockmaterialspage.jsp") );
         commands.put( "createMaterial", new CreateStockMaterialCommand("stockmaterialspage.jsp") );
-=======
-        commands.put( "editMaterial", new EditStockMaterialPageCommand() );
-        commands.put( "updateMaterial", new UpdateMaterialCommand() );
-        commands.put( "deleteMaterial", new DeleteStockMaterialCommand() );
-        commands.put( "createMaterial", new CreateStockMaterialCommand() );
->>>>>>> b220211488bca6e491fc22002b4601c1560e931f
-        commands.put( "styklistpage", new StyklistPageCommand() );
-        commands.put( "order", new OrderPageCommand() );
-        commands.put( "editlineitem", new EditLineItemCommand() );
-        commands.put( "category", new categoryCommand() );
-        commands.put( "stockListWood", new stockListWood() );
-        commands.put( "stockListScrews", new stockListScrews() );
-        commands.put( "graphic", new GraphicCommand() );
-        commands.put( "stockListTagpakke", new stockListTagpakke() );
-<<<<<<< HEAD
+        commands.put( "editMaterial", new EditStockMaterialPageCommand("editMaterial.jsp") );
+        //commands.put( "updateMaterial", new UpdateMaterialCommand() );
+        commands.put( "deleteMaterial", new DeleteStockMaterialCommand("stockmaterialspage.jsp") );
+        commands.put( "createMaterial", new CreateStockMaterialCommand("stockmaterialspage.jsp") );
+        //commands.put( "styklistpage", new StyklistPageCommand() );
+        commands.put( "order", new OrderPageCommand("shop.jsp") );
+        commands.put( "editlineitem", new EditLineItemCommand("editlineitem.jsp") );
+        commands.put( "category", new categoryCommand("category.jsp") );
+        commands.put( "stockListWood", new stockListWood("stockListWood.jsp") );
+        commands.put( "stockListScrews", new stockListScrews("stockListScrews.jsp") );
+        commands.put( "graphic", new GraphicCommand("carportSVGGraphic.jsp") );
+        commands.put( "stockListTagpakke", new stockListTagpakke("stockListTagpakke.jsp") );
         commands.put( "AllOrders", new AllOrdersCommand("allOrdersPage.jsp") );
-=======
-        commands.put( "AllOrders", new AllOrdersCommand() );
->>>>>>> b220211488bca6e491fc22002b4601c1560e931f
-        commands.put( "updateLineitem", new UpdateLineitem() );
-        commands.put( "finalPrice", new PriceCommand() );
-        commands.put( "percent", new FinalizeOrder() );
-        commands.put( "login", new LoginCommand());
-
+        commands.put( "updateLineitem", new UpdateLineitem("styklist.jsp") );
+        commands.put( "finalPrice", new PriceCommand("PriceFinalizePage.jsp") );
+        commands.put( "percent", new FinalizeOrder("allOrdersPage.sjp") );
+        commands.put( "login", new LoginCommand("index.jsp"));
     }
 
     static Command commandFrom(String command) {
         if (command == null) command = "back";
         if (instance == null) instance = new CommandFactory();
         return instance.commands.get(command);
-<<<<<<< HEAD
     }   
-=======
-    }
     
     public static void main(String[] args){
-        CommandFactory cf = new CommandFactory();
-        
-        
+        CommandFactory cf = new CommandFactory();                
     }
 
->>>>>>> b220211488bca6e491fc22002b4601c1560e931f
 }

@@ -9,12 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 
 public interface Command {
 
-<<<<<<< HEAD
-    abstract String execute( HttpServletRequest request, FunctionManager manager ) 
-=======
-
     String execute( HttpServletRequest request, FunctionManager manager ) 
->>>>>>> b220211488bca6e491fc22002b4601c1560e931f
-            throws LoginSampleException, OrderSampleException, MaterialSampleException, StyklistException;
+            throws LoginSampleException, OrderSampleException, MaterialSampleException, StyklistException, CommandException;
 
 }
