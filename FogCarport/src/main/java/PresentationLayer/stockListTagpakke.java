@@ -31,10 +31,11 @@ public class stockListTagpakke implements Command {
 
     @Override
     public String execute(HttpServletRequest request, FunctionManager manager) throws LoginSampleException, OrderSampleException, MaterialSampleException, StyklistException {
-        ArrayList<Material> materials = manager.getAllMaterialbyType("Tagpakken");
+        DatabaseFacade df = new DatabaseFacade();
+        ArrayList<Material> materials = df.getAllMaterialbyType("Træ & Tagplader");
         System.out.println(materials);
         HttpSession session = request.getSession();
-        session.setAttribute("stockListTagpakke", materials);
+        session.setAttribute("stockListWood", materials);
         
         return target;
     }
