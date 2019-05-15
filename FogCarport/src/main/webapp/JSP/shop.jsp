@@ -50,7 +50,7 @@
                 </div>
             </div>
             <br>
-            <h4>Skurmål</h4>
+            <h4>Skur mål</h4>
             <div class="form-row">
                 <div class="col-md-3 mb-3">
 
