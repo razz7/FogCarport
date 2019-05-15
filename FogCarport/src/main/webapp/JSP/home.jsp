@@ -21,7 +21,7 @@
       <img class="card-img-top" src="img/shop.jpg" alt="Card image cap" height="215" width="10" >
     <div class="card-body">
       <h5 class="card-title">Shop</h5>
-       <a href="/FogCarport/FrontController?command=shopCommand" class="btn btn-primary stretched-link">Gå til shop</a>
+       <a href="/FogCarport/FrontController?command=shop" class="btn btn-primary stretched-link">Gå til shop</a>
     </div>
 
   </div>
@@ -29,7 +29,7 @@
     <img class="card-img-top" src="img/allorders.jpg" alt="Card image cap" height="215" width="10">
     <div class="card-body">
       <h5 class="card-title">Allorders</h5>
-      <a href="/FogCarport/FrontController?command=AllOrdersCommand" class="btn btn-primary stretched-link">Se all ordre</a>
+      <a href="/FogCarport/FrontController?command=AllOrders" class="btn btn-primary stretched-link">Se all ordre</a>
     </div>
 
   </div>

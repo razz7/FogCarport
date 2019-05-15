@@ -45,7 +45,7 @@
                     out.println("</div>");
                 }
             } else {
-                out.println("<h1>Hej</h1>");
+                out.println("<h1>Server is down</h1>");
             }
         %>
     </table>

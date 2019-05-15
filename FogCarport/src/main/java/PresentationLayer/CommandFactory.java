@@ -28,10 +28,10 @@ public class CommandFactory {
         commands.put("updateMaterial", new UpdateMaterialCommand("JSP/stockmaterialspage.jsp"));
         commands.put("deleteMaterial", new DeleteStockMaterialCommand("JSP/stockmaterialspage.jsp"));
         commands.put("createMaterial", new CreateStockMaterialCommand("JSP/stockmaterialspage.jsp"));
-        commands.put( "styklistpage", new StyklistPageCommand("JSP/styklist.jsp"));
+        commands.put("styklistpage", new StyklistPageCommand("JSP/styklist.jsp"));
         commands.put("order", new OrderPageCommand("JSP/shop.jsp"));
         commands.put("editlineitem", new EditLineItemCommand("JSP/editlineitem.jsp"));
-        commands.put("category", new CategoryCommand("JSP/category.jsp"));
+        commands.put("category", new CategoryCommand("JSP/categories.jsp"));
         commands.put("stockListWood", new StockListWoodCommand("JSP/stockListWood.jsp"));
         commands.put("stockListScrews", new StockListScrewsCommand("JSP/stockListScrews.jsp"));
         commands.put("graphic", new GraphicCommand("JSP/carportSVGGraphic.jsp"));

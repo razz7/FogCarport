@@ -39,12 +39,6 @@ public class shopCommand implements Command {
         if(manager.verifyUser(email, password)) {
            session.removeAttribute("order");
  
-           
-           
-
-          
-        
-        
         return target;                
     }   else
         return "error";
