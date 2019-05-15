@@ -29,6 +29,9 @@
       <li class="nav-item">
         <a class="nav-link" href="/FogCarport/FrontController?command=AllOrders">Allorders</a>
       </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/FogCarport/FrontController?command=logout">Logout</a>
+      </li>
       </li>
     </ul>
   </div>
