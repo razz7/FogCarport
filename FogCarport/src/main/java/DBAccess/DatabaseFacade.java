@@ -62,12 +62,7 @@ public class DatabaseFacade implements DatabaseFacadeInterface {
         MaterialDBMapper map = new MaterialDBMapper();
         return map.getAllMaterialbyType(type);
     }
-
-//    @Override
-//    public void addNewMaterial(String item_description, float width, float height, String entity, String materialtype, float price, int quantity) throws MaterialSampleException {
-//        MaterialDBMapper map = new MaterialDBMapper();
-//        map.addNewMaterial(item_description, width, height, entity, materialtype, price, quantity);
-//    }
+    
     @Override
     public ArrayList<Order> getAllOrders() throws OrderSampleException {
         OrderDBMapper map = new OrderDBMapper();
