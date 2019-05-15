@@ -21,7 +21,7 @@ public class CommandFactory {
   private final Map<String, Command> commands = new HashMap();
 
     private CommandFactory() {
-        commands.put("main", new MainPageCommand("JSP/mainpage.jsp"));
+        commands.put("main", new MainPageCommand("index.jsp"));
         commands.put("styklist", new StyklistPageCommand("JSP/styklist.jsp"));
         commands.put("allmaterials", new StockMaterialsPageCommand("JSP/stockmaterialspage.jsp"));
         commands.put("editMaterial", new EditStockMaterialPageCommand("JSP/editMaterial.jsp"));
@@ -42,7 +42,8 @@ public class CommandFactory {
         commands.put("percent", new FinalizeOrderCommand("JSP/allOrdersPage.jsp"));
         commands.put("login", new LoginCommand("JSP/home.jsp"));
         commands.put("shop", new shopCommand("JSP/shop.jsp"));
-        commands.put("home", new home("JSP/home.jsp"));
+        commands.put("home", new shopCommand("JSP/home.jsp"));
+        commands.put("logout", new shopCommand("index.jsp"));
     }
 
     public static synchronized Command commandFrom(String key) {

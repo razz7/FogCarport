@@ -96,12 +96,19 @@
             } else {
 
             %>
+<<<<<<< HEAD
             <form>    
                 <input type="hidden" name="command" value="graphic">
                 <input type="hidden" name="thisOrder" value="<% ((Order) session.getAttribute("order")).getOrder_id(); %>" >
                 <input class="btn btn-primary" type="submit" value="See visual order">
             </form>
             <% 
+=======
+            
+            <input type="hidden" name="command" value="graphic">
+            <input class="btn btn-primary" type="submit" value="See visual order">
+            <%
+>>>>>>> 5b1be6964158aa76e459bc5b36523a58c5fdea8c
                 }
                 %>
         </div>
