@@ -109,6 +109,14 @@ public class UserDBMapper extends UserMapper{
 
     @Override
     public boolean verifyUser(String email, String password) throws LoginSampleException {
+        if(email == null || password == null || email == "" || password == "") {
+        
+        throw new LoginSampleException("both password and email are needed");
+    }
+        if(getUserByEmail(email) == null) {
+                throw new LoginSampleException("no user with that email is found");
+            }
+        
         try {
             String sql = "select * from users where email=?";
             Connection conn = dbc.connection();
@@ -118,6 +126,7 @@ public class UserDBMapper extends UserMapper{
             String securePassword = "";
             String salt = "";
             LogicFacade lfc = new LogicFacade();
+            
 
             while (rs.next()) {
                 securePassword = rs.getString(4);
@@ -130,4 +139,6 @@ public class UserDBMapper extends UserMapper{
 
         }
     }
+    
+    
 }
