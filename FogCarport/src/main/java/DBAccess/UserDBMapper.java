@@ -111,10 +111,10 @@ public class UserDBMapper extends UserMapper{
     public boolean verifyUser(String email, String password) throws LoginSampleException {
         if(email == null || password == null || email == "" || password == "") {
         
-        throw new LoginSampleException("both password and email are needed");
+        return false;
     }
         if(getUserByEmail(email) == null) {
-                throw new LoginSampleException("no user with that email is found");
+                return false;
             }
         
         try {

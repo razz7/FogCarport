@@ -21,7 +21,7 @@ public class CommandFactory {
   private final Map<String, Command> commands = new HashMap();
 
     private CommandFactory() {
-        commands.put("main", new MainPageCommand("JSP/mainpage.jsp"));
+        commands.put("main", new MainPageCommand("index.jsp"));
         commands.put("styklist", new StyklistPageCommand("JSP/styklist.jsp"));
         commands.put("allmaterials", new StockMaterialsPageCommand("JSP/stockmaterialspage.jsp"));
         commands.put("editMaterial", new EditStockMaterialPageCommand("JSP/editMaterial.jsp"));
