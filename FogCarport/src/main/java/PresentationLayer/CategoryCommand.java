@@ -30,7 +30,8 @@ public class CategoryCommand implements Command{
     
     @Override
     public String execute(HttpServletRequest request, FunctionManager manager) throws LoginSampleException, OrderSampleException, MaterialSampleException {        
-        
+        HttpSession session = request.getSession();
+
         return target;
     }
     
