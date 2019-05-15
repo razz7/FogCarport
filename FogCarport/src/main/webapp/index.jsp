@@ -11,7 +11,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <br>
-<div class="container text-center col-md-2">
+<div class="container text-center " style="width: 20%">
    
 <h1>Fog Carport</h1>
 
