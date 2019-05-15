@@ -70,6 +70,5 @@ public class GraphicCommand implements Command {
             }
             return target;
         }
-    }
-    
+    }  
 }

@@ -30,8 +30,7 @@ class OrderPageCommand implements Command {
     }
 
     @Override
-    public String execute(HttpServletRequest request, FunctionManager manager) throws LoginSampleException, OrderSampleException, MaterialSampleException {
-        
+    public String execute(HttpServletRequest request, FunctionManager manager) throws LoginSampleException, OrderSampleException, MaterialSampleException {      
         
         HttpSession session = request.getSession();
         float width = Float.parseFloat(request.getParameter("width"));
