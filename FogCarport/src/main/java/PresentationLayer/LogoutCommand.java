@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package PresentationLayer;
 
 import FunctionLayer.FunctionManager;
@@ -10,13 +5,10 @@ import FunctionLayer.LoginSampleException;
 import FunctionLayer.MaterialSampleException;
 import FunctionLayer.OrderSampleException;
 import FunctionLayer.StyklistException;
+import com.google.protobuf.Method;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-/**
- *
- * @author Rumle
- */
 public class LogoutCommand implements Command {
 
     
@@ -30,7 +22,8 @@ public class LogoutCommand implements Command {
     public String execute(HttpServletRequest request, FunctionManager manager) throws LoginSampleException, OrderSampleException, MaterialSampleException, StyklistException, CommandException, ClassNotFoundException {
         HttpSession session = request.getSession();
         session.invalidate();
-        
+        session.removeAttribute("email");
+        session.removeAttribute("password");
         return target;
         
     }
