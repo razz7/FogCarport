@@ -5,7 +5,6 @@
  */
 package PresentationLayer;
 
-import DBAccess.DatabaseFacade;
 import FunctionLayer.FunctionManager;
 import FunctionLayer.LoginSampleException;
 import FunctionLayer.MaterialSampleException;
@@ -13,16 +12,14 @@ import FunctionLayer.Order;
 import FunctionLayer.OrderSampleException;
 import java.util.ArrayList;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author Rumle
  */
+public class AllOrdersCommand implements Command {
 
-public class AllOrdersCommand implements Command{
-    
     private String target;
 
     AllOrdersCommand(String target) {
@@ -31,10 +28,20 @@ public class AllOrdersCommand implements Command{
 
     @Override
     public String execute(HttpServletRequest request, FunctionManager manager) throws LoginSampleException, OrderSampleException, MaterialSampleException {
-        ArrayList<Order> allOrders = manager.getAllOrders();
-        //HttpSession session = request.getSession();
-        request.setAttribute("allOrders", allOrders);
-        
-        return target;
-    }   
+        HttpSession session = request.getSession();
+        String email = (String) session.getAttribute("email");
+        String password = (String) session.getAttribute("password");
+
+        if (manager.verifyUser(email, password)) {
+            ArrayList<Order> allOrders = manager.getAllOrders();
+            request.setAttribute("allOrders", allOrders);
+
+            return target;
+
+        } else {
+            return "main";
+        }
+    }
 }
+
+    
