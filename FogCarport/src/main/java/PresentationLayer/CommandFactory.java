@@ -42,7 +42,7 @@ public class CommandFactory {
         commands.put("percent", new FinalizeOrderCommand("JSP/allOrdersPage.jsp"));
         commands.put("login", new LoginCommand("JSP/home.jsp"));
         commands.put("shop", new shopCommand("JSP/shop.jsp"));
-        commands.put("home", new shopCommand("JSP/home.jsp"));
+        commands.put("home", new home("JSP/home.jsp"));
     }
 
     public static synchronized Command commandFrom(String key) {
