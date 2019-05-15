@@ -39,8 +39,9 @@ public class CommandFactory {
         commands.put("AllOrders", new AllOrdersCommand("JSP/allOrdersPage.jsp"));
         commands.put("updateLineitem", new UpdateLineitemCommand("JSP/styklist.jsp"));
         commands.put("finalPrice", new PriceCommand("JSP/PriceFinalizePage.jsp"));
-        commands.put("percent", new FinalizeOrderCommand("JSP/allOrdersPage.sjp"));
+        commands.put("percent", new FinalizeOrderCommand("JSP/allOrdersPage.jsp"));
         commands.put("login", new LoginCommand("JSP/index.jsp"));
+        commands.put("shop", new shopCommand("JSP/shop.jsp"));
     }
 
     public static synchronized Command commandFrom(String key) {

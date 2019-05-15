@@ -5,18 +5,14 @@
  */
 package PresentationLayer;
 
-import DBAccess.DatabaseFacade;
-import FunctionLayer.CarportAlgorithm;
 import FunctionLayer.FunctionManager;
 import FunctionLayer.LoginSampleException;
 import FunctionLayer.MaterialSampleException;
 import FunctionLayer.Order;
 import FunctionLayer.OrderSampleException;
-import FunctionLayer.StyklistException;
 import FunctionLayer.Stykliste;
 import FunctionLayer.User;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
@@ -35,8 +31,9 @@ class OrderPageCommand implements Command {
 
     @Override
     public String execute(HttpServletRequest request, FunctionManager manager) throws LoginSampleException, OrderSampleException, MaterialSampleException {
+        
+        
         HttpSession session = request.getSession();
-
         float width = Float.parseFloat(request.getParameter("width"));
         float length = Float.parseFloat(request.getParameter("length"));
         float shedLength = Float.parseFloat(request.getParameter("shedLength"));
@@ -52,7 +49,7 @@ class OrderPageCommand implements Command {
 
             //CarportAlgorithm ca = new CarportAlgorithm();
             User user = new User(name, 1, "");
-            Order order = new Order(id, width, length, height, roofTilt, shedWidth, shedLength);
+           Order order = new Order(id, width, length, height, roofTilt, shedWidth, shedLength);
             order.setUser(user);
             Stykliste sl = manager.carportAlgorithm(width, length, roofTilt, shedWidth, shedLength, id);
             order.setStyklist(sl);

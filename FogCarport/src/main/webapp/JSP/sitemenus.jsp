@@ -17,7 +17,7 @@
         <a class="nav-link" href="JSP/categories.jsp">Materials</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="JSP/shop.jsp">Shop</a>
+        <a class="nav-link" href="/FogCarport/FrontController?command=shop">Shop</a>
               <li class="nav-item">
         <a class="nav-link" href="JSP/loginRegistration.jsp" >Register</a>
       </li>
