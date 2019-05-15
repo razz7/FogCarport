@@ -14,6 +14,7 @@ import FunctionLayer.StyklistException;
 import FunctionLayer.User;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -34,10 +35,11 @@ public class LoginCommand implements Command{
         String password = request.getParameter("password");
         
         if(manager.verifyUser(email, password)) {
-            User user = manager.getUserByEmail(email);
-            request.getSession().setAttribute("user", user);
-            return "mainpage";
+            HttpSession session = request.getSession();
+            session.setAttribute("email", email);
+            session.setAttribute("password", password);
+            return target;
         }
-        return target;                
+        return "error";                
     }   
 }
