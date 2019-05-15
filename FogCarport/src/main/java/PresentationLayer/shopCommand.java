@@ -32,12 +32,13 @@ public class shopCommand implements Command {
     public String execute(HttpServletRequest request, FunctionManager manager) 
             throws LoginSampleException, OrderSampleException, MaterialSampleException, StyklistException {
         HttpSession session = request.getSession();
+        session.removeAttribute("order");
         String email = (String) session.getAttribute("email");
         String password = (String) session.getAttribute("password");
         
         
         if(manager.verifyUser(email, password)) {
-           session.removeAttribute("order");
+           
  
         return target;                
     }   else

@@ -97,6 +97,7 @@
 
             %>
 <<<<<<< HEAD
+<<<<<<< HEAD
             <form>    
                 <input type="hidden" name="command" value="graphic">
                 <input type="hidden" name="thisOrder" value="<% ((Order) session.getAttribute("order")).getOrder_id(); %>" >
@@ -105,6 +106,8 @@
             <% 
 =======
             
+=======
+>>>>>>> 82c5f5e4d0fd1adb472746f77fec31b5c1f07249
             <input type="hidden" name="command" value="graphic">
             <input class="btn btn-primary" type="submit" value="See visual order">
             <%
