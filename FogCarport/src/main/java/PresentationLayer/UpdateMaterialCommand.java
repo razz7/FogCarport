@@ -17,6 +17,7 @@ import java.util.logging.Logger;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.util.regex.*;
 
 /**
  *
@@ -34,29 +35,32 @@ public class UpdateMaterialCommand implements Command {
     public String execute(HttpServletRequest request, FunctionManager manager) throws LoginSampleException, OrderSampleException, MaterialSampleException, ClassNotFoundException {
         HttpSession session = request.getSession();
         ArrayList<Material> materials = manager.getAllMaterials();
+        String regex = ".*\\d.*";
 
         if (request.getParameter("id") != null && request.getParameter("description") != null && request.getParameter("width") != null && request.getParameter("height") != null && request.getParameter("entity") != null && request.getParameter("type") != null && request.getParameter("price") != null && request.getParameter("qty") != null) {
             if (request.getParameter("id").length() != 0 && request.getParameter("description").length() != 0 && request.getParameter("width").length() != 0 && request.getParameter("height").length() != 0 && request.getParameter("entity").length() != 0 && request.getParameter("type").length() != 0 && request.getParameter("price").length() != 0 && request.getParameter("qty").length() != 0) {
-            
-            int id = Integer.parseInt(request.getParameter("id"));
-            String description = request.getParameter("description");
-            float width = Float.parseFloat(request.getParameter("width"));
-            float height = Float.parseFloat(request.getParameter("height"));
-            String entity = request.getParameter("entity");
-            String type = request.getParameter("type");
-            float price = Float.parseFloat(request.getParameter("price"));
-            int qty = Integer.parseInt(request.getParameter("qty"));
+                if (!(request.getParameter("entity")).matches(regex) && !(request.getParameter("type")).matches(regex)) {
 
-            //DatabaseFacade df = new DatabaseFacade();
-            manager.updateMaterialData(id, description, width, height, entity, type, price, qty);
+                    int id = Integer.parseInt(request.getParameter("id"));
+                    String description = request.getParameter("description");
+                    float width = Float.parseFloat(request.getParameter("width"));
+                    float height = Float.parseFloat(request.getParameter("height"));
+                    String entity = request.getParameter("entity");
+                    String type = request.getParameter("type");
+                    float price = Float.parseFloat(request.getParameter("price"));
+                    int qty = Integer.parseInt(request.getParameter("qty"));
 
-            ArrayList<Material> materials2 = manager.getAllMaterials();
-            session.setAttribute("stockMaterialList", materials2);
-            return target;
+                    //DatabaseFacade df = new DatabaseFacade();
+                    manager.updateMaterialData(id, description, width, height, entity, type, price, qty);
+
+                    ArrayList<Material> materials2 = manager.getAllMaterials();
+                    session.setAttribute("stockMaterialList", materials2);
+                    return target;
+                }
             }
         }
         session.setAttribute("stockMaterialList", materials);
-        
+
         return target;
     }
 }
