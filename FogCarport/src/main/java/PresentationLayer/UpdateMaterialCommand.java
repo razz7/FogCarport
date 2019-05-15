@@ -39,7 +39,7 @@ public class UpdateMaterialCommand implements Command {
         String regexNumber = ".*\\d.*";
         String regexLetter = "^(?=.*\\pL)[\\pL\\pN]+(?:[ -]+[\\pL\\pN]+)*$";
 
-        if (!(request.getParameter("id")).matches(regexLetter) && !(request.getParameter("width")).matches(regexLetter) && !(request.getParameter("height")).matches(regexLetter) && !(request.getParameter("price")).matches(regexLetter) && !(request.getParameter("qty")).matches(regexLetter)) {
+        //if (!(request.getParameter("id")).matches(regexLetter) && !(request.getParameter("width")).matches(regexLetter) && !(request.getParameter("height")).matches(regexLetter) && !(request.getParameter("price")).matches(regexLetter) && !(request.getParameter("qty")).matches(regexLetter)) {
             if (request.getParameter("id") != null && request.getParameter("description") != null && request.getParameter("width") != null && request.getParameter("height") != null && request.getParameter("entity") != null && request.getParameter("type") != null && request.getParameter("price") != null && request.getParameter("qty") != null) {
                 if (request.getParameter("id").length() != 0 && request.getParameter("description").length() != 0 && request.getParameter("width").length() != 0 && request.getParameter("height").length() != 0 && request.getParameter("entity").length() != 0 && request.getParameter("type").length() != 0 && request.getParameter("price").length() != 0 && request.getParameter("qty").length() != 0) {
                     if (!(request.getParameter("entity")).matches(regexNumber) && !(request.getParameter("type")).matches(regexNumber)) {
@@ -62,7 +62,7 @@ public class UpdateMaterialCommand implements Command {
                     }
                 }
             }
-        }
+        //}
         session.setAttribute("stockMaterialList", materials);
 
         return target;

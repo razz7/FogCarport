@@ -24,7 +24,6 @@
         <form action="FrontController" method="POST">
             <div class="container">
             <%
-                
                 if (session.getAttribute("order") == null) {
             %>
             <h4>Carport mål </h4>
@@ -84,33 +83,46 @@
                 </div>
             </div>
 
-
             <%--
             <h5>Indtast 0 for fladt tag og 1 for højt tag</h5>
             <input type="text" name="shedTilt" value="">
             --%>
 
-
             <br>
 
             <input class="btn btn-primary" type="submit" value="Make order">
+        </form>
             <%
             } else {
+
             %>
+<<<<<<< HEAD
+<<<<<<< HEAD
+            <form>    
+                <input type="hidden" name="command" value="graphic">
+                <input type="hidden" name="thisOrder" value="<% ((Order) session.getAttribute("order")).getOrder_id(); %>" >
+                <input class="btn btn-primary" type="submit" value="See visual order">
+            </form>
+            <% 
+=======
+            
+=======
+>>>>>>> 82c5f5e4d0fd1adb472746f77fec31b5c1f07249
             <input type="hidden" name="command" value="graphic">
             <input class="btn btn-primary" type="submit" value="See visual order">
             <%
+>>>>>>> 5b1be6964158aa76e459bc5b36523a58c5fdea8c
                 }
-            %>
-
+                %>
         </div>
-    </form>
+    
 
     <%
+        //Stykliste list = (Stykliste) session.getAttribute("list");
         if (session.getAttribute("order") != null) {
-                //Stykliste list = (Stykliste) session.getAttribute("list");
-                Order order = (Order) session.getAttribute("order");
-                Stykliste sl = order.getStyklist();
+            Order order = (Order) session.getAttribute("order");
+            Stykliste sl = order.getStyklist();
+                
             out.println("<h4> Styklisten: </h4>");
             //out.println("<h4> Id:" + sl.getStyklist_id() + "</h4>");
             out.println("<div class=\"container\">");
