@@ -40,8 +40,9 @@ public class CommandFactory {
         commands.put("updateLineitem", new UpdateLineitemCommand("JSP/styklist.jsp"));
         commands.put("finalPrice", new PriceCommand("JSP/PriceFinalizePage.jsp"));
         commands.put("percent", new FinalizeOrderCommand("JSP/allOrdersPage.jsp"));
-        commands.put("login", new LoginCommand("JSP/shop.jsp"));
+        commands.put("login", new LoginCommand("JSP/home.jsp"));
         commands.put("shop", new shopCommand("JSP/shop.jsp"));
+        commands.put("home", new shopCommand("JSP/home.jsp"));
     }
 
     public static synchronized Command commandFrom(String key) {

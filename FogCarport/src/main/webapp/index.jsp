@@ -6,7 +6,7 @@
 
 <jsp:include page='/JSP/siteheader.jsp'></jsp:include>
 
-<jsp:include page='/JSP/sitemenus.jsp'></jsp:include>
+
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 

@@ -31,6 +31,7 @@ public class shopCommand implements Command {
     @Override
     public String execute(HttpServletRequest request, FunctionManager manager) 
             throws LoginSampleException, OrderSampleException, MaterialSampleException, StyklistException {
+<<<<<<< HEAD
         HttpSession session = request.getSession();
         String email = (String) session.getAttribute("email");
         String password = (String) session.getAttribute("password");
@@ -38,6 +39,12 @@ public class shopCommand implements Command {
         
         if(manager.verifyUser(email, password)) {
            session.removeAttribute("order");
+=======
+//        String email = request.getParameter("email");
+//        String password = request.getParameter("password");
+           HttpSession session = request.getSession();
+           session.setAttribute("order", null);
+>>>>>>> e9311238ab34bfa74c181eb5f6ec24a7efdace4d
           
         
         
