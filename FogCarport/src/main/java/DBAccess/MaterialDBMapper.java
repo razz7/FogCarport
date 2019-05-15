@@ -231,14 +231,21 @@ public class MaterialDBMapper extends MaterialMapper{
         MaterialDBMapper map = new MaterialDBMapper();
         
         String regex = "[0-9]+";
+        String regexLetter = "^(?=.*\\pL)[\\pL\\pN]+(?:[ -]+[\\pL\\pN]+)*$";
         
         String text1 = "hej24";
         String text2 = "hejsa";
-        String text3 = "35r";
+        String text3 = "35";
         
         System.out.println(!text1.matches(".*\\d.*"));
         System.out.println(!text2.matches(".*\\d.*"));
         System.out.println(!text3.matches(".*\\d.*"));
+        
+        System.out.println(" ");
+        
+        System.out.println(!text1.matches(regexLetter));
+        System.out.println(!text2.matches(regexLetter));
+        System.out.println(!text3.matches(regexLetter));
         
         //updateMaterialData(38, "TEST", 10.0f, 10.0f, "TEST", "TEST", 9);
         //System.out.println(map.getAllMaterials());
