@@ -7,6 +7,7 @@ import DBAccess.OrderDBMapper;
 import DBAccess.OrderMapper;
 import DBAccess.StyklisteDBMapper;
 import DBAccess.StyklisteMapper;
+import DBAccess.UserDBMapper;
 import DBAccess.UserMapper;
 import FunctionLayer.LogicFacade;
 import FunctionLayer.LoginSampleException;
@@ -59,7 +60,6 @@ public class FogDataTest {
         MockitoAnnotations.initMocks(this);
     }
      */
-    
     @Test
     public void testGetMaterialbyID() throws MaterialSampleException {
         MaterialDBMapper map = new MaterialDBMapper();
@@ -269,41 +269,79 @@ public class FogDataTest {
         }
     }
 
-    /*
     @Test
-    public void createUser(User user) throws LoginSampleException {
-        UserMapper map = new UserMapper();
-        map.createUser(user);
-    }
-
-    @Test
-    public boolean verifyUser(String email, String password) throws LoginSampleException {
-        UserDBMapper map = new UserDBMapper();
-        return map.verifyUser(email, password);
-    }
-
-    @Test
-    public User getUserByEmail(String email) throws LoginSampleException {
-        UserDBMapper map = new UserDBMapper();
-        return map.getUserByEmail(email);
-    }
-
-    @Test
-    public void deleteOrder(int order_id) throws OrderSampleException {
+    public void testDeleteOrder() throws OrderSampleException {
         OrderDBMapper map = new OrderDBMapper();
-        map.deleteOrder(order_id);
+        try {
+            Order beforeOrderById = map.getOrderFromId(testOrderId);
+            assertNotNull(beforeOrderById);
+            map.deleteOrder(testOrderId);
+            Order afterOrderById = map.getOrderFromId(testOrderId);
+            assertNull(afterOrderById);
+        } catch (OrderSampleException oe) {
+            fail("Caught a OrderSampleException");
+        }
     }
 
     @Test
-    public void removeUser(User user) throws LoginSampleException {
+    public void testCreateUser() throws LoginSampleException {
         UserDBMapper map = new UserDBMapper();
-        map.removeUser(user);
+        try {
+            User user = new User("Test", 9999, "TestUser");
+            assertNotNull(user);
+            map.createUser(user);
+        } catch (LoginSampleException le) {
+            fail("Caught a LoginSampleException");
+        }
     }
 
     @Test
-    public User login(String email, String password) throws LoginSampleException {
+    public void testVerifyUser() throws LoginSampleException {
         UserDBMapper map = new UserDBMapper();
-        return map.login(email, password);
+        try {
+            assertTrue(map.verifyUser("Test", "password"));
+        } catch (LoginSampleException le) {
+            fail("Caught a LoginSampleException");
+        }
     }
-     */
+
+    @Test
+    public void testGetUserByEmail() throws LoginSampleException {
+        UserDBMapper map = new UserDBMapper();
+        try {
+            User getUser = map.getUserByEmail("Test");
+            User newUser = new User("Test", 9999, "TestUser");
+            assertNotNull(getUser);
+            assertNotNull(newUser);
+            assertThat(getUser.getId(), is(newUser.getId()));
+        } catch (LoginSampleException le) {
+            fail("Caught a LoginSampleException");
+        }
+    }
+
+    @Test
+    public void testLogin() throws LoginSampleException {
+        UserDBMapper map = new UserDBMapper();
+        try {
+            User user = map.login("Test", "password");
+            assertNotNull(user);
+        } catch (LoginSampleException le) {
+            fail("Caught a LoginSampleException");
+        }
+    }
+
+    @Test
+    public void testRemoveUser() throws LoginSampleException {
+        UserDBMapper map = new UserDBMapper();
+        try {
+            User beforeUser = map.getUserByEmail("Test");
+            assertNotNull(beforeUser);
+            map.removeUser(beforeUser);
+            User afterUser = map.getUserByEmail("Test");
+            assertNull(afterUser);
+        } catch (LoginSampleException le) {
+            fail("Caught a LoginSampleException");
+        }
+    }
+
 }
