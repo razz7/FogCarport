@@ -97,6 +97,7 @@
             <%
             } else {
             %>
+            
             <input type="hidden" name="command" value="graphic">
             <input class="btn btn-primary" type="submit" value="See visual order">
             <%
