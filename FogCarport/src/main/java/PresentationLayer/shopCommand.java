@@ -34,7 +34,7 @@ public class shopCommand implements Command {
 //        String email = request.getParameter("email");
 //        String password = request.getParameter("password");
            HttpSession session = request.getSession();
-           session.removeAttribute("order");
+           session.setAttribute("order", null);
           
         
         
