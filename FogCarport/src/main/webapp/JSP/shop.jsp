@@ -15,7 +15,7 @@
 <jsp:include page='/JSP/sitemenus.jsp'></jsp:include>
 
 
-    <div class="alert alert-primary"
+    <div class="alert alert-primary">
          <br>
         <div class="container">
             <h2>Velkommen til Fogs online bestillingsservice!</h2>

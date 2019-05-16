@@ -1,11 +1,13 @@
+<jsp:include page='/JSP/siteheader.jsp'></jsp:include>
+
+<jsp:include page='/JSP/sitemenus.jsp'></jsp:include>
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>Error Page</title>
-  </head>
-  <body>
-    <h1>Hello World!</h1>
-  </body>
-</html>
+
+<h1>Error!</h1>
+
+<% String message = (String) session.getAttribute("message"); %>
+
+<h5> <%out.println(message);%> </h5>
+
+<jsp:include page='/JSP/sitefooter.jsp'></jsp:include>

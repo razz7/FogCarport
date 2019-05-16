@@ -19,7 +19,7 @@ public class OrderSampleException extends Exception {
     }
   //"error.jsp"
   public OrderSampleException(String message) {
-    this(message, "JSP/allOrdersPage.jsp");
+    this(message, "JSP/error.jsp");
     }
   
   public final String getTarget() { return target; }
