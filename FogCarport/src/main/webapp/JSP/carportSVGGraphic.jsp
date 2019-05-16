@@ -35,7 +35,7 @@
         materials.put(m.getItem_id(), m);
     }
 %>
-
+<div class="container">
 <h4><% out.println("getHeight" + order.getHeight()); %> </h4>
 <h4><% out.println("getLength" + order.getLength()); %> </h4>
 <h4><% out.println("getOrder_id" + order.getOrder_id()); %> </h4>
@@ -420,5 +420,5 @@
 <%
     }
 %>
-
+</div>
 <jsp:include page='/JSP/sitefooter.jsp'></jsp:include>

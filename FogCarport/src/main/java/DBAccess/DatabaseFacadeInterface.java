@@ -50,7 +50,7 @@ public interface DatabaseFacadeInterface {
     
     public Stykliste getStyklistForOrder(int order_id) throws OrderSampleException;
 
-    public void createUser(User user) throws LoginSampleException;
+    public void createUser(String email, String password, String role) throws LoginSampleException;
     
     public abstract void removeUser(User user) throws LoginSampleException;
     

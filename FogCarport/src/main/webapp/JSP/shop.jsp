@@ -16,17 +16,21 @@
 
 
     <div class="alert alert-primary">
-         <br>
+        <br>
         <div class="container">
             <h2>Velkommen til Fogs online bestillingsservice!</h2>
         </div>
-        <br>
+
         <form action="FrontController" method="POST">
             <div class="container">
             <%
-                
                 if (session.getAttribute("order") == null) {
             %>
+            <h6>Der er et sæt minimums- og maximumskrav til størrelse</h6>
+            <h6>Hvis målene ikke følger disse krav går ordren ikke igennem</h6>
+
+            <br>
+
             <h4>Carport mål </h4>
             <div class="form-row">
                 <input type="hidden" name="command" value="order">
@@ -34,17 +38,20 @@
                 <div class="col-md-3 mb-3">
 
                     <label for="">Bredde</label>
-                    <input type="text" name="width" value="6000" class="form-control" 
+                    <p><small>Min: 2400 Max: 7500</small></p>
+                    <input type="text" name="width" value="" class="form-control" 
                            placeholder="0.0"  >
                 </div>
                 <div class="col-md-3 mb-3">
 
                     <label for="">Længde</label>
-                    <input type="text" name="length" value="7800" class="form-control" 
+                    <p><small>Min: 2400 Max: 7800</small></p>
+                    <input type="text" name="length" value="" class="form-control" 
                            placeholder="0.0">
                 </div>
                 <div class="col-md-3 mb-3">
-                    <label for="">Carport rejsning(optional)</label>
+                    <label for="">Carport rejsning (optional)</label>
+                    <p><small>Min: 0 Max: 45</small></p>
                     <input type="text" name="roof" value="0" class="form-control" 
                            placeholder="0.0">
                 </div>
@@ -55,12 +62,14 @@
                 <div class="col-md-3 mb-3">
 
                     <label for="">Skur Længde</label>
-                    <input type="text" name="shedLength" value="2100" class="form-control" 
+                    <p><small>Min: 1500 Max: 6900</small></p>
+                    <input type="text" name="shedLength" value="" class="form-control" 
                            placeholder="0.0">
                 </div>
                 <div class="col-md-3 mb-3">
                     <label for="">Skur bredde</label>
-                    <input type="text" name="shedWidth" value="5300" class="form-control" 
+                    <p><small>Min: 2100 Max: 7200</small></p>
+                    <input type="text" name="shedWidth" value="" class="form-control" 
                            placeholder="0.0">
                 </div>
             </div>
@@ -69,17 +78,17 @@
             <div class="form-row">
                 <div class="col-md-3 mb-3">
                     <label for="">Fulde navn</label>
-                    <input type="text" name="name" value="j" class="form-control" 
+                    <input type="text" name="name" value="" class="form-control" 
                            placeholder="">
                 </div>
                 <div class="col-md-3 mb-3">
                     <label for="">Adresse</label>
-                    <input type="text" name="adress" value="f" class="form-control" 
+                    <input type="text" name="adress" value="" class="form-control" 
                            placeholder="">
                 </div>
                 <div class="col-md-3 mb-3">
                     <label for="">Email</label>
-                    <input type="text" name="email" value="k" class="form-control" 
+                    <input type="text" name="email" value="" class="form-control" 
                            placeholder="">
                 </div>
             </div>
@@ -108,9 +117,10 @@
 
     <%
         if (session.getAttribute("order") != null) {
-                //Stykliste list = (Stykliste) session.getAttribute("list");
-                Order order = (Order) session.getAttribute("order");
-                Stykliste sl = order.getStyklist();
+            //Stykliste list = (Stykliste) session.getAttribute("list");
+            Order order = (Order) session.getAttribute("order");
+            Stykliste sl = order.getStyklist();
+            out.println("<br>");
             out.println("<h4> Styklisten: </h4>");
             //out.println("<h4> Id:" + sl.getStyklist_id() + "</h4>");
             out.println("<div class=\"container\">");
