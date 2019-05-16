@@ -33,6 +33,10 @@ public class OrderDBMapper extends OrderMapper {
         }
         return instance;
     }
+    
+    public void setMapperConnection(Connection connection) {
+        dbc.setConnection(connection);
+    }
 
     @Override
     public ArrayList<Order> getAllOrders() throws OrderSampleException{

@@ -25,6 +25,10 @@ public class UserDBMapper extends UserMapper{
         }
         return instance;
     }
+    
+    public void setMapperConnection(Connection connection) {
+        dbc.setConnection(connection);
+    }
 
     @Override
     public void createUser(String email, String password, String role) throws LoginSampleException {
