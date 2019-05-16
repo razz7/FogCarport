@@ -39,7 +39,7 @@ public class CommandFactory {
         commands.put("AllOrders", new AllOrdersCommand("allOrdersPage.jsp"));
         commands.put("updateLineitem", new UpdateLineitem("styklist.jsp"));
         commands.put("finalPrice", new PriceCommand("PriceFinalizePage.jsp"));
-        commands.put("percent", new FinalizeOrder("allOrdersPage.sjp"));
+        commands.put("percent", new FinalizeOrder("allOrdersPage.jsp"));
         commands.put("login", new LoginCommand("index.jsp"));
     }
 
