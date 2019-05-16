@@ -34,13 +34,13 @@
                 <div class="col-md-3 mb-3">
 
                     <label for="">Bredde</label>
-                    <input type="text" name="width" value="6000" class="form-control" 
+                    <input type="text" name="width" value="" class="form-control" 
                            placeholder="0.0"  >
                 </div>
                 <div class="col-md-3 mb-3">
 
                     <label for="">Længde</label>
-                    <input type="text" name="length" value="7800" class="form-control" 
+                    <input type="text" name="length" value="" class="form-control" 
                            placeholder="0.0">
                 </div>
                 <div class="col-md-3 mb-3">
@@ -55,12 +55,12 @@
                 <div class="col-md-3 mb-3">
 
                     <label for="">Skur Længde</label>
-                    <input type="text" name="shedLength" value="2100" class="form-control" 
+                    <input type="text" name="shedLength" value="" class="form-control" 
                            placeholder="0.0">
                 </div>
                 <div class="col-md-3 mb-3">
                     <label for="">Skur bredde</label>
-                    <input type="text" name="shedWidth" value="5300" class="form-control" 
+                    <input type="text" name="shedWidth" value="" class="form-control" 
                            placeholder="0.0">
                 </div>
             </div>
@@ -69,17 +69,17 @@
             <div class="form-row">
                 <div class="col-md-3 mb-3">
                     <label for="">Fulde navn</label>
-                    <input type="text" name="name" value="j" class="form-control" 
+                    <input type="text" name="name" value="" class="form-control" 
                            placeholder="">
                 </div>
                 <div class="col-md-3 mb-3">
                     <label for="">Adresse</label>
-                    <input type="text" name="adress" value="f" class="form-control" 
+                    <input type="text" name="adress" value="" class="form-control" 
                            placeholder="">
                 </div>
                 <div class="col-md-3 mb-3">
                     <label for="">Email</label>
-                    <input type="text" name="email" value="k" class="form-control" 
+                    <input type="text" name="email" value="" class="form-control" 
                            placeholder="">
                 </div>
             </div>
