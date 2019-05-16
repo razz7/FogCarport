@@ -24,6 +24,7 @@
         <form action="FrontController" method="POST">
             <div class="container">
             <%
+                
                 if (session.getAttribute("order") == null) {
             %>
             <h4>Carport mål </h4>

@@ -8,41 +8,42 @@ package PresentationLayer;
 import FunctionLayer.FunctionManager;
 import FunctionLayer.LoginSampleException;
 import FunctionLayer.MaterialSampleException;
-import FunctionLayer.Order;
 import FunctionLayer.OrderSampleException;
-import java.util.ArrayList;
+import FunctionLayer.StyklistException;
+import FunctionLayer.User;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author Rumle
+ * @author rh
  */
-public class AllOrdersCommand implements Command {
-
+public class shopCommand implements Command {
+    
+    
+    
     private String target;
 
-    AllOrdersCommand(String target) {
+    shopCommand(String target) {
         this.target = target;
     }
 
     @Override
-    public String execute(HttpServletRequest request, FunctionManager manager) throws LoginSampleException, OrderSampleException, MaterialSampleException {
-        
+    public String execute(HttpServletRequest request, FunctionManager manager) 
+            throws LoginSampleException, OrderSampleException, MaterialSampleException, StyklistException {
         HttpSession session = request.getSession();
+        session.removeAttribute("order");
         String email = (String) session.getAttribute("email");
         String password = (String) session.getAttribute("password");
         
-        if (manager.verifyUser(email, password)) {
-            ArrayList<Order> allOrders = manager.getAllOrders();
-            request.setAttribute("allOrders", allOrders);
-
-            return target;
-
-        } else {
-            return "main";
-        }
+        
+        if(manager.verifyUser(email, password)) {
+           
+ 
+        return target;                
+    }   else
+        return "error";
     }
 }
 
-    
+

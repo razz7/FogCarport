@@ -13,6 +13,7 @@ import FunctionLayer.User;
 import FunctionLayer.OrderSampleException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -28,12 +29,8 @@ public class MainPageCommand implements Command {
     
     @Override
     public String execute(HttpServletRequest request, FunctionManager manager) throws LoginSampleException, OrderSampleException, MaterialSampleException {
-        String email = request.getParameter("email");
-        String password = request.getParameter("password");
-        LogicFacade logic = new LogicFacade();
-        User user = logic.login(email, password);
-
+       HttpSession session = request.getSession();
         return target;
-        //return user.getRole() + "page";
+        
     }
 }

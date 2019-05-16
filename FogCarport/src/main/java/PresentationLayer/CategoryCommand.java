@@ -20,23 +20,18 @@ import javax.servlet.http.HttpSession;
  *
  * @author rh
  */
-public class stockListScrews implements Command {
+public class CategoryCommand implements Command{
     
     private String target;
 
-    stockListScrews(String target) {
+    CategoryCommand(String target) {
         this.target = target;
     }
-
+    
     @Override
-    public String execute(HttpServletRequest request, FunctionManager manager) throws LoginSampleException, OrderSampleException, MaterialSampleException {
-        
-        DatabaseFacade df = new DatabaseFacade();
-        ArrayList<Material> materials = df.getAllMaterialbyType("Beslag & Skruer");
-        System.out.println(materials);
+    public String execute(HttpServletRequest request, FunctionManager manager) throws LoginSampleException, OrderSampleException, MaterialSampleException {        
         HttpSession session = request.getSession();
-        session.setAttribute("stockListScrews", materials);
-        
+
         return target;
     }
     

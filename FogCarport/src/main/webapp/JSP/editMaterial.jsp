@@ -55,8 +55,7 @@
         out.println("</div>");
         out.println("<input class=\"btn btn-primary\" type=\"submit\" value=\"Submit changes\">");
         out.println("</div>");
-        
-        
+                
         out.println("</form");
     } else {
 

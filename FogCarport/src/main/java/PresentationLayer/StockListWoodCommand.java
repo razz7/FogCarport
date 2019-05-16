@@ -18,11 +18,11 @@ import javax.servlet.http.HttpSession;
  *
  * @author rh
  */
-public class stockListWood implements Command {
+public class StockListWoodCommand implements Command {
     
     private String target;
 
-    stockListWood(String target) {
+    StockListWoodCommand(String target) {
         this.target = target;
     }
 

@@ -5,34 +5,32 @@
  */
 package PresentationLayer;
 
-import DBAccess.DatabaseFacade;
 import FunctionLayer.FunctionManager;
 import FunctionLayer.LoginSampleException;
-import FunctionLayer.Material;
 import FunctionLayer.MaterialSampleException;
 import FunctionLayer.OrderSampleException;
-import java.util.ArrayList;
+import FunctionLayer.StyklistException;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author rh
  */
-public class categoryCommand implements Command{
+public class home implements Command {
+    private final String target;
     
-    private String target;
-
-    categoryCommand(String target) {
+        home(String target) {
         this.target = target;
     }
-    
+
     @Override
-    public String execute(HttpServletRequest request, FunctionManager manager) throws LoginSampleException, OrderSampleException, MaterialSampleException {        
+    public String execute(HttpServletRequest request, FunctionManager manager) throws LoginSampleException, OrderSampleException, MaterialSampleException, StyklistException, CommandException, ClassNotFoundException {
+       
+        HttpSession session = request.getSession();
         
-        return target;
+        
+       return target;
     }
     
 }
-    

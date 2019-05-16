@@ -12,31 +12,32 @@ import FunctionLayer.Material;
 import FunctionLayer.MaterialSampleException;
 import FunctionLayer.OrderSampleException;
 import FunctionLayer.StyklistException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.ArrayList;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-public class EditLineItemCommand implements Command {
-
+/**
+ *
+ * @author rh
+ */
+public class StockListTagpakkeCommand implements Command {
+    
     private String target;
 
-    EditLineItemCommand(String target) {
+    StockListTagpakkeCommand(String target) {
         this.target = target;
     }
 
     @Override
-    public String execute(HttpServletRequest request, FunctionManager manager) throws LoginSampleException, OrderSampleException, MaterialSampleException, StyklistException{
-        //DatabaseFacade dbf = new DatabaseFacade();
-
-        int id = Integer.parseInt(request.getParameter("lineitemID"));
-
-        Material material = manager.getMaterialFromLineItems(id);
+    public String execute(HttpServletRequest request, FunctionManager manager) throws LoginSampleException, OrderSampleException, MaterialSampleException, StyklistException {
+        //DatabaseFacade df = new DatabaseFacade();
+        ArrayList<Material> materials = manager.getAllMaterialbyType("Tagpakken");
+        System.out.println(materials);
         HttpSession session = request.getSession();
-        session.setAttribute("lineitemToEdit", material);
-
+        session.setAttribute("stockListTagpakke", materials);
+        
         return target;
     }
-    
 }
+   

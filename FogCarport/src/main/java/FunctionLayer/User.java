@@ -5,6 +5,11 @@ package FunctionLayer;
  * @author Rasmus2
  */
 public class User {
+    
+    private int id;
+    private String email;
+    private String password;
+    private String role;
 
     public User( String email, int id, String role ) {
         this.email = email;
@@ -12,10 +17,7 @@ public class User {
         this.role = role;
     }
 
-    private int id;
-    private String email;
-    private String password;
-    private String role;
+
 
     public String getEmail() {
         return email;
