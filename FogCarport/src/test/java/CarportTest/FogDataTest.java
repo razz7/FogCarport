@@ -1,3 +1,4 @@
+package CarportTest;
 //package CarportTest;
 //
 //import DBAccess.Connector;
@@ -392,6 +393,44 @@
 //            fail("Caught a OrderSampleException");
 //        }
 //    }
+
+    /*
+    @Test
+    public void createUser(User user) throws LoginSampleException {
+        UserMapper map = new UserMapper();
+        map.createUser(user);
+    }
+
+    @Test
+    public boolean verifyUser(String email, String password) throws LoginSampleException {
+        UserDBMapper map = new UserDBMapper();
+        return map.verifyUser(email, password);
+    }
+
+    @Test
+    public User getUserByEmail(String email) throws LoginSampleException {
+        UserDBMapper map = new UserDBMapper();
+        return map.getUserByEmail(email);
+    }
+
+    @Test
+    public void deleteOrder(int order_id) throws OrderSampleException {
+        OrderDBMapper map = new OrderDBMapper();
+        map.deleteOrder(order_id);
+    }
+
+    @Test
+    public void removeUser(User user) throws LoginSampleException {
+        UserDBMapper map = new UserDBMapper();
+        map.removeUser(user);
+    }
+
+    @Test
+    public User login(String email, String password) throws LoginSampleException {
+        UserDBMapper map = new UserDBMapper();
+        return map.login(email, password);
+    }
+     */
 //
 //    /*
 //    @Test

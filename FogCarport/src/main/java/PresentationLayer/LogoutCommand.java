@@ -24,8 +24,6 @@ public class LogoutCommand implements Command {
         session.invalidate();
         session.removeAttribute("email");
         session.removeAttribute("password");
-        return target;
-        
+        return target;     
     }
-    
 }

@@ -15,7 +15,7 @@ public class CommandException extends Exception{
     }
   
   CommandException(String message) {
-    this(message, "error.jsp");
+    this(message, "JSP/error.jsp");
     }
   
   public final String getTarget() { return target; }
