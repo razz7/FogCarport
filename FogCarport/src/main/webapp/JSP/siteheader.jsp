@@ -25,9 +25,11 @@
                 -ms-transform: translateX(-40%);
                 transform: translateX(-40%);
             }
+            
+    
         </style>
 
 
     </head>
-    <body>
-        <div class="se-pre-con"></div>
+    <body style="background-color: #e3f2fd">
+        
