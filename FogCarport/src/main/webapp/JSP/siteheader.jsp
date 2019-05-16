@@ -31,5 +31,5 @@
 
 
     </head>
-    <body style="background-color: #e3f2fd">
+    <body style="background-color: #eeeee">
         
