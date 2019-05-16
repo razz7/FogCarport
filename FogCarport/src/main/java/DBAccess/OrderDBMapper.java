@@ -47,7 +47,7 @@ public class OrderDBMapper extends OrderMapper {
             PreparedStatement ps = conn.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             while(rs.next()) {
-                Order order = new Order(rs.getInt(1), rs.getFloat(2), rs.getFloat(3), 0, rs.getFloat(4), rs.getInt(5), rs.getInt(6));
+                Order order = new Order(rs.getInt(1), rs.getFloat(2), rs.getFloat(3), 2300, rs.getFloat(4), rs.getFloat(5), rs.getFloat(6));
                 orders.add(order);
                 order.setOrderdate(rs.getDate(9));
                 User user = new User(rs.getString(10), 0, "");
