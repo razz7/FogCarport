@@ -19,6 +19,8 @@
          <br>
         <div class="container">
             <h2>Velkommen til Fogs online bestillingsservice!</h2>
+            <h6>Der er et sæt minimums- og maximumskrav til størrelse</h6>
+            <h6>Hvis målene ikke følger disse krav går ordren ikke igennem</h6>
         </div>
         <br>
         <form action="FrontController" method="POST">
@@ -34,17 +36,20 @@
                 <div class="col-md-3 mb-3">
 
                     <label for="">Bredde</label>
+                    <p><small>Min: 2400 Max: 7500</small></p>
                     <input type="text" name="width" value="" class="form-control" 
                            placeholder="0.0"  >
                 </div>
                 <div class="col-md-3 mb-3">
 
                     <label for="">Længde</label>
+                    <p><small>Min: 2400 Max: 7800</small></p>
                     <input type="text" name="length" value="" class="form-control" 
                            placeholder="0.0">
                 </div>
                 <div class="col-md-3 mb-3">
-                    <label for="">Carport rejsning(optional)</label>
+                    <label for="">Carport rejsning (optional)</label>
+                    <p><small>Min: 0 Max: 45</small></p>
                     <input type="text" name="roof" value="0" class="form-control" 
                            placeholder="0.0">
                 </div>
@@ -55,11 +60,13 @@
                 <div class="col-md-3 mb-3">
 
                     <label for="">Skur Længde</label>
+                    <p><small>Min: 1500 Max: 6900</small></p>
                     <input type="text" name="shedLength" value="" class="form-control" 
                            placeholder="0.0">
                 </div>
                 <div class="col-md-3 mb-3">
                     <label for="">Skur bredde</label>
+                    <p><small>Min: 2100 Max: 7200</small></p>
                     <input type="text" name="shedWidth" value="" class="form-control" 
                            placeholder="0.0">
                 </div>

@@ -1,8 +1,5 @@
-<<<<<<< HEAD
 package CarportTest;
-=======
 //package CarportTest;
->>>>>>> 4c2fbc38bfd20ff4d94c907e6c808459d1368eef
 //
 //import DBAccess.Connector;
 //import DBAccess.MaterialDBMapper;
@@ -396,7 +393,6 @@ package CarportTest;
 //            fail("Caught a OrderSampleException");
 //        }
 //    }
-<<<<<<< HEAD
 
     /*
     @Test
@@ -435,7 +431,6 @@ package CarportTest;
         return map.login(email, password);
     }
      */
-=======
 //
 //    /*
 //    @Test
@@ -474,5 +469,4 @@ package CarportTest;
 //        return map.login(email, password);
 //    }
 //     */
->>>>>>> 4c2fbc38bfd20ff4d94c907e6c808459d1368eef
 //}
