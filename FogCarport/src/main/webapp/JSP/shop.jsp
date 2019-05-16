@@ -16,19 +16,21 @@
 
 
     <div class="alert alert-primary">
-         <br>
+        <br>
         <div class="container">
             <h2>Velkommen til Fogs online bestillingsservice!</h2>
-            <h6>Der er et sæt minimums- og maximumskrav til størrelse</h6>
-            <h6>Hvis målene ikke følger disse krav går ordren ikke igennem</h6>
         </div>
-        <br>
+
         <form action="FrontController" method="POST">
             <div class="container">
             <%
-                
                 if (session.getAttribute("order") == null) {
             %>
+            <h6>Der er et sæt minimums- og maximumskrav til størrelse</h6>
+            <h6>Hvis målene ikke følger disse krav går ordren ikke igennem</h6>
+
+            <br>
+
             <h4>Carport mål </h4>
             <div class="form-row">
                 <input type="hidden" name="command" value="order">
@@ -115,9 +117,10 @@
 
     <%
         if (session.getAttribute("order") != null) {
-                //Stykliste list = (Stykliste) session.getAttribute("list");
-                Order order = (Order) session.getAttribute("order");
-                Stykliste sl = order.getStyklist();
+            //Stykliste list = (Stykliste) session.getAttribute("list");
+            Order order = (Order) session.getAttribute("order");
+            Stykliste sl = order.getStyklist();
+            out.println("<br>");
             out.println("<h4> Styklisten: </h4>");
             //out.println("<h4> Id:" + sl.getStyklist_id() + "</h4>");
             out.println("<div class=\"container\">");
