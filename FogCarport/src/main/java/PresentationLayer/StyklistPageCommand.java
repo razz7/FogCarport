@@ -66,8 +66,9 @@ public class StyklistPageCommand implements Command {
         
         int order_id = Integer.parseInt(request.getParameter("specificOrder"));
         HttpSession session = request.getSession();
+        Order order = null;
         //DatabaseFacade dbf = new DatabaseFacade();
-        Order order = manager.getOrderFromId(order_id);
+        order = manager.getOrderFromId(order_id);
         session.setAttribute("order", order);
         session.setAttribute("list", order.getStyklist());
 
