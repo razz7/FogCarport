@@ -43,6 +43,7 @@ class OrderPageCommand implements Command {
 
         if (width > 7500 || width < 2400 || length > 7800 || length < 2400 || shedLength > 6900 || shedLength < 1500 || shedWidth > 7200 || shedWidth < 2100 || roofTilt > 45 || roofTilt < 0) {
             //throw new MaterialSampleException("Fejl i mål");
+            
             return target;
         } else {
 
@@ -52,12 +53,14 @@ class OrderPageCommand implements Command {
             order.setUser(user);
             Stykliste sl = manager.carportAlgorithm(width, length, roofTilt, shedWidth, shedLength, id);
             order.setStyklist(sl);
-
+            
             //DatabaseFacade dbf = new DatabaseFacade();
             manager.saveOrder(order);
 
             session.setAttribute("order", order);
             session.setAttribute("stykliste", sl);
+            session.setAttribute("shopOrder", order);
+            
         }
         return target;
 
