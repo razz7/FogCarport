@@ -24,6 +24,7 @@ public class FunctionManager implements DatabaseFacadeInterface, LogicFacadeInte
     private final UserMapper UseMapper = UserMapper.instance();
     private CarportAlgorithm ca = new CarportAlgorithm();
     private Encryption ec = new Encryption();
+    
 
     @Override
     public void editLineItemsFromOrderID(int item_id, String item_description, float width, float height,
@@ -107,10 +108,7 @@ public class FunctionManager implements DatabaseFacadeInterface, LogicFacadeInte
         return MatMapper.getAllMaterialbyType(type);
     }
 
-    @Override
-    public void createUser(User user) throws LoginSampleException {
-        UseMapper.createUser(user);
-    }
+
 
     @Override
     public User login(String email, String password) throws LoginSampleException {
@@ -196,5 +194,10 @@ public class FunctionManager implements DatabaseFacadeInterface, LogicFacadeInte
             String securepassword, String salt) {
         LogicFacade log = new LogicFacade();
         return log.verifyUserPassword(providedPassword, securepassword, salt);
+    }
+
+    @Override
+    public void createUser(String email, String password, String role) throws LoginSampleException {
+       
     }
 }

@@ -29,13 +29,17 @@ public class MaterialDBMapper extends MaterialMapper{
         if (instance == null) instance = new MaterialDBMapper();
         return instance;
     }
+    
+    public void setMapperConnection(Connection connection) {
+        dbc.setConnection(connection);
+    }
 
     @Override
     public ArrayList<Material> getAllMaterials() throws MaterialSampleException {
         ArrayList<Material> list = new ArrayList();
         try {
             Connection con = dbc.connection();
-            String SQL = "SELECT * FROM fog.stock";
+            String SQL = "SELECT * FROM stock";
             PreparedStatement ps = con.prepareStatement(SQL);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
@@ -64,7 +68,7 @@ public class MaterialDBMapper extends MaterialMapper{
     @Override
     public void addNewMaterial(String item_description, float width, float height, String entity, String materialtype, float price, int quantity) throws MaterialSampleException {
         try {
-            String sql = "INSERT into fog.stock (item_description, width, height, entity, materialtype, price, stockquantity)"
+            String sql = "INSERT into stock (item_description, width, height, entity, materialtype, price, stockquantity)"
                     + " VALUES(?,?,?,?,?,?,?)";
             Connection con = dbc.connection();
             PreparedStatement ps = con.prepareStatement(sql);
@@ -102,7 +106,7 @@ public class MaterialDBMapper extends MaterialMapper{
     @Override
     public void updateMaterialData(int item_id, String item_description, float width, float height, String entity, String materialtype, float price, int quantity) throws MaterialSampleException, ClassNotFoundException {
         try {
-            String sql = "UPDATE fog.stock SET item_description=?, width=?, height=?, entity=?, materialtype=?, price=?, stockquantity=?, versionnr = versionnr + 1 where item_id=?";
+            String sql = "UPDATE stock SET item_description=?, width=?, height=?, entity=?, materialtype=?, price=?, stockquantity=?, versionnr = versionnr + 1 where item_id=?";
 
             Connection con = dbc.connection();
             PreparedStatement ps = con.prepareStatement(sql);
@@ -131,7 +135,7 @@ public class MaterialDBMapper extends MaterialMapper{
     @Override
     public void deleteMaterial(int item_id) throws MaterialSampleException {
         try {
-            String sql = "DELETE FROM fog.stock WHERE item_id = ?";
+            String sql = "DELETE FROM stock WHERE item_id = ?";
             Connection con = dbc.connection();
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, item_id);
@@ -146,7 +150,7 @@ public class MaterialDBMapper extends MaterialMapper{
     public Material getMaterialbyID(int item_id) throws MaterialSampleException {
         try {
             Connection con = dbc.connection();
-            String SQL = "SELECT * FROM fog.stock WHERE item_id = ?";
+            String SQL = "SELECT * FROM stock WHERE item_id = ?";
             PreparedStatement ps = con.prepareStatement(SQL);
             ps.setInt(1, item_id);
             ResultSet rs = ps.executeQuery();
@@ -210,7 +214,7 @@ public class MaterialDBMapper extends MaterialMapper{
         try {
             ArrayList<Material> ML = new ArrayList();
             Connection con = dbc.connection();
-            String SQL = "SELECT * FROM fog.stock WHERE materialtype = ?;";
+            String SQL = "SELECT * FROM stock WHERE materialtype = ?;";
             PreparedStatement ps = con.prepareStatement(SQL);
             ps.setString(1, type);
             ResultSet rs = ps.executeQuery();

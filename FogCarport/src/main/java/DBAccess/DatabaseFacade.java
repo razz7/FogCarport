@@ -114,9 +114,9 @@ public class DatabaseFacade implements DatabaseFacadeInterface {
     }
 
     @Override
-    public void createUser(User user) throws LoginSampleException {
+    public void createUser(String email, String password, String role) throws LoginSampleException {
         UserDBMapper map = new UserDBMapper();
-        map.createUser(user);
+        map.createUser(email, password, role);
     }
 
     @Override

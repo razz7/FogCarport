@@ -33,6 +33,10 @@ public class OrderDBMapper extends OrderMapper {
         }
         return instance;
     }
+    
+    public void setMapperConnection(Connection connection) {
+        dbc.setConnection(connection);
+    }
 
     @Override
     public ArrayList<Order> getAllOrders() throws OrderSampleException{
@@ -43,7 +47,7 @@ public class OrderDBMapper extends OrderMapper {
             PreparedStatement ps = conn.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             while(rs.next()) {
-                Order order = new Order(rs.getInt(1), rs.getFloat(2), rs.getFloat(3), 0, rs.getFloat(4), rs.getInt(5), rs.getInt(6));
+                Order order = new Order(rs.getInt(1), rs.getFloat(2), rs.getFloat(3), 2300, rs.getFloat(4), rs.getFloat(5), rs.getFloat(6));
                 orders.add(order);
                 order.setOrderdate(rs.getDate(9));
                 User user = new User(rs.getString(10), 0, "");
@@ -153,7 +157,7 @@ public class OrderDBMapper extends OrderMapper {
     @Override
     public void finalizeOrder(int order_id) throws OrderSampleException {
         try {
-            String sql = "UPDATE fog.orders SET status=true WHERE order_id=?";
+            String sql = "UPDATE orders SET status=true WHERE order_id=?";
 
             Connection con = dbc.connection();
             PreparedStatement ps = con.prepareStatement(sql);
@@ -168,7 +172,7 @@ public class OrderDBMapper extends OrderMapper {
     @Override
     public void deleteOrder(int order_id) throws OrderSampleException {
         try {
-            String sql = "DELETE FROM fog.orders WHERE order_id=?";
+            String sql = "DELETE FROM orders WHERE order_id=?";
 
             Connection con = dbc.connection();
             PreparedStatement ps = con.prepareStatement(sql);
