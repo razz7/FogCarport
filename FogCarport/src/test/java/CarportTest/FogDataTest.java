@@ -39,21 +39,25 @@ import org.junit.Before;
  */
 public class FogDataTest {
 
-    private String url = "jdbc:mysql://localhost/fog?useUnicode=yes&characterEncoding=utf-8";
-    private String user = "";
-    private String password = "";
+    //Test database connection.
+    private String url = "jdbc:mysql://localhost:3306/databasebasic?UseSSL=false";
+    private String user = "root";
+    private String password = "1234";
 
+    //private String url = "jdbc:mysql://167.99.209.155/fogTest?useUnicode=yes&characterEncoding=utf-8";
+    //private String user = "fogtest";
+    //private String password = "fogTest123!";
     // Fields for adding and removing materials and orders to share between unit tests.
     private int testMaterialId;
     private int testOrderId;
     private int testLineitem;
 
-     @Before
+    @Before
     public void setUp1() throws SQLException {
         Connector con = new Connector();
         Connection conn = DriverManager.getConnection(url, user, password);
         con.setConnection(conn);
-
+        /*
         try {
 //            String url = "jdbc:mysql://167.99.209.155/";
 //            String user = "fogtest";
@@ -63,10 +67,10 @@ public class FogDataTest {
 //        Connection conn = DriverManager.getConnection(url, user, password);
 //        con.setConnection(conn);
 
-            String dropSchema = "DROP SCHEMA IF exists `fog`;";
-            String createSchema = "CREATE SCHEMA IF NOT EXISTS `fog`";
-            String useFogTest = "USE `fog`;";
-            String createTableStock = "CREATE TABLE `fog`.`stock`("
+            String dropSchema = "DROP SCHEMA IF exists `fogTest`;";
+            String createSchema = "CREATE SCHEMA IF NOT EXISTS `fogTest`";
+            String useFogTest = "USE `fogTest`;";
+            String createTableStock = "CREATE TABLE `fogTest`.`stock`("
                     + "`item_id` int(11) NOT NULL AUTO_INCREMENT,"
                     + "`item_description` text,"
                     + "`width` float DEFAULT NULL,"
@@ -113,7 +117,7 @@ public class FogDataTest {
                     + "(34,'4,5 x 70 mm. Skruer 200 stk.',4.5,70,'pk','Beslag & Skruer',0,0),"
                     + "(35,'4,5 x 50 mm. Skruer 350 stk.',4.5,50,'pk','Beslag & Skruer',0,0);";
 
-            String createOrders = "CREATE TABLE IF NOT EXISTS `fog`.`orders` ("
+            String createOrders = "CREATE TABLE IF NOT EXISTS `fogTest`.`orders` ("
                     + "`order_id` INT(11) NOT NULL AUTO_INCREMENT,"
                     + "`width` FLOAT NULL DEFAULT NULL,"
                     + "`length` FLOAT NULL DEFAULT NULL,"
@@ -126,7 +130,7 @@ public class FogDataTest {
                     + "`customername` VARCHAR(45) NULL DEFAULT NULL,"
                     + "PRIMARY KEY (`order_id`));";
 
-            String createLineitems = "CREATE TABLE `fog`.`lineitems` ("
+            String createLineitems = "CREATE TABLE `fogTest`.`lineitems` ("
                     + "`lineitems_id` INT(11) NOT NULL AUTO_INCREMENT,"
                     + "`item_id` INT(11) NULL DEFAULT NULL,"
                     + "`order_id` INT(11) NOT NULL,"
@@ -146,7 +150,7 @@ public class FogDataTest {
                     + "REFERENCES `orders` (`order_id`)"
                     + "ON DELETE CASCADE);";
 
-            String createUsers = "CREATE TABLE IF NOT EXISTS `fog`.`users` ("
+            String createUsers = "CREATE TABLE IF NOT EXISTS `fogTest`.`users` ("
                     + "`user_id` INT(11) NOT NULL AUTO_INCREMENT,"
                     + "`email` VARCHAR(200) NULL DEFAULT NULL,"
                     + "`role` VARCHAR(45) NULL DEFAULT NULL,"
@@ -175,6 +179,7 @@ public class FogDataTest {
         } catch (SQLException | ClassNotFoundException ex) {
             throw new SQLException(ex.getMessage());
         }
+         */
 
     }
 
@@ -185,21 +190,23 @@ public class FogDataTest {
     }
      */
     @Test
-    public void testGetMaterialbyID() throws MaterialSampleException {
+    public void testGetMaterialbyID() throws MaterialSampleException, SQLException {
         MaterialDBMapper map = new MaterialDBMapper();
+        map.setMapperConnection(DriverManager.getConnection(url, user, password));
         try {
             Material materialById = map.getMaterialbyID(10);
             String materialName = "hulbånd 1x20 mm. 10 mtr.";
             assertNotNull(materialById);
             assertThat(materialById.getItem_description(), is(materialName));
         } catch (MaterialSampleException me) {
-            fail("Caught a mertialsException");
+            me.printStackTrace();
         }
     }
 
     @Test
-    public void teastGetAllMaterialbyType() throws MaterialSampleException {
+    public void teastGetAllMaterialbyType() throws MaterialSampleException, SQLException {
         MaterialDBMapper map = new MaterialDBMapper();
+        map.setMapperConnection(DriverManager.getConnection(url, user, password));
         try {
             ArrayList<Material> testArr1 = map.getAllMaterialbyType("Træ & Tagplader");
             assertThat(testArr1.get(1).getMaterialType(), is("Træ & Tagplader"));
@@ -211,23 +218,25 @@ public class FogDataTest {
             assertThat(testArr3.get(3).getMaterialType(), is("Tagpakken"));
 
         } catch (MaterialSampleException me) {
-            fail("Caught a mertialsException");
+            me.printStackTrace();
         }
     }
 
     @Test
-    public void testAddNewMaterial() throws MaterialSampleException {
+    public void testAddNewMaterial() throws MaterialSampleException, SQLException {
         MaterialDBMapper map = new MaterialDBMapper();
+        map.setMapperConnection(DriverManager.getConnection(url, user, password));
         try {
             map.addNewMaterial("TestMaterial", 0.0f, 0.0f, "testEntity", "tesType", 0f, 1);
         } catch (MaterialSampleException me) {
-            fail("Caught a mertialsException");
+            me.printStackTrace();
         }
     }
 
     @Test
-    public void testGetAllMaterials() throws MaterialSampleException {
+    public void testGetAllMaterials() throws MaterialSampleException, SQLException {
         MaterialDBMapper map = new MaterialDBMapper();
+        map.setMapperConnection(DriverManager.getConnection(url, user, password));
         try {
             ArrayList<Material> testArr = map.getAllMaterials();
             for (Material mats : testArr) {
@@ -236,13 +245,14 @@ public class FogDataTest {
                 }
             }
         } catch (MaterialSampleException me) {
-            fail("Caught a mertialsException");
+            me.printStackTrace();
         }
     }
 
     @Test
-    public void testUpdateMaterialData() throws MaterialSampleException, ClassNotFoundException {
+    public void testUpdateMaterialData() throws MaterialSampleException, ClassNotFoundException, SQLException {
         MaterialDBMapper map = new MaterialDBMapper();
+        map.setMapperConnection(DriverManager.getConnection(url, user, password));
         try {
             map.updateMaterialData(testMaterialId, "TestMaterial", 0.0f, 0.0f, "testEntity", "changed!", 0f, 1);
 
@@ -251,48 +261,54 @@ public class FogDataTest {
             assertNotNull(changedMaterialById);
             assertThat(changedMaterialById.getMaterialType(), is(changedMaterialName));
         } catch (MaterialSampleException me) {
-            fail("Caught a mertialsException");
+            me.printStackTrace();
         }
     }
 
     @Test
-    public void teatDeleteMaterial() throws MaterialSampleException {
+    public void teatDeleteMaterial() throws MaterialSampleException, SQLException {
         MaterialDBMapper map = new MaterialDBMapper();
+        map.setMapperConnection(DriverManager.getConnection(url, user, password));
         try {
             map.deleteMaterial(testMaterialId);
         } catch (MaterialSampleException me) {
-            fail("Caught a mertialsException");
+            me.printStackTrace();
         }
     }
 
     @Test
-    public void testGetOrderFromId() throws OrderSampleException {
-        OrderDBMapper omap = new OrderDBMapper();
+    public void testGetOrderFromId() throws OrderSampleException, SQLException {
+        OrderDBMapper map = new OrderDBMapper();
+        map.setMapperConnection(DriverManager.getConnection(url, user, password));
         try {
-            Order orderById = omap.getOrderFromId(23);
+            Order orderById = map.getOrderFromId(23);
             float orderLength = 7800;
             assertNotNull(orderById);
             assertNotNull(orderById.getStyklist());
             assertThat(orderById.getLength(), is(orderLength));
         } catch (OrderSampleException oe) {
-            fail("Caught a OrderSampleException");
+            oe.printStackTrace();
         }
     }
 
     @Test
-    public void testSaveOrder() throws OrderSampleException {
+    public void testSaveOrder() throws OrderSampleException, SQLException {
         OrderDBMapper map = new OrderDBMapper();
+        map.setMapperConnection(DriverManager.getConnection(url, user, password));
         try {
             Order testOrder = new Order(1, 6000, 7800, 2300, 0, 3333, 2100);
+            User user = new User("test", 9999, "test");
+            testOrder.setUser(user);
             map.saveOrder(testOrder);
         } catch (OrderSampleException oe) {
-            fail("Caught a OrderSampleException");
+            oe.printStackTrace();
         }
     }
 
     @Test
-    public void testGetAllOrders() throws OrderSampleException {
+    public void testGetAllOrders() throws OrderSampleException, SQLException {
         OrderDBMapper map = new OrderDBMapper();
+        map.setMapperConnection(DriverManager.getConnection(url, user, password));
         try {
             ArrayList<Order> testOrderArr = map.getAllOrders();
             for (Order orders : testOrderArr) {
@@ -301,7 +317,7 @@ public class FogDataTest {
                 }
             }
         } catch (OrderSampleException oe) {
-            fail("Caught a OrderSampleException");
+            oe.printStackTrace();
         }
     }
 
@@ -324,9 +340,11 @@ public class FogDataTest {
     }
      */
     @Test
-    public void testSaveLineItemsInDB() throws StyklistException, OrderSampleException, MaterialSampleException {
+    public void testSaveLineItemsInDB() throws StyklistException, OrderSampleException, MaterialSampleException, SQLException {
         StyklisteDBMapper map = new StyklisteDBMapper();
+        map.setMapperConnection(DriverManager.getConnection(url, user, password));
         OrderDBMapper omap = new OrderDBMapper();
+        omap.setMapperConnection(DriverManager.getConnection(url, user, password));
         LogicFacade logic = new LogicFacade();
         try {
             Order orderById = omap.getOrderFromId(testOrderId);
@@ -335,16 +353,18 @@ public class FogDataTest {
             assertNotNull(styk);
             map.saveLineItemsInDB(styk, testOrderId);
         } catch (OrderSampleException oe) {
-            fail("Caught a OrderSampleException");
+            oe.printStackTrace();
         } catch (MaterialSampleException me) {
-            fail("Caught a MaterialSampleException");
+            me.printStackTrace();
         }
     }
 
     @Test
-    public void testEditLineItemsFromOrderID() throws OrderSampleException {
+    public void testEditLineItemsFromOrderID() throws OrderSampleException, SQLException {
         OrderDBMapper omap = new OrderDBMapper();
+        omap.setMapperConnection(DriverManager.getConnection(url, user, password));
         StyklisteDBMapper map = new StyklisteDBMapper();
+        map.setMapperConnection(DriverManager.getConnection(url, user, password));
         try {
             Order orderById = omap.getOrderFromId(testOrderId);
             assertNotNull(orderById);
@@ -352,46 +372,50 @@ public class FogDataTest {
             testLineitem = orderById.getStyklist().getStyklist().get(3).getLineItemID();
             map.editLineItemsFromOrderID(testLineitem, "testDescription2", 8.0f, 8.0f, "testEntity", "testMaterialtype", 10.0f, 24, testOrderId);
         } catch (OrderSampleException oe) {
-            fail("Caught a OrderSampleException");
+            oe.printStackTrace();
         }
     }
 
     @Test
-    public void testGetMaterialFromLineItems() throws StyklistException {
+    public void testGetMaterialFromLineItems() throws StyklistException, SQLException {
         StyklisteDBMapper map = new StyklisteDBMapper();
+        map.setMapperConnection(DriverManager.getConnection(url, user, password));
         try {
             Material lineMat = map.getMaterialFromLineItems(testLineitem);
             assertNotNull(lineMat);
             assertThat(lineMat.getItem_description(), is("testDescription2"));
         } catch (StyklistException se) {
-            fail("Caught a StyklistException");
+            se.printStackTrace();
         }
     }
 
     @Test
-    public void testGetStyklistFromOrder() throws OrderSampleException {
+    public void testGetStyklistFromOrder() throws OrderSampleException, SQLException {
         OrderDBMapper map = new OrderDBMapper();
+        map.setMapperConnection(DriverManager.getConnection(url, user, password));
         try {
             Stykliste styk = map.getStyklistForOrder(testOrderId);
             assertNotNull(styk);
             assertThat(styk.getStyklist().get(3).getItem_description(), is("testDescription2"));
         } catch (OrderSampleException oe) {
-            fail("Caught a OrderSampleException");
+            oe.printStackTrace();
         }
     }
 
     @Test
-    public void testFinalizeOrder() throws OrderSampleException {
-        OrderDBMapper omap = new OrderDBMapper();
+    public void testFinalizeOrder() throws OrderSampleException, SQLException {
+        OrderDBMapper map = new OrderDBMapper();
+        map.setMapperConnection(DriverManager.getConnection(url, user, password));
         try {
-            Order orderById = omap.getOrderFromId(testOrderId);
+            Order orderById = map.getOrderFromId(testOrderId);
             assertFalse(orderById.isOrderStatus());
-            omap.finalizeOrder(testOrderId);
+            map.finalizeOrder(testOrderId);
             assertTrue(orderById.isOrderStatus());
         } catch (OrderSampleException oe) {
-            fail("Caught a OrderSampleException");
+            oe.printStackTrace();
         }
     }
+<<<<<<< HEAD
 
     @Test
     public void testDeleteOrder() throws OrderSampleException {
@@ -468,4 +492,7 @@ public class FogDataTest {
         }
     }
 
+=======
+    
+>>>>>>> 374306f83baf441f83609f2e3ab74dc605e98861
 }
