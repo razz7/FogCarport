@@ -6,6 +6,7 @@
 package PresentationLayer;
 
 import FunctionLayer.FunctionManager;
+import FunctionLayer.LoginSampleException;
 import FunctionLayer.MaterialSampleException;
 import FunctionLayer.OrderSampleException;
 import FunctionLayer.StyklistException;
@@ -58,6 +59,11 @@ public class FrontController extends HttpServlet {
             request.setAttribute("message", se.getMessage());
             RequestDispatcher dispatcher = request.getRequestDispatcher(
                     se.getTarget());
+            dispatcher.forward(request, response);
+        } catch (LoginSampleException le) {
+            request.setAttribute("message", le.getMessage());
+            RequestDispatcher dispatcher = request.getRequestDispatcher(
+                    le.getTarget());
             dispatcher.forward(request, response);
         } catch (Exception e) {
             PrintWriter out = response.getWriter();
