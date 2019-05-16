@@ -66,7 +66,6 @@ public class FogDataTest {
 //        Connector con = new Connector();
 //        Connection conn = DriverManager.getConnection(url, user, password);
 //        con.setConnection(conn);
-
             String dropSchema = "DROP SCHEMA IF exists `fogTest`;";
             String createSchema = "CREATE SCHEMA IF NOT EXISTS `fogTest`";
             String useFogTest = "USE `fogTest`;";
@@ -80,7 +79,6 @@ public class FogDataTest {
                     + "`price` float DEFAULT '0',"
                     + "`stockquantity` int(11) DEFAULT '0',"
                     + "PRIMARY KEY (`item_id`));";
-
             String insertIntoStock = "INSERT INTO `stock`(`item_id`, `item_description`, `width`, `height`, `entity`, `materialtype`, `price`, `stockquantity`) VALUES"
                     + "(1,'25x200 mm. trykimp. Brædt',25,200,'stk','Træ & Tagplader',0,0),"
                     + "(2,'25x125mm. trykimp. Brædt.',25,125,'stk','Træ & Tagplader',0,0),"
@@ -116,7 +114,6 @@ public class FogDataTest {
                     + "(33,'5,0 x 100 mm. skruer 100 stk.',5,100,'pakke','Beslag & Skruer',0,0),"
                     + "(34,'4,5 x 70 mm. Skruer 200 stk.',4.5,70,'pk','Beslag & Skruer',0,0),"
                     + "(35,'4,5 x 50 mm. Skruer 350 stk.',4.5,50,'pk','Beslag & Skruer',0,0);";
-
             String createOrders = "CREATE TABLE IF NOT EXISTS `fogTest`.`orders` ("
                     + "`order_id` INT(11) NOT NULL AUTO_INCREMENT,"
                     + "`width` FLOAT NULL DEFAULT NULL,"
@@ -129,7 +126,6 @@ public class FogDataTest {
                     + "`orderdate` DATE NULL DEFAULT NULL,"
                     + "`customername` VARCHAR(45) NULL DEFAULT NULL,"
                     + "PRIMARY KEY (`order_id`));";
-
             String createLineitems = "CREATE TABLE `fogTest`.`lineitems` ("
                     + "`lineitems_id` INT(11) NOT NULL AUTO_INCREMENT,"
                     + "`item_id` INT(11) NULL DEFAULT NULL,"
@@ -149,7 +145,6 @@ public class FogDataTest {
                     + "FOREIGN KEY (`order_id`)"
                     + "REFERENCES `orders` (`order_id`)"
                     + "ON DELETE CASCADE);";
-
             String createUsers = "CREATE TABLE IF NOT EXISTS `fogTest`.`users` ("
                     + "`user_id` INT(11) NOT NULL AUTO_INCREMENT,"
                     + "`email` VARCHAR(200) NULL DEFAULT NULL,"
@@ -157,7 +152,6 @@ public class FogDataTest {
                     + "`securepassword` VARCHAR(45) NULL DEFAULT NULL,"
                     + "`salt` VARCHAR(45) NULL DEFAULT NULL,"
                     + "PRIMARY KEY (`user_id`))";
-
             PreparedStatement ps = con.connection().prepareStatement(dropSchema);
             PreparedStatement ps1 = con.connection().prepareStatement(createSchema);
             PreparedStatement ps2 = con.connection().prepareStatement(useFogTest);
@@ -166,7 +160,6 @@ public class FogDataTest {
             PreparedStatement ps5 = con.connection().prepareStatement(createOrders);
             PreparedStatement ps6 = con.connection().prepareStatement(createLineitems);
             PreparedStatement ps7 = con.connection().prepareStatement(createUsers);
-
             ps.executeUpdate();
             ps1.executeUpdate();
             ps2.executeUpdate();
@@ -175,7 +168,6 @@ public class FogDataTest {
             ps5.executeUpdate();
             ps6.executeUpdate();
             ps7.executeUpdate();
-
         } catch (SQLException | ClassNotFoundException ex) {
             throw new SQLException(ex.getMessage());
         }
@@ -415,11 +407,11 @@ public class FogDataTest {
             oe.printStackTrace();
         }
     }
-<<<<<<< HEAD
 
     @Test
-    public void testDeleteOrder() throws OrderSampleException {
+    public void testDeleteOrder() throws OrderSampleException, SQLException {
         OrderDBMapper map = new OrderDBMapper();
+        map.setMapperConnection(DriverManager.getConnection(url, user, password));
         try {
             Order beforeOrderById = map.getOrderFromId(testOrderId);
             assertNotNull(beforeOrderById);
@@ -427,35 +419,39 @@ public class FogDataTest {
             Order afterOrderById = map.getOrderFromId(testOrderId);
             assertNull(afterOrderById);
         } catch (OrderSampleException oe) {
-            fail("Caught a OrderSampleException");
+            oe.printStackTrace();
         }
     }
 
     @Test
-    public void testCreateUser() throws LoginSampleException {
+    public void testCreateUser() throws LoginSampleException, SQLException {
         UserDBMapper map = new UserDBMapper();
+        map.setMapperConnection(DriverManager.getConnection(url, user, password));
         try {
             User user = new User("Test", 9999, "TestUser");
+            user.setPassword("password");
             assertNotNull(user);
-            map.createUser(user);
+            map.createUser(user.getEmail(), user.getPassword(), user.getRole());
         } catch (LoginSampleException le) {
-            fail("Caught a LoginSampleException");
+            le.printStackTrace();
         }
     }
 
     @Test
-    public void testVerifyUser() throws LoginSampleException {
+    public void testVerifyUser() throws LoginSampleException, SQLException {
         UserDBMapper map = new UserDBMapper();
+        map.setMapperConnection(DriverManager.getConnection(url, user, password));
         try {
             assertTrue(map.verifyUser("Test", "password"));
         } catch (LoginSampleException le) {
-            fail("Caught a LoginSampleException");
+            le.printStackTrace();
         }
     }
 
     @Test
-    public void testGetUserByEmail() throws LoginSampleException {
+    public void testGetUserByEmail() throws LoginSampleException, SQLException {
         UserDBMapper map = new UserDBMapper();
+        map.setMapperConnection(DriverManager.getConnection(url, user, password));
         try {
             User getUser = map.getUserByEmail("Test");
             User newUser = new User("Test", 9999, "TestUser");
@@ -463,24 +459,26 @@ public class FogDataTest {
             assertNotNull(newUser);
             assertThat(getUser.getId(), is(newUser.getId()));
         } catch (LoginSampleException le) {
-            fail("Caught a LoginSampleException");
+            le.printStackTrace();
         }
     }
 
     @Test
-    public void testLogin() throws LoginSampleException {
+    public void testLogin() throws LoginSampleException, SQLException {
         UserDBMapper map = new UserDBMapper();
+        map.setMapperConnection(DriverManager.getConnection(url, user, password));
         try {
             User user = map.login("Test", "password");
             assertNotNull(user);
         } catch (LoginSampleException le) {
-            fail("Caught a LoginSampleException");
+            le.printStackTrace();
         }
     }
 
     @Test
-    public void testRemoveUser() throws LoginSampleException {
+    public void testRemoveUser() throws LoginSampleException, SQLException {
         UserDBMapper map = new UserDBMapper();
+        map.setMapperConnection(DriverManager.getConnection(url, user, password));
         try {
             User beforeUser = map.getUserByEmail("Test");
             assertNotNull(beforeUser);
@@ -488,11 +486,8 @@ public class FogDataTest {
             User afterUser = map.getUserByEmail("Test");
             assertNull(afterUser);
         } catch (LoginSampleException le) {
-            fail("Caught a LoginSampleException");
+            le.printStackTrace();
         }
     }
 
-=======
-    
->>>>>>> 374306f83baf441f83609f2e3ab74dc605e98861
 }
