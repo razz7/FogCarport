@@ -153,7 +153,7 @@ public class OrderDBMapper extends OrderMapper {
     @Override
     public void finalizeOrder(int order_id) throws OrderSampleException {
         try {
-            String sql = "UPDATE fog.orders SET status=true WHERE order_id=?";
+            String sql = "UPDATE orders SET status=true WHERE order_id=?";
 
             Connection con = dbc.connection();
             PreparedStatement ps = con.prepareStatement(sql);
@@ -168,7 +168,7 @@ public class OrderDBMapper extends OrderMapper {
     @Override
     public void deleteOrder(int order_id) throws OrderSampleException {
         try {
-            String sql = "DELETE FROM fog.orders WHERE order_id=?";
+            String sql = "DELETE FROM orders WHERE order_id=?";
 
             Connection con = dbc.connection();
             PreparedStatement ps = con.prepareStatement(sql);
