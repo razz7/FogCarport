@@ -36,6 +36,8 @@ public class FinalizeOrderCommand implements Command{
         
         if(request.getParameter("thisOrder") != null){
             int orderId = Integer.parseInt(request.getParameter("thisOrder"));
+            float percent = Float.parseFloat(request.getParameter("percent"));
+            float price = Float.parseFloat(request.getParameter("price"));
             
             //DatabaseFacade dbf = new DatabaseFacade();
             manager.finalizeOrder(orderId);

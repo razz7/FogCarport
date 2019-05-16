@@ -139,8 +139,12 @@ public class FunctionManager implements DatabaseFacadeInterface, LogicFacadeInte
 
     public static void main(String[] args) throws MaterialSampleException, OrderSampleException {
         FunctionManager fm = new FunctionManager();
+        
+        Stykliste sl = fm.getStyklistForOrder(77);
+        ArrayList<Material> ml = sl.getStyklist();
+        System.out.println(ml.get(1).getPrice());
 
-        fm.deleteOrder(19);
+        //fm.deleteOrder(22);
     }
 
     @Override

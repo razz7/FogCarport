@@ -42,7 +42,7 @@ public class PriceCommand implements Command{
             ArrayList<Material> materials = sl.getStyklist();           
             float price = 0;
             for(int i = 0; i < materials.size(); i++){
-                price = price + materials.get(i).getPrice();
+                price = price + materials.get(i).getTotalItemPrice();
             }
             
             request.setAttribute("price", price);
