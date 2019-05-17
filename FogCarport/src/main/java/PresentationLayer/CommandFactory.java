@@ -43,7 +43,7 @@ public class CommandFactory {
         commands.put("login", new LoginCommand("JSP/home.jsp"));
         commands.put("shop", new shopCommand("JSP/shop.jsp"));
         commands.put("home", new shopCommand("JSP/home.jsp"));
-        commands.put("logout", new shopCommand("index.jsp"));
+        commands.put("logout", new LogoutCommand("index.jsp"));
     }
 
     public static synchronized Command commandFrom(String key) {

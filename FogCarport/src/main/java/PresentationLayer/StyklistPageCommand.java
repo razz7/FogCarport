@@ -63,15 +63,33 @@ public class StyklistPageCommand implements Command {
         //session.setAttribute("specificOrder", order_id);
         //session.setAttribute("list", stykliste);        
         //return "styklist";
-        
-        int order_id = Integer.parseInt(request.getParameter("specificOrder"));
         HttpSession session = request.getSession();
+        if(loginStatus(session)) {
+            return "index.jsp";
+        }
+        int order_id = Integer.parseInt(request.getParameter("specificOrder"));
+        
         //DatabaseFacade dbf = new DatabaseFacade();
         Order order = manager.getOrderFromId(order_id);
         session.setAttribute("order", order);
         session.setAttribute("list", order.getStyklist());
 
         return target;
+    }
+
+    @Override
+    public boolean loginStatus(HttpSession session) {
+        if(session.getAttribute("user") != null) {
+            return false;
+        }
+        return true;
+    
+    
+    }
+
+    @Override
+    public boolean accesToPage(HttpSession session, String accesForRole) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }

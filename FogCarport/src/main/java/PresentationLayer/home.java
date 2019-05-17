@@ -28,9 +28,30 @@ public class home implements Command {
     public String execute(HttpServletRequest request, FunctionManager manager) throws LoginSampleException, OrderSampleException, MaterialSampleException, StyklistException, CommandException, ClassNotFoundException {
        
         HttpSession session = request.getSession();
+        if(loginStatus(session)) {
+            return "index.jsp";
+        }
         
         
        return target;
     }
+
+    @Override
+    public boolean loginStatus(HttpSession session) {
+        if(session.getAttribute("user") != null) {
+            return false;
+        }
+        return true;
     
-}
+    
+    }
+
+    @Override
+    public boolean accesToPage(HttpSession session, String accesForRole) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    }
+
+   
+    
+

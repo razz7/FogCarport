@@ -57,7 +57,7 @@ public class FogDataTest {
 //            String url = "jdbc:mysql://167.99.209.155/";
 //            String user = "fogtest";
 //            String password = "fogTest123!";
-//            
+//
 //        Connector con = new Connector();
 //        Connection conn = DriverManager.getConnection(url, user, password);
 //        con.setConnection(conn);

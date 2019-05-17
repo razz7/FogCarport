@@ -28,14 +28,31 @@ public class StockListWoodCommand implements Command {
 
     @Override
     public String execute(HttpServletRequest request, FunctionManager manager) throws LoginSampleException, OrderSampleException, MaterialSampleException {
-       
+       HttpSession session = request.getSession();
+       if(loginStatus(session)) {
+            return "index.jsp";
+        }
         //DatabaseFacade df = new DatabaseFacade();
         ArrayList<Material> materials = manager.getAllMaterialbyType("Træ & Tagplader");
         System.out.println(materials);
-        HttpSession session = request.getSession();
+        
         session.setAttribute("stockListWood", materials);
         
         return target;
+    }
+
+    @Override
+    public boolean loginStatus(HttpSession session) {
+        if(session.getAttribute("user") != null) {
+            return false;
+        }
+        return true;
+    
+    }
+
+    @Override
+    public boolean accesToPage(HttpSession session, String accesForRole) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }

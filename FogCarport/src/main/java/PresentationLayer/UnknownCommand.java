@@ -4,6 +4,7 @@ import FunctionLayer.FunctionManager;
 import FunctionLayer.LoginSampleException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -21,6 +22,16 @@ public class UnknownCommand implements Command {
     public String execute( HttpServletRequest request, FunctionManager manager ) throws LoginSampleException {
         String msg = "Unknown command. Contact IT";
         throw new LoginSampleException( msg );
+    }
+
+    @Override
+    public boolean loginStatus(HttpSession session) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public boolean accesToPage(HttpSession session, String accesForRole) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }

@@ -21,7 +21,7 @@
               <li class="nav-item">
         <a class="nav-link" href="JSP/loginRegistration.jsp">Register</a>
       </li>
-        <a class="nav-link" href="/Cupcake/FrontController?action=logOut">Log out</a>
+        <a class="nav-link" href="/Cupcake/FrontController?action=logout">Log out</a>
       </li>
        
         <a class="nav-link" href="JSP/graphicInput.jsp">Grafik</a>
