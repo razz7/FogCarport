@@ -34,26 +34,10 @@ import org.junit.Before;
  */
 public class FogFunktionTest {
 
-    private String url = "jdbc:mysql://167.99.209.155/fog?useUnicode=yes&characterEncoding=utf-8";
-    private String user = "fog";
-    private String password = "projectFog:1234_5";
+    private String url = "jdbc:mysql://167.99.209.155/fogTest?useUnicode=yes&characterEncoding=utf-8";
+    private String user = "fogtest";
+    private String password = "fogTest123!";
 
-    // Fields for adding and removing materials and orders to share between unit tests.
-    
-
-    @Before
-    public void setUp1() throws SQLException {
-        Connector con = new Connector();
-        Connection conn = DriverManager.getConnection(url, user, password);
-        con.setConnection(conn);
-    }
-
-    /*
-    @Before
-    public void setUp2() {
-        MockitoAnnotations.initMocks(this);
-    }
-     */
  /*
     @Test
     public FunctionLayer.Stykliste carportAlgorithm(float width, float length, float roofTilt, float shedwidth, float shedLength, int styklist_id) throws MaterialSampleException {

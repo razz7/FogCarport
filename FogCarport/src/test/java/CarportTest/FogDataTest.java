@@ -95,6 +95,7 @@ public class FogDataTest {
         map.setMapperConnection(DriverManager.getConnection(url, user, password));
         try {
             ArrayList<Material> testArr = map.getAllMaterials();
+            assertNotNull(testArr);
             assertThat(testArr.get(7).getItem_description(), is("97x97 mm. trykimp. Stolpe"));
             assertThat(testArr.get(8).getItem_description(), is("19x100 mm. trykimp. Brædt"));
         } catch (MaterialSampleException me) {
@@ -162,16 +163,11 @@ public class FogDataTest {
     public void testGetAllOrders() throws OrderSampleException, SQLException {
         OrderDBMapper map = new OrderDBMapper();
         map.setMapperConnection(DriverManager.getConnection(url, user, password));
-        int testOrderId = 0;
         try {
             ArrayList<Order> testOrderArr = map.getAllOrders();
             assertNotNull(testOrderArr);
-            for (Order orders : testOrderArr) {
-                if (orders.getShedWidth() == 3333) {
-                    testOrderId = orders.getOrder_id();
-                    assertThat(orders.getLength(), is(7800f));
-                }
-            }
+            assertThat(testOrderArr.get(3).getLength(), is(7800f));
+            assertThat(testOrderArr.get(4).getLength(), is(5000f));
         } catch (OrderSampleException oe) {
             oe.printStackTrace();
         }
@@ -216,8 +212,7 @@ public class FogDataTest {
             me.printStackTrace();
         }
     }
-    */
-    
+     */
     @Test
     public void testGetOrderFromId() throws OrderSampleException, SQLException {
         OrderDBMapper map = new OrderDBMapper();
