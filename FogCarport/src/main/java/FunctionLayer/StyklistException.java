@@ -19,7 +19,7 @@ public class StyklistException extends Exception{
     }
   
     public StyklistException(String message) {
-    this(message, "error.jsp");
+    this(message, "JSP/error.jsp");
     }
   
   public final String getTarget() { return target; }

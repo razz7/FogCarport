@@ -6,7 +6,19 @@ package FunctionLayer;
  */
 public class LoginSampleException extends Exception {
 
-    public LoginSampleException(String msg) {
-        super(msg);
+    private final String target;
+
+    public LoginSampleException(String message, String target) {
+        super(message);
+        this.target = target;
     }
+
+    public LoginSampleException(String message) {
+        this(message, "JSP/error.jsp");
+    }
+
+    public final String getTarget() {
+        return target;
+    }
+
 }

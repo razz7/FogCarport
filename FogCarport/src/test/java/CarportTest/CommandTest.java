@@ -23,7 +23,7 @@ public class CommandTest {
 /*
     private String url = "jdbc:mysql://167.99.209.155/fog?useUnicode=yes&characterEncoding=utf-8";
     private String user = "fog";
-    private String password = "projectFog:12345";
+    private String password = "projectFog:1234_5";
 
     @Before
     public void setUp1() throws SQLException {

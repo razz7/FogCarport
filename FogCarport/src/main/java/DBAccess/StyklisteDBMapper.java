@@ -32,6 +32,10 @@ public class StyklisteDBMapper extends StyklisteMapper {
         }
         return instance;
     }
+    
+    public void setMapperConnection(Connection connection) {
+        dbc.setConnection(connection);
+    }
 
 //    public ArrayList<Stykliste> getAllStykliste() throws ClassNotFoundException, SQLException{
 //        ArrayList<Stykliste> list = new ArrayList();

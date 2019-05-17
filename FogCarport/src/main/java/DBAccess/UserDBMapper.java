@@ -25,25 +25,26 @@ public class UserDBMapper extends UserMapper{
         }
         return instance;
     }
+    
+    public void setMapperConnection(Connection connection) {
+        dbc.setConnection(connection);
+    }
 
     @Override
-    public void createUser(User user) throws LoginSampleException {
+    public void createUser(String email, String password, String role) throws LoginSampleException {
         try {
             Connection con = dbc.connection();
             String SQL = "INSERT INTO users (email, role, securepassword, salt) VALUES (?,?,?,?)";
             PreparedStatement ps = con.prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS);
             LogicFacade lcf = new LogicFacade();
             String salt = lcf.getSalt(30);
-            String mySecurePassword = lcf.generateSecurePassword(user.getPassword(), salt);
-            ps.setString(1, user.getEmail());
-            ps.setString(2, user.getRole());
+            String mySecurePassword = lcf.generateSecurePassword(password, salt);
+            ps.setString(1, email);
+            ps.setString(2, role);
             ps.setString(3, mySecurePassword);
             ps.setString(4, salt);
             ps.executeUpdate();
-            ResultSet ids = ps.getGeneratedKeys();
-            ids.next();
-            int id = ids.getInt(1);
-            user.setId(id);
+                      
         } catch (SQLException | ClassNotFoundException ex) {
             throw new LoginSampleException(ex.getMessage());
         }
@@ -139,6 +140,8 @@ public class UserDBMapper extends UserMapper{
 
         }
     }
+
+
     
     
 }

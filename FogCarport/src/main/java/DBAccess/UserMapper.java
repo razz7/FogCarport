@@ -25,7 +25,7 @@ public abstract class UserMapper {
         return UserDBMapper.getInstance();
     }
 
-    public abstract void createUser(User user) throws LoginSampleException;
+    public abstract void createUser(String email, String password, String role) throws LoginSampleException;
 
 
     public abstract User login(String email, String password) throws LoginSampleException;

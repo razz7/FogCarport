@@ -45,7 +45,8 @@ public class CommandFactory {
         commands.put("home", new shopCommand("JSP/home.jsp"));
         commands.put("logout", new LogoutCommand("index.jsp"));
     }
-
+    //synchronized
+    //only one thread at a time
     public static synchronized Command commandFrom(String key) {
     if (key == null) key = "back";
     if (instance == null) instance = new CommandFactory();

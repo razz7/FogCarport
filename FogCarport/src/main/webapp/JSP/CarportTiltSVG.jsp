@@ -9,24 +9,17 @@
 <%@page import="FunctionLayer.Stykliste"%>
 <%@page import="FunctionLayer.CarportAlgorithm"%>
 <%@page import="FunctionLayer.Order"%>
-<!DOCTYPE html>
-<html>
-    <head>
 
-        <title>Web Project Basic</title>
 
-        <base href="${pageContext.request.contextPath}/" >
+<jsp:include page='/JSP/siteheader.jsp'></jsp:include>
 
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+<jsp:include page='/JSP/sitemenus.jsp'></jsp:include>
 
-    </head>
-    <body>
         <h1>SVG TILT!</h1>
 
         <%
             //Order order = new Order(1, 3600, 7300, 2300, 30, 3200, 2100);
-            Order order = new Order(1, 6000, 7800, 2300, 30, 5300, 2100);
+            Order order = new Order(1, 6060, 7300, 2300, 30, 5330, 2110);
             //Order order = new Order(1, 3600, 7300, 2300, 30, 0, 0);
             CarportAlgorithm car = new CarportAlgorithm();
             Stykliste styklist = car.carportAlgorithm(order.getWidth(), order.getLength(), order.getRoofTilt(), order.getShedWidth(), order.getShedLength(), 1);
