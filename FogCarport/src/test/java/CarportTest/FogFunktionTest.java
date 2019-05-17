@@ -91,43 +91,46 @@ public class FogFunktionTest {
         assertThat(styk.getStyklist().size(), is(0));
     }
 
-    /*
     @Test
     public void testGetSalt() {
         Encryption enc = new Encryption();
-        String word = enc.getSalt(8);
-        assertNotNull(word);
-        assertThat(word, is("zTajvPTS"));
+        String wordScheme = enc.getSalt(8);
+        assertNotNull(wordScheme);
     }
-     */
- /*
+
     @Test
     public void testGenerateSecurePassword() {
-        String p = "1234";
-        String s = "zTajvPTS";
-        byte[] securePassword = hash(p.toCharArray(), s.getBytes());
-        String pass = Base64.getEncoder().encodeToString(securePassword);
-        assertNotNull(pass);
-        assertThat(pass, is(""));
-    }
-     */
- /*
-    @Test
-    public String generateSecurePassword(String password, String salt) {
-        Encryption enc = new Encryption();
-        return enc.generateSecurePassword(password, salt);
+        Encryption en = new Encryption();
+        String pass = "1234";
+        String salt = "zTajvPTS";
+        byte[] securePassword = en.hash(pass.toCharArray(), salt.getBytes());
+        String securePass = Base64.getEncoder().encodeToString(securePassword);
+        assertNotNull(securePass);
+        assertThat(securePass, is("Hvt/wArJKY9e1CxGHzaoS2Sswcudy62ZAgh6wWQ3kVM="));
     }
 
     @Test
-    public boolean verifyUserPassword(String providedPassword, String securepassword, String salt) {
-        Encryption enc = new Encryption();
-        return enc.verifyUserPassword(providedPassword, securepassword, salt);
+    public void testVerifyUserPassword() {
+        Encryption en = new Encryption();
+        String pass = "1234";
+        String salt = "zTajvPTS";
+        byte[] securePassword = en.hash(pass.toCharArray(), salt.getBytes());
+        String securePass = Base64.getEncoder().encodeToString(securePassword);
+        assertNotNull(securePass);
+        assertTrue(en.verifyUserPassword(pass, securePass, salt));
     }
 
     @Test
-    public FunctionLayer.User User(String email, int id, String role) {
-        User user = new User(email, id, role);
-        return user;
+    public void testUser() {
+        User user = new User("Test", 7, "TestUser");
+        assertNotNull(user);
+        Encryption en = new Encryption();
+        String pass = "1234";
+        String salt = "zTajvPTS";
+        byte[] securePassword = en.hash(pass.toCharArray(), salt.getBytes());
+        String securePass = Base64.getEncoder().encodeToString(securePassword);
+        user.setPassword(securePass);
+        assertTrue(en.verifyUserPassword(pass, user.getPassword(), salt));
     }
-     */
+
 }
