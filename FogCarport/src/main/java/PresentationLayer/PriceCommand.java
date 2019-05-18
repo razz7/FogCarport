@@ -27,7 +27,7 @@ public class PriceCommand implements Command{
     
     private String target;
 
-    PriceCommand(String target) {
+    public PriceCommand(String target) {
         this.target = target;
     }
 
