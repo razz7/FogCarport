@@ -23,30 +23,32 @@ import javax.servlet.http.HttpSession;
  *
  * @author Ludvig
  */
-public class FinalizeOrderCommand implements Command{
+public class PriceOrderCommand implements Command{
     
     private String target;
 
-    FinalizeOrderCommand(String target) {
+    PriceOrderCommand(String target) {
         this.target = target;
     }
 
     @Override
-    public String execute(HttpServletRequest request, FunctionManager manager) throws LoginSampleException, OrderSampleException, MaterialSampleException, StyklistException {       
-        
+    public String execute(HttpServletRequest request, FunctionManager manager) throws LoginSampleException, OrderSampleException, MaterialSampleException, StyklistException {               
         if(request.getParameter("thisOrder") != null){
             int orderId = Integer.parseInt(request.getParameter("thisOrder"));
             float percent = Float.parseFloat(request.getParameter("percent"));
             float price = Float.parseFloat(request.getParameter("price"));
+                        
+//            manager.finalizeOrder(orderId);    
             
-            //DatabaseFacade dbf = new DatabaseFacade();
-            manager.finalizeOrder(orderId);
+            float orderPrice = price*(1+(percent/100));
             
-            Order order = manager.getOrderFromId(orderId);           
-            order.setOrderStatus(true);
+            Order order = manager.getOrderFromId(orderId);    
+            order.setPrice(orderPrice);
+//            order.setOrderStatus(true);
             
-            ArrayList<Order> allOrders = manager.getAllOrders();
-            request.setAttribute("allOrders", allOrders);
+//            ArrayList<Order> allOrders = manager.getAllOrders();
+//            request.setAttribute("allOrders", allOrders);
+            request.setAttribute("orderPrice", orderPrice);
         }
         
         return target;
