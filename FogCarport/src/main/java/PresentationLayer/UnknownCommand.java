@@ -2,28 +2,26 @@ package PresentationLayer;
 
 import FunctionLayer.FunctionManager;
 import FunctionLayer.LoginSampleException;
-import FunctionLayer.MaterialSampleException;
-import FunctionLayer.OrderSampleException;
-import FunctionLayer.StyklistException;
-import com.google.protobuf.Method;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-public class LogoutCommand implements Command {
-
+/**
+ *
+ * @author Rasmus2
+ */
+public class UnknownCommand implements Command {
     
     private String target;
 
-    LogoutCommand(String target) {
+    UnknownCommand(String target) {
         this.target = target;
     }
-    
+
     @Override
-    public String execute(HttpServletRequest request, FunctionManager manager) throws LoginSampleException, OrderSampleException, MaterialSampleException, StyklistException, CommandException, ClassNotFoundException {
-        HttpSession session = request.getSession();
-        session.invalidate();
-        return target;
-        
+    public String execute( HttpServletRequest request, FunctionManager manager ) throws LoginSampleException {
+        String msg = "Unknown command. Contact IT";
+        throw new LoginSampleException( msg );
     }
 
     @Override
@@ -35,4 +33,5 @@ public class LogoutCommand implements Command {
     public boolean accesToPage(HttpSession session, String accesForRole) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
 }

@@ -33,8 +33,11 @@ public class GraphicCommand implements Command {
     @Override
     public String execute(HttpServletRequest request, FunctionManager manager) throws LoginSampleException, OrderSampleException, MaterialSampleException {
         HttpSession session = request.getSession();
-        
 
+        if(loginStatus(session)) {
+            return "index.jsp";
+        }
+        session.setAttribute("order", null);
         if (request.getParameter("thisOrder") != null) {
             int orderId = Integer.parseInt(request.getParameter("thisOrder"));
             //OrderDBMapper om = new OrderDBMapper();
@@ -52,5 +55,19 @@ public class GraphicCommand implements Command {
 
             return target;
         }
-    }  
+      
 
+
+    @Override
+    public boolean loginStatus(HttpSession session) {
+       if(session.getAttribute("user") != null) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public boolean accesToPage(HttpSession session, String accesForRole) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+}

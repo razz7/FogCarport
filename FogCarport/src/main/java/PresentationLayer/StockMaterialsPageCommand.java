@@ -37,21 +37,29 @@ public class StockMaterialsPageCommand implements Command {
     @Override
     public String execute(HttpServletRequest request, FunctionManager manager) throws LoginSampleException, OrderSampleException, MaterialSampleException {
         HttpSession session = request.getSession();
-        String email = (String) session.getAttribute("email");
-        String password = (String) session.getAttribute("password");
-        
-        
-        if(manager.verifyUser(email, password)) {
-           
+         if(loginStatus(session)) {
+            return "index.jsp";
+        }
         ArrayList<Material> materials = manager.getAllMaterials();
         session.setAttribute("stockMaterialList", materials);
         
         return target;
-    } else 
-        {
-            return "main";
-        }
     
 }
+
+    @Override
+    public boolean loginStatus(HttpSession session) {
+       if(session.getAttribute("user") != null) {
+            return false;
+        }
+        return true;
+    
+    
+    }
+
+    @Override
+    public boolean accesToPage(HttpSession session, String accesForRole) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }

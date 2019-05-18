@@ -19,7 +19,8 @@ import javax.servlet.http.HttpSession;
  *
  * @author Rasmus2
  */
-public class EditStockMaterialPageCommand implements Command {
+public class EditStockMaterialPageCommand
+        implements Command {
     
     private String target;
 
@@ -29,21 +30,32 @@ public class EditStockMaterialPageCommand implements Command {
 
     @Override
     public String execute(HttpServletRequest request, FunctionManager manager) throws LoginSampleException, OrderSampleException, MaterialSampleException {
-        //String email = request.getParameter("email");
-        //String password = request.getParameter("password");
-        //LogicFacade logic = new LogicFacade();
-        //User user = logic.login(email, password);
-
-        //DatabaseFacade dbf = new DatabaseFacade();
+        HttpSession session = request.getSession();
+        if(loginStatus(session)) {
+            return "index.jsp";
+        }
         Material mat = null;
         if (!"".equals(request.getParameter("chosenStockMaterial"))) {
             int id = Integer.parseInt(request.getParameter("chosenStockMaterial"));
             mat = manager.getMaterialbyID(id);
         }
-        HttpSession session = request.getSession();
+        
         session.setAttribute("stockMaterial", mat);
 
         return target;
 
+    }
+
+    @Override
+    public boolean loginStatus(HttpSession session) {
+        if(session.getAttribute("user") != null) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public boolean accesToPage(HttpSession session, String accesForRole) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

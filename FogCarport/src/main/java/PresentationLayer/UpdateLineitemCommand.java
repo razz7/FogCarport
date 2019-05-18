@@ -28,7 +28,10 @@ public class UpdateLineitemCommand implements Command{
 
     @Override
     public String execute(HttpServletRequest request, FunctionManager manager) throws LoginSampleException, OrderSampleException, MaterialSampleException, StyklistException {
-        
+        HttpSession session = request.getSession();
+        if(loginStatus(session)) {
+            return "index.jsp";
+        }
         int order_id = (Integer) request.getSession().getAttribute("specificOrder");
         int lineitem_id = Integer.parseInt(request.getParameter("lineitemid"));
         String description = request.getParameter("description");
@@ -46,12 +49,27 @@ public class UpdateLineitemCommand implements Command{
         //HttpSession session = request.getSession();
         //session.setAttribute("list", list);
         
-        HttpSession session = request.getSession();
+        
         Order order = manager.getOrderFromId(order_id);
         session.setAttribute("order", order);
         session.setAttribute("list", order.getStyklist()); 
       
       return target;
+    }
+
+    @Override
+    public boolean loginStatus(HttpSession session) {
+        if(session.getAttribute("user") != null) {
+            return false;
+        }
+        return true;
+    
+    
+    }
+
+    @Override
+    public boolean accesToPage(HttpSession session, String accesForRole) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }
