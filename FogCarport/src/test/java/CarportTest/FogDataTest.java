@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 //package CarportTest;
 //
 //import DBAccess.Connector;
@@ -417,7 +416,6 @@
 //    }
 //    
 //}
-=======
 package CarportTest;
 
 import DBAccess.Connector;
@@ -811,4 +809,3 @@ public class FogDataTest {
     }
 
 }
->>>>>>> 3f2a71cd0da22bae5c2149e00a1d21d3c6c6957f
