@@ -43,7 +43,7 @@ public class CommandFactory {
         commands.put("login", new LoginCommand("JSP/home.jsp"));
         commands.put("shop", new shopCommand("JSP/shop.jsp"));
         commands.put("home", new shopCommand("JSP/home.jsp"));
-        commands.put("logout", new shopCommand("index.jsp"));
+        commands.put("logout", new LogoutCommand("index.jsp"));
     }
     //synchronized
     //only one thread at a time

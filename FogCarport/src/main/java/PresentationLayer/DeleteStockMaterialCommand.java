@@ -33,6 +33,10 @@ public class DeleteStockMaterialCommand implements Command {
     @Override
     public String execute(HttpServletRequest request, FunctionManager manager) throws LoginSampleException, OrderSampleException, MaterialSampleException {
         HttpSession session = request.getSession();
+        if(loginStatus(session)) {
+            return "index.jsp";
+        }
+        
 
         int id = Integer.parseInt(request.getParameter("chosenStockMaterial"));
 
@@ -43,5 +47,18 @@ public class DeleteStockMaterialCommand implements Command {
         session.setAttribute("stockMaterialList", materials);
 
         return target;
+    }
+
+    @Override
+    public boolean loginStatus(HttpSession session) {
+       if(session.getAttribute("user") != null) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public boolean accesToPage(HttpSession session, String accesForRole) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }
