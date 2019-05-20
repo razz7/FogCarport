@@ -33,40 +33,42 @@ public class PriceOrderCommand implements Command{
 
     @Override
     public String execute(HttpServletRequest request, FunctionManager manager) throws LoginSampleException, OrderSampleException, MaterialSampleException, StyklistException {               
+        HttpSession session = request.getSession();
+        if(loginStatus(session)) {
+            return "index.jsp";
+        }
+        
         if(request.getParameter("thisOrder") != null){
             int orderId = Integer.parseInt(request.getParameter("thisOrder"));
             float percent = Float.parseFloat(request.getParameter("percentage"));
-            float price = Float.parseFloat(request.getParameter("price"));
-                        
-//            manager.finalizeOrder(orderId);    
+            float price = Float.parseFloat(request.getParameter("price")); 
             
             float orderPrice = price*(1+(percent/100));
             
             Order order = manager.getOrderFromId(orderId);    
             order.setPrice(orderPrice);
-//            order.setOrderStatus(true);
-            
-//            ArrayList<Order> allOrders = manager.getAllOrders();
-//            request.setAttribute("allOrders", allOrders);
+
+            request.setAttribute("orderPrice", orderPrice);
             request.setAttribute("price", orderPrice);
             request.setAttribute("order", order);
-        }
-        
-            int orderId = Integer.parseInt(request.getParameter("thisOrder"));
-            Order order = manager.getOrderFromId(orderId); 
             
-            float price = Float.parseFloat(request.getParameter("price"));                      
+            return target;            
+        } else {
             
-            request.setAttribute("price", price);
-            request.setAttribute("order", order);
+            ArrayList<Order> orders = manager.getAllOrders();
+            request.setAttribute("allOrders", orders);
             
-        
-        return target;
+            return "JSP/allOrdersPage.jsp";
+        }            
     }   
 
     @Override
     public boolean loginStatus(HttpSession session) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+         if(session.getAttribute("user") != null) {
+            return false;
+        }
+        return true;
+    
     }
 
     @Override

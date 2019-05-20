@@ -65,20 +65,7 @@ public class FrontController extends HttpServlet {
             RequestDispatcher dispatcher = request.getRequestDispatcher(
                     le.getTarget());
             dispatcher.forward(request, response);
-        } catch (NullPointerException eu) {
-            PrintWriter out = response.getWriter();
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("  <head><title>PANIC Page</title></head>");
-            out.println("  <body>");
-            out.println("    <h3>" + eu.getMessage() + "</h3><hr/>");
-            out.println("    <pre>");
-            eu.printStackTrace(out); // Don't do this in production code!
-            out.print("</pre>");
-            out.println("  </body>");
-            out.println("</html>");
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             PrintWriter out = response.getWriter();
             out.println("<!DOCTYPE html>");
             out.println("<html>");

@@ -41,13 +41,22 @@ public class OrderFinalizeCommand implements Command {
             
             ArrayList<Order> allOrders = manager.getAllOrders();
             request.setAttribute("allOrders", allOrders);
+            
+            return target;
+        } else{
+            ArrayList<Order> allOrders = manager.getAllOrders();
+            request.setAttribute("allOrders", allOrders);
+            
+            return target;
         }
-        return target;
     }
 
     @Override
     public boolean loginStatus(HttpSession session) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if(session.getAttribute("user") != null) {
+            return false;
+        }
+        return true;
     }
 
     @Override
