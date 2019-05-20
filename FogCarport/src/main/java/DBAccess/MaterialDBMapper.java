@@ -34,6 +34,11 @@ public class MaterialDBMapper extends MaterialMapper{
         dbc.setConnection(connection);
     }
 
+    /**
+     * Returns list of all different materials in the database
+     * @return ArrayList<Material>
+     * @throws MaterialSampleException 
+     */
     @Override
     public ArrayList<Material> getAllMaterials() throws MaterialSampleException {
         ArrayList<Material> list = new ArrayList();
@@ -146,6 +151,12 @@ public class MaterialDBMapper extends MaterialMapper{
         }
     }
 
+    /**
+     * Returns a material object based off the id it receives 
+     * @param item_id
+     * @return Material
+     * @throws MaterialSampleException 
+     */
     @Override
     public Material getMaterialbyID(int item_id) throws MaterialSampleException {
         try {
@@ -173,7 +184,7 @@ public class MaterialDBMapper extends MaterialMapper{
      * This methods return all the lineitems and information about the item.
      *
      * @param order_id
-     * @return
+     * @return Stykliste
      * @throws MaterialSampleException
      */
     @Override
@@ -208,7 +219,12 @@ public class MaterialDBMapper extends MaterialMapper{
         }
     }
     
-    
+    /**
+     * Gets a list of all materials by specified type of material
+     * @param type
+     * @return ArrayList<Material>
+     * @throws MaterialSampleException 
+     */
     @Override
         public ArrayList<Material> getAllMaterialbyType(String type) throws MaterialSampleException {
         try {
