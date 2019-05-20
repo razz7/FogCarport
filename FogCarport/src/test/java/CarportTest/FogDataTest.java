@@ -459,6 +459,11 @@ import org.junit.Before;
  */
 public class FogDataTest {
 
+    //Test database connection.
+    //private String url = "jdbc:mysql://localhost:3306/databasebasic?UseSSL=false";
+    //private String user = "root";
+    //private String password = "1234";
+
     private String url = "jdbc:mysql://167.99.209.155/fogTest?useUnicode=yes&characterEncoding=utf-8";
     private String user = "fogtest";
     private String password = "fogTest123!";
