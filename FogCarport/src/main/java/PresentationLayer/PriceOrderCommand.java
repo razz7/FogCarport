@@ -35,7 +35,7 @@ public class PriceOrderCommand implements Command{
     public String execute(HttpServletRequest request, FunctionManager manager) throws LoginSampleException, OrderSampleException, MaterialSampleException, StyklistException {               
         if(request.getParameter("thisOrder") != null){
             int orderId = Integer.parseInt(request.getParameter("thisOrder"));
-            float percent = Float.parseFloat(request.getParameter("percent"));
+            float percent = Float.parseFloat(request.getParameter("percentage"));
             float price = Float.parseFloat(request.getParameter("price"));
                         
 //            manager.finalizeOrder(orderId);    
@@ -48,8 +48,18 @@ public class PriceOrderCommand implements Command{
             
 //            ArrayList<Order> allOrders = manager.getAllOrders();
 //            request.setAttribute("allOrders", allOrders);
-            request.setAttribute("orderPrice", orderPrice);
+            request.setAttribute("price", orderPrice);
+            request.setAttribute("order", order);
         }
+        
+            int orderId = Integer.parseInt(request.getParameter("thisOrder"));
+            Order order = manager.getOrderFromId(orderId); 
+            
+            float price = Float.parseFloat(request.getParameter("price"));                      
+            
+            request.setAttribute("price", price);
+            request.setAttribute("order", order);
+            
         
         return target;
     }   
