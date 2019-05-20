@@ -50,6 +50,8 @@ public class PriceCommand implements Command{
                 price = price + materials.get(i).getTotalItemPrice();
             }
             
+            order.setPrice(price);
+            
             request.setAttribute("price", price);
             request.setAttribute("order", order);
         }

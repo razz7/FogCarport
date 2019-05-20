@@ -174,6 +174,7 @@ public class OrderDBMapper extends OrderMapper {
         }
     }
 
+    @Override
     public void unFinalizeOrder(int order_id) throws OrderSampleException {
         try {
             String sql = "UPDATE orders SET status=true WHERE order_id=?";
@@ -187,6 +188,21 @@ public class OrderDBMapper extends OrderMapper {
             throw new OrderSampleException(ex.getMessage());
         }
     }
+
+//    @Override
+//    public void setOrderPrice(int order_id, float price) throws OrderSampleException {
+//        try {
+//            String sql = "UPDATE orders SET price=" + price +" WHERE order_id=?";
+//
+//            Connection con = dbc.connection();
+//            PreparedStatement ps = con.prepareStatement(sql);
+//            ps.setInt(0, order_id);
+//            ps.executeUpdate();
+//
+//        } catch (SQLException | ClassNotFoundException ex) {
+//            throw new OrderSampleException(ex.getMessage());
+//        }
+//    }
 
     @Override
     public void deleteOrder(int order_id) throws OrderSampleException {

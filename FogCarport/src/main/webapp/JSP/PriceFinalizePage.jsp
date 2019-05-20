@@ -11,9 +11,9 @@
 
     <div class="container">            
 
-    <%  if (request.getAttribute("price") != null && request.getAttribute("order") != null) {
+    <%  if (request.getAttribute("order") != null) {
             Order order = (Order) request.getAttribute("order");
-            float price = (Float) request.getAttribute("price");
+            float price = (float) request.getAttribute("price");
 
             out.println("<h4> Samlede omkostninger af styklisten </h4>");
             out.println("<h5>" + price + "</h5>");
@@ -27,6 +27,10 @@
                 out.println("<input type=\"hidden\" name=\"thisOrder\" value=\"" + order.getOrder_id() + "\">");
                 out.println("<input type=\"submit\" class=\"btn btn-primary\" value=\"Udregn ordrepris\">");
             out.println("</form>");
+            
+            out.println("<br>");
+            out.println("<br>");
+            out.println("<br>");
 
             if (request.getAttribute("orderPrice") != null) {
                 out.println("<form action=\"FrontController\" method=\"POST\">");
