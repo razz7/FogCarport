@@ -24,7 +24,7 @@ public class LoginCommand implements Command{
     
     private String target;
 
-    LoginCommand(String target) {
+    public LoginCommand(String target) {
         this.target = target;
     }
 
@@ -42,7 +42,7 @@ public class LoginCommand implements Command{
             return target;
         }
        
-        return "home";                
+        return "index.jsp";                
     }
 
     @Override

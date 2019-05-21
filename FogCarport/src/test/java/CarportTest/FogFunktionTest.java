@@ -40,10 +40,6 @@ import org.junit.Before;
  */
 public class FogFunktionTest {
 
-    private String url = "jdbc:mysql://167.99.209.155/fogTest?useUnicode=yes&characterEncoding=utf-8";
-    private String user = "fogtest";
-    private String password = "fogTest123!";
-
     @Test
     public void testCarportAlgorithm() throws MaterialSampleException {
         CarportAlgorithm car = new CarportAlgorithm();
