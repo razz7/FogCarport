@@ -46,7 +46,7 @@ public class PriceCommand implements Command {
 
             float orderPrice = manager.getPriceFromId(orderId);
 
-            if (orderPrice == 0) {
+            if (orderPrice == 0.0 ) {
                 ArrayList<Material> materials = sl.getStyklist();
                 float price = 0;
                 for (int i = 0; i < materials.size(); i++) {
@@ -59,6 +59,7 @@ public class PriceCommand implements Command {
                 request.setAttribute("order", order);
                 return target;
             }
+            
             request.setAttribute("price", orderPrice);
             request.setAttribute("order", order);
         }
