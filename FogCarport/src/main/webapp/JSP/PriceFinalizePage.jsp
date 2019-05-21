@@ -9,27 +9,38 @@
 
 <jsp:include page='/JSP/sitemenus.jsp'></jsp:include>
 
-<div class="container">
-        <h2>Ordren</h2>
-            
-            
+    <div class="container">            
 
-        <% if (request.getAttribute("price") != null && request.getAttribute("order") != null) {
-                Order order = (Order) request.getAttribute("order");
-                float price = (Float) request.getAttribute("price");
-                
-                out.println("<h3>" + price + "</h3>");
-                out.println("<h3> Indtast procent </h3>");
+    <%  if (request.getAttribute("order") != null) {
+            Order order = (Order) request.getAttribute("order");
+            float price = (float) request.getAttribute("price");
 
-                out.println("<form action=\"FrontController\" method=\"post\">");
-                out.println("<input type=\"text\" name=\"percent\" value=\"\">");
-                out.println("<input type=\"hidden\" name=\"price\" value=\"" + price + ">");
+            out.println("<h4> Samlede omkostninger af styklisten </h4>");
+            out.println("<h5>" + price + "</h5>");
+            out.println("<br>");
+            out.println("<h5> Indtast procent </h5>");
+
+            out.println("<form action=\"FrontController\" method=\"POST\">");
+                out.println("<input type=\"text\" name=\"percentage\" value=\"\">");
+                out.println("<input type=\"hidden\" name=\"price\" value=\"" + price + "\">");
                 out.println("<input type=\"hidden\" name=\"command\" value=\"percent\">");
                 out.println("<input type=\"hidden\" name=\"thisOrder\" value=\"" + order.getOrder_id() + "\">");
-                out.println("<input type=\"submit\" value=\"Godkend ordre\" >");
+                out.println("<input type=\"submit\" class=\"btn btn-primary\" value=\"Udregn ordrepris\">");
+            out.println("</form>");
+            
+            out.println("<br>");
+            out.println("<br>");
+            out.println("<br>");
+
+            if (request.getAttribute("orderPrice") != null) {
+                out.println("<form action=\"FrontController\" method=\"POST\">");
+                    out.println("<input type=\"hidden\" name=\"command\" value=\"final\">");
+                    out.println("<input type=\"hidden\" name=\"thisOrder\" value=\"" + order.getOrder_id() + "\">");
+                    out.println("<input type=\"submit\" class=\"btn btn-primary\" value=\"Færdiggør ordre\" >");
                 out.println("</form>");
             }
-        %>
+        }
+    %>
 
-    </table>
+</table>
 </div>

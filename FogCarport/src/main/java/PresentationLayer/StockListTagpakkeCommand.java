@@ -31,13 +31,31 @@ public class StockListTagpakkeCommand implements Command {
 
     @Override
     public String execute(HttpServletRequest request, FunctionManager manager) throws LoginSampleException, OrderSampleException, MaterialSampleException, StyklistException {
-        //DatabaseFacade df = new DatabaseFacade();
+        HttpSession session = request.getSession();
+        if(loginStatus(session)) {
+            return "index.jsp";
+        }
+//DatabaseFacade df = new DatabaseFacade();
         ArrayList<Material> materials = manager.getAllMaterialbyType("Tagpakken");
         System.out.println(materials);
-        HttpSession session = request.getSession();
+        
         session.setAttribute("stockListTagpakke", materials);
         
         return target;
+    }
+
+    @Override
+    public boolean loginStatus(HttpSession session) {
+         if(session.getAttribute("user") != null) {
+            return false;
+        }
+        return true;
+    
+    }
+
+    @Override
+    public boolean accesToPage(HttpSession session, String accesForRole) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }
    

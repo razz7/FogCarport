@@ -25,7 +25,18 @@ public class UserDBMapper extends UserMapper{
         }
         return instance;
     }
+    
+    public void setMapperConnection(Connection connection) {
+        dbc.setConnection(connection);
+    }
 
+    /**
+     * Creates user and puts it into the database
+     * @param email
+     * @param password
+     * @param role
+     * @throws LoginSampleException 
+     */
     @Override
     public void createUser(String email, String password, String role) throws LoginSampleException {
         try {
@@ -46,6 +57,13 @@ public class UserDBMapper extends UserMapper{
         }
     }
 
+    /**
+     * Creates an object of a user already in the database
+     * @param email
+     * @param password
+     * @return User
+     * @throws LoginSampleException 
+     */
     @Override
     public User login(String email, String password) throws LoginSampleException {
         try {
@@ -70,6 +88,11 @@ public class UserDBMapper extends UserMapper{
         }
     }
 
+    /**
+     * Removes specified user from the database
+     * @param user
+     * @throws LoginSampleException 
+     */
     @Override
     public void removeUser(User user) throws LoginSampleException {
         try {
@@ -84,6 +107,12 @@ public class UserDBMapper extends UserMapper{
         }
     }
 
+    /**
+     * Gets user by email
+     * @param email
+     * @return
+     * @throws LoginSampleException 
+     */
     @Override
     public User getUserByEmail(String email) throws LoginSampleException {
         try {
@@ -104,6 +133,13 @@ public class UserDBMapper extends UserMapper{
         }
     }
 
+    /**
+     * Verifies whether a user is legit
+     * @param email
+     * @param password
+     * @return boolean
+     * @throws LoginSampleException 
+     */
     @Override
     public boolean verifyUser(String email, String password) throws LoginSampleException {
         if(email == null || password == null || email == "" || password == "") {

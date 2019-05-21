@@ -39,11 +39,13 @@ public class CommandFactory {
         commands.put("AllOrders", new AllOrdersCommand("JSP/allOrdersPage.jsp"));
         commands.put("updateLineitem", new UpdateLineitemCommand("JSP/styklist.jsp"));
         commands.put("finalPrice", new PriceCommand("JSP/PriceFinalizePage.jsp"));
-        commands.put("percent", new FinalizeOrderCommand("JSP/allOrdersPage.jsp"));
+        commands.put("percent", new PriceOrderCommand("JSP/PriceFinalizePage.jsp"));
         commands.put("login", new LoginCommand("JSP/home.jsp"));
         commands.put("shop", new shopCommand("JSP/shop.jsp"));
         commands.put("home", new shopCommand("JSP/home.jsp"));
         commands.put("logout", new shopCommand("index.jsp"));
+        commands.put("final", new OrderFinalizeCommand("JSP/allOrdersPage.jsp"));
+        commands.put("logout", new LogoutCommand("index.jsp"));
     }
     //synchronized
     //only one thread at a time

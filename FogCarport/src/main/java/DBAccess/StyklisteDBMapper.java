@@ -32,6 +32,10 @@ public class StyklisteDBMapper extends StyklisteMapper {
         }
         return instance;
     }
+    
+    public void setMapperConnection(Connection connection) {
+        dbc.setConnection(connection);
+    }
 
 //    public ArrayList<Stykliste> getAllStykliste() throws ClassNotFoundException, SQLException{
 //        ArrayList<Stykliste> list = new ArrayList();
@@ -41,6 +45,19 @@ public class StyklisteDBMapper extends StyklisteMapper {
 //            String SQL = "SELECT * FROM fog.stock";
 //        }
 //    }
+    
+    /**
+     * Updates row in the database, requires all possible parameters 
+     * @param item_id
+     * @param item_description
+     * @param width
+     * @param height
+     * @param entity
+     * @param materialtype
+     * @param price
+     * @param orderquantity
+     * @param order_id 
+     */
     @Override
     public void editLineItemsFromOrderID(int item_id, String item_description, float width, float height,
             String entity, String materialtype, float price, int orderquantity, int order_id) {
@@ -66,6 +83,11 @@ public class StyklisteDBMapper extends StyklisteMapper {
         }
     }
 
+    /**
+     * Saves a stykliste in the database which is assigned to an order by id
+     * @param styklist
+     * @param order_id 
+     */
     @Override
     public void saveLineItemsInDB(Stykliste styklist, int order_id) {
         try {
@@ -96,6 +118,12 @@ public class StyklisteDBMapper extends StyklisteMapper {
 
     }
 
+    /**
+     * Returns a Material object based of its id
+     * @param lineItemID
+     * @return Material
+     * @throws StyklistException 
+     */
     @Override
     public Material getMaterialFromLineItems(int lineItemID) throws StyklistException {
         try {

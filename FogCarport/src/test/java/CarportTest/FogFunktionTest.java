@@ -5,6 +5,8 @@ import DBAccess.MaterialMapper;
 import DBAccess.OrderMapper;
 import DBAccess.StyklisteMapper;
 import DBAccess.UserMapper;
+import FunctionLayer.CarportAlgorithm;
+import FunctionLayer.Encryption;
 import FunctionLayer.LogicFacade;
 import FunctionLayer.LoginSampleException;
 import FunctionLayer.Material;
@@ -16,9 +18,13 @@ import FunctionLayer.Stykliste;
 import FunctionLayer.User;
 import java.rmi.AccessException;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Base64;
+import static java.util.Objects.hash;
 import static org.hamcrest.CoreMatchers.any;
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -34,73 +40,97 @@ import org.junit.Before;
  */
 public class FogFunktionTest {
 
-    private String url = "jdbc:mysql://167.99.209.155/fog?useUnicode=yes&characterEncoding=utf-8";
-    private String user = "fog";
-    private String password = "projectFog:1234_5";
+    private String url = "jdbc:mysql://167.99.209.155/fogTest?useUnicode=yes&characterEncoding=utf-8";
+    private String user = "fogtest";
+    private String password = "fogTest123!";
 
-    // Fields for adding and removing materials and orders to share between unit tests.
-    
-
-    @Before
-    public void setUp1() throws SQLException {
-        Connector con = new Connector();
-        Connection conn = DriverManager.getConnection(url, user, password);
-        con.setConnection(conn);
-    }
-
-    /*
-    @Before
-    public void setUp2() {
-        MockitoAnnotations.initMocks(this);
-    }
-     */
- /*
     @Test
-    public FunctionLayer.Stykliste carportAlgorithm(float width, float length, float roofTilt, float shedwidth, float shedLength, int styklist_id) throws MaterialSampleException {
+    public void testCarportAlgorithm() throws MaterialSampleException {
         CarportAlgorithm car = new CarportAlgorithm();
-        return car.carportAlgorithm(width, length, roofTilt, shedwidth, shedLength, styklist_id);
+        Stykliste styklist = car.carportAlgorithm(6000, 7800, 0, 5300, 2100, 1);
+        assertNotNull(styklist);
+        assertThat(styklist.getStyklist().get(4).getItem_description(), is("firkantskiver 40x40x11mm"));
+        assertThat(styklist.getStyklist().get(4).getStryklistQty(), is(20));
+
+        Stykliste styklist2 = car.carportAlgorithm(6000, 7800, 30, 5300, 2100, 1);
+        assertNotNull(styklist2);
+        assertThat(styklist2.getStyklist().get(7).getItem_description(), is("universal 190 mm venstre"));
+        assertThat(styklist2.getStyklist().get(7).getStryklistQty(), is(8));
     }
 
     @Test
-    public FunctionLayer.Material Material(int item_id, String item_description, float width, float height, String entity, String materialtype, float price, int versionnr) {
-        Material mat = new Material(item_id, item_description, width, height, entity, materialtype, price, versionnr);
-        return mat;
+    public void testMaterial() {
+        Material mat = new Material(0, "TestMaterial", 0.0f, 0.0f, "testEntity", "test", 0f, 1);
+        assertNotNull(mat);
+        mat.setStyklistQty(9);
+        mat.setConstructionDescription("This description!");
+        mat.setLineItemID(11);
+        assertThat(mat.getStryklistQty(), is(9));
+        assertThat(mat.GettConstructionDescription(), is("This description!"));
+        assertThat(mat.getLineItemID(), is(11));
     }
 
     @Test
-    public FunctionLayer.Order Order(int order_id, float width, float length, float height, float roofTilt, float shedWidth, float shedLength) {
-        Order order = new Order(order_id, width, length, height, roofTilt, shedWidth, shedLength);
-        return order;
+    public void testOrder() {
+        Order order = new Order(1, 6000, 7800, 2300, 0, 5300, 2100);
+        assertNotNull(order);
+        order.setOrderStatus(true);
+        LocalDate today = LocalDate.now();
+        order.setOrderdate(Date.valueOf(today));
+        order.setPrice(15000f);
+        assertThat(order.isOrderStatus(), is(true));
+        assertThat(order.getOrderdate(), is(Date.valueOf(today)));
+        assertThat(order.getPrice(), is(15000f));
     }
 
     @Test
-    public FunctionLayer.Stykliste Stykliste(ArrayList<FunctionLayer.Material> styklist, int styklist_id) {
-        Stykliste styk = new Stykliste(styklist, styklist_id);
-        return styk;
+    public void testStykliste() {
+        ArrayList<Material> arr = new ArrayList<>();
+        Stykliste styk = new Stykliste(arr, 1);
+        assertNotNull(styk);
+        assertThat(styk.getStyklist().size(), is(0));
     }
 
     @Test
-    public String getSalt(int length) {
+    public void testGetSalt() {
         Encryption enc = new Encryption();
-        return enc.getSalt(length);
+        String wordScheme = enc.getSalt(8);
+        assertNotNull(wordScheme);
     }
 
     @Test
-    public String generateSecurePassword(String password, String salt) {
-        Encryption enc = new Encryption();
-        return enc.generateSecurePassword(password, salt);
+    public void testGenerateSecurePassword() {
+        Encryption en = new Encryption();
+        String pass = "1234";
+        String salt = "zTajvPTS";
+        byte[] securePassword = en.hash(pass.toCharArray(), salt.getBytes());
+        String securePass = Base64.getEncoder().encodeToString(securePassword);
+        assertNotNull(securePass);
+        assertThat(securePass, is("Hvt/wArJKY9e1CxGHzaoS2Sswcudy62ZAgh6wWQ3kVM="));
     }
 
     @Test
-    public boolean verifyUserPassword(String providedPassword, String securepassword, String salt) {
-        Encryption enc = new Encryption();
-        return enc.verifyUserPassword(providedPassword, securepassword, salt);
+    public void testVerifyUserPassword() {
+        Encryption en = new Encryption();
+        String pass = "1234";
+        String salt = "zTajvPTS";
+        byte[] securePassword = en.hash(pass.toCharArray(), salt.getBytes());
+        String securePass = Base64.getEncoder().encodeToString(securePassword);
+        assertNotNull(securePass);
+        assertTrue(en.verifyUserPassword(pass, securePass, salt));
     }
 
     @Test
-    public FunctionLayer.User User(String email, int id, String role) {
-        User user = new User(email, id, role);
-        return user;
+    public void testUser() {
+        User user = new User("Test", 7, "TestUser");
+        assertNotNull(user);
+        Encryption en = new Encryption();
+        String pass = "1234";
+        String salt = "zTajvPTS";
+        byte[] securePassword = en.hash(pass.toCharArray(), salt.getBytes());
+        String securePass = Base64.getEncoder().encodeToString(securePassword);
+        user.setPassword(securePass);
+        assertTrue(en.verifyUserPassword(pass, user.getPassword(), salt));
     }
-     */
+
 }
