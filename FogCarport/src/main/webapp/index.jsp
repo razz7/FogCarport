@@ -35,7 +35,7 @@
                 <div class="form-group form-check">
 
                 </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="submit" class="btn btn-primary">Log in</button>
                 
             </form>
         

@@ -1,3 +1,5 @@
+<jsp:include page='/JSP/siteheader.jsp'></jsp:include>
+
 <div id="sitemenus">
 
 
