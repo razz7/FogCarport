@@ -23,8 +23,8 @@ import javax.servlet.http.HttpSession;
  *
  * @author Ludvig
  */
-public class PriceCommand implements Command{
-    
+public class PriceCommand implements Command {
+
     private String target;
 
     public PriceCommand(String target) {
@@ -34,43 +34,50 @@ public class PriceCommand implements Command{
     @Override
     public String execute(HttpServletRequest request, FunctionManager manager) throws LoginSampleException, OrderSampleException, MaterialSampleException {
         HttpSession session = request.getSession();
-                 if(loginStatus(session)) {
+        if (loginStatus(session)) {
             return "index.jsp";
         }
-                 
-        if(request.getParameter("thisOrder") != null){
+
+        if (request.getParameter("thisOrder") != null) {
             int orderId = Integer.parseInt(request.getParameter("thisOrder"));
-            
+
             Order order = manager.getOrderFromId(orderId);
             Stykliste sl = manager.getStyklistForOrder(orderId);
-            
-            ArrayList<Material> materials = sl.getStyklist();           
-            float price = 0;
-            for(int i = 0; i < materials.size(); i++){
-                price = price + materials.get(i).getTotalItemPrice();
+
+            float orderPrice = manager.getPriceFromId(orderId);
+
+            if (orderPrice == 0) {
+                ArrayList<Material> materials = sl.getStyklist();
+                float price = 0;
+                for (int i = 0; i < materials.size(); i++) {
+                    price = price + materials.get(i).getTotalItemPrice();
+                }
+
+                //order.setPrice(price);
+                manager.setPriceOrder(orderId, price);
+                request.setAttribute("price", price);
+                request.setAttribute("order", order);
+                return target;
             }
-            
-            order.setPrice(price);
-            
-            request.setAttribute("price", price);
+            request.setAttribute("price", orderPrice);
             request.setAttribute("order", order);
         }
-        
+
         return target;
     }
 
     @Override
     public boolean loginStatus(HttpSession session) {
-         if(session.getAttribute("user") != null) {
+        if (session.getAttribute("user") != null) {
             return false;
         }
         return true;
-    
+
     }
 
     @Override
     public boolean accesToPage(HttpSession session, String accesForRole) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
+
 }

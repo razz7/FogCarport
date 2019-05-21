@@ -37,7 +37,7 @@ public class OrderFinalizeCommand implements Command {
             
             manager.finalizeOrder(orderId); 
             Order order = manager.getOrderFromId(orderId);  
-            order.setOrderStatus(true);
+            //order.setOrderStatus(true);
             
             ArrayList<Order> allOrders = manager.getAllOrders();
             request.setAttribute("allOrders", allOrders);
