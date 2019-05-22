@@ -41,12 +41,12 @@ public class PriceCommand implements Command {
         if (request.getParameter("thisOrder") != null) {
             int orderId = Integer.parseInt(request.getParameter("thisOrder"));
 
-            Order order = manager.getOrderFromId(orderId);
-            Stykliste sl = manager.getStyklistForOrder(orderId);
+            Order order = manager.getOrderFromId(orderId);           
 
             float orderPrice = manager.getPriceFromId(orderId);
 
             if (orderPrice == 0.0 ) {
+                Stykliste sl = manager.getStyklistForOrder(orderId);
                 ArrayList<Material> materials = sl.getStyklist();
                 float price = 0;
                 for (int i = 0; i < materials.size(); i++) {
