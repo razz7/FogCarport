@@ -1,3 +1,4 @@
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -18,16 +19,18 @@ import FunctionLayer.User;
 import PresentationLayer.Command;
 import PresentationLayer.PriceCommand;
 import PresentationLayer.CommandException;
+import PresentationLayer.EditLineItemCommand;
+import PresentationLayer.LoginCommand;
 import java.util.ArrayList;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import static org.hamcrest.CoreMatchers.is;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import org.junit.Before;
 import org.mockito.Mock;
 import static org.mockito.ArgumentMatchers.any;
 import org.mockito.MockitoAnnotations;
-import static org.hamcrest.CoreMatchers.is;
 import static org.mockito.Mockito.*;
 import org.mockito.stubbing.Answer;
 
@@ -36,10 +39,6 @@ import org.mockito.stubbing.Answer;
  * @author rasmu
  */
 public class CommandTest {
-
-    private String url = "jdbc:mysql://167.99.209.155/fog?useUnicode=yes&characterEncoding=utf-8";
-    private String user = "fog";
-    private String password = "projectFog:1234_5";
 
     @Mock
     private User users;
@@ -76,37 +75,51 @@ public class CommandTest {
                     String key = invocation.getArgument(0);
                     assertThat(key, is("price"));
                     float price = invocation.getArgument(1);
+                    assertThat(price, is(0.0f));
                     return null;
                 }
         ).when(request).setAttribute(any(String.class), any(Float.class));
         when(request.getSession()).thenReturn(session);
         when(manager.getOrderFromId(anyInt())).thenReturn(order);
         when(manager.getStyklistForOrder(anyInt())).thenReturn(stykliste);
-        when(manager.getStyklistForOrder(anyInt())).thenReturn(stykliste);
         when(stykliste.getStyklist()).thenReturn(arr);
+
         Command command = new PriceCommand("JSP/PriceFinalizePage.jsp");
         String target = command.execute(request, manager);
         assertThat(target, is("JSP/PriceFinalizePage.jsp"));
     }
 
-    /*
     @Test
-    public void testPriceCommand2() {
-        when(request.getParameter("code")).thenReturn("XYZ11");
-        //doNothing().when(request).setAttribute(any(String.class), any(Double.class));
+    public void testEditLineItemCommand() throws LoginSampleException, OrderSampleException, MaterialSampleException, StyklistException, CommandException, ClassNotFoundException {
+        when(request.getParameter("thisOrder")).thenReturn("80");
+        when(request.getSession()).thenReturn(session);
+        when(request.getParameter("lineitemID")).thenReturn("2");
+
+        Command command = new EditLineItemCommand("JSP/editlineitem.jsp");
+        String target = command.execute(request, manager);
+        assertThat(target, is("index.jsp"));
+    }
+
+    @Test
+    public void testLoginCommand() throws LoginSampleException, OrderSampleException, MaterialSampleException, StyklistException, CommandException, ClassNotFoundException {
+        when(request.getParameter("email")).thenReturn("John123@Johnmail.com");
+        when(request.getParameter("password")).thenReturn("qwe");
+        when(manager.verifyUser("John123@Johnmail.com", "qwe")).thenReturn(true);
+        when(manager.getUserByEmail("John123@Johnmail.com")).thenReturn(users);
+        when(request.getSession()).thenReturn(session);
         doAnswer(
                 invocation -> {
                     String key = invocation.getArgument(0);
-                    assertThat(key, is("price"));
-                    double price = invocation.getArgument(1);
-                    assertThat(price, is(47.11));
+                    assertThat(key, is("User"));
+                    User user = invocation.getArgument(1);
+                    assertThat(user, is(users));
                     return null;
                 }
-        ).when(request).setAttribute(any(String.class), any(Double.class));
-        when(logic.getPrice("XYZ11")).thenReturn(47.11);
-        Command command = new PriceCommand();
-        String target = command.execute(request, logic);
-        assertThat(target, is("pricepage.jsp"));
+        ).when(request).setAttribute(any(String.class), any(User.class));
+
+        Command command = new LoginCommand("JSP/PriceFinalizePage.jsp");
+        String target = command.execute(request, manager);
+        assertThat(target, is("JSP/PriceFinalizePage.jsp"));
     }
-     */
+
 }

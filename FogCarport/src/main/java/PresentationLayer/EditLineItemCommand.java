@@ -22,7 +22,7 @@ public class EditLineItemCommand implements Command {
 
     private String target;
 
-    EditLineItemCommand(String target) {
+    public EditLineItemCommand(String target) {
         this.target = target;
     }
 

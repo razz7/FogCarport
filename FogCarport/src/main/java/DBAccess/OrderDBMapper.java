@@ -222,20 +222,43 @@ public class OrderDBMapper extends OrderMapper {
         }
     }
 
-//    @Override
-//    public void setOrderPrice(int order_id, float price) throws OrderSampleException {
-//        try {
-//            String sql = "UPDATE orders SET price=" + price +" WHERE order_id=?";
-//
-//            Connection con = dbc.connection();
-//            PreparedStatement ps = con.prepareStatement(sql);
-//            ps.setInt(0, order_id);
-//            ps.executeUpdate();
-//
-//        } catch (SQLException | ClassNotFoundException ex) {
-//            throw new OrderSampleException(ex.getMessage());
-//        }
-//    }
+    @Override
+    public void setPriceOrder(int order_id, float price) throws OrderSampleException {
+        try {
+            String sql = "UPDATE orders SET price=? WHERE order_id=?";
+
+            Connection con = dbc.connection();
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setFloat(1, price);
+            ps.setInt(2, order_id);
+            ps.executeUpdate();
+
+        } catch (SQLException | ClassNotFoundException ex) {
+            throw new OrderSampleException(ex.getMessage());
+        }
+    }
+    
+    @Override
+    public float getPriceFromId(int order_id) throws OrderSampleException {
+        try {
+            Connection con = dbc.connection();
+            String SQL = "SELECT price FROM orders WHERE order_id = ?";
+            PreparedStatement ps = con.prepareStatement(SQL);
+            ps.setInt(1, order_id);
+            ResultSet rs = ps.executeQuery();
+            float price = 0;
+
+            while (rs.next()) {
+                price = rs.getFloat(1);
+            }
+
+            return price;
+
+        } catch (SQLException | ClassNotFoundException ex) {
+            throw new OrderSampleException(ex.getMessage());
+        }
+
+    }
 
     /**
      * Deletes order specified by order_id

@@ -68,10 +68,14 @@ public class FunctionManager implements DatabaseFacadeInterface, LogicFacadeInte
         OrdMapper.finalizeOrder(order_id);
     }
     
-//    @Override
-//    public void setOrderPrice(int order_id, float price) throws OrderSampleException {
-//        OrdMapper.setOrderPrice(order_id, price);
-//    }
+    //@Override
+    public void setPriceOrder(int order_id, float price) throws OrderSampleException {
+        OrdMapper.setPriceOrder(order_id, price);
+    }
+    
+    public float getPriceFromId(int order_id) throws OrderSampleException{
+        return OrdMapper.getPriceFromId(order_id);
+    }
 
     @Override
     public void deleteOrder(int order_id) throws OrderSampleException {
@@ -141,9 +145,12 @@ public class FunctionManager implements DatabaseFacadeInterface, LogicFacadeInte
     public static void main(String[] args) throws MaterialSampleException, OrderSampleException {
         FunctionManager fm = new FunctionManager();
         
-        Stykliste sl = fm.getStyklistForOrder(77);
-        ArrayList<Material> ml = sl.getStyklist();
-        System.out.println(ml.get(1).getPrice());
+        //fm.setPriceOrder(71, 2400);
+        System.out.println(fm.getPriceFromId(71));
+        
+//        Stykliste sl = fm.getStyklistForOrder(77);
+//        ArrayList<Material> ml = sl.getStyklist();
+//        System.out.println(ml.get(1).getPrice());
 
         //fm.deleteOrder(22);
     }
