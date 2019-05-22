@@ -23,44 +23,36 @@ import javax.servlet.http.HttpSession;
  * @author Ludvig
  */
 public class GraphicShop implements Command {
-    
+
     private String target;
 
     GraphicShop(String target) {
         this.target = target;
     }
-    
+
     @Override
     public String execute(HttpServletRequest request, FunctionManager manager) throws LoginSampleException, OrderSampleException, MaterialSampleException {
         HttpSession session = request.getSession();
 
-        if(loginStatus(session)) {
+        if (loginStatus(session)) {
             return "index.jsp";
         }
         session.setAttribute("order", null);
-        if (request.getParameter("shopOrder") != null) {
-            int orderId = Integer.parseInt(request.getParameter("shopOrder"));
-            //OrderDBMapper om = new OrderDBMapper();
-            Order order = manager.getOrderFromId(orderId);
-            session.setAttribute("order", order);
+        Order orderId = (Order) session.getAttribute("shopOrder");
+        //OrderDBMapper om = new OrderDBMapper();
+        session.setAttribute("order", orderId);
 
-            //CarportAlgorithm car = new CarportAlgorithm();
-            //Stykliste styklist = car.carportAlgorithm(order.getWidth(), order.getLength(), order.getRoofTilt(), order.getShedWidth(), order.getShedLength(), 1);
-            //System.out.println(order.toString());
-            //order.setStyklist(styklist);
-            //System.out.println(order.toString());
-            
-
-        } 
-
-            return target;
-        }
-      
-
+        //CarportAlgorithm car = new CarportAlgorithm();
+        //Stykliste styklist = car.carportAlgorithm(order.getWidth(), order.getLength(), order.getRoofTilt(), order.getShedWidth(), order.getShedLength(), 1);
+        //System.out.println(order.toString());
+        //order.setStyklist(styklist);
+        //System.out.println(order.toString());
+        return target;
+    }
 
     @Override
     public boolean loginStatus(HttpSession session) {
-       if(session.getAttribute("user") != null) {
+        if (session.getAttribute("user") != null) {
             return false;
         }
         return true;
