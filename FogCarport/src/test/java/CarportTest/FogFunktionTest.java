@@ -88,9 +88,9 @@ public class FogFunktionTest {
     }
 
     @Test
-    public void testGetSalt() {
+    public void testGetEncryptWord() {
         Encryption enc = new Encryption();
-        String wordScheme = enc.getSalt(8);
+        String wordScheme = enc.getEncryptWord(8);
         assertNotNull(wordScheme);
     }
 
