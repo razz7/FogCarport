@@ -198,6 +198,6 @@ public class FunctionManager implements DatabaseFacadeInterface, LogicFacadeInte
 
     @Override
     public void createUser(String email, String password, String role) throws LoginSampleException {
-       
+       UseMapper.createUser(email, password, role);
     }
 }

@@ -5,44 +5,37 @@
  */
 package PresentationLayer;
 
-import DBAccess.DatabaseFacade;
 import FunctionLayer.FunctionManager;
 import FunctionLayer.LoginSampleException;
 import FunctionLayer.MaterialSampleException;
 import FunctionLayer.OrderSampleException;
 import FunctionLayer.StyklistException;
-import FunctionLayer.User;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author Rumle
  */
-public class LoginCommand implements Command{
-    
+public class CreateNewUserCommand implements Command {
+
     private String target;
 
-    LoginCommand(String target) {
+    CreateNewUserCommand(String target) {
         this.target = target;
     }
-
     @Override
-    public String execute(HttpServletRequest request, FunctionManager manager) 
-            throws LoginSampleException, OrderSampleException, MaterialSampleException, StyklistException {
-        
+    public String execute(HttpServletRequest request, FunctionManager manager) throws LoginSampleException, OrderSampleException, MaterialSampleException, StyklistException, CommandException, ClassNotFoundException, NumberFormatException {
         String email = request.getParameter("email");
-        String password = request.getParameter("password");
-        FunctionManager fm = new FunctionManager();
-        if(fm.verifyUser(email, password)) {
-            User user = fm.getUserByEmail(email);
-            HttpSession session = request.getSession();
-            session.setAttribute("user", user);
-            return target;
+        String password1 = request.getParameter("password1");
+        String password2 = request.getParameter("password2");
+        
+        if(password1.equals(password2)) {
+        manager.createUser(email, password1, "customer");
+        
         }
-       
-        return "index.jsp";                
+        
+        return target;
     }
 
     @Override
@@ -54,7 +47,6 @@ public class LoginCommand implements Command{
     public boolean accesToPage(HttpSession session, String accesForRole) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+    
+    
 }
-
-
-
