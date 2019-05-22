@@ -22,11 +22,11 @@ import javax.servlet.http.HttpSession;
  *
  * @author Ludvig
  */
-public class GraphicShop implements Command {
+public class GraphicShopCommand implements Command {
 
     private String target;
 
-    GraphicShop(String target) {
+    GraphicShopCommand(String target) {
         this.target = target;
     }
 

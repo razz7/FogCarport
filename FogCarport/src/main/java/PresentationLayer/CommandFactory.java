@@ -41,13 +41,13 @@ public class CommandFactory {
         commands.put("finalPrice", new PriceCommand("JSP/PriceFinalizePage.jsp"));
         commands.put("percent", new PriceOrderCommand("JSP/PriceFinalizePage.jsp"));
         commands.put("login", new LoginCommand("JSP/home.jsp"));
-        commands.put("shop", new shopCommand("JSP/shop.jsp"));
-        commands.put("home", new shopCommand("JSP/home.jsp"));
-        commands.put("logout", new shopCommand("index.jsp"));
+        commands.put("shop", new ShopCommand("JSP/shop.jsp"));
+        commands.put("home", new ShopCommand("JSP/home.jsp"));
+        commands.put("logout", new ShopCommand("index.jsp"));
         commands.put("final", new OrderFinalizeCommand("JSP/allOrdersPage.jsp"));
         commands.put("logout", new LogoutCommand("index.jsp"));
         commands.put("createuser", new CreateNewUserCommand("index.jsp"));
-        commands.put("graphicShop", new GraphicShop("JSP/carportSVGGraphic.jsp"));
+        commands.put("graphicShop", new GraphicShopCommand("JSP/carportSVGGraphic.jsp"));
 
     }
     //synchronized

@@ -18,13 +18,13 @@ import javax.servlet.http.HttpSession;
  *
  * @author rh
  */
-public class shopCommand implements Command {
+public class ShopCommand implements Command {
     
     
     
     private String target;
 
-    shopCommand(String target) {
+    ShopCommand(String target) {
         this.target = target;
     }
 

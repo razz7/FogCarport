@@ -17,10 +17,10 @@ import javax.servlet.http.HttpSession;
  *
  * @author rh
  */
-public class home implements Command {
+public class HomeCommand implements Command {
     private final String target;
     
-        home(String target) {
+        HomeCommand(String target) {
         this.target = target;
     }
 
