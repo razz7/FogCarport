@@ -108,7 +108,7 @@ public class StyklisteDBMapper extends StyklisteMapper {
                 ps.setString(7, lineitems.get(i).getMaterialType());
                 ps.setFloat(8, lineitems.get(i).getPrice());
                 ps.setInt(9, lineitems.get(i).getStryklistQty());
-                ps.setInt(10, 0);
+                ps.setInt(10, lineitems.get(i).getVersionnr());
 
                 ps.executeUpdate();
             }
