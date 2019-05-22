@@ -48,13 +48,10 @@ public class GraphicCommand implements Command {
             //Stykliste styklist = car.carportAlgorithm(order.getWidth(), order.getLength(), order.getRoofTilt(), order.getShedWidth(), order.getShedLength(), 1);
             //System.out.println(order.toString());
             //order.setStyklist(styklist);
-            //System.out.println(order.toString());
-            
-
+            //System.out.println(order.toString());           
         } 
-
             return target;
-        }
+    }
       
 
 
