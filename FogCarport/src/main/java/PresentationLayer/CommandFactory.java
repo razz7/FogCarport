@@ -47,6 +47,8 @@ public class CommandFactory {
         commands.put("final", new OrderFinalizeCommand("JSP/allOrdersPage.jsp"));
         commands.put("logout", new LogoutCommand("index.jsp"));
         commands.put("createuser", new CreateNewUserCommand("index.jsp"));
+        commands.put("graphicShop", new GraphicShop("JSP/carportSVGGraphic.jsp"));
+
     }
     //synchronized
     //only one thread at a time

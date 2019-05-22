@@ -35,8 +35,10 @@
                 <div class="form-group form-check">
 
                 </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
+
+                <button type="submit" class="btn btn-primary">Login</button>
                 <a class="nav-link" href="JSP/createNewUser.jsp" style="color: black">Register</a>
+
                 
             </form>
         

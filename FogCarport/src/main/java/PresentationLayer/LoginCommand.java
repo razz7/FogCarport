@@ -24,7 +24,7 @@ public class LoginCommand implements Command{
     
     private String target;
 
-    LoginCommand(String target) {
+    public LoginCommand(String target) {
         this.target = target;
     }
 

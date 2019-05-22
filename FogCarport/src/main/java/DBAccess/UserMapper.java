@@ -41,12 +41,10 @@ public abstract class UserMapper {
     
 
     public static void main(String[] args) throws LoginSampleException {
-//        UserMapper map = new UserMapper();
-//        User user = new User("John123@johnmail.com", 5, "boss");
-//        String password = "qwe";
-//
-//        System.out.println(map.verifyUser(user.getEmail(), password));
-//        System.out.println(map.getUserByEmail(user.getEmail()));
+        UserDBMapper map = new UserDBMapper();
+        User user = new User("John123@johnmail.com", 7, "Customer");
+        String password = "qwe";
+        map.createUser(user.getEmail(), password, user.getRole());
     }
 
 }

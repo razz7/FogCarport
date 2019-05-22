@@ -5,16 +5,15 @@
  */
 package PresentationLayer;
 
-import DBAccess.DatabaseFacade;
+import DBAccess.OrderDBMapper;
+import DBAccess.OrderMapper;
+import FunctionLayer.CarportAlgorithm;
 import FunctionLayer.FunctionManager;
 import FunctionLayer.LoginSampleException;
-import FunctionLayer.Material;
 import FunctionLayer.MaterialSampleException;
 import FunctionLayer.Order;
 import FunctionLayer.OrderSampleException;
-import FunctionLayer.StyklistException;
 import FunctionLayer.Stykliste;
-import java.util.ArrayList;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -23,62 +22,52 @@ import javax.servlet.http.HttpSession;
  *
  * @author Ludvig
  */
-public class PriceCommand implements Command {
-
+public class GraphicShop implements Command {
+    
     private String target;
 
-    public PriceCommand(String target) {
+    GraphicShop(String target) {
         this.target = target;
     }
-
+    
     @Override
     public String execute(HttpServletRequest request, FunctionManager manager) throws LoginSampleException, OrderSampleException, MaterialSampleException {
         HttpSession session = request.getSession();
-        if (loginStatus(session)) {
+
+        if(loginStatus(session)) {
             return "index.jsp";
         }
-
-        if (request.getParameter("thisOrder") != null) {
-            int orderId = Integer.parseInt(request.getParameter("thisOrder"));
-
+        session.setAttribute("order", null);
+        if (request.getParameter("shopOrder") != null) {
+            int orderId = Integer.parseInt(request.getParameter("shopOrder"));
+            //OrderDBMapper om = new OrderDBMapper();
             Order order = manager.getOrderFromId(orderId);
-            Stykliste sl = manager.getStyklistForOrder(orderId);
+            session.setAttribute("order", order);
 
-            float orderPrice = manager.getPriceFromId(orderId);
-
-            if (orderPrice == 0.0 ) {
-                ArrayList<Material> materials = sl.getStyklist();
-                float price = 0;
-                for (int i = 0; i < materials.size(); i++) {
-                    price = price + materials.get(i).getTotalItemPrice();
-                }
-
-                //order.setPrice(price);
-                manager.setPriceOrder(orderId, price);
-                request.setAttribute("price", price);
-                request.setAttribute("order", order);
-                return target;
-            }
+            //CarportAlgorithm car = new CarportAlgorithm();
+            //Stykliste styklist = car.carportAlgorithm(order.getWidth(), order.getLength(), order.getRoofTilt(), order.getShedWidth(), order.getShedLength(), 1);
+            //System.out.println(order.toString());
+            //order.setStyklist(styklist);
+            //System.out.println(order.toString());
             
-            request.setAttribute("price", orderPrice);
-            request.setAttribute("order", order);
-        }
 
-        return target;
-    }
+        } 
+
+            return target;
+        }
+      
+
 
     @Override
     public boolean loginStatus(HttpSession session) {
-        if (session.getAttribute("user") != null) {
+       if(session.getAttribute("user") != null) {
             return false;
         }
         return true;
-
     }
 
     @Override
     public boolean accesToPage(HttpSession session, String accesForRole) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
 }

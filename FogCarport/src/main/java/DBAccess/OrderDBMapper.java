@@ -40,6 +40,12 @@ public class OrderDBMapper extends OrderMapper {
         testConnection = true;
     }
 
+    /**
+     * Gets all orders in the database and return them as an ArrayList of Order objects
+     * 
+     * @return ArrayList<Order>
+     * @throws OrderSampleException 
+     */
     @Override
     public ArrayList<Order> getAllOrders() throws OrderSampleException {
         try {
@@ -63,6 +69,12 @@ public class OrderDBMapper extends OrderMapper {
         }
     }
 
+    /**
+     * Gets specific order based on order id
+     * @param order_id
+     * @return Order
+     * @throws OrderSampleException 
+     */
     @Override
     public Order getOrderFromId(int order_id) throws OrderSampleException {
         try {
@@ -96,6 +108,12 @@ public class OrderDBMapper extends OrderMapper {
 
     }
 
+    /**
+     * Gets stykliste based off the order_id of the order it is assigned to
+     * @param order_id
+     * @return Stykliste
+     * @throws OrderSampleException 
+     */
     @Override
     public Stykliste getStyklistForOrder(int order_id) throws OrderSampleException {
         try {
@@ -122,6 +140,11 @@ public class OrderDBMapper extends OrderMapper {
         }
     }
 
+    /**
+     * Saves data of an order object in the database
+     * @param order
+     * @throws OrderSampleException 
+     */
     @Override
     public void saveOrder(Order order) throws OrderSampleException {
         try {
@@ -159,6 +182,11 @@ public class OrderDBMapper extends OrderMapper {
 
     }
 
+    /**
+     * Updates the status of the order to true
+     * @param order_id
+     * @throws OrderSampleException 
+     */
     @Override
     public void finalizeOrder(int order_id) throws OrderSampleException {
         try {
@@ -174,9 +202,15 @@ public class OrderDBMapper extends OrderMapper {
         }
     }
 
+    /**
+     * Updates the status of the order to false
+     * @param order_id
+     * @throws OrderSampleException 
+     */
+    @Override
     public void unFinalizeOrder(int order_id) throws OrderSampleException {
         try {
-            String sql = "UPDATE orders SET status=true WHERE order_id=?";
+            String sql = "UPDATE orders SET status=false WHERE order_id=?";
 
             Connection con = dbc.connection();
             PreparedStatement ps = con.prepareStatement(sql);
@@ -188,6 +222,49 @@ public class OrderDBMapper extends OrderMapper {
         }
     }
 
+    @Override
+    public void setPriceOrder(int order_id, float price) throws OrderSampleException {
+        try {
+            String sql = "UPDATE orders SET price=? WHERE order_id=?";
+
+            Connection con = dbc.connection();
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setFloat(1, price);
+            ps.setInt(2, order_id);
+            ps.executeUpdate();
+
+        } catch (SQLException | ClassNotFoundException ex) {
+            throw new OrderSampleException(ex.getMessage());
+        }
+    }
+    
+    @Override
+    public float getPriceFromId(int order_id) throws OrderSampleException {
+        try {
+            Connection con = dbc.connection();
+            String SQL = "SELECT price FROM orders WHERE order_id = ?";
+            PreparedStatement ps = con.prepareStatement(SQL);
+            ps.setInt(1, order_id);
+            ResultSet rs = ps.executeQuery();
+            float price = 0;
+
+            while (rs.next()) {
+                price = rs.getFloat(1);
+            }
+
+            return price;
+
+        } catch (SQLException | ClassNotFoundException ex) {
+            throw new OrderSampleException(ex.getMessage());
+        }
+
+    }
+
+    /**
+     * Deletes order specified by order_id
+     * @param order_id
+     * @throws OrderSampleException 
+     */
     @Override
     public void deleteOrder(int order_id) throws OrderSampleException {
         try {

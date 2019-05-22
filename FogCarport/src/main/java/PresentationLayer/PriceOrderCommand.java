@@ -41,12 +41,17 @@ public class PriceOrderCommand implements Command{
         if(request.getParameter("thisOrder") != null){
             int orderId = Integer.parseInt(request.getParameter("thisOrder"));
             float percent = Float.parseFloat(request.getParameter("percentage"));
-            float price = Float.parseFloat(request.getParameter("price")); 
+            //float price = Float.parseFloat(request.getParameter("price")); 
             
-            float orderPrice = price*(1+(percent/100));
+            Order order = manager.getOrderFromId(orderId);  
             
-            Order order = manager.getOrderFromId(orderId);    
-            order.setPrice(orderPrice);
+            float price = manager.getPriceFromId(orderId);
+            
+            //Order order = (Order) request.getAttribute("order");
+            //float price = order.getPrice();
+            float orderPrice = (price*(1+(percent/100))); 
+            manager.setPriceOrder(orderId, orderPrice);
+            //order.setPrice(orderPrice);
 
             request.setAttribute("orderPrice", orderPrice);
             request.setAttribute("price", orderPrice);
