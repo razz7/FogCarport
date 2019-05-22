@@ -188,9 +188,9 @@ public class FunctionManager implements DatabaseFacadeInterface, LogicFacadeInte
     }
 
     @Override
-    public String getSalt(int length) {
+    public String getEncryptWord(int length) {
         LogicFacade log = new LogicFacade();
-        return log.getSalt(length);
+        return log.getEncryptWord(length);
     }
 
     @Override
