@@ -28,7 +28,7 @@ public class Encryption {
    private static final int KEY_LENGTH= 256;
    private Scanner scanner = new Scanner(System.in);
    
-   public String getSalt(int length) {
+   public String getEncryptWord(int length) {
        StringBuilder returnValue = new StringBuilder(length);
        
        for(int i = 0; i < length; ++i) {
@@ -74,8 +74,8 @@ public class Encryption {
 
 //   String myPassword = "hejhej";
 //   String myPassword1 = "hejhej";
-//   String salt = Encryption.getSalt(30);
-//   String salt1 = Encryption.getSalt(30);
+//   String salt = Encryption.getEncryptWord(30);
+//   String salt1 = Encryption.getEncryptWord(30);
 //        System.out.println(salt);
 //        System.out.println(salt1);
 //   

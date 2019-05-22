@@ -5,54 +5,53 @@
  */
 package PresentationLayer;
 
-import DBAccess.DatabaseFacade;
 import FunctionLayer.FunctionManager;
 import FunctionLayer.LoginSampleException;
-import FunctionLayer.Material;
 import FunctionLayer.MaterialSampleException;
 import FunctionLayer.OrderSampleException;
 import FunctionLayer.StyklistException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-public class EditLineItemCommand implements Command {
-
-    private String target;
-
-    public EditLineItemCommand(String target) {
+/**
+ *
+ * @author rh
+ */
+public class HomeCommand implements Command {
+    private final String target;
+    
+        HomeCommand(String target) {
         this.target = target;
     }
 
     @Override
-    public String execute(HttpServletRequest request, FunctionManager manager) throws LoginSampleException, OrderSampleException, MaterialSampleException, StyklistException{
+    public String execute(HttpServletRequest request, FunctionManager manager) throws LoginSampleException, OrderSampleException, MaterialSampleException, StyklistException, CommandException, ClassNotFoundException {
+       
         HttpSession session = request.getSession();
         if(loginStatus(session)) {
             return "index.jsp";
         }
-
-        int id = Integer.parseInt(request.getParameter("lineitemID"));
-
-        Material material = manager.getMaterialFromLineItems(id);
         
-        session.setAttribute("lineitemToEdit", material);
-
-        return target;
+        
+       return target;
     }
 
     @Override
     public boolean loginStatus(HttpSession session) {
-       if(session.getAttribute("user") != null) {
+        if(session.getAttribute("user") != null) {
             return false;
         }
         return true;
+    
+    
     }
 
     @Override
     public boolean accesToPage(HttpSession session, String accesForRole) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+    }
+
+   
     
-}
+

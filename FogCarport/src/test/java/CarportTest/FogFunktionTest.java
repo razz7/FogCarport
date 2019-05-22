@@ -1,48 +1,25 @@
 package CarportTest;
 
-import DBAccess.Connector;
-import DBAccess.MaterialMapper;
-import DBAccess.OrderMapper;
-import DBAccess.StyklisteMapper;
-import DBAccess.UserMapper;
 import FunctionLayer.CarportAlgorithm;
 import FunctionLayer.Encryption;
-import FunctionLayer.LogicFacade;
-import FunctionLayer.LoginSampleException;
 import FunctionLayer.Material;
 import FunctionLayer.MaterialSampleException;
 import FunctionLayer.Order;
-import FunctionLayer.OrderSampleException;
-import FunctionLayer.StyklistException;
 import FunctionLayer.Stykliste;
 import FunctionLayer.User;
-import java.rmi.AccessException;
-import java.sql.Connection;
 import java.sql.Date;
-import java.sql.DriverManager;
-import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Base64;
-import static java.util.Objects.hash;
-import static org.hamcrest.CoreMatchers.any;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import static org.hamcrest.CoreMatchers.is;
-import org.junit.Before;
-//import org.mockito.Mock;
-//import static org.mockito.Mockito.when;
-//import org.mockito.MockitoAnnotations;
 
 /**
  *
  * @author Rasmus2
  */
 public class FogFunktionTest {
-
-    private String url = "jdbc:mysql://167.99.209.155/fogTest?useUnicode=yes&characterEncoding=utf-8";
-    private String user = "fogtest";
-    private String password = "fogTest123!";
 
     @Test
     public void testCarportAlgorithm() throws MaterialSampleException {
@@ -51,11 +28,25 @@ public class FogFunktionTest {
         assertNotNull(styklist);
         assertThat(styklist.getStyklist().get(4).getItem_description(), is("firkantskiver 40x40x11mm"));
         assertThat(styklist.getStyklist().get(4).getStryklistQty(), is(20));
+        assertThat(styklist.getStyklist().size(), is(29));
 
-        Stykliste styklist2 = car.carportAlgorithm(6000, 7800, 30, 5300, 2100, 1);
+        Stykliste styklist2 = car.carportAlgorithm(6000, 7800, 0, 0, 0, 1);
         assertNotNull(styklist2);
-        assertThat(styklist2.getStyklist().get(7).getItem_description(), is("universal 190 mm venstre"));
-        assertThat(styklist2.getStyklist().get(7).getStryklistQty(), is(8));
+        assertThat(styklist2.getStyklist().get(4).getItem_description(), is("45x195 mm. spærtræ ubh."));
+        assertThat(styklist2.getStyklist().get(4).getStryklistQty(), is(14));
+        assertThat(styklist2.getStyklist().size(), is(19));
+
+        Stykliste styklist3 = car.carportAlgorithm(6000, 7800, 30, 5300, 2100, 1);
+        assertNotNull(styklist3);
+        assertThat(styklist3.getStyklist().get(7).getItem_description(), is("universal 190 mm venstre"));
+        assertThat(styklist3.getStyklist().get(7).getStryklistQty(), is(8));
+        assertThat(styklist3.getStyklist().size(), is(34));
+
+        Stykliste styklist4 = car.carportAlgorithm(6000, 7800, 30, 0, 0, 1);
+        assertNotNull(styklist4);
+        assertThat(styklist4.getStyklist().get(7).getItem_description(), is("5,0 x 40 mm. beslagskruer 250 stk."));
+        assertThat(styklist4.getStyklist().get(7).getStryklistQty(), is(1));
+        assertThat(styklist4.getStyklist().size(), is(23));
     }
 
     @Test
@@ -92,9 +83,9 @@ public class FogFunktionTest {
     }
 
     @Test
-    public void testGetSalt() {
+    public void testGetEncryptWord() {
         Encryption enc = new Encryption();
-        String wordScheme = enc.getSalt(8);
+        String wordScheme = enc.getEncryptWord(8);
         assertNotNull(wordScheme);
     }
 
@@ -102,8 +93,8 @@ public class FogFunktionTest {
     public void testGenerateSecurePassword() {
         Encryption en = new Encryption();
         String pass = "1234";
-        String salt = "zTajvPTS";
-        byte[] securePassword = en.hash(pass.toCharArray(), salt.getBytes());
+        String wordScheme = "zTajvPTS";
+        byte[] securePassword = en.hash(pass.toCharArray(), wordScheme.getBytes());
         String securePass = Base64.getEncoder().encodeToString(securePassword);
         assertNotNull(securePass);
         assertThat(securePass, is("Hvt/wArJKY9e1CxGHzaoS2Sswcudy62ZAgh6wWQ3kVM="));
@@ -113,11 +104,11 @@ public class FogFunktionTest {
     public void testVerifyUserPassword() {
         Encryption en = new Encryption();
         String pass = "1234";
-        String salt = "zTajvPTS";
-        byte[] securePassword = en.hash(pass.toCharArray(), salt.getBytes());
+        String wordScheme = "zTajvPTS";
+        byte[] securePassword = en.hash(pass.toCharArray(), wordScheme.getBytes());
         String securePass = Base64.getEncoder().encodeToString(securePassword);
         assertNotNull(securePass);
-        assertTrue(en.verifyUserPassword(pass, securePass, salt));
+        assertTrue(en.verifyUserPassword(pass, securePass, wordScheme));
     }
 
     @Test
@@ -126,11 +117,11 @@ public class FogFunktionTest {
         assertNotNull(user);
         Encryption en = new Encryption();
         String pass = "1234";
-        String salt = "zTajvPTS";
-        byte[] securePassword = en.hash(pass.toCharArray(), salt.getBytes());
+        String wordScheme = "zTajvPTS";
+        byte[] securePassword = en.hash(pass.toCharArray(), wordScheme.getBytes());
         String securePass = Base64.getEncoder().encodeToString(securePassword);
         user.setPassword(securePass);
-        assertTrue(en.verifyUserPassword(pass, user.getPassword(), salt));
+        assertTrue(en.verifyUserPassword(pass, user.getPassword(), wordScheme));
     }
 
 }

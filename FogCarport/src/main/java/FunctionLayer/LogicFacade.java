@@ -51,9 +51,9 @@ public class LogicFacade implements LogicFacadeInterface {
     }
 
     @Override
-    public String getSalt(int length) {
+    public String getEncryptWord(int length) {
         Encryption enc = new Encryption();
-        return enc.getSalt(length);
+        return enc.getEncryptWord(length);
     }
 
     @Override

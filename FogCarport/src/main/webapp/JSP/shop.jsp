@@ -105,20 +105,21 @@
             <input class="btn btn-primary" type="submit" value="Make order">
             <%
             } else {
+                Order order = (Order) session.getAttribute("order");
             %>
-            <input type="hidden" name="command" value="graphic">
+
+
+            <input type="hidden" name="command" value="graphicShop">
             <input class="btn btn-primary" type="submit" value="See visual order">
             <%
-                }
+
+
             %>
 
         </div>
     </form>
 
-    <%
-        if (session.getAttribute("order") != null) {
-            //Stykliste list = (Stykliste) session.getAttribute("list");
-            Order order = (Order) session.getAttribute("order");
+    <%            //Stykliste list = (Stykliste) session.getAttribute("list");
             Stykliste sl = order.getStyklist();
             out.println("<br>");
             out.println("<h4> Styklisten: </h4>");
