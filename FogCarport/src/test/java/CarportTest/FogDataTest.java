@@ -1,14 +1,9 @@
 package CarportTest;
 
-import DBAccess.Connector;
 import DBAccess.MaterialDBMapper;
-import DBAccess.MaterialMapper;
 import DBAccess.OrderDBMapper;
-import DBAccess.OrderMapper;
 import DBAccess.StyklisteDBMapper;
-import DBAccess.StyklisteMapper;
 import DBAccess.UserDBMapper;
-import DBAccess.UserMapper;
 import FunctionLayer.LogicFacade;
 import FunctionLayer.LoginSampleException;
 import FunctionLayer.Material;
@@ -18,15 +13,9 @@ import FunctionLayer.OrderSampleException;
 import FunctionLayer.StyklistException;
 import FunctionLayer.Stykliste;
 import FunctionLayer.User;
-import java.rmi.AccessException;
-import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import static org.hamcrest.CoreMatchers.any;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import static org.hamcrest.CoreMatchers.is;
@@ -42,6 +31,7 @@ public class FogDataTest {
     //private String url = "jdbc:mysql://localhost:3306/databasebasic?UseSSL=false";
     //private String user = "root";
     //private String password = "1234";
+    
     private String url = "jdbc:mysql://167.99.209.155/fogTest?useUnicode=yes&characterEncoding=utf-8";
     private String user = "fogtest";
     private String password = "fogTest123!";

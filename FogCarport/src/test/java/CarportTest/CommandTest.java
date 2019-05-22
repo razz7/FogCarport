@@ -1,13 +1,6 @@
-
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package CarportTest;
 
 import FunctionLayer.FunctionManager;
-import FunctionLayer.LogicFacade;
 import FunctionLayer.LoginSampleException;
 import FunctionLayer.Material;
 import FunctionLayer.MaterialSampleException;
@@ -32,11 +25,10 @@ import org.mockito.Mock;
 import static org.mockito.ArgumentMatchers.any;
 import org.mockito.MockitoAnnotations;
 import static org.mockito.Mockito.*;
-import org.mockito.stubbing.Answer;
 
 /**
  *
- * @author rasmu
+ * @author Rasmus2
  */
 public class CommandTest {
 
@@ -117,9 +109,9 @@ public class CommandTest {
                 }
         ).when(request).setAttribute(any(String.class), any(User.class));
 
-        Command command = new LoginCommand("JSP/PriceFinalizePage.jsp");
+        Command command = new LoginCommand("JSP/home.jsp");
         String target = command.execute(request, manager);
-        assertThat(target, is("JSP/PriceFinalizePage.jsp"));
+        assertThat(target, is("JSP/home.jsp"));
     }
 
 }
