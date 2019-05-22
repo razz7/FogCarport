@@ -1,8 +1,7 @@
 <jsp:include page='/JSP/siteheader.jsp'></jsp:include>
 
+
 <div id="sitemenus">
-
-
 
     <nav class="navbar navbar-expand-lg navbar-light " style="background-color: #e3f2fd;">
         <img src="img/logofog.png" width="53" height="50" alt="">
