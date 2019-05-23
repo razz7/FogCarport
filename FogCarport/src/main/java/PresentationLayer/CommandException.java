@@ -5,19 +5,37 @@
  */
 package PresentationLayer;
 
-public class CommandException extends Exception{
-    
+public class CommandException extends Exception {
+
     private final String target;
-  
-  CommandException(String message, String target) {
-    super(message);
-    this.target = target;
+
+    /**
+     * CommandException constructor
+     *
+     * @param message
+     * @param target
+     */
+    CommandException(String message, String target) {
+        super(message);
+        this.target = target;
     }
-  
-  CommandException(String message) {
-    this(message, "JSP/error.jsp");
+
+    /**
+     * CommandException constructor
+     *
+     * @param message
+     */
+    CommandException(String message) {
+        this(message, "JSP/error.jsp");
     }
-  
-  public final String getTarget() { return target; }
-    
+
+    /**
+     * Returns target
+     *
+     * @return String
+     */
+    public final String getTarget() {
+        return target;
+    }
+
 }

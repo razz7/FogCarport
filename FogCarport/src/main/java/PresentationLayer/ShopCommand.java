@@ -19,49 +19,58 @@ import javax.servlet.http.HttpSession;
  * @author rh
  */
 public class ShopCommand implements Command {
-    
-    
-    
+
     private String target;
 
+    /**
+     * Constructor sets target field
+     *
+     * @param target
+     */
     ShopCommand(String target) {
         this.target = target;
     }
 
+    /**
+     * Removes the session attribute "order"
+     *
+     * @param request
+     * @param manager
+     * @return
+     * @throws LoginSampleException
+     * @throws OrderSampleException
+     * @throws MaterialSampleException
+     * @throws StyklistException
+     */
     @Override
-    public String execute(HttpServletRequest request, FunctionManager manager) 
+    public String execute(HttpServletRequest request, FunctionManager manager)
             throws LoginSampleException, OrderSampleException, MaterialSampleException, StyklistException {
-        
+
         HttpSession session = request.getSession();
-        if(loginStatus(session)) {
+        if (loginStatus(session)) {
             return "index.jsp";
         }
         session.removeAttribute("order");
-        
-        return target;                
+
+        return target;
     }
 
+    /**
+     * Checks the user's login status
+     *
+     * @param session
+     * @return boolean
+     */
     @Override
     public boolean loginStatus(HttpSession session) {
-       if(session.getAttribute("user") != null) {
+        if (session.getAttribute("user") != null) {
             return false;
         }
         return true;
-    
-    
     }
-    
 
     @Override
     public boolean accesToPage(HttpSession session, String accesForRole) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-           
-       
-    }
-   
-
-
-    
-
-
+}

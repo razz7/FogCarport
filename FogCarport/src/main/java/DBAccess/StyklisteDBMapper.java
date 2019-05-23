@@ -26,6 +26,11 @@ public class StyklisteDBMapper extends StyklisteMapper {
 
     private static StyklisteDBMapper instance = null;
 
+    /**
+     * Returns instance of StyklisteDBMapper
+     * 
+     * @return StyklisteDBMapper
+     */
     public synchronized static StyklisteDBMapper getInstance() {
         if (instance == null) {
             instance = new StyklisteDBMapper();
@@ -33,6 +38,11 @@ public class StyklisteDBMapper extends StyklisteMapper {
         return instance;
     }
     
+    /**
+     * Sets connection
+     * 
+     * @param connection 
+     */
     public void setMapperConnection(Connection connection) {
         dbc.setConnection(connection);
     }

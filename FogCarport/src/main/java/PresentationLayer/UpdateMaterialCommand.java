@@ -27,10 +27,28 @@ public class UpdateMaterialCommand implements Command {
 
     private String target;
 
+    /**
+     * Constructor sets target field
+     *
+     * @param target
+     */
     UpdateMaterialCommand(String target) {
         this.target = target;
     }
 
+    /**
+     * Receives parameters from request and updates the material specified by
+     * the id parameter
+     *
+     * @param request
+     * @param manager
+     * @return
+     * @throws LoginSampleException
+     * @throws OrderSampleException
+     * @throws MaterialSampleException
+     * @throws ClassNotFoundException
+     * @throws NumberFormatException
+     */
     @Override
     public String execute(HttpServletRequest request, FunctionManager manager) throws LoginSampleException, OrderSampleException, MaterialSampleException, ClassNotFoundException, NumberFormatException {
         HttpSession session = request.getSession();
@@ -40,7 +58,7 @@ public class UpdateMaterialCommand implements Command {
         ArrayList<Material> materials = manager.getAllMaterials();
 
         //String regexLetter = "^(?=.*\\pL)[\\pL\\pN]+(?:[ -]+[\\pL\\pN]+)*$";
-        String regexNumber = ".*\\d.*";       
+        String regexNumber = ".*\\d.*";
 
         if (request.getParameter("id") != null && request.getParameter("description") != null && request.getParameter("width") != null && request.getParameter("height") != null && request.getParameter("entity") != null && request.getParameter("type") != null && request.getParameter("price") != null && request.getParameter("qty") != null) {
             if (request.getParameter("id").length() != 0 && request.getParameter("description").length() != 0 && request.getParameter("width").length() != 0 && request.getParameter("height").length() != 0 && request.getParameter("entity").length() != 0 && request.getParameter("type").length() != 0 && request.getParameter("price").length() != 0 && request.getParameter("qty").length() != 0) {
@@ -70,13 +88,18 @@ public class UpdateMaterialCommand implements Command {
         return target;
     }
 
+    /**
+     * Checks the user's login status
+     *
+     * @param session
+     * @return boolean
+     */
     @Override
     public boolean loginStatus(HttpSession session) {
         if (session.getAttribute("user") != null) {
             return false;
         }
         return true;
-
     }
 
     @Override

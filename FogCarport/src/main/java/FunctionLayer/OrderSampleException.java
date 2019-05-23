@@ -11,17 +11,36 @@ package FunctionLayer;
  */
 public class OrderSampleException extends Exception {
 
-      private final String target;
-  
-  public OrderSampleException(String message, String target) {
-    super(message);
-    this.target = target;
+    private final String target;
+
+    /**
+     * Constructor for OrderSampleException
+     * 
+     * @param message
+     * @param target 
+     */
+    public OrderSampleException(String message, String target) {
+        super(message);
+        this.target = target;
     }
-  //"error.jsp"
-  public OrderSampleException(String message) {
-    this(message, "JSP/error.jsp");
+    //"error.jsp"
+
+    /**
+     * Constructor for OrderSampleException
+     * 
+     * @param message 
+     */
+    public OrderSampleException(String message) {
+        this(message, "JSP/error.jsp");
     }
-  
-  public final String getTarget() { return target; }
-  
-  }
+
+    /**
+     * Returns target
+     * 
+     * @return target
+     */
+    public final String getTarget() {
+        return target;
+    }
+
+}

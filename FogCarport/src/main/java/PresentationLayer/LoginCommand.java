@@ -20,29 +20,46 @@ import javax.servlet.http.HttpSession;
  *
  * @author Rumle
  */
-public class LoginCommand implements Command{
-    
+public class LoginCommand implements Command {
+
     private String target;
 
+    /**
+     * Constructor sets target field
+     *
+     * @param target
+     */
     public LoginCommand(String target) {
         this.target = target;
     }
 
+    /**
+     * Gets email and password attributes, verifies if the user is legit and if
+     * so logs the user in, otherwise user is returned to index.jsp
+     *
+     * @param request
+     * @param manager
+     * @return
+     * @throws LoginSampleException
+     * @throws OrderSampleException
+     * @throws MaterialSampleException
+     * @throws StyklistException
+     */
     @Override
-    public String execute(HttpServletRequest request, FunctionManager manager) 
+    public String execute(HttpServletRequest request, FunctionManager manager)
             throws LoginSampleException, OrderSampleException, MaterialSampleException, StyklistException {
-        
+
         String email = request.getParameter("email");
         String password = request.getParameter("password");
         FunctionManager fm = new FunctionManager();
-        if(fm.verifyUser(email, password)) {
+        if (fm.verifyUser(email, password)) {
             User user = fm.getUserByEmail(email);
             HttpSession session = request.getSession();
             session.setAttribute("user", user);
             return target;
         }
-       
-        return "index.jsp";                
+
+        return "index.jsp";
     }
 
     @Override
@@ -55,6 +72,3 @@ public class LoginCommand implements Command{
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }
-
-
-

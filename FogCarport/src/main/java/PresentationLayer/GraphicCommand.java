@@ -23,18 +23,33 @@ import javax.servlet.http.HttpSession;
  * @author Ludvig
  */
 public class GraphicCommand implements Command {
-    
+
     private String target;
 
+    /**
+     * Constructor sets target field
+     *
+     * @param target
+     */
     GraphicCommand(String target) {
         this.target = target;
     }
-    
+
+    /**
+     * Gets order from database based of id and sets it as a session attribute
+     *
+     * @param request
+     * @param manager
+     * @return
+     * @throws LoginSampleException
+     * @throws OrderSampleException
+     * @throws MaterialSampleException
+     */
     @Override
     public String execute(HttpServletRequest request, FunctionManager manager) throws LoginSampleException, OrderSampleException, MaterialSampleException {
         HttpSession session = request.getSession();
 
-        if(loginStatus(session)) {
+        if (loginStatus(session)) {
             return "index.jsp";
         }
         session.setAttribute("order", null);
@@ -49,15 +64,19 @@ public class GraphicCommand implements Command {
             //System.out.println(order.toString());
             //order.setStyklist(styklist);
             //System.out.println(order.toString());           
-        } 
-            return target;
+        }
+        return target;
     }
-      
 
-
+    /**
+     * Checks the user's login status
+     *
+     * @param session
+     * @return boolean
+     */
     @Override
     public boolean loginStatus(HttpSession session) {
-       if(session.getAttribute("user") != null) {
+        if (session.getAttribute("user") != null) {
             return false;
         }
         return true;

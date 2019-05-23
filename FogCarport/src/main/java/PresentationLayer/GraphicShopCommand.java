@@ -26,10 +26,25 @@ public class GraphicShopCommand implements Command {
 
     private String target;
 
+    /**
+     * Constructor sets target field
+     *
+     * @param target
+     */
     GraphicShopCommand(String target) {
         this.target = target;
     }
 
+    /**
+     * Gets order from orderId and sets it as a session attribute
+     *
+     * @param request
+     * @param manager
+     * @return
+     * @throws LoginSampleException
+     * @throws OrderSampleException
+     * @throws MaterialSampleException
+     */
     @Override
     public String execute(HttpServletRequest request, FunctionManager manager) throws LoginSampleException, OrderSampleException, MaterialSampleException {
         HttpSession session = request.getSession();
@@ -38,18 +53,18 @@ public class GraphicShopCommand implements Command {
             return "index.jsp";
         }
         session.setAttribute("order", null);
-        Order orderId = (Order) session.getAttribute("shopOrder");
-        //OrderDBMapper om = new OrderDBMapper();
-        session.setAttribute("order", orderId);
+        Order order = (Order) session.getAttribute("shopOrder");
+        session.setAttribute("order", order);
 
-        //CarportAlgorithm car = new CarportAlgorithm();
-        //Stykliste styklist = car.carportAlgorithm(order.getWidth(), order.getLength(), order.getRoofTilt(), order.getShedWidth(), order.getShedLength(), 1);
-        //System.out.println(order.toString());
-        //order.setStyklist(styklist);
-        //System.out.println(order.toString());
         return target;
     }
 
+    /**
+     * Checks the user's login status
+     *
+     * @param session
+     * @return boolean
+     */
     @Override
     public boolean loginStatus(HttpSession session) {
         if (session.getAttribute("user") != null) {

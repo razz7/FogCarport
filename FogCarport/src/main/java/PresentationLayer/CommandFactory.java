@@ -20,6 +20,10 @@ public class CommandFactory {
   private static CommandFactory instance = null;
   private final Map<String, Command> commands = new HashMap();
 
+    /**
+     * CommandFactory constructor
+     * 
+     */
     private CommandFactory() {
         commands.put("main", new MainPageCommand("index.jsp"));
         commands.put("styklist", new StyklistPageCommand("JSP/styklist.jsp"));
@@ -52,6 +56,13 @@ public class CommandFactory {
     }
     //synchronized
     //only one thread at a time
+    
+    /**
+     * Returns a command object based of the String it receives as parameter
+     * 
+     * @param key
+     * @return 
+     */
     public static synchronized Command commandFrom(String key) {
     if (key == null) key = "back";
     if (instance == null) instance = new CommandFactory();

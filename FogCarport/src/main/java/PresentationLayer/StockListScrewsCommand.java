@@ -23,11 +23,27 @@ import javax.servlet.http.HttpSession;
 public class StockListScrewsCommand implements Command {
     
     private String target;
-
+    
+    /**
+     * Constructor sets target field
+     *
+     * @param target
+     */
     StockListScrewsCommand(String target) {
         this.target = target;
     }
 
+    /**
+     * Gets an arraylist of all materials by the type "Beslag & Skruer" 
+     * and sets it as a session attribute
+     * 
+     * @param request
+     * @param manager
+     * @return
+     * @throws LoginSampleException
+     * @throws OrderSampleException
+     * @throws MaterialSampleException 
+     */
     @Override
     public String execute(HttpServletRequest request, FunctionManager manager) throws LoginSampleException, OrderSampleException, MaterialSampleException {
         HttpSession session = request.getSession();
@@ -42,7 +58,13 @@ public class StockListScrewsCommand implements Command {
         
         return target;
     }
-
+    
+    /**
+     * Checks the user's login status
+     * 
+     * @param session
+     * @return boolean
+     */
     @Override
     public boolean loginStatus(HttpSession session) {
          if(session.getAttribute("user") != null) {

@@ -31,6 +31,15 @@ public class FrontController extends HttpServlet {
 
     private final FunctionManager manager = new FunctionManager();
 
+    /**
+     * Receives a request and response object and handles the control of the website
+     * 
+     * @param request
+     * @param response
+     * @throws ServletException
+     * @throws IOException
+     * @throws StyklistException 
+     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, StyklistException {
 

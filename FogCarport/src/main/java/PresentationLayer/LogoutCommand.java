@@ -13,11 +13,29 @@ public class LogoutCommand implements Command {
 
     
     private String target;
-
+    
+    /**
+     * Constructor sets target field
+     *
+     * @param target
+     */
     LogoutCommand(String target) {
         this.target = target;
     }
     
+    /**
+     * Logs user out
+     * 
+     * @param request
+     * @param manager
+     * @return
+     * @throws LoginSampleException
+     * @throws OrderSampleException
+     * @throws MaterialSampleException
+     * @throws StyklistException
+     * @throws CommandException
+     * @throws ClassNotFoundException 
+     */
     @Override
     public String execute(HttpServletRequest request, FunctionManager manager) throws LoginSampleException, OrderSampleException, MaterialSampleException, StyklistException, CommandException, ClassNotFoundException {
         HttpSession session = request.getSession();

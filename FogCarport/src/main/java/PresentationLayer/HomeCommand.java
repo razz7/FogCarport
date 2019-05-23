@@ -18,40 +18,59 @@ import javax.servlet.http.HttpSession;
  * @author rh
  */
 public class HomeCommand implements Command {
+
     private final String target;
-    
-        HomeCommand(String target) {
+
+    /**
+     * Constructor sets target field
+     *
+     * @param target
+     */
+    HomeCommand(String target) {
         this.target = target;
     }
 
+    /**
+     * Returns target
+     *
+     * @param request
+     * @param manager
+     * @return
+     * @throws LoginSampleException
+     * @throws OrderSampleException
+     * @throws MaterialSampleException
+     * @throws StyklistException
+     * @throws CommandException
+     * @throws ClassNotFoundException
+     */
     @Override
     public String execute(HttpServletRequest request, FunctionManager manager) throws LoginSampleException, OrderSampleException, MaterialSampleException, StyklistException, CommandException, ClassNotFoundException {
-       
+
         HttpSession session = request.getSession();
-        if(loginStatus(session)) {
+        if (loginStatus(session)) {
             return "index.jsp";
         }
-        
-        
-       return target;
+
+        return target;
     }
 
+    /**
+     * Checks the user's login status
+     *
+     * @param session
+     * @return boolean
+     */
     @Override
     public boolean loginStatus(HttpSession session) {
-        if(session.getAttribute("user") != null) {
+        if (session.getAttribute("user") != null) {
             return false;
         }
         return true;
-    
-    
+
     }
 
     @Override
     public boolean accesToPage(HttpSession session, String accesForRole) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    }
-
-   
-    
-
+}

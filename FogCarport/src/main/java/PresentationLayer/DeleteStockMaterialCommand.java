@@ -23,20 +23,35 @@ import javax.servlet.http.HttpSession;
  * @author Rasmus2
  */
 public class DeleteStockMaterialCommand implements Command {
-    
+
     private String target;
 
+    /**
+     * Constructor sets target field
+     *
+     * @param target
+     */
     DeleteStockMaterialCommand(String target) {
         this.target = target;
     }
 
+    /**
+     * Deletes material from database based of id and gets and sets an updated list of all materials as 
+     * a session attribute
+     * 
+     * @param request
+     * @param manager
+     * @return
+     * @throws LoginSampleException
+     * @throws OrderSampleException
+     * @throws MaterialSampleException 
+     */
     @Override
     public String execute(HttpServletRequest request, FunctionManager manager) throws LoginSampleException, OrderSampleException, MaterialSampleException {
         HttpSession session = request.getSession();
-        if(loginStatus(session)) {
+        if (loginStatus(session)) {
             return "index.jsp";
         }
-        
 
         int id = Integer.parseInt(request.getParameter("chosenStockMaterial"));
 
@@ -49,9 +64,15 @@ public class DeleteStockMaterialCommand implements Command {
         return target;
     }
 
+    /**
+     * Checks the user's login status
+     *
+     * @param session
+     * @return boolean
+     */
     @Override
     public boolean loginStatus(HttpSession session) {
-       if(session.getAttribute("user") != null) {
+        if (session.getAttribute("user") != null) {
             return false;
         }
         return true;

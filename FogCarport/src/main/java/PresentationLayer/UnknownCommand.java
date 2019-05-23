@@ -11,17 +11,30 @@ import javax.servlet.http.HttpSession;
  * @author Rasmus2
  */
 public class UnknownCommand implements Command {
-    
+
     private String target;
 
+    /**
+     * Constructor sets target field
+     *
+     * @param target
+     */
     UnknownCommand(String target) {
         this.target = target;
     }
 
+    /**
+     * Throws LoginSampleException
+     *
+     * @param request
+     * @param manager
+     * @return
+     * @throws LoginSampleException
+     */
     @Override
-    public String execute( HttpServletRequest request, FunctionManager manager ) throws LoginSampleException {
+    public String execute(HttpServletRequest request, FunctionManager manager) throws LoginSampleException {
         String msg = "Unknown command. Contact IT";
-        throw new LoginSampleException( msg );
+        throw new LoginSampleException(msg);
     }
 
     @Override

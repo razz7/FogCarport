@@ -26,11 +26,27 @@ import javax.servlet.http.HttpSession;
 public class PriceCommand implements Command {
 
     private String target;
-
+    
+    /**
+     * Constructor sets target field
+     *
+     * @param target
+     */
     public PriceCommand(String target) {
         this.target = target;
     }
 
+    /**
+     * Creates order based of id, calculates price of the styklist attributed to the order,
+     * sets the price in the order and sets both price and order as session attributes
+     * 
+     * @param request
+     * @param manager
+     * @return
+     * @throws LoginSampleException
+     * @throws OrderSampleException
+     * @throws MaterialSampleException 
+     */
     @Override
     public String execute(HttpServletRequest request, FunctionManager manager) throws LoginSampleException, OrderSampleException, MaterialSampleException {
         HttpSession session = request.getSession();
@@ -66,7 +82,13 @@ public class PriceCommand implements Command {
 
         return target;
     }
-
+    
+    /**
+     * Checks the user's login status
+     * 
+     * @param session
+     * @return boolean
+     */
     @Override
     public boolean loginStatus(HttpSession session) {
         if (session.getAttribute("user") != null) {

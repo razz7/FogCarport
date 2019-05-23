@@ -22,35 +22,56 @@ import javax.servlet.http.HttpSession;
  * @author rh
  */
 public class StockListTagpakkeCommand implements Command {
-    
+
     private String target;
 
+    /**
+     * Constructor sets target field
+     *
+     * @param target
+     */
     StockListTagpakkeCommand(String target) {
         this.target = target;
     }
 
+    /**
+     * Gets an arraylist of all materials of type "Tagpakken" 
+     * and sets it as a session attribute
+     * 
+     * @param request
+     * @param manager
+     * @return
+     * @throws LoginSampleException
+     * @throws OrderSampleException
+     * @throws MaterialSampleException
+     * @throws StyklistException 
+     */
     @Override
     public String execute(HttpServletRequest request, FunctionManager manager) throws LoginSampleException, OrderSampleException, MaterialSampleException, StyklistException {
         HttpSession session = request.getSession();
-        if(loginStatus(session)) {
+        if (loginStatus(session)) {
             return "index.jsp";
         }
-//DatabaseFacade df = new DatabaseFacade();
         ArrayList<Material> materials = manager.getAllMaterialbyType("Tagpakken");
         System.out.println(materials);
-        
+
         session.setAttribute("stockListTagpakke", materials);
-        
+
         return target;
     }
-
+    
+    /**
+     * Checks the user's login status
+     * 
+     * @param session
+     * @return boolean
+     */
     @Override
     public boolean loginStatus(HttpSession session) {
-         if(session.getAttribute("user") != null) {
+        if (session.getAttribute("user") != null) {
             return false;
         }
         return true;
-    
     }
 
     @Override
@@ -58,4 +79,3 @@ public class StockListTagpakkeCommand implements Command {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }
-   

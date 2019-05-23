@@ -22,29 +22,51 @@ public class EditLineItemCommand implements Command {
 
     private String target;
 
+    /**
+     * Constructor sets target field
+     *
+     * @param target
+     */
     public EditLineItemCommand(String target) {
         this.target = target;
     }
 
+    /**
+     * Picks specific material based of id and sets it as attribute in the
+     * session
+     *
+     * @param request
+     * @param manager
+     * @return
+     * @throws LoginSampleException
+     * @throws OrderSampleException
+     * @throws MaterialSampleException
+     * @throws StyklistException
+     */
     @Override
-    public String execute(HttpServletRequest request, FunctionManager manager) throws LoginSampleException, OrderSampleException, MaterialSampleException, StyklistException{
+    public String execute(HttpServletRequest request, FunctionManager manager) throws LoginSampleException, OrderSampleException, MaterialSampleException, StyklistException {
         HttpSession session = request.getSession();
-        if(loginStatus(session)) {
+        if (loginStatus(session)) {
             return "index.jsp";
         }
 
         int id = Integer.parseInt(request.getParameter("lineitemID"));
-
         Material material = manager.getMaterialFromLineItems(id);
-        
+
         session.setAttribute("lineitemToEdit", material);
 
         return target;
     }
 
+    /**
+     * Checks the user's login status
+     *
+     * @param session
+     * @return boolean
+     */
     @Override
     public boolean loginStatus(HttpSession session) {
-       if(session.getAttribute("user") != null) {
+        if (session.getAttribute("user") != null) {
             return false;
         }
         return true;
@@ -54,5 +76,5 @@ public class EditLineItemCommand implements Command {
     public boolean accesToPage(HttpSession session, String accesForRole) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
+
 }
