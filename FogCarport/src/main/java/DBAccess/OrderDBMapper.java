@@ -16,6 +16,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import javax.naming.ldap.ManageReferralControl;
 
 /**
  *
@@ -68,13 +69,15 @@ public class OrderDBMapper extends OrderMapper {
                 Order order = new Order(rs.getInt(1), rs.getFloat(2), rs.getFloat(3), 2300, rs.getFloat(4), rs.getFloat(5), rs.getFloat(6));
                 orders.add(order);
                 order.setOrderdate(rs.getDate(9));
-                User user = new User(rs.getString(10), 0, "");
+                int user_id = rs.getInt(8);
+                UserDBMapper mapper = new UserDBMapper();
+                User user = mapper.getUserByID(user_id);
                 order.setOrderStatus(rs.getBoolean(7));
                 order.setUser(user);
             }
             return orders;
 
-        } catch (SQLException | ClassNotFoundException ex) {
+        } catch (SQLException | ClassNotFoundException | LoginSampleException ex) {
             throw new OrderSampleException(ex.getMessage());
         }
     }
@@ -158,8 +161,8 @@ public class OrderDBMapper extends OrderMapper {
     @Override
     public void saveOrder(Order order) throws OrderSampleException {
         try {
-            String sql = "INSERT INTO orders (width, length, rooftilt, shedwidth, shedlength, status, customer_id, orderdate, customername)"
-                    + "VALUES(?,?,?,?,?,?,?,?,?)";
+            String sql = "INSERT INTO orders (width, length, rooftilt, shedwidth, shedlength, status, customer_id, orderdate)"
+                    + "VALUES(?,?,?,?,?,?,?,?)";
 
             Connection conn = dbc.connection();
             PreparedStatement ps = conn.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
@@ -172,7 +175,7 @@ public class OrderDBMapper extends OrderMapper {
             ps.setFloat(6, 0);
             ps.setInt(7, order.getUser().getId());
             ps.setDate(8, Date.valueOf(LocalDate.now()));
-            ps.setString(9, order.getUser().getEmail());
+            
             ps.executeUpdate();
 
             if (order.getStyklist() != null) {

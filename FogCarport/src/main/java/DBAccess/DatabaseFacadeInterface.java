@@ -63,6 +63,8 @@ public interface DatabaseFacadeInterface {
     public abstract void deleteOrder(int order_id) throws OrderSampleException;
              
     public abstract Stykliste getLineitemsByOrderId(int order_id)throws MaterialSampleException;
+    
+    public abstract User getUserByID(int id) throws LoginSampleException;
             
  
 

@@ -25,7 +25,8 @@
             <th>shedlength</th>
             <th>status</th>
             <th>orderdate</th>
-            <th>customername</th>                       
+            <th>customerID</th>                       
+                             
 
         <% if (request.getAttribute("allOrders") != null) {
                 ArrayList<Order> orders = (ArrayList<Order>) request.getAttribute("allOrders");
@@ -46,6 +47,7 @@
                     }
                                                       
                     out.print("<td>" + orders.get(i).getOrderdate() + "</td>");
+                    out.print("<td>" + orders.get(i).getUser().getId() + "</td>");
                     //out.print("<td>"  + orders.get(i).getUser().getEmail() + "</td>");
                     out.print("<td>");
                     out.println("<form action=\"FrontController\" method=\"post\">");

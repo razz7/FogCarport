@@ -74,23 +74,7 @@
                 </div>
             </div>
             <br>
-            <h4>Personlig data</h4>
-            <div class="form-row">
-                <div class="col-md-3 mb-3">
-                    <label for="">Fulde navn</label>
-                    <input type="text" name="name" value="" class="form-control" 
-                           placeholder="">
-                </div>
-                <div class="col-md-3 mb-3">
-                    <label for="">Adresse</label>
-                    <input type="text" name="adress" value="" class="form-control" 
-                           placeholder="">
-                </div>
-                <div class="col-md-3 mb-3">
-                    <label for="">Email</label>
-                    <input type="text" name="email" value="" class="form-control" 
-                           placeholder="">
-                </div>
+            
             </div>
 
 

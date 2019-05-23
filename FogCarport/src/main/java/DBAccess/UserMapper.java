@@ -35,6 +35,8 @@ public abstract class UserMapper {
     public abstract void removeUser(User user) throws LoginSampleException;
     
     public abstract User getUserByEmail(String email) throws LoginSampleException;
+    
+    public abstract User getUserByID(int id) throws LoginSampleException;
 
     
 

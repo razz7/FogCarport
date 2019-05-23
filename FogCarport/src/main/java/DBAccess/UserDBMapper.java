@@ -185,4 +185,23 @@ public class UserDBMapper extends UserMapper {
             throw new LoginSampleException(ex.getMessage());
         }
     }
+
+    @Override
+    public User getUserByID(int id) throws LoginSampleException {
+        try {
+            String sql = "select * from users where user_id=?";
+            PreparedStatement ps = dbc.connection().prepareStatement(sql);
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+            User user = null;
+            while(rs.next()) {
+                user = new User(rs.getString(2), rs.getInt(1), rs.getString(3));
+            }
+            return user;
+            
+        } catch (SQLException | ClassNotFoundException ex) {
+            throw new LoginSampleException(ex.getMessage());
+        }
+    
+    }
 }

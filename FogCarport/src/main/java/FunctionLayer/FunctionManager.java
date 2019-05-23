@@ -210,4 +210,9 @@ public class FunctionManager implements DatabaseFacadeInterface, LogicFacadeInte
     public void createUser(String email, String password, String role) throws LoginSampleException {
        UseMapper.createUser(email, password, role);
     }
+
+    @Override
+    public FunctionLayer.User getUserByID(int id) throws LoginSampleException {
+        return UseMapper.getUserByID(id);
+    }
 }
