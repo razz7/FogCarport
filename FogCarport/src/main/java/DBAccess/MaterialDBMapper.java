@@ -25,11 +25,21 @@ public class MaterialDBMapper extends MaterialMapper{
     
     private static MaterialDBMapper instance = null;
     
+    /**
+     * Returns instance of MaterialDBMapper
+     * 
+     * @return MaterialDBMapper
+     */
     public synchronized static MaterialDBMapper getInstance() {
         if (instance == null) instance = new MaterialDBMapper();
         return instance;
     }
     
+    /**
+     * Sets connection
+     * 
+     * @param connection 
+     */
     public void setMapperConnection(Connection connection) {
         dbc.setConnection(connection);
     }

@@ -15,6 +15,18 @@ import java.util.HashMap;
  */
 public class CarportAlgorithm {
 
+    /**
+     * Calculates and returns the Stykliste for an order based on specified size
+     * 
+     * @param width
+     * @param length
+     * @param roofTilt
+     * @param shedwidth
+     * @param shedLength
+     * @param styklist_id
+     * @return
+     * @throws MaterialSampleException 
+     */
     public Stykliste carportAlgorithm(float width, float length, float roofTilt, float shedwidth, float shedLength, int styklist_id) throws MaterialSampleException {
         MaterialDBMapper materialMap = new MaterialDBMapper();
         ArrayList<Material> mat = materialMap.getAllMaterials();

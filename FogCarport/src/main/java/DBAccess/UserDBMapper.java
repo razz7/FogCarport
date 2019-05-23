@@ -19,6 +19,11 @@ public class UserDBMapper extends UserMapper{
 
     private static UserDBMapper instance = null;
 
+    /**
+     * Returns instance of UserDBMapper
+     * 
+     * @return UserDBMapper
+     */
     public synchronized static UserDBMapper getInstance() {
         if (instance == null) {
             instance = new UserDBMapper();
@@ -26,6 +31,11 @@ public class UserDBMapper extends UserMapper{
         return instance;
     }
     
+    /**
+     * Sets connection
+     * 
+     * @param connection 
+     */
     public void setMapperConnection(Connection connection) {
         dbc.setConnection(connection);
     }

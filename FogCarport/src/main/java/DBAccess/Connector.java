@@ -14,10 +14,22 @@ public class Connector {
     private String password = "projectFog:12345";
     private Connection conn = null;
 
+    /**
+     * Sets the Connection object used to connect
+     * 
+     * @param con 
+     */
     public void setConnection(Connection con) {
         conn = con;
     }
 
+    /**
+     * Sets address for Connection object
+     * 
+     * @return
+     * @throws ClassNotFoundException
+     * @throws SQLException 
+     */
     public Connection connection() throws ClassNotFoundException, SQLException {
         if (conn == null) {
             try {

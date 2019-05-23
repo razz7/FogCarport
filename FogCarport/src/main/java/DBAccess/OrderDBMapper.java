@@ -28,6 +28,11 @@ public class OrderDBMapper extends OrderMapper {
 
     private static OrderDBMapper instance = null;
 
+    /**
+     * Returns instance of OrderDBMapper
+     * 
+     * @return OrderDBMapper
+     */
     public synchronized static OrderDBMapper getInstance() {
         if (instance == null) {
             instance = new OrderDBMapper();
@@ -35,6 +40,11 @@ public class OrderDBMapper extends OrderMapper {
         return instance;
     }
 
+    /**
+     * Sets connection
+     * 
+     * @param connection 
+     */
     public void setMapperConnection(Connection connection) {
         dbc.setConnection(connection);
         testConnection = true;
