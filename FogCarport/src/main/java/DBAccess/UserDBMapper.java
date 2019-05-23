@@ -13,7 +13,7 @@ import java.sql.Statement;
  *
  * @author Rasmus2
  */
-public class UserDBMapper extends UserMapper{
+public class UserDBMapper extends UserMapper {
 
     private Connector dbc = new Connector();
 
@@ -21,7 +21,7 @@ public class UserDBMapper extends UserMapper{
 
     /**
      * Returns instance of UserDBMapper
-     * 
+     *
      * @return UserDBMapper
      */
     public synchronized static UserDBMapper getInstance() {
@@ -30,11 +30,11 @@ public class UserDBMapper extends UserMapper{
         }
         return instance;
     }
-    
+
     /**
      * Sets connection
-     * 
-     * @param connection 
+     *
+     * @param connection
      */
     public void setMapperConnection(Connection connection) {
         dbc.setConnection(connection);
@@ -42,10 +42,11 @@ public class UserDBMapper extends UserMapper{
 
     /**
      * Creates user and puts it into the database
+     *
      * @param email
      * @param password
      * @param role
-     * @throws LoginSampleException 
+     * @throws LoginSampleException
      */
     @Override
     public void createUser(String email, String password, String role) throws LoginSampleException {
@@ -61,7 +62,7 @@ public class UserDBMapper extends UserMapper{
             ps.setString(3, mySecurePassword);
             ps.setString(4, salt);
             ps.executeUpdate();
-                      
+
         } catch (SQLException | ClassNotFoundException ex) {
             throw new LoginSampleException(ex.getMessage());
         }
@@ -69,10 +70,11 @@ public class UserDBMapper extends UserMapper{
 
     /**
      * Creates an object of a user already in the database
+     *
      * @param email
      * @param password
      * @return User
-     * @throws LoginSampleException 
+     * @throws LoginSampleException
      */
     @Override
     public User login(String email, String password) throws LoginSampleException {
@@ -100,8 +102,9 @@ public class UserDBMapper extends UserMapper{
 
     /**
      * Removes specified user from the database
+     *
      * @param user
-     * @throws LoginSampleException 
+     * @throws LoginSampleException
      */
     @Override
     public void removeUser(User user) throws LoginSampleException {
@@ -119,9 +122,10 @@ public class UserDBMapper extends UserMapper{
 
     /**
      * Gets user by email
+     *
      * @param email
      * @return
-     * @throws LoginSampleException 
+     * @throws LoginSampleException
      */
     @Override
     public User getUserByEmail(String email) throws LoginSampleException {
@@ -145,21 +149,22 @@ public class UserDBMapper extends UserMapper{
 
     /**
      * Verifies whether a user is legit
+     *
      * @param email
      * @param password
      * @return boolean
-     * @throws LoginSampleException 
+     * @throws LoginSampleException
      */
     @Override
     public boolean verifyUser(String email, String password) throws LoginSampleException {
-        if(email == null || password == null || email == "" || password == "") {
-        
-        return false;
-    }
-        if(getUserByEmail(email) == null) {
-                return false;
-            }
-        
+        if (email == null || password == null || email == "" || password == "") {
+
+            return false;
+        }
+        if (getUserByEmail(email) == null) {
+            return false;
+        }
+
         try {
             String sql = "select * from users where email=?";
             Connection conn = dbc.connection();
@@ -169,7 +174,6 @@ public class UserDBMapper extends UserMapper{
             String securePassword = "";
             String salt = "";
             LogicFacade lfc = new LogicFacade();
-            
 
             while (rs.next()) {
                 securePassword = rs.getString(4);
@@ -179,11 +183,6 @@ public class UserDBMapper extends UserMapper{
 
         } catch (SQLException | ClassNotFoundException ex) {
             throw new LoginSampleException(ex.getMessage());
-
         }
     }
-
-
-    
-    
 }

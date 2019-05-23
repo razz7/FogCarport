@@ -232,6 +232,14 @@ public class OrderDBMapper extends OrderMapper {
         }
     }
 
+    /**
+     * Receives parameters order_id and price and updates the price
+     * in the order with the matching order_id
+     * 
+     * @param order_id
+     * @param price
+     * @throws OrderSampleException 
+     */
     @Override
     public void setPriceOrder(int order_id, float price) throws OrderSampleException {
         try {
@@ -248,6 +256,13 @@ public class OrderDBMapper extends OrderMapper {
         }
     }
     
+    /**
+     * Gets price of order with the same order_id
+     * 
+     * @param order_id
+     * @return
+     * @throws OrderSampleException 
+     */
     @Override
     public float getPriceFromId(int order_id) throws OrderSampleException {
         try {

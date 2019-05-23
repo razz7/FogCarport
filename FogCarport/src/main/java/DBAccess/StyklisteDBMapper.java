@@ -46,15 +46,6 @@ public class StyklisteDBMapper extends StyklisteMapper {
     public void setMapperConnection(Connection connection) {
         dbc.setConnection(connection);
     }
-
-//    public ArrayList<Stykliste> getAllStykliste() throws ClassNotFoundException, SQLException{
-//        ArrayList<Stykliste> list = new ArrayList();
-//        
-//        try{
-//            Connection con = dbc.connection();
-//            String SQL = "SELECT * FROM fog.stock";
-//        }
-//    }
     
     /**
      * Updates row in the database, requires all possible parameters 
