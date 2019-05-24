@@ -17,20 +17,19 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/FogCarport/FrontController?command=category">Materials</a>
                 </li>
+ <%--               <li>
+                    <a class="nav-link" href="JSP/graphicInput.jsp">Grafik</a>
+                </li>--%>
                 <li class="nav-item">
                     <a class="nav-link" href="/FogCarport/FrontController?command=shop">Shop</a>
-                </li>
-                <li>
-                    <a class="nav-link" href="JSP/graphicInput.jsp">Grafik</a>
-                </li>
-                
+                </li>                
                 <li class="nav-item">
                     <a class="nav-link" href="/FogCarport/FrontController?command=AllOrders">Allorders</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/FogCarport/FrontController?command=logout">Logout</a>
                 </li>
-                
+
                 </li>
             </ul>
         </div>
