@@ -1,6 +1,7 @@
 package DBAccess;
 
 import FunctionLayer.CarportAlgorithm;
+import FunctionLayer.FunctionManager;
 import FunctionLayer.LoginSampleException;
 import FunctionLayer.Material;
 import FunctionLayer.MaterialSampleException;
@@ -9,6 +10,7 @@ import FunctionLayer.OrderSampleException;
 import FunctionLayer.StyklistException;
 import FunctionLayer.Stykliste;
 import FunctionLayer.User;
+import static java.lang.Float.parseFloat;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -306,5 +308,12 @@ public class OrderDBMapper extends OrderMapper {
         } catch (SQLException | ClassNotFoundException ex) {
             throw new OrderSampleException(ex.getMessage());
         }
+    }
+    
+    public static void main(String[] args) throws OrderSampleException {
+        FunctionManager fm = new FunctionManager();
+        
+        //fm.setPriceOrder(76, 3.6f);
+        System.out.println(fm.getPriceFromId(71));
     }
 }

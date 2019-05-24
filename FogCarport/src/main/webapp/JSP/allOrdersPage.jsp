@@ -41,9 +41,9 @@
                     out.print("<td>" + orders.get(i).getShedWidth() + "</td>");
                     out.print("<td>" + orders.get(i).getShedLength() + "</td>");
                     if(orders.get(i).isOrderStatus() == true) {
-                    out.println("<td>sendt</td>");
+                    out.println("<td>klar</td>");
                 } else {
-                        out.println("<td>ikke sendt</td>");
+                        out.println("<td>ikke klar</td>");
                     }
                                                       
                     out.print("<td>" + orders.get(i).getOrderdate() + "</td>");
