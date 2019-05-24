@@ -5,7 +5,7 @@
  */
 package FunctionLayer;
 
-import DBAccess.MaterialDBMapper;
+import DBAccess.DatabaseFacade;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -28,7 +28,7 @@ public class CarportAlgorithm {
      * @throws MaterialSampleException 
      */
     public Stykliste carportAlgorithm(float width, float length, float roofTilt, float shedwidth, float shedLength, int styklist_id) throws MaterialSampleException {
-        MaterialDBMapper materialMap = new MaterialDBMapper();
+        DatabaseFacade materialMap = new DatabaseFacade();
         ArrayList<Material> mat = materialMap.getAllMaterials();
         HashMap<Integer, Material> materials = new HashMap<>();
         for (Material m : mat) {
@@ -702,47 +702,5 @@ public class CarportAlgorithm {
 
         return styklist;
     }
-
-    public static void main(String[] args) throws MaterialSampleException { //Main til at teste algoritme
-        MaterialDBMapper materialMap = new MaterialDBMapper();
-        System.out.println("Material list");
-        ArrayList<Material> materials = materialMap.getAllMaterials();
-        for (Material mat : materials) {
-            System.out.println(mat);
-        }
-
-        System.out.println("");
-        System.out.println("Uden skur og uden rejsning --->");
-
-        CarportAlgorithm car = new CarportAlgorithm();
-        Stykliste styk = car.carportAlgorithm(6000, 7800, 0, 0, 0, 1);
-        for (int i = 0; i < styk.getStyklist().size(); i++) {
-            System.out.println("count=" + i + "_" + styk.getStyklist().get(i).toString2());
-        }
-
-        System.out.println("");
-        System.out.println("Med skur og uden rejsning --->");
-
-        Stykliste stykl = car.carportAlgorithm(6000, 7800, 0, 5300, 2100, 1);
-        for (int i = 0; i < stykl.getStyklist().size(); i++) {
-            System.out.println("count=" + i + "_" + stykl.getStyklist().get(i).toString2());
-        }
-
-        System.out.println("");
-        System.out.println("Uden skur og med rejsning --->");
-
-        Stykliste stykk = car.carportAlgorithm(3600, 7300, 35, 0, 0, 1);
-        for (int i = 0; i < stykk.getStyklist().size(); i++) {
-            System.out.println("count=" + i + "_" + stykk.getStyklist().get(i).toString2());
-        }
-
-        System.out.println("");
-        System.out.println("Med skur og med rejsning --->");
-
-        Stykliste styk1 = car.carportAlgorithm(3600, 7300, 35, 3200, 2100, 1);
-        for (int i = 0; i < styk1.getStyklist().size(); i++) {
-            System.out.println("count=" + i + "_" + styk1.getStyklist().get(i).toString2());
-        }
-
-    }
+    
 }
