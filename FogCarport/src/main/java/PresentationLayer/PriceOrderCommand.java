@@ -66,8 +66,8 @@ public class PriceOrderCommand implements Command {
             float orderPrice = (price * (1 + (percent / 100)));
             manager.setPriceOrder(orderId, orderPrice);
 
-//            request.setAttribute("orderPrice", orderPrice);
-//            request.setAttribute("price", orderPrice);
+            request.setAttribute("orderPrice", orderPrice);
+            request.setAttribute("price", orderPrice);
             request.setAttribute("order", order);
 
             return target;

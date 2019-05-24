@@ -71,13 +71,13 @@ public class PriceCommand implements Command {
 
                 //order.setPrice(price);
                 manager.setPriceOrder(orderId, price);
-//                request.setAttribute("price", price);
+                request.setAttribute("price", price);
                 request.setAttribute("order", order);
                 return target;
             }
             
-//            request.setAttribute("price", orderPrice);
-//            request.setAttribute("order", order);
+            request.setAttribute("price", orderPrice);
+            request.setAttribute("order", order);
         }
 
         return target;

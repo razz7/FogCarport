@@ -13,10 +13,10 @@
 
     <%  if (request.getAttribute("order") != null) {
             Order order = (Order) request.getAttribute("order");
-            //float price = (float) request.getAttribute("price");
+            float price = (float) request.getAttribute("price");
 
             out.println("<h4> Samlede omkostninger af styklisten </h4>");
-            out.println("<h5>" + order.getPrice() + "</h5>");
+            out.println("<h5>" + price + "</h5>");
             out.println("<br>");
             out.println("<h5> Indtast procent </h5>");
 
@@ -32,7 +32,7 @@
             out.println("<br>");
             out.println("<br>");
 
-            if (order.getPrice() > 0.0) {
+            if (request.getAttribute("orderPrice") != null) {
                 out.println("<form action=\"FrontController\" method=\"POST\">");
                     out.println("<input type=\"hidden\" name=\"command\" value=\"final\">");
                     out.println("<input type=\"hidden\" name=\"thisOrder\" value=\"" + order.getOrder_id() + "\">");
