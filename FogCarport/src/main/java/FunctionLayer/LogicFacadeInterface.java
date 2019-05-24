@@ -30,7 +30,7 @@ public interface LogicFacadeInterface {
 
     public User User(String email, int id, String role);
     
-    public String getEncryptWord(int length);
+    public String generateSalt(int length);
     
     public String generateSecurePassword(String password, String salt);
      

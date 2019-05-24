@@ -55,7 +55,7 @@ public class UserDBMapper extends UserMapper {
             String SQL = "INSERT INTO users (email, role, securepassword, salt) VALUES (?,?,?,?)";
             PreparedStatement ps = con.prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS);
             LogicFacade lcf = new LogicFacade();
-            String salt = lcf.getEncryptWord(30);
+            String salt = lcf.generateSalt(30);
             String mySecurePassword = lcf.generateSecurePassword(password, salt);
             ps.setString(1, email);
             ps.setString(2, role);
