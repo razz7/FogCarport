@@ -73,7 +73,6 @@ public class UpdateMaterialCommand implements Command {
                     float price = Float.parseFloat(request.getParameter("price"));
                     int qty = Integer.parseInt(request.getParameter("qty"));
 
-                    //DatabaseFacade df = new DatabaseFacade();
                     manager.updateMaterialData(id, description, width, height, entity, type, price, qty);
 
                     ArrayList<Material> materials2 = manager.getAllMaterials();
