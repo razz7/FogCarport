@@ -1,16 +1,11 @@
 package DBAccess;
 
-import FunctionLayer.CarportAlgorithm;
-import FunctionLayer.FunctionManager;
 import FunctionLayer.LoginSampleException;
 import FunctionLayer.Material;
-import FunctionLayer.MaterialSampleException;
 import FunctionLayer.Order;
 import FunctionLayer.OrderSampleException;
-import FunctionLayer.StyklistException;
 import FunctionLayer.Stykliste;
 import FunctionLayer.User;
-import static java.lang.Float.parseFloat;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -18,12 +13,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import javax.naming.ldap.ManageReferralControl;
 
-/**
- *
- * @author Ludvig
- */
 public class OrderDBMapper extends OrderMapper {
 
     private Connector dbc = new Connector();
@@ -33,7 +23,7 @@ public class OrderDBMapper extends OrderMapper {
 
     /**
      * Returns instance of OrderDBMapper
-     * 
+     *
      * @return OrderDBMapper
      */
     public synchronized static OrderDBMapper getInstance() {
@@ -45,8 +35,8 @@ public class OrderDBMapper extends OrderMapper {
 
     /**
      * Sets connection
-     * 
-     * @param connection 
+     *
+     * @param connection
      */
     public void setMapperConnection(Connection connection) {
         dbc.setConnection(connection);
@@ -54,10 +44,11 @@ public class OrderDBMapper extends OrderMapper {
     }
 
     /**
-     * Gets all orders in the database and return them as an ArrayList of Order objects
-     * 
+     * Gets all orders in the database and return them as an ArrayList of Order
+     * objects
+     *
      * @return ArrayList<Order>
-     * @throws OrderSampleException 
+     * @throws OrderSampleException
      */
     @Override
     public ArrayList<Order> getAllOrders() throws OrderSampleException {
@@ -86,9 +77,10 @@ public class OrderDBMapper extends OrderMapper {
 
     /**
      * Gets specific order based on order id
+     *
      * @param order_id
      * @return Order
-     * @throws OrderSampleException 
+     * @throws OrderSampleException
      */
     @Override
     public Order getOrderFromId(int order_id) throws OrderSampleException {
@@ -125,9 +117,10 @@ public class OrderDBMapper extends OrderMapper {
 
     /**
      * Gets stykliste based off the order_id of the order it is assigned to
+     *
      * @param order_id
      * @return Stykliste
-     * @throws OrderSampleException 
+     * @throws OrderSampleException
      */
     @Override
     public Stykliste getStyklistForOrder(int order_id) throws OrderSampleException {
@@ -157,8 +150,9 @@ public class OrderDBMapper extends OrderMapper {
 
     /**
      * Saves data of an order object in the database
+     *
      * @param order
-     * @throws OrderSampleException 
+     * @throws OrderSampleException
      */
     @Override
     public void saveOrder(Order order) throws OrderSampleException {
@@ -177,7 +171,7 @@ public class OrderDBMapper extends OrderMapper {
             ps.setFloat(6, 0);
             ps.setInt(7, order.getUser().getId());
             ps.setDate(8, Date.valueOf(LocalDate.now()));
-            
+
             ps.executeUpdate();
 
             if (order.getStyklist() != null) {
@@ -199,8 +193,9 @@ public class OrderDBMapper extends OrderMapper {
 
     /**
      * Updates the status of the order to true
+     *
      * @param order_id
-     * @throws OrderSampleException 
+     * @throws OrderSampleException
      */
     @Override
     public void finalizeOrder(int order_id) throws OrderSampleException {
@@ -219,8 +214,9 @@ public class OrderDBMapper extends OrderMapper {
 
     /**
      * Updates the status of the order to false
+     *
      * @param order_id
-     * @throws OrderSampleException 
+     * @throws OrderSampleException
      */
     @Override
     public void unFinalizeOrder(int order_id) throws OrderSampleException {
@@ -238,12 +234,12 @@ public class OrderDBMapper extends OrderMapper {
     }
 
     /**
-     * Receives parameters order_id and price and updates the price
-     * in the order with the matching order_id
-     * 
+     * Receives parameters order_id and price and updates the price in the order
+     * with the matching order_id
+     *
      * @param order_id
      * @param price
-     * @throws OrderSampleException 
+     * @throws OrderSampleException
      */
     @Override
     public void setPriceOrder(int order_id, float price) throws OrderSampleException {
@@ -260,13 +256,13 @@ public class OrderDBMapper extends OrderMapper {
             throw new OrderSampleException(ex.getMessage());
         }
     }
-    
+
     /**
      * Gets price of order with the same order_id
-     * 
+     *
      * @param order_id
      * @return
-     * @throws OrderSampleException 
+     * @throws OrderSampleException
      */
     @Override
     public float getPriceFromId(int order_id) throws OrderSampleException {
@@ -292,8 +288,9 @@ public class OrderDBMapper extends OrderMapper {
 
     /**
      * Deletes order specified by order_id
+     *
      * @param order_id
-     * @throws OrderSampleException 
+     * @throws OrderSampleException
      */
     @Override
     public void deleteOrder(int order_id) throws OrderSampleException {
@@ -309,11 +306,5 @@ public class OrderDBMapper extends OrderMapper {
             throw new OrderSampleException(ex.getMessage());
         }
     }
-    
-    public static void main(String[] args) throws OrderSampleException {
-        FunctionManager fm = new FunctionManager();
-        
-        //fm.setPriceOrder(76, 3.6f);
-        System.out.println(fm.getPriceFromId(71));
-    }
+
 }

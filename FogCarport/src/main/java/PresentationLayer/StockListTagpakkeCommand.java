@@ -5,7 +5,6 @@
  */
 package PresentationLayer;
 
-import DBAccess.DatabaseFacade;
 import FunctionLayer.FunctionManager;
 import FunctionLayer.LoginSampleException;
 import FunctionLayer.Material;
@@ -14,7 +13,6 @@ import FunctionLayer.OrderSampleException;
 import FunctionLayer.StyklistException;
 import java.util.ArrayList;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
@@ -35,16 +33,16 @@ public class StockListTagpakkeCommand implements Command {
     }
 
     /**
-     * Gets an arraylist of all materials of type "Tagpakken" 
-     * and sets it as a session attribute
-     * 
+     * Gets an arraylist of all materials of type "Tagpakken" and sets it as a
+     * session attribute
+     *
      * @param request
      * @param manager
      * @return
      * @throws LoginSampleException
      * @throws OrderSampleException
      * @throws MaterialSampleException
-     * @throws StyklistException 
+     * @throws StyklistException
      */
     @Override
     public String execute(HttpServletRequest request, FunctionManager manager) throws LoginSampleException, OrderSampleException, MaterialSampleException, StyklistException {
@@ -59,10 +57,10 @@ public class StockListTagpakkeCommand implements Command {
 
         return target;
     }
-    
+
     /**
      * Checks the user's login status
-     * 
+     *
      * @param session
      * @return boolean
      */

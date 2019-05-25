@@ -6,13 +6,10 @@
 package PresentationLayer;
 
 import FunctionLayer.FunctionManager;
-import FunctionLayer.LogicFacade;
 import FunctionLayer.LoginSampleException;
 import FunctionLayer.MaterialSampleException;
-import FunctionLayer.User;
 import FunctionLayer.OrderSampleException;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**

@@ -12,11 +12,9 @@
 
 <jsp:include page='/JSP/sitemenus.jsp'></jsp:include>
 
-
     <form action="FrontController" method="POST">
         <div class="container">
             <form action="FrontController" method="POST">
-
 
                 <h4>Lav en tegning af din carport</h4>
 
@@ -81,7 +79,6 @@
                 <input class="btn btn-primary" type="submit" value="Vis tegning">
                 </div>
             </form>
-
 
         <jsp:include page='/JSP/sitefooter.jsp'></jsp:include>
 

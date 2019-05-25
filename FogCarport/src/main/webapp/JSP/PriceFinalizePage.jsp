@@ -21,22 +21,22 @@
             out.println("<h5> Indtast procent </h5>");
 
             out.println("<form action=\"FrontController\" method=\"POST\">");
-                out.println("<input type=\"text\" name=\"percentage\" value=\"\">");
-                //out.println("<input type=\"hidden\" name=\"price\" value=\"" + order.getPrice() + "\">");
-                out.println("<input type=\"hidden\" name=\"command\" value=\"percent\">");
-                out.println("<input type=\"hidden\" name=\"thisOrder\" value=\"" + order.getOrder_id() + "\">");
-                out.println("<input type=\"submit\" class=\"btn btn-primary\" value=\"Udregn ordrepris\">");
+            out.println("<input type=\"text\" name=\"percentage\" value=\"\">");
+            //out.println("<input type=\"hidden\" name=\"price\" value=\"" + order.getPrice() + "\">");
+            out.println("<input type=\"hidden\" name=\"command\" value=\"percent\">");
+            out.println("<input type=\"hidden\" name=\"thisOrder\" value=\"" + order.getOrder_id() + "\">");
+            out.println("<input type=\"submit\" class=\"btn btn-primary\" value=\"Udregn ordrepris\">");
             out.println("</form>");
-            
+
             out.println("<br>");
             out.println("<br>");
             out.println("<br>");
 
             if (request.getAttribute("orderPrice") != null) {
                 out.println("<form action=\"FrontController\" method=\"POST\">");
-                    out.println("<input type=\"hidden\" name=\"command\" value=\"final\">");
-                    out.println("<input type=\"hidden\" name=\"thisOrder\" value=\"" + order.getOrder_id() + "\">");
-                    out.println("<input type=\"submit\" class=\"btn btn-primary\" value=\"Færdiggør ordre\" >");
+                out.println("<input type=\"hidden\" name=\"command\" value=\"final\">");
+                out.println("<input type=\"hidden\" name=\"thisOrder\" value=\"" + order.getOrder_id() + "\">");
+                out.println("<input type=\"submit\" class=\"btn btn-primary\" value=\"Færdiggør ordre\" >");
                 out.println("</form>");
             }
         }

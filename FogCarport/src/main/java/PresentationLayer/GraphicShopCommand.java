@@ -5,17 +5,12 @@
  */
 package PresentationLayer;
 
-import DBAccess.OrderDBMapper;
-import DBAccess.OrderMapper;
-import FunctionLayer.CarportAlgorithm;
 import FunctionLayer.FunctionManager;
 import FunctionLayer.LoginSampleException;
 import FunctionLayer.MaterialSampleException;
 import FunctionLayer.Order;
 import FunctionLayer.OrderSampleException;
-import FunctionLayer.Stykliste;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**

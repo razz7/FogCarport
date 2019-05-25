@@ -5,20 +5,12 @@
  */
 package PresentationLayer;
 
-import DBAccess.DatabaseFacade;
-import FunctionLayer.CarportAlgorithm;
 import FunctionLayer.FunctionManager;
-import FunctionLayer.LogicFacade;
 import FunctionLayer.LoginSampleException;
-import FunctionLayer.Material;
 import FunctionLayer.MaterialSampleException;
 import FunctionLayer.Order;
 import FunctionLayer.OrderSampleException;
-import FunctionLayer.Stykliste;
-import FunctionLayer.User;
-import java.util.ArrayList;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**

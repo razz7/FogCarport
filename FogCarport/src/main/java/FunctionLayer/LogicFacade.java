@@ -32,18 +32,11 @@ public class LogicFacade implements LogicFacadeInterface {
         return order;
     }
 
-    
     public User login(String email, String password) throws LoginSampleException {
         UserDBMapper userMap = new UserDBMapper();
         return userMap.login(email, password);
     }
 
-//    public User createUser(String email, String password) throws LoginSampleException {
-//        User user = new User(email, password, "customer");
-//        UserDBMapper userMap = new UserDBMapper();
-//        userMap.createUser(user);
-//    }
-   
     @Override
     public FunctionLayer.Stykliste Stykliste(ArrayList<FunctionLayer.Material> styklist, int styklist_id) {
         Stykliste styk = new Stykliste(styklist, styklist_id);

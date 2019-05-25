@@ -1,6 +1,3 @@
-<jsp:include page='/JSP/siteheader.jsp'></jsp:include>
-
-
 <div id="sitemenus">
 
     <nav class="navbar navbar-expand-lg navbar-light " style="background-color: #e3f2fd;">
@@ -17,9 +14,6 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/FogCarport/FrontController?command=category">Materials</a>
                 </li>
- <%--               <li>
-                    <a class="nav-link" href="JSP/graphicInput.jsp">Grafik</a>
-                </li>--%>
                 <li class="nav-item">
                     <a class="nav-link" href="/FogCarport/FrontController?command=shop">Shop</a>
                 </li>                

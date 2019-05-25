@@ -13,32 +13,33 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.regex.Pattern;
 
 /**
  *
  * @author Rasmus2
  */
-public class MaterialDBMapper extends MaterialMapper{
+public class MaterialDBMapper extends MaterialMapper {
 
     private Connector dbc = new Connector();
-    
+
     private static MaterialDBMapper instance = null;
-    
+
     /**
      * Returns instance of MaterialDBMapper
-     * 
+     *
      * @return MaterialDBMapper
      */
     public synchronized static MaterialDBMapper getInstance() {
-        if (instance == null) instance = new MaterialDBMapper();
+        if (instance == null) {
+            instance = new MaterialDBMapper();
+        }
         return instance;
     }
-    
+
     /**
      * Sets connection
-     * 
-     * @param connection 
+     *
+     * @param connection
      */
     public void setMapperConnection(Connection connection) {
         dbc.setConnection(connection);
@@ -46,8 +47,9 @@ public class MaterialDBMapper extends MaterialMapper{
 
     /**
      * Returns list of all different materials in the database
+     *
      * @return ArrayList<Material>
-     * @throws MaterialSampleException 
+     * @throws MaterialSampleException
      */
     @Override
     public ArrayList<Material> getAllMaterials() throws MaterialSampleException {
@@ -60,7 +62,7 @@ public class MaterialDBMapper extends MaterialMapper{
             while (rs.next()) {
                 Material material = new Material(rs.getInt(1), rs.getString(2), rs.getFloat(3), rs.getFloat(4), rs.getString(5), rs.getString(6), rs.getFloat(7), rs.getInt(9));
                 material.setStockQty(rs.getInt(8));
-                
+
                 list.add(material);
             }
             return list;
@@ -134,7 +136,6 @@ public class MaterialDBMapper extends MaterialMapper{
             ps.setInt(7, quantity);
             ps.setInt(8, item_id);
             ps.executeUpdate();
-           
 
         } catch (SQLException | ClassCastException ex) {
             throw new MaterialSampleException(ex.getMessage());
@@ -162,10 +163,11 @@ public class MaterialDBMapper extends MaterialMapper{
     }
 
     /**
-     * Returns a material object based off the id it receives 
+     * Returns a material object based off the id it receives
+     *
      * @param item_id
      * @return Material
-     * @throws MaterialSampleException 
+     * @throws MaterialSampleException
      */
     @Override
     public Material getMaterialbyID(int item_id) throws MaterialSampleException {
@@ -181,7 +183,6 @@ public class MaterialDBMapper extends MaterialMapper{
                 material = new Material(rs.getInt(1), rs.getString(2), rs.getFloat(3), rs.getFloat(4), rs.getString(5), rs.getString(6), rs.getFloat(7), rs.getInt(9));
                 material.setStockQty(rs.getInt(8));
 
-                
             }
 
             return material;
@@ -228,15 +229,16 @@ public class MaterialDBMapper extends MaterialMapper{
             throw new MaterialSampleException(ex.getMessage());
         }
     }
-    
+
     /**
      * Gets a list of all materials by specified type of material
+     *
      * @param type
      * @return ArrayList<Material>
-     * @throws MaterialSampleException 
+     * @throws MaterialSampleException
      */
     @Override
-        public ArrayList<Material> getAllMaterialbyType(String type) throws MaterialSampleException {
+    public ArrayList<Material> getAllMaterialbyType(String type) throws MaterialSampleException {
         try {
             ArrayList<Material> ML = new ArrayList();
             Connection con = dbc.connection();
@@ -244,9 +246,9 @@ public class MaterialDBMapper extends MaterialMapper{
             PreparedStatement ps = con.prepareStatement(SQL);
             ps.setString(1, type);
             ResultSet rs = ps.executeQuery();
-            
+
             while (rs.next()) {
-               Material material = new Material(rs.getInt(1), rs.getString(2), rs.getFloat(3), rs.getFloat(4), rs.getString(5), rs.getString(6), rs.getFloat(7), rs.getInt(9));
+                Material material = new Material(rs.getInt(1), rs.getString(2), rs.getFloat(3), rs.getFloat(4), rs.getString(5), rs.getString(6), rs.getFloat(7), rs.getInt(9));
                 material.setStockQty(rs.getInt(8));
                 ML.add(material);
             }
@@ -255,52 +257,5 @@ public class MaterialDBMapper extends MaterialMapper{
         } catch (ClassNotFoundException | SQLException ex) {
             throw new MaterialSampleException(ex.getMessage());
         }
-    }
-
-    public static void main(String[] args) throws MaterialSampleException, ClassNotFoundException {
-        MaterialDBMapper map = new MaterialDBMapper();
-        
-        String regex = "[0-9]+";
-        String regexLetter = "^(?=.*\\pL)[\\pL\\pN]+(?:[ -]+[\\pL\\pN]+)*$";
-        
-        String text1 = "hej24";
-        String text2 = "hejsa";
-        String text3 = "35";
-        
-        System.out.println(!text1.matches(".*\\d.*"));
-        System.out.println(!text2.matches(".*\\d.*"));
-        System.out.println(!text3.matches(".*\\d.*"));
-        
-        System.out.println(" ");
-        
-        System.out.println(!text1.matches(regexLetter));
-        System.out.println(!text2.matches(regexLetter));
-        System.out.println(!text3.matches(regexLetter));
-        
-        //updateMaterialData(38, "TEST", 10.0f, 10.0f, "TEST", "TEST", 9);
-        //System.out.println(map.getAllMaterials());
-        //addStockQuantityToNewMaterial(1, 10);
-        //updateQuantityToExistingMaterial(39, 100);
-        //deleteMaterial(41);
-        //System.out.println(map.getLineitemsByOrder_id(1));
-        //map.updateMaterialData(42, "qwe", 1, 1, "stk", "qwe", 1000, 0);
-
-
-        //map.updateMaterialData(42, "hey", 3.6f, 25.7f, "stk", "pakke", 45.6f, 500);
-        //map.addNewMaterial("hey1", 3.6f, 25.7f, "stk", "pakke", 45.6f, 500);
-
-        //map.updateMaterialData(49, "qwe", 1f, 1f, "qwe", "qwe", 1, 1);
-//        ArrayList<Material> list =  map.getAllMaterials();
-//        for(int i = 0; i < list.size(); i++) {
-//        
-//        System.out.println(map.getAllMaterials().get(i).getVersionnr());
-//        }
-//
-//        map.updateMaterialData(49, "qwe", 1f, 1f, "qwe", "qwe", 1, 1);
-
-        //System.out.println(map.getAllMaterialbyType("Træ"));
-        //map.updateMaterialData(42, "hey", 3.6f, 25.7f, "stk", "pakke", 45.6f, 500);
-        //map.addNewMaterial("hey1", 3.6f, 25.7f, "stk", "pakke", 45.6f, 500);
-        //System.out.println(map.getAllMaterials());
     }
 }

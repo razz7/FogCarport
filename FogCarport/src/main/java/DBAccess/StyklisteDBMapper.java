@@ -5,9 +5,7 @@
  */
 package DBAccess;
 
-import FunctionLayer.CarportAlgorithm;
 import FunctionLayer.Material;
-import FunctionLayer.MaterialSampleException;
 import FunctionLayer.StyklistException;
 import FunctionLayer.Stykliste;
 import java.sql.Connection;
@@ -28,7 +26,7 @@ public class StyklisteDBMapper extends StyklisteMapper {
 
     /**
      * Returns instance of StyklisteDBMapper
-     * 
+     *
      * @return StyklisteDBMapper
      */
     public synchronized static StyklisteDBMapper getInstance() {
@@ -37,18 +35,19 @@ public class StyklisteDBMapper extends StyklisteMapper {
         }
         return instance;
     }
-    
+
     /**
      * Sets connection
-     * 
-     * @param connection 
+     *
+     * @param connection
      */
     public void setMapperConnection(Connection connection) {
         dbc.setConnection(connection);
     }
-    
+
     /**
-     * Updates row in the database, requires all possible parameters 
+     * Updates row in the database, requires all possible parameters
+     *
      * @param item_id
      * @param item_description
      * @param width
@@ -57,7 +56,7 @@ public class StyklisteDBMapper extends StyklisteMapper {
      * @param materialtype
      * @param price
      * @param orderquantity
-     * @param order_id 
+     * @param order_id
      */
     @Override
     public void editLineItemsFromOrderID(int item_id, String item_description, float width, float height,
@@ -86,8 +85,9 @@ public class StyklisteDBMapper extends StyklisteMapper {
 
     /**
      * Saves a stykliste in the database which is assigned to an order by id
+     *
      * @param styklist
-     * @param order_id 
+     * @param order_id
      */
     @Override
     public void saveLineItemsInDB(Stykliste styklist, int order_id) {
@@ -121,9 +121,10 @@ public class StyklisteDBMapper extends StyklisteMapper {
 
     /**
      * Returns a Material object based of its id
+     *
      * @param lineItemID
      * @return Material
-     * @throws StyklistException 
+     * @throws StyklistException
      */
     @Override
     public Material getMaterialFromLineItems(int lineItemID) throws StyklistException {
@@ -146,20 +147,6 @@ public class StyklisteDBMapper extends StyklisteMapper {
             throw new StyklistException(ex.getMessage());
         }
 
-    }
-
-    public static void main(String[] args) throws MaterialSampleException {
-        long start = System.currentTimeMillis();
-        StyklisteDBMapper mapper = new StyklisteDBMapper();
-//        CarportAlgorithm car = new CarportAlgorithm();
-//        Stykliste styklist = car.carportAlgorithm(6000, 7800, 0, 5300, 2100, 1);
-//        System.out.println(styklist.toString());
-//        
-//        mapper.saveOrder(styklist.getStyklist());
-//        
-//        long elapsedTimeMillis = System.currentTimeMillis()-start;
-//        System.out.println(elapsedTimeMillis/1000F);
-        mapper.editLineItemsFromOrderID(3, "træ", 10f, 10f, "træ", "træ", 10f, 100, 1);
     }
 
 }

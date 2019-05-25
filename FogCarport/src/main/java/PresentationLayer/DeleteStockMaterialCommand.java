@@ -5,17 +5,13 @@
  */
 package PresentationLayer;
 
-import DBAccess.DatabaseFacade;
 import FunctionLayer.FunctionManager;
 import FunctionLayer.LoginSampleException;
 import FunctionLayer.Material;
 import FunctionLayer.MaterialSampleException;
 import FunctionLayer.OrderSampleException;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
@@ -36,15 +32,15 @@ public class DeleteStockMaterialCommand implements Command {
     }
 
     /**
-     * Deletes material from database based of id and gets and sets an updated list of all materials as 
-     * a session attribute
-     * 
+     * Deletes material from database based of id and gets and sets an updated
+     * list of all materials as a session attribute
+     *
      * @param request
      * @param manager
      * @return
      * @throws LoginSampleException
      * @throws OrderSampleException
-     * @throws MaterialSampleException 
+     * @throws MaterialSampleException
      */
     @Override
     public String execute(HttpServletRequest request, FunctionManager manager) throws LoginSampleException, OrderSampleException, MaterialSampleException {

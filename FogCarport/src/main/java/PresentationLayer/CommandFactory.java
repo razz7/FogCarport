@@ -5,9 +5,6 @@
  */
 package PresentationLayer;
 
-import FunctionLayer.FunctionManager;
-import FunctionLayer.MaterialSampleException;
-import FunctionLayer.OrderSampleException;
 import java.util.HashMap;
 import java.util.Map;
 

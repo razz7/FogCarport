@@ -5,18 +5,15 @@
  */
 package PresentationLayer;
 
-import DBAccess.DatabaseFacade;
 import FunctionLayer.FunctionManager;
 import FunctionLayer.LoginSampleException;
 import FunctionLayer.Material;
 import FunctionLayer.MaterialSampleException;
 import FunctionLayer.Order;
 import FunctionLayer.OrderSampleException;
-import FunctionLayer.StyklistException;
 import FunctionLayer.Stykliste;
 import java.util.ArrayList;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
@@ -26,7 +23,7 @@ import javax.servlet.http.HttpSession;
 public class PriceCommand implements Command {
 
     private String target;
-    
+
     /**
      * Constructor sets target field
      *
@@ -37,15 +34,16 @@ public class PriceCommand implements Command {
     }
 
     /**
-     * Creates order based of id, calculates price of the styklist attributed to the order,
-     * sets the price in the order and sets both price and order as session attributes
-     * 
+     * Creates order based of id, calculates price of the styklist attributed to
+     * the order, sets the price in the order and sets both price and order as
+     * session attributes
+     *
      * @param request
      * @param manager
      * @return
      * @throws LoginSampleException
      * @throws OrderSampleException
-     * @throws MaterialSampleException 
+     * @throws MaterialSampleException
      */
     @Override
     public String execute(HttpServletRequest request, FunctionManager manager) throws LoginSampleException, OrderSampleException, MaterialSampleException {
@@ -57,12 +55,12 @@ public class PriceCommand implements Command {
         if (request.getParameter("thisOrder") != null) {
             int orderId = Integer.parseInt(request.getParameter("thisOrder"));
 
-            Order order = manager.getOrderFromId(orderId);           
+            Order order = manager.getOrderFromId(orderId);
 
             float orderPrice = manager.getPriceFromId(orderId);
             Stykliste sl = manager.getStyklistForOrder(orderId);
 
-            if (orderPrice == 0.0 ) {                
+            if (orderPrice == 0.0) {
                 ArrayList<Material> materials = sl.getStyklist();
                 float price = 0;
                 for (int i = 0; i < materials.size(); i++) {
@@ -75,17 +73,17 @@ public class PriceCommand implements Command {
                 request.setAttribute("order", order);
                 return target;
             }
-            
+
             request.setAttribute("price", orderPrice);
             request.setAttribute("order", order);
         }
 
         return target;
     }
-    
+
     /**
      * Checks the user's login status
-     * 
+     *
      * @param session
      * @return boolean
      */

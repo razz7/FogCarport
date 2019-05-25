@@ -5,18 +5,14 @@
  */
 package PresentationLayer;
 
-import DBAccess.DatabaseFacade;
-import DBAccess.OrderMapper;
 import FunctionLayer.FunctionManager;
 import FunctionLayer.LoginSampleException;
-import FunctionLayer.Material;
 import FunctionLayer.MaterialSampleException;
 import FunctionLayer.Order;
 import FunctionLayer.OrderSampleException;
 import FunctionLayer.StyklistException;
 import java.util.ArrayList;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
@@ -26,7 +22,7 @@ import javax.servlet.http.HttpSession;
 public class PriceOrderCommand implements Command {
 
     private String target;
-    
+
     /**
      * Constructor sets target field
      *
@@ -37,17 +33,17 @@ public class PriceOrderCommand implements Command {
     }
 
     /**
-     * Gets attributes percent and orderId and gives the order 
-     * a new price based of the percent parameter
-     * and sets the order and new price as session attributes
-     * 
+     * Gets attributes percent and orderId and gives the order a new price based
+     * of the percent parameter and sets the order and new price as session
+     * attributes
+     *
      * @param request
      * @param manager
      * @return
      * @throws LoginSampleException
      * @throws OrderSampleException
      * @throws MaterialSampleException
-     * @throws StyklistException 
+     * @throws StyklistException
      */
     @Override
     public String execute(HttpServletRequest request, FunctionManager manager) throws LoginSampleException, OrderSampleException, MaterialSampleException, StyklistException {

@@ -5,21 +5,13 @@
  */
 package PresentationLayer;
 
-import DBAccess.DatabaseFacade;
-import DBAccess.MaterialDBMapper;
 import FunctionLayer.FunctionManager;
-import FunctionLayer.LogicFacade;
 import FunctionLayer.LoginSampleException;
 import FunctionLayer.Material;
 import FunctionLayer.MaterialSampleException;
 import FunctionLayer.OrderSampleException;
-import FunctionLayer.User;
-import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
@@ -40,8 +32,7 @@ public class StockMaterialsPageCommand implements Command {
     }
 
     /**
-     * Gets an arraylist of all materials
-     * and sets it as a session attribute
+     * Gets an arraylist of all materials and sets it as a session attribute
      *
      * @param request
      * @param manager

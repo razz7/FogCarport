@@ -5,17 +5,13 @@
  */
 package PresentationLayer;
 
-import DBAccess.DatabaseFacade;
 import FunctionLayer.FunctionManager;
 import FunctionLayer.LoginSampleException;
 import FunctionLayer.Material;
 import FunctionLayer.MaterialSampleException;
 import FunctionLayer.OrderSampleException;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
@@ -36,7 +32,8 @@ public class CreateStockMaterialCommand implements Command {
     }
 
     /**
-     * Creates and adds new material to the database, gts and sets the updated material list as a session attribute
+     * Creates and adds new material to the database, gts and sets the updated
+     * material list as a session attribute
      *
      * @param request
      * @param manager

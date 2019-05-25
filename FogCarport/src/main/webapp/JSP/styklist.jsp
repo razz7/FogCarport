@@ -19,12 +19,10 @@
         <table class="table">
 
         <%
-            //if (session.getAttribute("list") != null) {
             if (session.getAttribute("order") != null) {
-                //Stykliste list = (Stykliste) session.getAttribute("list");
                 Order order = (Order) session.getAttribute("order");
                 Stykliste list = order.getStyklist();
-                
+
                 out.print("<th>");
                 out.println("<form action=\"FrontController\" method=\"post\">");
                 out.println("<input type=\"hidden\" name=\"command\" value=\"AllOrders\">");
@@ -69,7 +67,6 @@
                     out.println("</form>");
                     out.print("</td>");
                     out.println("</tr>");
-                    //out.println("</div");
                 }
             }
         %>

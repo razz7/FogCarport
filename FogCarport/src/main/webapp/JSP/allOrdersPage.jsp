@@ -26,12 +26,12 @@
             <th>status</th>
             <th>orderdate</th>
             <th>customerID</th>                       
-                             
+
 
         <% if (request.getAttribute("allOrders") != null) {
                 ArrayList<Order> orders = (ArrayList<Order>) request.getAttribute("allOrders");
 
-                for (int i = 0; i < orders.size(); i++) {                    
+                for (int i = 0; i < orders.size(); i++) {
 
                     //out.println("<form action=\"FrontController\" method=\"POST\">");
                     out.print("<tr><td>" + orders.get(i).getOrder_id() + "</td>");
@@ -40,12 +40,12 @@
                     out.print("<td>" + orders.get(i).getRoofTilt() + "</td>");
                     out.print("<td>" + orders.get(i).getShedWidth() + "</td>");
                     out.print("<td>" + orders.get(i).getShedLength() + "</td>");
-                    if(orders.get(i).isOrderStatus() == true) {
-                    out.println("<td>klar</td>");
-                } else {
+                    if (orders.get(i).isOrderStatus() == true) {
+                        out.println("<td>klar</td>");
+                    } else {
                         out.println("<td>ikke klar</td>");
                     }
-                                                      
+
                     out.print("<td>" + orders.get(i).getOrderdate() + "</td>");
                     out.print("<td>" + orders.get(i).getUser().getId() + "</td>");
                     //out.print("<td>"  + orders.get(i).getUser().getEmail() + "</td>");
@@ -54,21 +54,21 @@
                     out.println("<input type=\"hidden\" name=\"command\" value=\"styklistpage\">");
                     out.println("<input type=\"hidden\" name=\"specificOrder\" value=\"" + orders.get(i).getOrder_id() + "\">");
                     out.println("<input class=\"btn btn-info  btn-sm\" type=\"submit\" value=\"Se stykliste\" >");
-                    out.println("</form>");                    
-                    
+                    out.println("</form>");
+
                     out.println("<form action=\"FrontController\" method=\"post\">");
                     out.println("<input type=\"hidden\" name=\"command\" value=\"graphic\">");
                     out.println("<input type=\"hidden\" name=\"thisOrder\" value=\"" + orders.get(i).getOrder_id() + "\">");
                     out.println("<input class=\"btn btn-info  btn-sm\" type=\"submit\" value=\"Se tegning\" >");
                     out.println("</form>");
-                    
+
                     out.println("<form action=\"FrontController\" method=\"post\">");
                     out.println("<input type=\"hidden\" name=\"command\" value=\"finalPrice\">");
                     out.println("<input type=\"hidden\" name=\"thisOrder\" value=\"" + orders.get(i).getOrder_id() + "\">");
                     out.println("<input class=\"btn btn-info  btn-sm\" type=\"submit\" value=\"Prissæt ordre\" >");
                     out.println("</form>");
                     out.print("</td>");
-                    
+
                     out.print("</tr>");
                 }
             }
