@@ -37,7 +37,6 @@ public class Connector {
                 ex.printStackTrace();
             }
         }
-
         return conn;
     }
 }
