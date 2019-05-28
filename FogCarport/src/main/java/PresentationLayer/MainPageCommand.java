@@ -6,13 +6,10 @@
 package PresentationLayer;
 
 import FunctionLayer.FunctionManager;
-import FunctionLayer.LogicFacade;
 import FunctionLayer.LoginSampleException;
 import FunctionLayer.MaterialSampleException;
-import FunctionLayer.User;
 import FunctionLayer.OrderSampleException;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
@@ -23,23 +20,44 @@ public class MainPageCommand implements Command {
 
     private String target;
 
+    /**
+     * Constructor sets target field
+     *
+     * @param target
+     */
     MainPageCommand(String target) {
         this.target = target;
     }
-    
+
+    /**
+     * Returns target
+     *
+     * @param request
+     * @param manager
+     * @return
+     * @throws LoginSampleException
+     * @throws OrderSampleException
+     * @throws MaterialSampleException
+     */
     @Override
     public String execute(HttpServletRequest request, FunctionManager manager) throws LoginSampleException, OrderSampleException, MaterialSampleException {
-       
+
         HttpSession session = request.getSession();
-        if(loginStatus(session)) {
+        if (loginStatus(session)) {
             return "index.jsp";
         }
         return target;
     }
 
+    /**
+     * Checks the user's login status
+     *
+     * @param session
+     * @return boolean
+     */
     @Override
     public boolean loginStatus(HttpSession session) {
-       if(session.getAttribute("user") != null) {
+        if (session.getAttribute("user") != null) {
             return false;
         }
         return true;

@@ -1,8 +1,4 @@
-<jsp:include page='/JSP/siteheader.jsp'></jsp:include>
-
 <div id="sitemenus">
-
-
 
     <nav class="navbar navbar-expand-lg navbar-light " style="background-color: #e3f2fd;">
         <img src="img/logofog.png" width="53" height="50" alt="">
@@ -20,18 +16,14 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/FogCarport/FrontController?command=shop">Shop</a>
-                <li class="nav-item">
-                    <a class="nav-link" href="JSP/loginRegistration.jsp">Register</a>
-                <li>
-                    <a class="nav-link" href="JSP/graphicInput.jsp">Grafik</a>
-                </li>
-                
+                </li>                
                 <li class="nav-item">
                     <a class="nav-link" href="/FogCarport/FrontController?command=AllOrders">Allorders</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/FogCarport/FrontController?command=logout">Logout</a>
                 </li>
+
                 </li>
             </ul>
         </div>

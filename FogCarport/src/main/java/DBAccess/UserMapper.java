@@ -5,15 +5,8 @@
  */
 package DBAccess;
 
-import FunctionLayer.Encryption;
-import FunctionLayer.LogicFacade;
 import FunctionLayer.LoginSampleException;
 import FunctionLayer.User;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
 
 /**
  *
@@ -27,26 +20,14 @@ public abstract class UserMapper {
 
     public abstract void createUser(String email, String password, String role) throws LoginSampleException;
 
-
     public abstract User login(String email, String password) throws LoginSampleException;
 
     public abstract boolean verifyUser(String email, String password) throws LoginSampleException;
 
     public abstract void removeUser(User user) throws LoginSampleException;
-    
+
     public abstract User getUserByEmail(String email) throws LoginSampleException;
 
-    
-
-    
-
-    public static void main(String[] args) throws LoginSampleException {
-//        UserMapper map = new UserMapper();
-//        User user = new User("John123@johnmail.com", 5, "boss");
-//        String password = "qwe";
-//
-//        System.out.println(map.verifyUser(user.getEmail(), password));
-//        System.out.println(map.getUserByEmail(user.getEmail()));
-    }
+    public abstract User getUserByID(int id) throws LoginSampleException;
 
 }

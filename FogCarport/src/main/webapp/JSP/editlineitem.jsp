@@ -10,14 +10,13 @@
 
 <jsp:include page='/JSP/sitemenus.jsp'></jsp:include>
 
-<!DOCTYPE html>
 <%
-    if(session.getAttribute("lineitemToEdit")!=null) {
-        Material material = (Material)session.getAttribute("lineitemToEdit");
-out.println("<form action=\"FrontController\" method=\"POST\">");
+    if (session.getAttribute("lineitemToEdit") != null) {
+        Material material = (Material) session.getAttribute("lineitemToEdit");
+        out.println("<form action=\"FrontController\" method=\"POST\">");
         out.println("<input type=\"hidden\" name=\"command\" value=\"updateLineitem\">");
         //out.print("<div class=\"container\">");
-        
+
         out.println("<input style=\"display: none\" type\"text\" name=\"lineitemid\" value=" + material.getLineItemID() + ">");
         out.println("<tr><td> Material id: </tr></td>");
         out.println("<input class=\"form-control\" type=\"text\" name=\"id\" value=" + "\"" + material.getItem_id() + "\"" + "readonly>");
@@ -35,18 +34,14 @@ out.println("<form action=\"FrontController\" method=\"POST\">");
         out.println("<input class=\"form-control\" type=\"text\" name=\"price\" value=" + "\"" + material.getPrice() + "\"" + ">");
         out.println("<tr><td> Material quantity: </tr></td>");
         out.println("<input class=\"form-control\" type=\"text\" name=\"qty\" value=" + "\"" + material.getStockQty() + "\"" + ">");
-        
-        
 
         out.println("<input class=\"btn btn-info  btn-sm\" type=\"submit\" value=\"Opdatér materiale\" >");
         out.println("</form");
-        
-         out.println("<form action=\"FrontController\" method=\"post\">");
-    
+
+        out.println("<form action=\"FrontController\" method=\"post\">");
+
         //out.println("</div>");
-        
-        
     }
-        %>
-        
-        
+%>
+
+<jsp:include page='/JSP/sitefooter.jsp'></jsp:include>

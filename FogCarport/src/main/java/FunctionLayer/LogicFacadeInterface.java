@@ -5,13 +5,6 @@
  */
 package FunctionLayer;
 
-import DBAccess.*;
-import FunctionLayer.Material;
-import FunctionLayer.MaterialSampleException;
-import FunctionLayer.Order;
-import FunctionLayer.OrderSampleException;
-import FunctionLayer.StyklistException;
-import FunctionLayer.Stykliste;
 import java.util.ArrayList;
 
 /**
@@ -29,13 +22,11 @@ public interface LogicFacadeInterface {
     public Stykliste Stykliste(ArrayList<Material> styklist, int styklist_id);
 
     public User User(String email, int id, String role);
-    
-    public String getSalt(int length);
-    
+
+    public String generateSalt(int length);
+
     public String generateSecurePassword(String password, String salt);
-     
+
     public boolean verifyUserPassword(String providedPassword, String securepassword, String salt);
-    
-    
 
 }

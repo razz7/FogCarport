@@ -22,11 +22,28 @@ import javax.servlet.http.HttpSession;
 public class OrderFinalizeCommand implements Command {
 
     private String target;
-
+    
+    /**
+     * Constructor sets target field
+     *
+     * @param target
+     */
     OrderFinalizeCommand(String target) {
         this.target = target;
     }
 
+    /**
+     * Changes status of order to indicate that it is ready and returns an updated list of all orders
+     * 
+     * @param request
+     * @param manager
+     * @return
+     * @throws LoginSampleException
+     * @throws OrderSampleException
+     * @throws MaterialSampleException
+     * @throws StyklistException 
+     */
+    @Override
     public String execute(HttpServletRequest request, FunctionManager manager) throws LoginSampleException, OrderSampleException, MaterialSampleException, StyklistException {       
         HttpSession session = request.getSession();
         if(loginStatus(session)) {
@@ -36,8 +53,6 @@ public class OrderFinalizeCommand implements Command {
             int orderId = Integer.parseInt(request.getParameter("thisOrder"));
             
             manager.finalizeOrder(orderId); 
-            Order order = manager.getOrderFromId(orderId);  
-            //order.setOrderStatus(true);
             
             ArrayList<Order> allOrders = manager.getAllOrders();
             request.setAttribute("allOrders", allOrders);
@@ -50,7 +65,13 @@ public class OrderFinalizeCommand implements Command {
             return target;
         }
     }
-
+    
+    /**
+     * Checks the user's login status
+     * 
+     * @param session
+     * @return boolean
+     */
     @Override
     public boolean loginStatus(HttpSession session) {
         if(session.getAttribute("user") != null) {

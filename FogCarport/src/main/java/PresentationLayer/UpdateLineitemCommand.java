@@ -18,18 +18,35 @@ import javax.servlet.http.HttpSession;
  *
  * @author Rumle
  */
-public class UpdateLineitemCommand implements Command{
-    
+public class UpdateLineitemCommand implements Command {
+
     private String target;
 
+    /**
+     * Constructor sets target field
+     *
+     * @param target
+     */
     UpdateLineitemCommand(String target) {
         this.target = target;
     }
 
+    /**
+     * Updates Lineitem and sets the related order and its' styklist as session
+     * attributes
+     *
+     * @param request
+     * @param manager
+     * @return
+     * @throws LoginSampleException
+     * @throws OrderSampleException
+     * @throws MaterialSampleException
+     * @throws StyklistException
+     */
     @Override
     public String execute(HttpServletRequest request, FunctionManager manager) throws LoginSampleException, OrderSampleException, MaterialSampleException, StyklistException {
         HttpSession session = request.getSession();
-        if(loginStatus(session)) {
+        if (loginStatus(session)) {
             return "index.jsp";
         }
         int order_id = (Integer) request.getSession().getAttribute("specificOrder");
@@ -41,35 +58,33 @@ public class UpdateLineitemCommand implements Command{
         String type = request.getParameter("type");
         float price = Float.parseFloat(request.getParameter("price"));
         int qty = Integer.parseInt(request.getParameter("qty"));
-        
-        //DatabaseFacade dbf = new DatabaseFacade();
+
         manager.editLineItemsFromOrderID(lineitem_id, description, width, height, entity, type, price, qty, order_id);
-        
-        //Stykliste list = dbf.getOrderFromId(order_id).getStyklist();
-        //HttpSession session = request.getSession();
-        //session.setAttribute("list", list);
-        
-        
+
         Order order = manager.getOrderFromId(order_id);
         session.setAttribute("order", order);
-        session.setAttribute("list", order.getStyklist()); 
-      
-      return target;
+        session.setAttribute("list", order.getStyklist());
+
+        return target;
     }
 
+    /**
+     * Checks the user's login status
+     *
+     * @param session
+     * @return boolean
+     */
     @Override
     public boolean loginStatus(HttpSession session) {
-        if(session.getAttribute("user") != null) {
+        if (session.getAttribute("user") != null) {
             return false;
         }
         return true;
-    
-    
     }
 
     @Override
     public boolean accesToPage(HttpSession session, String accesForRole) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
+
 }

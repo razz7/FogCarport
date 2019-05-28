@@ -24,7 +24,6 @@ public class FunctionManager implements DatabaseFacadeInterface, LogicFacadeInte
     private final UserMapper UseMapper = UserMapper.instance();
     private CarportAlgorithm ca = new CarportAlgorithm();
     private Encryption ec = new Encryption();
-    
 
     @Override
     public void editLineItemsFromOrderID(int item_id, String item_description, float width, float height,
@@ -67,13 +66,13 @@ public class FunctionManager implements DatabaseFacadeInterface, LogicFacadeInte
     public void finalizeOrder(int order_id) throws OrderSampleException {
         OrdMapper.finalizeOrder(order_id);
     }
-    
+
     //@Override
     public void setPriceOrder(int order_id, float price) throws OrderSampleException {
         OrdMapper.setPriceOrder(order_id, price);
     }
-    
-    public float getPriceFromId(int order_id) throws OrderSampleException{
+
+    public float getPriceFromId(int order_id) throws OrderSampleException {
         return OrdMapper.getPriceFromId(order_id);
     }
 
@@ -81,7 +80,7 @@ public class FunctionManager implements DatabaseFacadeInterface, LogicFacadeInte
     public void deleteOrder(int order_id) throws OrderSampleException {
         OrdMapper.deleteOrder(order_id);
     }
-    
+
     @Override
     public ArrayList<Material> getAllMaterials() throws MaterialSampleException {
         return MatMapper.getAllMaterials();
@@ -142,19 +141,6 @@ public class FunctionManager implements DatabaseFacadeInterface, LogicFacadeInte
         return ca.carportAlgorithm(width, length, roofTilt, shedwidth, shedLength, styklist_id);
     }
 
-    public static void main(String[] args) throws MaterialSampleException, OrderSampleException {
-        FunctionManager fm = new FunctionManager();
-        
-        //fm.setPriceOrder(71, 2400);
-        System.out.println(fm.getPriceFromId(71));
-        
-//        Stykliste sl = fm.getStyklistForOrder(77);
-//        ArrayList<Material> ml = sl.getStyklist();
-//        System.out.println(ml.get(1).getPrice());
-
-        //fm.deleteOrder(22);
-    }
-
     @Override
     public FunctionLayer.Material Material(int item_id, String item_description,
             float width, float height, String entity, String materialtype,
@@ -188,9 +174,9 @@ public class FunctionManager implements DatabaseFacadeInterface, LogicFacadeInte
     }
 
     @Override
-    public String getSalt(int length) {
+    public String generateSalt(int length) {
         LogicFacade log = new LogicFacade();
-        return log.getSalt(length);
+        return log.generateSalt(length);
     }
 
     @Override
@@ -208,6 +194,11 @@ public class FunctionManager implements DatabaseFacadeInterface, LogicFacadeInte
 
     @Override
     public void createUser(String email, String password, String role) throws LoginSampleException {
-       
+        UseMapper.createUser(email, password, role);
+    }
+
+    @Override
+    public FunctionLayer.User getUserByID(int id) throws LoginSampleException {
+        return UseMapper.getUserByID(id);
     }
 }

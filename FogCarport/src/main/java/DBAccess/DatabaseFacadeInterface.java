@@ -45,25 +45,25 @@ public interface DatabaseFacadeInterface {
     public void saveLineItemsInDB(Stykliste styklist, int order_id) throws StyklistException;
 
     public Material getMaterialFromLineItems(int lineItemID) throws StyklistException;
-    
+
     public void finalizeOrder(int order_id) throws OrderSampleException;
-    
+
     public Stykliste getStyklistForOrder(int order_id) throws OrderSampleException;
 
     public void createUser(String email, String password, String role) throws LoginSampleException;
-    
+
     public abstract void removeUser(User user) throws LoginSampleException;
-    
+
     public abstract User login(String email, String password) throws LoginSampleException;
-    
+
     public boolean verifyUser(String email, String password) throws LoginSampleException;
-    
+
     public User getUserByEmail(String email) throws LoginSampleException;
-    
+
     public abstract void deleteOrder(int order_id) throws OrderSampleException;
-             
-    public abstract Stykliste getLineitemsByOrderId(int order_id)throws MaterialSampleException;
-            
- 
+
+    public abstract Stykliste getLineitemsByOrderId(int order_id) throws MaterialSampleException;
+
+    public abstract User getUserByID(int id) throws LoginSampleException;
 
 }

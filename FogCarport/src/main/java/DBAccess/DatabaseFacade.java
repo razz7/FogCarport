@@ -149,4 +149,10 @@ public class DatabaseFacade implements DatabaseFacadeInterface {
         return map.login(email, password);
     }
 
+    @Override
+    public User getUserByID(int id) throws LoginSampleException {
+        UserDBMapper map = new UserDBMapper();
+        return map.getUserByID(id);
+    }
+
 }

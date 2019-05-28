@@ -74,23 +74,7 @@
                 </div>
             </div>
             <br>
-            <h4>Personlig data</h4>
-            <div class="form-row">
-                <div class="col-md-3 mb-3">
-                    <label for="">Fulde navn</label>
-                    <input type="text" name="name" value="" class="form-control" 
-                           placeholder="">
-                </div>
-                <div class="col-md-3 mb-3">
-                    <label for="">Adresse</label>
-                    <input type="text" name="adress" value="" class="form-control" 
-                           placeholder="">
-                </div>
-                <div class="col-md-3 mb-3">
-                    <label for="">Email</label>
-                    <input type="text" name="email" value="" class="form-control" 
-                           placeholder="">
-                </div>
+            
             </div>
 
 
@@ -105,20 +89,21 @@
             <input class="btn btn-primary" type="submit" value="Make order">
             <%
             } else {
+                Order order = (Order) session.getAttribute("order");
             %>
-            <input type="hidden" name="command" value="graphic">
+
+
+            <input type="hidden" name="command" value="graphicShop">
             <input class="btn btn-primary" type="submit" value="See visual order">
             <%
-                }
+
+
             %>
 
         </div>
     </form>
 
-    <%
-        if (session.getAttribute("order") != null) {
-            //Stykliste list = (Stykliste) session.getAttribute("list");
-            Order order = (Order) session.getAttribute("order");
+    <%            //Stykliste list = (Stykliste) session.getAttribute("list");
             Stykliste sl = order.getStyklist();
             out.println("<br>");
             out.println("<h4> Styklisten: </h4>");

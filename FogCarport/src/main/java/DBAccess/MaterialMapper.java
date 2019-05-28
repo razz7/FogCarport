@@ -21,16 +21,16 @@ public abstract class MaterialMapper {
     }
 
     public abstract ArrayList<Material> getAllMaterials() throws MaterialSampleException;
-            
-    public abstract void addNewMaterial(String item_description, float width, float height, String entity, String materialtype, float price, int quantity)throws MaterialSampleException;
-            
-    public abstract void updateMaterialData(int item_id, String item_description, float width, float height, String entity, String materialtype, float price, int quantity)throws MaterialSampleException, ClassNotFoundException ;
-            
-    public abstract void deleteMaterial(int item_id)throws MaterialSampleException;
-            
+
+    public abstract void addNewMaterial(String item_description, float width, float height, String entity, String materialtype, float price, int quantity) throws MaterialSampleException;
+
+    public abstract void updateMaterialData(int item_id, String item_description, float width, float height, String entity, String materialtype, float price, int quantity) throws MaterialSampleException, ClassNotFoundException;
+
+    public abstract void deleteMaterial(int item_id) throws MaterialSampleException;
+
     public abstract Material getMaterialbyID(int item_id) throws MaterialSampleException;
-            
-    public abstract Stykliste getLineitemsByOrderId(int order_id)throws MaterialSampleException;
-            
-    public abstract ArrayList<Material> getAllMaterialbyType(String type)throws MaterialSampleException;
+
+    public abstract Stykliste getLineitemsByOrderId(int order_id) throws MaterialSampleException;
+
+    public abstract ArrayList<Material> getAllMaterialbyType(String type) throws MaterialSampleException;
 }

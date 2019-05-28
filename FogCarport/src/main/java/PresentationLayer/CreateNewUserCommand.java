@@ -7,18 +7,17 @@ package PresentationLayer;
 
 import FunctionLayer.FunctionManager;
 import FunctionLayer.LoginSampleException;
-import FunctionLayer.Material;
 import FunctionLayer.MaterialSampleException;
 import FunctionLayer.OrderSampleException;
-import java.util.ArrayList;
+import FunctionLayer.StyklistException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author Rasmus2
+ * @author Rumle
  */
-public class DeleteStockMaterialCommand implements Command {
+public class CreateNewUserCommand implements Command {
 
     private String target;
 
@@ -27,55 +26,46 @@ public class DeleteStockMaterialCommand implements Command {
      *
      * @param target
      */
-    DeleteStockMaterialCommand(String target) {
+    CreateNewUserCommand(String target) {
         this.target = target;
     }
 
     /**
-     * Deletes material from database based of id and gets and sets an updated
-     * list of all materials as a session attribute
-     *
+     * Creates new user based of email and password parameters
+     * 
      * @param request
      * @param manager
      * @return
      * @throws LoginSampleException
      * @throws OrderSampleException
      * @throws MaterialSampleException
+     * @throws StyklistException
+     * @throws CommandException
+     * @throws ClassNotFoundException
+     * @throws NumberFormatException 
      */
     @Override
-    public String execute(HttpServletRequest request, FunctionManager manager) throws LoginSampleException, OrderSampleException, MaterialSampleException {
-        HttpSession session = request.getSession();
-        if (loginStatus(session)) {
-            return "index.jsp";
+    public String execute(HttpServletRequest request, FunctionManager manager) throws LoginSampleException, OrderSampleException, MaterialSampleException, StyklistException, CommandException, ClassNotFoundException, NumberFormatException {
+        String email = request.getParameter("email");
+        String password1 = request.getParameter("password1");
+        String password2 = request.getParameter("password2");
+
+        if (password1.equals(password2)) {
+            manager.createUser(email, password1, "customer");
+
         }
-
-        int id = Integer.parseInt(request.getParameter("chosenStockMaterial"));
-
-        //DatabaseFacade df = new DatabaseFacade();
-        manager.deleteMaterial(id);
-
-        ArrayList<Material> materials = manager.getAllMaterials();
-        session.setAttribute("stockMaterialList", materials);
 
         return target;
     }
 
-    /**
-     * Checks the user's login status
-     *
-     * @param session
-     * @return boolean
-     */
     @Override
     public boolean loginStatus(HttpSession session) {
-        if (session.getAttribute("user") != null) {
-            return false;
-        }
-        return true;
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public boolean accesToPage(HttpSession session, String accesForRole) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
 }

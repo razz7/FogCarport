@@ -9,11 +9,10 @@
 
 <jsp:include page='/JSP/sitemenus.jsp'></jsp:include>
 
-
-<br>
-<div class="container">
-<h2>Edit material!</h2>
-</div>
+    <br>
+    <div class="container">
+        <h2>Edit material!</h2>
+    </div>
 <%
     out.println("<div class=\"container\">");
     if (session.getAttribute("stockMaterial") != null) {
@@ -23,7 +22,7 @@
         out.println("<input type=\"hidden\" name=\"command\" value=\"updateMaterial\">");
         out.println("<div class=\"col-md-3 mb-3\">");
         out.println("<tr><td> Material id: </tr></td>");
-        out.println("<input type=\"text\" name=\"id\" value=" + "\"" + material.getItem_id() + "\""+ "readonly>");
+        out.println("<input type=\"text\" name=\"id\" value=" + "\"" + material.getItem_id() + "\"" + "readonly>");
         out.println("</div>");
         out.println("<div class=\"col-md-3 mb-3\">");
         out.println("<tr><td> Material description: </tr></td>");
@@ -43,11 +42,11 @@
         out.println("</div>");
         out.println("<div class=\"col-md-3 mb-3\">");
         out.println("<tr><td> Material type: </tr></td>");
-        out.println("<input type=\"text\" name=\"type\" value=" +  "\"" + material.getMaterialType() + "\"" + ">");
+        out.println("<input type=\"text\" name=\"type\" value=" + "\"" + material.getMaterialType() + "\"" + ">");
         out.println("</div>");
         out.println("<div class=\"col-md-3 mb-3\">");
         out.println("<tr><td> Material price: </tr></td>");
-        out.println("<input type=\"text\" name=\"price\" value=" +  material.getPrice() + ">");
+        out.println("<input type=\"text\" name=\"price\" value=" + material.getPrice() + ">");
         out.println("</div>");
         out.println("<div class=\"col-md-3 mb-3\">");
         out.println("<tr><td> Material quantity: </tr></td>");
@@ -55,14 +54,14 @@
         out.println("</div>");
         out.println("<input class=\"btn btn-primary\" type=\"submit\" value=\"Submit changes\">");
         out.println("</div>");
-                
+
         out.println("</form");
     } else {
 
         out.println("<form action=\"FrontController\" method=\"POST\">");
         out.println("<div class=\"form-row\">");
         out.println("<input type=\"hidden\" name=\"command\" value=\"createMaterial\">");
-        
+
         out.println("<tr><td> Material description: </tr></td>");
         out.println("<input type=\"text\" name=\"description\" value=\"\">");
         out.println("<tr><td> Material width: </tr></td>");

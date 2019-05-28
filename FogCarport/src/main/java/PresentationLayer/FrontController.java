@@ -31,8 +31,17 @@ public class FrontController extends HttpServlet {
 
     private final FunctionManager manager = new FunctionManager();
 
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException, StyklistException {
+    /**
+     * Receives a request and response object and handles the control of the
+     * website
+     *
+     * @param request
+     * @param response
+     * @throws ServletException
+     * @throws IOException
+     * @throws StyklistException
+     */
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, StyklistException {
 
         String commandKey = request.getParameter("command");
         Command command = CommandFactory.commandFrom(commandKey);
@@ -41,40 +50,43 @@ public class FrontController extends HttpServlet {
             RequestDispatcher dispatcher = request.getRequestDispatcher(target);
             dispatcher.forward(request, response);
         } catch (CommandException ce) {
+            Logger.getLogger(FrontController.class.getName()).log(Level.SEVERE, null, ce);
             request.setAttribute("message", ce.getMessage());
             RequestDispatcher dispatcher = request.getRequestDispatcher(
                     ce.getTarget());
             dispatcher.forward(request, response);
         } catch (OrderSampleException oe) {
+            Logger.getLogger(FrontController.class.getName()).log(Level.SEVERE, null, oe);
             request.setAttribute("message", oe.getMessage());
             RequestDispatcher dispatcher = request.getRequestDispatcher(
                     oe.getTarget());
             dispatcher.forward(request, response);
         } catch (MaterialSampleException me) {
+            Logger.getLogger(FrontController.class.getName()).log(Level.SEVERE, null, me);
             request.setAttribute("message", me.getMessage());
             RequestDispatcher dispatcher = request.getRequestDispatcher(
                     me.getTarget());
             dispatcher.forward(request, response);
         } catch (StyklistException se) {
+            Logger.getLogger(FrontController.class.getName()).log(Level.SEVERE, null, se);
             request.setAttribute("message", se.getMessage());
             RequestDispatcher dispatcher = request.getRequestDispatcher(
                     se.getTarget());
             dispatcher.forward(request, response);
         } catch (LoginSampleException le) {
+            Logger.getLogger(FrontController.class.getName()).log(Level.SEVERE, null, le);
             request.setAttribute("message", le.getMessage());
             RequestDispatcher dispatcher = request.getRequestDispatcher(
                     le.getTarget());
             dispatcher.forward(request, response);
         } catch (Exception e) {
+            Logger.getLogger(FrontController.class.getName()).log(Level.SEVERE, null, e);
             PrintWriter out = response.getWriter();
             out.println("<!DOCTYPE html>");
             out.println("<html>");
-            out.println("  <head><title>PANIC Page</title></head>");
+            out.println("  <head><title>CRITICAL ERROR Page</title></head>");
             out.println("  <body>");
             out.println("    <h3>" + e.getMessage() + "</h3><hr/>");
-            out.println("    <pre>");
-            e.printStackTrace(out); // Don't do this in production code!
-            out.print("</pre>");
             out.println("  </body>");
             out.println("</html>");
         }

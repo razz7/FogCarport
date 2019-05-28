@@ -7,18 +7,17 @@ package PresentationLayer;
 
 import FunctionLayer.FunctionManager;
 import FunctionLayer.LoginSampleException;
-import FunctionLayer.Material;
 import FunctionLayer.MaterialSampleException;
+import FunctionLayer.Order;
 import FunctionLayer.OrderSampleException;
-import java.util.ArrayList;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author Rasmus2
+ * @author Ludvig
  */
-public class CreateStockMaterialCommand implements Command {
+public class GraphicShopCommand implements Command {
 
     private String target;
 
@@ -27,13 +26,12 @@ public class CreateStockMaterialCommand implements Command {
      *
      * @param target
      */
-    CreateStockMaterialCommand(String target) {
+    GraphicShopCommand(String target) {
         this.target = target;
     }
 
     /**
-     * Creates and adds new material to the database, gts and sets the updated
-     * material list as a session attribute
+     * Gets order from orderId and sets it as a session attribute
      *
      * @param request
      * @param manager
@@ -45,22 +43,13 @@ public class CreateStockMaterialCommand implements Command {
     @Override
     public String execute(HttpServletRequest request, FunctionManager manager) throws LoginSampleException, OrderSampleException, MaterialSampleException {
         HttpSession session = request.getSession();
+
         if (loginStatus(session)) {
             return "index.jsp";
         }
-        String description = request.getParameter("description");
-        float width = Float.parseFloat(request.getParameter("width"));
-        float height = Float.parseFloat(request.getParameter("height"));
-        String entity = request.getParameter("entity");
-        String type = request.getParameter("type");
-        float price = Float.parseFloat(request.getParameter("price"));
-        int qty = Integer.parseInt(request.getParameter("qty"));
-
-        //DatabaseFacade df = new DatabaseFacade();
-        manager.addNewMaterial(description, width, height, entity, type, price, qty);
-
-        ArrayList<Material> materials = manager.getAllMaterials();
-        session.setAttribute("stockMaterialList", materials);
+        session.setAttribute("order", null);
+        Order order = (Order) session.getAttribute("shopOrder");
+        session.setAttribute("order", order);
 
         return target;
     }
@@ -83,5 +72,4 @@ public class CreateStockMaterialCommand implements Command {
     public boolean accesToPage(HttpSession session, String accesForRole) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
 }

@@ -5,9 +5,6 @@
  */
 package PresentationLayer;
 
-import FunctionLayer.FunctionManager;
-import FunctionLayer.MaterialSampleException;
-import FunctionLayer.OrderSampleException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -20,6 +17,10 @@ public class CommandFactory {
   private static CommandFactory instance = null;
   private final Map<String, Command> commands = new HashMap();
 
+    /**
+     * CommandFactory constructor
+     * 
+     */
     private CommandFactory() {
         commands.put("main", new MainPageCommand("index.jsp"));
         commands.put("styklist", new StyklistPageCommand("JSP/styklist.jsp"));
@@ -41,14 +42,24 @@ public class CommandFactory {
         commands.put("finalPrice", new PriceCommand("JSP/PriceFinalizePage.jsp"));
         commands.put("percent", new PriceOrderCommand("JSP/PriceFinalizePage.jsp"));
         commands.put("login", new LoginCommand("JSP/home.jsp"));
-        commands.put("shop", new shopCommand("JSP/shop.jsp"));
-        commands.put("home", new shopCommand("JSP/home.jsp"));
-        commands.put("logout", new shopCommand("index.jsp"));
+        commands.put("shop", new ShopCommand("JSP/shop.jsp"));
+        commands.put("home", new ShopCommand("JSP/home.jsp"));
+        commands.put("logout", new ShopCommand("index.jsp"));
         commands.put("final", new OrderFinalizeCommand("JSP/allOrdersPage.jsp"));
         commands.put("logout", new LogoutCommand("index.jsp"));
+        commands.put("createuser", new CreateNewUserCommand("index.jsp"));
+        commands.put("graphicShop", new GraphicShopCommand("JSP/carportSVGGraphic.jsp"));
+
     }
     //synchronized
     //only one thread at a time
+    
+    /**
+     * Returns a command object based of the String it receives as parameter
+     * 
+     * @param key
+     * @return 
+     */
     public static synchronized Command commandFrom(String key) {
     if (key == null) key = "back";
     if (instance == null) instance = new CommandFactory();

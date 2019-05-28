@@ -1,7 +1,7 @@
 <%-- 
     Document   : carportSVGGraphic
-    Created on : 08-05-2019, 10:24:40
-    Author     : Ludvig
+    Created on : Apr 24, 2019, 1:26:09 PM
+    Author     : Rasmus2
 --%>
 
 <%@page import="java.util.HashMap"%>
@@ -39,13 +39,13 @@
     }
 %>
 <div class="container">
-    <h4><% out.println("getHeight" + order.getHeight()); %> </h4>
-    <h4><% out.println("getLength" + order.getLength()); %> </h4>
-    <h4><% out.println("getOrder_id" + order.getOrder_id()); %> </h4>
-    <h4><% out.println("getWidth" + order.getWidth()); %> </h4>
-    <h4><% out.println("getRoofTilt" + order.getRoofTilt()); %> </h4>
-    <h4><% out.println("getShedLength" + order.getShedLength()); %> </h4>
-    <h4><% out.println("getShedWidth" + order.getShedWidth()); %> </h4>
+    <h3>Dine mål</h3>
+    <h5><% out.println("getHeight" + order.getHeight()); %> </h5>
+    <h5><% out.println("getLength" + order.getLength()); %> </h5>
+    <h5><% out.println("getWidth" + order.getWidth()); %> </h5>
+    <h5><% out.println("getRoofTilt" + order.getRoofTilt()); %> </h5>
+    <h5><% out.println("getShedLength" + order.getShedLength()); %> </h5>
+    <h5><% out.println("getShedWidth" + order.getShedWidth()); %> </h5>
 
     <%
         if (order.getRoofTilt() == 0) {
