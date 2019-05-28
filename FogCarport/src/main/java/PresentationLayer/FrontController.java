@@ -5,12 +5,16 @@
  */
 package PresentationLayer;
 
+import FunctionLayer.FunctionManager;
 import FunctionLayer.LoginSampleException;
 import FunctionLayer.MaterialSampleException;
 import FunctionLayer.OrderSampleException;
+import FunctionLayer.StyklistException;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -20,34 +24,71 @@ import javax.servlet.http.HttpServletResponse;
 /**
  *
  * @author Rasmus2
+ *
  */
 @WebServlet(name = "FrontController", urlPatterns = {"/FrontController"})
 public class FrontController extends HttpServlet {
 
+    private final FunctionManager manager = new FunctionManager();
+
     /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
+     * Receives a request and response object and handles the control of the
+     * website
      *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
+     * @param request
+     * @param response
+     * @throws ServletException
+     * @throws IOException
+     * @throws StyklistException
      */
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, StyklistException {
+
+        String commandKey = request.getParameter("command");
+        Command command = CommandFactory.commandFrom(commandKey);
         try {
-            Command com = new Command() {
-                @Override
-                String execute(HttpServletRequest request, HttpServletResponse response) throws LoginSampleException, OrderSampleException, MaterialSampleException {
-                    throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-                }
-            };
-            Command action = com.from(request);
-            String view = action.execute(request, response);
-            request.getRequestDispatcher("/JSP/" + view + ".jsp").forward(request, response);
-        } catch (LoginSampleException | OrderSampleException | MaterialSampleException ex) {
-            request.setAttribute("error", ex.getMessage());
-            request.getRequestDispatcher("index.jsp").forward(request, response);
+            String target = command.execute(request, manager);
+            RequestDispatcher dispatcher = request.getRequestDispatcher(target);
+            dispatcher.forward(request, response);
+        } catch (CommandException ce) {
+            Logger.getLogger(FrontController.class.getName()).log(Level.SEVERE, null, ce);
+            request.setAttribute("message", ce.getMessage());
+            RequestDispatcher dispatcher = request.getRequestDispatcher(
+                    ce.getTarget());
+            dispatcher.forward(request, response);
+        } catch (OrderSampleException oe) {
+            Logger.getLogger(FrontController.class.getName()).log(Level.SEVERE, null, oe);
+            request.setAttribute("message", oe.getMessage());
+            RequestDispatcher dispatcher = request.getRequestDispatcher(
+                    oe.getTarget());
+            dispatcher.forward(request, response);
+        } catch (MaterialSampleException me) {
+            Logger.getLogger(FrontController.class.getName()).log(Level.SEVERE, null, me);
+            request.setAttribute("message", me.getMessage());
+            RequestDispatcher dispatcher = request.getRequestDispatcher(
+                    me.getTarget());
+            dispatcher.forward(request, response);
+        } catch (StyklistException se) {
+            Logger.getLogger(FrontController.class.getName()).log(Level.SEVERE, null, se);
+            request.setAttribute("message", se.getMessage());
+            RequestDispatcher dispatcher = request.getRequestDispatcher(
+                    se.getTarget());
+            dispatcher.forward(request, response);
+        } catch (LoginSampleException le) {
+            Logger.getLogger(FrontController.class.getName()).log(Level.SEVERE, null, le);
+            request.setAttribute("message", le.getMessage());
+            RequestDispatcher dispatcher = request.getRequestDispatcher(
+                    le.getTarget());
+            dispatcher.forward(request, response);
+        } catch (Exception e) {
+            Logger.getLogger(FrontController.class.getName()).log(Level.SEVERE, null, e);
+            PrintWriter out = response.getWriter();
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("  <head><title>CRITICAL ERROR Page</title></head>");
+            out.println("  <body>");
+            out.println("    <h3>" + e.getMessage() + "</h3><hr/>");
+            out.println("  </body>");
+            out.println("</html>");
         }
     }
 
@@ -63,7 +104,12 @@ public class FrontController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (StyklistException ex) {
+            Logger.getLogger(FrontController.class.getName()).log(Level.SEVERE,
+                    null, ex);
+        }
     }
 
     /**
@@ -77,7 +123,12 @@ public class FrontController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (StyklistException ex) {
+            Logger.getLogger(FrontController.class.getName()).log(Level.SEVERE,
+                    null, ex);
+        }
     }
 
     /**

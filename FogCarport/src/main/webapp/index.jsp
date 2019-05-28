@@ -6,25 +6,43 @@
 
 <jsp:include page='/JSP/siteheader.jsp'></jsp:include>
 
-<jsp:include page='/JSP/sitemenus.jsp'></jsp:include>
+
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
-<h1>Welcome to the Lego House Builder</h1>
-<table>
-    <tr><td>Login</td>
-        <td>
-            <form name="login" action="FrontController" method="POST">
+<br>
+<div class="container text-center " style="width: 20%">
+   
+<h1>Fog Carport</h1>
+
+
+<div class="alert alert-primary" role="alert">
+
+            
+    <form class="form-signin" action="FrontController" method="post">
+        <img class = "mb-4" src="img/logofog.png" alt="" width="110" height="100" />
                 <input type="hidden" name="command" value="login">
-                Email:<br>
-                <input type="text" name="email" value="jens@somewhere.com">
-                <br>
-                Password:<br>
-                <input type="password" name="password" value="jensen">
-                <br>
-                <input type="submit" value="Submit">
+                <div class="form-group">
+                    
+                    <label for="exampleInputEmail1">Email address</label>
+                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" name="email" value="">
+                    
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputPassword1">Password</label>
+                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" name="password" value="">
+                </div>
+                <div class="form-group form-check">
+
+                </div>
+
+                <button type="submit" class="btn btn-primary">Login</button>
+                <a class="nav-link" href="JSP/createNewUser.jsp" style="color: black">Register</a>
+
+                
             </form>
-        </td>
+        
+        <%--
         <td>Register</td>
         <td>
             <form name="register" action="FrontController" method="POST">
@@ -41,8 +59,11 @@
                 <input type="submit" value="Submit">
             </form>
         </td>
-    </tr>
-</table>
+        --%>
+
+        </div>
+</div>
+        
 <% String error = (String) request.getAttribute("error");
     if (error != null) {
         out.println("<H2>Error!!</h2>");

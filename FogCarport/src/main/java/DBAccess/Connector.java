@@ -7,15 +7,27 @@ import java.sql.SQLException;
 public class Connector {
 
     private String driver = "com.mysql.cj.jdbc.Driver";
-    private String url = "jdbc:mysql://167.99.209.155/fog";
+    private String url = "jdbc:mysql://167.99.209.155/fog?useUnicode=yes&characterEncoding=utf-8";
     private String user = "fog";
     private String password = "projectFog:12345";
     private Connection conn = null;
 
+    /**
+     * Sets the Connection object used to connect
+     *
+     * @param con
+     */
     public void setConnection(Connection con) {
         conn = con;
     }
 
+    /**
+     * Sets address for Connection object
+     *
+     * @return
+     * @throws ClassNotFoundException
+     * @throws SQLException
+     */
     public Connection connection() throws ClassNotFoundException, SQLException {
         if (conn == null) {
             try {
@@ -25,7 +37,6 @@ public class Connector {
                 ex.printStackTrace();
             }
         }
-
         return conn;
     }
 }
