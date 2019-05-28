@@ -4,3 +4,7 @@ body {
   background-image: url("../img/logofog.png");
   background-repeat: no-repeat;
 }
+
+#user {
+     text-align: right !important;
+}
