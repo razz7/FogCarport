@@ -1,73 +1,33 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package DBAccess;
 
 import FunctionLayer.LoginSampleException;
 import FunctionLayer.User;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
 
 /**
  *
- * @author Rasmus2
+ * @author Ludvig
  */
-public class UserMapper {
+public abstract class UserMapper {
 
-    private Connector dbc = new Connector();
-
-    public void createUser(User user) throws LoginSampleException {
-        try {
-            Connection con = dbc.connection();
-            String SQL = "INSERT INTO user (email, password, role) VALUES (?, ?, ?)";
-            PreparedStatement ps = con.prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS);
-            ps.setString(1, user.getEmail());
-            ps.setString(2, user.getPassword());
-            ps.setString(3, user.getRole());
-            ps.executeUpdate();
-            ResultSet ids = ps.getGeneratedKeys();
-            ids.next();
-            int id = ids.getInt(1);
-            user.setId(id);
-        } catch (SQLException | ClassNotFoundException ex) {
-            throw new LoginSampleException(ex.getMessage());
-        }
+    public static UserMapper instance() {
+        return UserDBMapper.getInstance();
     }
 
-    public User login(String email, String password) throws LoginSampleException {
-        try {
-            Connection con = dbc.connection();
-            String SQL = "SELECT id, role FROM user "
-                    + "WHERE email=? AND password=?";
-            PreparedStatement ps = con.prepareStatement(SQL);
-            ps.setString(1, email);
-            ps.setString(2, password);
-            ResultSet rs = ps.executeQuery();
-            if (rs.next()) {
-                String role = rs.getString("role");
-                int id = rs.getInt("id");
-                User user = new User(email, password, role);
-                user.setId(id);
-                return user;
-            } else {
-                throw new LoginSampleException("Could not validate user");
-            }
-        } catch (ClassNotFoundException | SQLException ex) {
-            throw new LoginSampleException(ex.getMessage());
-        }
-    }
+    public abstract void createUser(String email, String password, String role) throws LoginSampleException;
 
-    public void removeUser(User user) throws LoginSampleException {
-        try {
-            Connection con = dbc.connection();
-            String SQL = "DELETE FROM `useradmin`.`user`WHERE email=? AND password=?";
-            PreparedStatement ps = con.prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS);
-            ps.setString(1, user.getEmail());
-            ps.setString(2, user.getPassword());
-            ps.executeUpdate();
-        } catch (SQLException | ClassNotFoundException ex) {
-            throw new LoginSampleException(ex.getMessage());
-        }
-    }
+    public abstract User login(String email, String password) throws LoginSampleException;
+
+    public abstract boolean verifyUser(String email, String password) throws LoginSampleException;
+
+    public abstract void removeUser(User user) throws LoginSampleException;
+
+    public abstract User getUserByEmail(String email) throws LoginSampleException;
+
+    public abstract User getUserByID(int id) throws LoginSampleException;
 
 }

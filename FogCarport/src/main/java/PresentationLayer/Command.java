@@ -1,36 +1,18 @@
 package PresentationLayer;
 
+import FunctionLayer.FunctionManager;
 import FunctionLayer.LoginSampleException;
 import FunctionLayer.MaterialSampleException;
 import FunctionLayer.OrderSampleException;
-import java.util.HashMap;
+import FunctionLayer.StyklistException;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
-abstract class Command {
+public interface Command {
 
-    private HashMap<String, Command> commands;
-
-    private void initCommands() {
-        commands = new HashMap<>();
-        commands.put( "main", new MainPage() );
-        commands.put( "styklist", new StyklistPage() );
-        commands.put( "allmaterials", new StockMaterialsPage() );
-        commands.put( "editMaterial", new EditStockMaterialPage() );
-        commands.put( "updateMaterial", new UpdateMaterial() );
-        commands.put( "deleteMaterial", new DeleteStockMaterial() );
-        commands.put( "createMaterial", new CreateStockMaterial() );
-    }
-
-    Command from( HttpServletRequest request ) {
-        String commandName = request.getParameter( "command" );
-        if ( commands == null ) {
-            initCommands();
-        }
-        return commands.getOrDefault(commandName, new UnknownCommand() );
-    }
-
-    abstract String execute( HttpServletRequest request, HttpServletResponse response ) 
-            throws LoginSampleException, OrderSampleException, MaterialSampleException;
-
+    String execute( HttpServletRequest request, FunctionManager manager )  
+            throws LoginSampleException, OrderSampleException, MaterialSampleException, StyklistException, CommandException, ClassNotFoundException, NumberFormatException;
+    boolean loginStatus(HttpSession session);
+    boolean accesToPage(HttpSession session, String accesForRole);
+    
 }
