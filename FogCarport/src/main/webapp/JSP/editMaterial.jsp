@@ -12,7 +12,7 @@
     <br>
     <div class="container">
         <h2>Edit material!</h2>
-    </div>
+
 <%
     out.println("<div class=\"container\">");
     if (session.getAttribute("stockMaterial") != null) {
@@ -83,5 +83,5 @@
         out.println("</div>");
     }
 %>
-
+    </div>
 <jsp:include page='/JSP/sitefooter.jsp'></jsp:include>
