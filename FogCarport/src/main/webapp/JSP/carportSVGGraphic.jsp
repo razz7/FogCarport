@@ -5,7 +5,6 @@
 --%>
 
 <%@page import="java.util.HashMap"%>
-<%@page import="FunctionLayer.CarportAlgorithm"%>
 <%@page import="FunctionLayer.Order"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="FunctionLayer.Material"%>
@@ -21,32 +20,27 @@
     <br>
 
 <%
-    //Order order = new Order(1, 6000, 7800, 2300, 0, 5300, 2100);
-    //Order(int order_id, float width, float length, float height, float roofTilt, float shedWidth, float shedLength)
-    //carportAlgorithm(float width, float length, float roofTilt, float shedwidth, float shedLength, int styklist_id)
-
     Order order = null;
 
     if (session.getAttribute("order") != null) {
         order = (Order) session.getAttribute("order");
     }
-    CarportAlgorithm car = new CarportAlgorithm();
-    Stykliste styklist = car.carportAlgorithm(order.getWidth(), order.getLength(), order.getRoofTilt(), order.getShedWidth(), order.getShedLength(), 1);
-    order.setStyklist(styklist);
     HashMap<Integer, Material> materials = new HashMap<>();
     for (Material m : order.getStyklist().getStyklist()) {
         materials.put(m.getItem_id(), m);
     }
+
 %>
 <div class="container">
     <h3>Dine mål</h3>
+    <br>
     <h5><% out.println("getHeight" + order.getHeight()); %> </h5>
     <h5><% out.println("getLength" + order.getLength()); %> </h5>
     <h5><% out.println("getWidth" + order.getWidth()); %> </h5>
     <h5><% out.println("getRoofTilt" + order.getRoofTilt()); %> </h5>
     <h5><% out.println("getShedLength" + order.getShedLength()); %> </h5>
     <h5><% out.println("getShedWidth" + order.getShedWidth()); %> </h5>
-
+    <br>
     <%
         if (order.getRoofTilt() == 0) {
     %>
