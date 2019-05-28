@@ -39,7 +39,7 @@ public interface DatabaseFacadeInterface {
 
     public void saveOrder(Order order) throws OrderSampleException, StyklistException;
 
-    public void editLineItemsFromOrderID(int item_id, String item_description, float width, float height,
+    public void editLineItemsFromOrderID(int item_id, String item_description, float width, float length, float height,
             String entity, String materialtype, float price, int orderquantity, int order_id);
 
     public void saveLineItemsInDB(Stykliste styklist, int order_id) throws StyklistException;

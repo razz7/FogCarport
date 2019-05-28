@@ -10,7 +10,6 @@ import FunctionLayer.LoginSampleException;
 import FunctionLayer.MaterialSampleException;
 import FunctionLayer.Order;
 import FunctionLayer.OrderSampleException;
-import FunctionLayer.Stykliste;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -50,8 +49,6 @@ public class GraphicShopCommand implements Command {
         }
         session.setAttribute("order", null);
         Order order = (Order) session.getAttribute("shopOrder");
-        Stykliste styklist = manager.carportAlgorithm(order.getWidth(), order.getLength(), order.getRoofTilt(), order.getShedWidth(), order.getShedLength(), order.getOrder_id());
-        order.setStyklist(styklist);
         session.setAttribute("order", order);
 
         return target;

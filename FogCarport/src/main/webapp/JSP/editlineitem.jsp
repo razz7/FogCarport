@@ -23,6 +23,8 @@
         out.println("<input class=\"form-control\" type=\"text\" name=\"description\" value=" + "\"" + material.getItem_description() + "\"" + ">");
         out.println("<tr><td> Material width: </tr></td>");
         out.println("<input class=\"form-control\" type=\"text\" name=\"width\" value=" + "\"" + material.getWidth() + "\"" + ">");
+        out.println("<tr><td> Material length: </tr></td>");
+        out.println("<input class=\"form-control\" type=\"text\" name=\"length\" value=" + "\"" + material.getLength() + "\"" + ">");
         out.println("<tr><td> Material height: </tr></td>");
         out.println("<input class=\"form-control\" type=\"text\" name=\"height\" value=" + "\"" + material.getHeight() + "\"" + ">");
         out.println("<tr><td> Material entity: </tr></td>");

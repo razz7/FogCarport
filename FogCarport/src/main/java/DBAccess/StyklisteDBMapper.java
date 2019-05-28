@@ -59,23 +59,24 @@ public class StyklisteDBMapper extends StyklisteMapper {
      * @param order_id
      */
     @Override
-    public void editLineItemsFromOrderID(int item_id, String item_description, float width, float height,
+    public void editLineItemsFromOrderID(int item_id, String item_description, float width, float length, float height,
             String entity, String materialtype, float price, int orderquantity, int order_id) {
         try {
             Connection con = dbc.connection();
-            String sql = "UPDATE lineitems SET item_id=?, item_description=?, width=?, "
+            String sql = "UPDATE lineitems SET item_id=?, item_description=?, width=?, length=? "
                     + "height=?, entity=?, materialtype=?, price=?, orderquantity=? where order_id=? and item_id=?";
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, item_id);
             ps.setString(2, item_description);
             ps.setFloat(3, width);
-            ps.setFloat(4, height);
-            ps.setString(5, entity);
-            ps.setString(6, materialtype);
-            ps.setFloat(7, price);
-            ps.setInt(8, orderquantity);
-            ps.setInt(9, order_id);
-            ps.setInt(10, item_id);
+            ps.setFloat(4, length);
+            ps.setFloat(5, height);
+            ps.setString(6, entity);
+            ps.setString(7, materialtype);
+            ps.setFloat(8, price);
+            ps.setInt(9, orderquantity);
+            ps.setInt(10, order_id);
+            ps.setInt(11, item_id);
             ps.executeUpdate();
 
         } catch (SQLException | ClassNotFoundException ex) {
@@ -96,20 +97,21 @@ public class StyklisteDBMapper extends StyklisteMapper {
 
             Connection con = dbc.connection();
 
-            String sql = "INSERT INTO lineitems(item_id, order_id, item_description, width, height, entity, materialtype, price, orderquantity, versionnr)"
-                    + "VALUES (?,?,?,?,?,?,?,?,?,?)";
+            String sql = "INSERT INTO lineitems(item_id, order_id, item_description, width, length, height, entity, materialtype, price, orderquantity, versionnr)"
+                    + "VALUES (?,?,?,?,?,?,?,?,?,?,?)";
             PreparedStatement ps = con.prepareStatement(sql);
             for (int i = 0; i < lineitems.size(); i++) {
                 ps.setInt(1, lineitems.get(i).getItem_id());
                 ps.setInt(2, order_id);
                 ps.setString(3, lineitems.get(i).getItem_description());
                 ps.setFloat(4, lineitems.get(i).getWidth());
-                ps.setFloat(5, lineitems.get(i).getHeight());
-                ps.setString(6, lineitems.get(i).getEntity());
-                ps.setString(7, lineitems.get(i).getMaterialType());
-                ps.setFloat(8, lineitems.get(i).getPrice());
-                ps.setInt(9, lineitems.get(i).getStryklistQty());
-                ps.setInt(10, lineitems.get(i).getVersionnr());
+                ps.setFloat(5, lineitems.get(i).getLength());
+                ps.setFloat(6, lineitems.get(i).getHeight());
+                ps.setString(7, lineitems.get(i).getEntity());
+                ps.setString(8, lineitems.get(i).getMaterialType());
+                ps.setFloat(9, lineitems.get(i).getPrice());
+                ps.setInt(10, lineitems.get(i).getStryklistQty());
+                ps.setInt(11, lineitems.get(i).getVersionnr());
 
                 ps.executeUpdate();
             }

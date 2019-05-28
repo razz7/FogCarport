@@ -99,8 +99,8 @@ public class FogDataTest {
         try {
             ArrayList<Material> testArr = matMap.getAllMaterials();
             assertNotNull(testArr);
-            assertThat(testArr.get(7).getItem_description(), is("97x97 mm. trykimp. Stolpe"));
-            assertThat(testArr.get(8).getItem_description(), is("19x100 mm. trykimp. Brædt"));
+            assertThat(testArr.get(7).getItem_description(), is("plastmo bundskruer 200 stk."));
+            assertThat(testArr.get(8).getItem_description(), is("hulbånd 1x20 mm. 10 mtr."));
         } catch (MaterialSampleException me) {
             me.printStackTrace();
         }
@@ -221,7 +221,7 @@ public class FogDataTest {
             Stykliste styk = ordMap.getStyklistForOrder(testOrderId);
             assertNotNull(styk);
             int testLineitem = styk.getStyklist().get(testItem).getLineItemID();
-            styMap.editLineItemsFromOrderID(testLineitem, "testDescription", 8.0f, 8.0f, "testEntity", "testMaterialtype", 10.0f, 24, testOrderId);
+            styMap.editLineItemsFromOrderID(testLineitem, "testDescription", 8.0f, 8.0f, 8.0f, "testEntity", "testMaterialtype", 10.0f, 24, testOrderId);
             Material lineMat = styMap.getMaterialFromLineItems(testLineitem);
             assertThat(lineMat.getItem_description(), is("testDescription"));
         } catch (OrderSampleException oe) {

@@ -19,7 +19,7 @@ public abstract class StyklisteMapper {
         return StyklisteDBMapper.getInstance();
     }
 
-    public abstract void editLineItemsFromOrderID(int item_id, String item_description, float width, float height,
+    public abstract void editLineItemsFromOrderID(int item_id, String item_description, float width, float length, float height,
             String entity, String materialtype, float price, int orderquantity, int order_id);
 
     public abstract void saveLineItemsInDB(Stykliste styklist, int order_id);

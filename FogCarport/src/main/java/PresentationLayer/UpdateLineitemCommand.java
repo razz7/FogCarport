@@ -53,13 +53,14 @@ public class UpdateLineitemCommand implements Command {
         int lineitem_id = Integer.parseInt(request.getParameter("lineitemid"));
         String description = request.getParameter("description");
         float width = Float.parseFloat(request.getParameter("width"));
+        float length = Float.parseFloat(request.getParameter("length"));
         float height = Float.parseFloat(request.getParameter("height"));
         String entity = request.getParameter("entity");
         String type = request.getParameter("type");
         float price = Float.parseFloat(request.getParameter("price"));
         int qty = Integer.parseInt(request.getParameter("qty"));
 
-        manager.editLineItemsFromOrderID(lineitem_id, description, width, height, entity, type, price, qty, order_id);
+        manager.editLineItemsFromOrderID(lineitem_id, description, width, length, height, entity, type, price, qty, order_id);
 
         Order order = manager.getOrderFromId(order_id);
         session.setAttribute("order", order);
