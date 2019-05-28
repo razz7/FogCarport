@@ -109,34 +109,4 @@ public class Encryption {
 
         return returnValue;
     }
-
-//    public static void main(String[] args) {
-//
-//        Encryption encryption = new Encryption();
-//   String myPassword = "hejhej";
-//   String myPassword1 = "hejhej";
-//   String salt = encryption.generateSalt(30);
-//   String salt1 = encryption.generateSalt(30);
-//        
-//   
-//   String mySecurePassword = encryption.generateSecurePassword(myPassword, salt);
-//   String mySecurePassword1 = encryption.generateSecurePassword(myPassword1, salt1);
-//       
-//        
-//   
-//   boolean passwordMatch = encryption.verifyUserPassword(myPassword, mySecurePassword, salt);  
-//   Scanner scanner = new Scanner(System.in);
-//        String input = scanner.nextLine();
-//        
-//   if(encryption.verifyUserPassword(input, mySecurePassword, salt)) {
-//       
-//       System.out.println("Provid password : " + myPassword + " is correct");
-//       
-//   } else {System.out.println("Incorrect password");
-//   
-//   }  
-//   
-//    byte[] byteArray = { 50, 60, 100}; 
-//    String str = new String(byteArray);
-//        System.out.println(str);
 }
