@@ -6,7 +6,6 @@
 
 <%@page import="FunctionLayer.Order"%>
 <%@page import="java.util.ArrayList"%>
-<%@page import="DBAccess.DatabaseFacade"%>
 
 <jsp:include page='/JSP/siteheader.jsp'></jsp:include>
 
