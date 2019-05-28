@@ -44,11 +44,11 @@ public class LogoutCommand implements Command {
 
     @Override
     public boolean loginStatus(HttpSession session) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        throw new UnsupportedOperationException("Not supported yet."); 
     }
 
     @Override
     public boolean accesToPage(HttpSession session, String accesForRole) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        throw new UnsupportedOperationException("Not supported yet."); 
     }
 }

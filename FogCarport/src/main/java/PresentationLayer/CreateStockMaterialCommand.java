@@ -56,7 +56,6 @@ public class CreateStockMaterialCommand implements Command {
         float price = Float.parseFloat(request.getParameter("price"));
         int qty = Integer.parseInt(request.getParameter("qty"));
 
-        //DatabaseFacade df = new DatabaseFacade();
         manager.addNewMaterial(description, width, height, entity, type, price, qty);
 
         ArrayList<Material> materials = manager.getAllMaterials();
@@ -81,7 +80,7 @@ public class CreateStockMaterialCommand implements Command {
 
     @Override
     public boolean accesToPage(HttpSession session, String accesForRole) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        throw new UnsupportedOperationException("Not supported yet."); 
     }
 
 }

@@ -15,7 +15,6 @@
         Material material = (Material) session.getAttribute("lineitemToEdit");
         out.println("<form action=\"FrontController\" method=\"POST\">");
         out.println("<input type=\"hidden\" name=\"command\" value=\"updateLineitem\">");
-        //out.print("<div class=\"container\">");
 
         out.println("<input style=\"display: none\" type\"text\" name=\"lineitemid\" value=" + material.getLineItemID() + ">");
         out.println("<tr><td> Material id: </tr></td>");
@@ -40,7 +39,6 @@
 
         out.println("<form action=\"FrontController\" method=\"post\">");
 
-        //out.println("</div>");
     }
 %>
 

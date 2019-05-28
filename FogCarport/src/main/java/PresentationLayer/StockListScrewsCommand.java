@@ -48,7 +48,6 @@ public class StockListScrewsCommand implements Command {
         if (loginStatus(session)) {
             return "index.jsp";
         }
-        //DatabaseFacade df = new DatabaseFacade();
         ArrayList<Material> materials = manager.getAllMaterialbyType("Beslag & Skruer");
         System.out.println(materials);
 
@@ -74,7 +73,7 @@ public class StockListScrewsCommand implements Command {
 
     @Override
     public boolean accesToPage(HttpSession session, String accesForRole) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        throw new UnsupportedOperationException("Not supported yet."); 
     }
 
 }

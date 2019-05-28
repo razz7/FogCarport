@@ -5,11 +5,9 @@
 --%>
 
 <%@page import="FunctionLayer.Order"%>
-<%@page import="FunctionLayer.CarportAlgorithm"%>
 <%@page import="FunctionLayer.Stykliste"%>
 <%@page import="FunctionLayer.Material"%>
 <%@page import="java.util.ArrayList"%>
-<%@page import="FunctionLayer.User"%>
 <jsp:include page='/JSP/siteheader.jsp'></jsp:include>
 
 <jsp:include page='/JSP/sitemenus.jsp'></jsp:include>

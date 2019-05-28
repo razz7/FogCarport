@@ -6,7 +6,6 @@
 
 <%@page import="java.util.ArrayList"%>
 <%@page import="FunctionLayer.Material"%>
-<%@page import="FunctionLayer.Material"%>
 <%@page import="FunctionLayer.Stykliste"%>
 <jsp:include page='/JSP/siteheader.jsp'></jsp:include>
 
@@ -80,7 +79,7 @@
                 </div>
             </form>
 
-        <jsp:include page='/JSP/sitefooter.jsp'></jsp:include>
+<jsp:include page='/JSP/sitefooter.jsp'></jsp:include>
 
 
 

@@ -51,7 +51,6 @@ public class DeleteStockMaterialCommand implements Command {
 
         int id = Integer.parseInt(request.getParameter("chosenStockMaterial"));
 
-        //DatabaseFacade df = new DatabaseFacade();
         manager.deleteMaterial(id);
 
         ArrayList<Material> materials = manager.getAllMaterials();
@@ -76,6 +75,6 @@ public class DeleteStockMaterialCommand implements Command {
 
     @Override
     public boolean accesToPage(HttpSession session, String accesForRole) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        throw new UnsupportedOperationException("Not supported yet."); 
     }
 }

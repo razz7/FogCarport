@@ -32,7 +32,6 @@
 
                 for (int i = 0; i < orders.size(); i++) {
 
-                    //out.println("<form action=\"FrontController\" method=\"POST\">");
                     out.print("<tr><td>" + orders.get(i).getOrder_id() + "</td>");
                     out.print("<td>" + orders.get(i).getWidth() + "</td>");
                     out.print("<td>" + orders.get(i).getLength() + "</td>");
@@ -47,7 +46,6 @@
 
                     out.print("<td>" + orders.get(i).getOrderdate() + "</td>");
                     out.print("<td>" + orders.get(i).getUser().getId() + "</td>");
-                    //out.print("<td>"  + orders.get(i).getUser().getEmail() + "</td>");
                     out.print("<td>");
                     out.println("<form action=\"FrontController\" method=\"post\">");
                     out.println("<input type=\"hidden\" name=\"command\" value=\"styklistpage\">");

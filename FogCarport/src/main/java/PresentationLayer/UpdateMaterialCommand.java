@@ -52,7 +52,6 @@ public class UpdateMaterialCommand implements Command {
         }
         ArrayList<Material> materials = manager.getAllMaterials();
 
-        //String regexLetter = "^(?=.*\\pL)[\\pL\\pN]+(?:[ -]+[\\pL\\pN]+)*$";
         String regexNumber = ".*\\d.*";
 
         if (request.getParameter("id") != null && request.getParameter("description") != null && request.getParameter("width") != null && request.getParameter("height") != null && request.getParameter("entity") != null && request.getParameter("type") != null && request.getParameter("price") != null && request.getParameter("qty") != null) {
@@ -98,6 +97,6 @@ public class UpdateMaterialCommand implements Command {
 
     @Override
     public boolean accesToPage(HttpSession session, String accesForRole) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 }

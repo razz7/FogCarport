@@ -51,8 +51,6 @@ public class CommandFactory {
         commands.put("graphicShop", new GraphicShopCommand("JSP/carportSVGGraphic.jsp"));
 
     }
-    //synchronized
-    //only one thread at a time
     
     /**
      * Returns a command object based of the String it receives as parameter

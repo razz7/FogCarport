@@ -57,13 +57,11 @@ class OrderPageCommand implements Command {
         float shedLength = Float.parseFloat(request.getParameter("shedLength"));
         float shedWidth = Float.parseFloat(request.getParameter("shedWidth"));
         float roofTilt = Integer.parseInt(request.getParameter("roof"));
-//        String name = request.getParameter("name");
         float height = 2300;
 
         if (width > 7500 || width < 2400 || length > 7800 || length < 2400 || shedLength > 6900 || shedLength < 1500 || shedWidth > 7200 || shedWidth < 2100 || roofTilt > 45 || roofTilt < 0) {
             return target;
         } else {
-//            User user = new User(name, 1, "");
             User user = (User) session.getAttribute("user");
             Order order = new Order(id, width, length, height, roofTilt, shedWidth, shedLength);
             order.setUser(user);
@@ -97,6 +95,6 @@ class OrderPageCommand implements Command {
 
     @Override
     public boolean accesToPage(HttpSession session, String accesForRole) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        throw new UnsupportedOperationException("Not supported yet."); 
     }
 }
