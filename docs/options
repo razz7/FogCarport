@@ -1,0 +1,24 @@
+-classpath
+'/Users/Rumle/.m2/repository/mysql/mysql-connector-java/8.0.15/mysql-connector-java-8.0.15.jar:/Users/Rumle/.m2/repository/com/google/protobuf/protobuf-java/3.6.1/protobuf-java-3.6.1.jar:/Users/Rumle/.m2/repository/javax/javaee-web-api/7.0/javaee-web-api-7.0.jar:/Users/Rumle/.m2/repository/javax/servlet/jstl/1.2/jstl-1.2.jar'
+-encoding
+'UTF-8'
+-protected
+-sourcepath
+'/Users/Rumle/NetBeansProjects/FogCarport/FogCarport/src/main/java'
+-author
+-bottom
+'Copyright &#169; 2019. All rights reserved.'
+-charset
+'UTF-8'
+-d
+'/Users/Rumle/NetBeansProjects/FogCarport/FogCarport/target/site/apidocs'
+-docencoding
+'UTF-8'
+-doctitle
+'FogCarportPublic 1.0-SNAPSHOT API'
+-linkoffline
+'https://docs.oracle.com/javase/8/docs/api' '/Users/Rumle/NetBeansProjects/FogCarport/FogCarport/target/javadoc-bundle-options'
+-use
+-version
+-windowtitle
+'FogCarportPublic 1.0-SNAPSHOT API'
