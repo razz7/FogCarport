@@ -4,6 +4,10 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+/**
+ *
+ * @author Rasmus2
+ */
 public class Connector {
 
     private String driver = "com.mysql.cj.jdbc.Driver";

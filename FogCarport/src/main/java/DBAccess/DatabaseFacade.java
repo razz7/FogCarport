@@ -17,7 +17,7 @@ import java.util.ArrayList;
 
 /**
  *
- * @author rasmu
+ * @author Rasmus2
  */
 public class DatabaseFacade implements DatabaseFacadeInterface {
 
@@ -83,9 +83,9 @@ public class DatabaseFacade implements DatabaseFacadeInterface {
     }
 
     @Override
-    public void editLineItemsFromOrderID(int lineitem_id, String item_description, float width, float height, String entity, String materialtype, float price, int orderquantity, int order_id) {
+    public void editLineItemsFromOrderID(int lineitem_id, String item_description, float width, float length, float height, String entity, String materialtype, float price, int orderquantity, int order_id) {
         StyklisteDBMapper map = new StyklisteDBMapper();
-        map.editLineItemsFromOrderID(lineitem_id, item_description, width, height, entity, materialtype, price, orderquantity, order_id);
+        map.editLineItemsFromOrderID(lineitem_id, item_description, width, length, height, entity, materialtype, price, orderquantity, order_id);
 
     }
 

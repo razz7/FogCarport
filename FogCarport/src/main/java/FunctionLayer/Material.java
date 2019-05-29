@@ -7,7 +7,7 @@ package FunctionLayer;
 
 /**
  *
- * @author rasmu
+ * @author Rasmus2
  */
 public class Material {
 

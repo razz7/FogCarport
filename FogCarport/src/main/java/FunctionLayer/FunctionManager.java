@@ -26,9 +26,9 @@ public class FunctionManager implements DatabaseFacadeInterface, LogicFacadeInte
     private Encryption ec = new Encryption();
 
     @Override
-    public void editLineItemsFromOrderID(int item_id, String item_description, float width, float height,
+    public void editLineItemsFromOrderID(int item_id, String item_description, float width, float length, float height,
             String entity, String materialtype, float price, int orderquantity, int order_id) {
-        StykMapper.editLineItemsFromOrderID(item_id, item_description, width, height,
+        StykMapper.editLineItemsFromOrderID(item_id, item_description, width, length, height,
                 entity, materialtype, price, orderquantity, order_id);
     }
 

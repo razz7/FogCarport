@@ -8,6 +8,10 @@ import FunctionLayer.StyklistException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+/**
+ *
+ * @author Rasmus2
+ */
 public interface Command {
 
     String execute( HttpServletRequest request, FunctionManager manager )  

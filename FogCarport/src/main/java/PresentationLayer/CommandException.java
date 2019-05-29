@@ -5,6 +5,10 @@
  */
 package PresentationLayer;
 
+/**
+ *
+ * @author Rasmus2
+ */
 public class CommandException extends Exception {
 
     private final String target;
