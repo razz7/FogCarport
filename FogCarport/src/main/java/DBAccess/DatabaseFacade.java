@@ -77,13 +77,13 @@ public class DatabaseFacade implements DatabaseFacadeInterface {
     }
 
     @Override
-    public void saveOrder(Order order) throws OrderSampleException {
+    public void saveOrder(Order order) throws OrderSampleException, StyklistException {
         OrderDBMapper map = new OrderDBMapper();
         map.saveOrder(order);
     }
 
     @Override
-    public void editLineItemsFromOrderID(int lineitem_id, String item_description, float width, float length, float height, String entity, String materialtype, float price, int orderquantity, int order_id) {
+    public void editLineItemsFromOrderID(int lineitem_id, String item_description, float width, float length, float height, String entity, String materialtype, float price, int orderquantity, int order_id) throws StyklistException {
         StyklisteDBMapper map = new StyklisteDBMapper();
         map.editLineItemsFromOrderID(lineitem_id, item_description, width, length, height, entity, materialtype, price, orderquantity, order_id);
 

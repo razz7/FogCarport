@@ -7,6 +7,7 @@ package DBAccess;
 
 import FunctionLayer.Order;
 import FunctionLayer.OrderSampleException;
+import FunctionLayer.StyklistException;
 import FunctionLayer.Stykliste;
 import java.util.ArrayList;
 
@@ -22,7 +23,7 @@ public abstract class OrderMapper {
 
     public abstract Stykliste getStyklistForOrder(int order_id) throws OrderSampleException;
 
-    public abstract void saveOrder(Order order) throws OrderSampleException;
+    public abstract void saveOrder(Order order) throws OrderSampleException, StyklistException;
 
     public abstract void finalizeOrder(int order_id) throws OrderSampleException;
 

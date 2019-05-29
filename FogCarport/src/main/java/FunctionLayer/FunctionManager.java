@@ -27,13 +27,13 @@ public class FunctionManager implements DatabaseFacadeInterface, LogicFacadeInte
 
     @Override
     public void editLineItemsFromOrderID(int item_id, String item_description, float width, float length, float height,
-            String entity, String materialtype, float price, int orderquantity, int order_id) {
+            String entity, String materialtype, float price, int orderquantity, int order_id) throws StyklistException {
         StykMapper.editLineItemsFromOrderID(item_id, item_description, width, length, height,
                 entity, materialtype, price, orderquantity, order_id);
     }
 
     @Override
-    public void saveLineItemsInDB(Stykliste styklist, int order_id) {
+    public void saveLineItemsInDB(Stykliste styklist, int order_id) throws StyklistException {
         StykMapper.saveLineItemsInDB(styklist, order_id);
     }
 
@@ -58,7 +58,7 @@ public class FunctionManager implements DatabaseFacadeInterface, LogicFacadeInte
     }
 
     @Override
-    public void saveOrder(Order order) throws OrderSampleException {
+    public void saveOrder(Order order) throws OrderSampleException, StyklistException {
         OrdMapper.saveOrder(order);
     }
 

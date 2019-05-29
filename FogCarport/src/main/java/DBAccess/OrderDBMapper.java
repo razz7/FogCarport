@@ -4,6 +4,7 @@ import FunctionLayer.LoginSampleException;
 import FunctionLayer.Material;
 import FunctionLayer.Order;
 import FunctionLayer.OrderSampleException;
+import FunctionLayer.StyklistException;
 import FunctionLayer.Stykliste;
 import FunctionLayer.User;
 import java.sql.Connection;
@@ -13,6 +14,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class OrderDBMapper extends OrderMapper {
 
@@ -155,7 +158,7 @@ public class OrderDBMapper extends OrderMapper {
      * @throws OrderSampleException
      */
     @Override
-    public void saveOrder(Order order) throws OrderSampleException {
+    public void saveOrder(Order order) throws OrderSampleException, StyklistException {
         try {
             String sql = "INSERT INTO orders (width, length, rooftilt, shedwidth, shedlength, status, customer_id, orderdate)"
                     + "VALUES(?,?,?,?,?,?,?,?)";
@@ -187,6 +190,8 @@ public class OrderDBMapper extends OrderMapper {
 
         } catch (SQLException | ClassNotFoundException ex) {
             throw new OrderSampleException(ex.getMessage());
+        } catch (StyklistException ex) {
+            throw new StyklistException(ex.getMessage());
         }
 
     }
