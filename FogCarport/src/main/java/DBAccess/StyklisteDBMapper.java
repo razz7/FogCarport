@@ -65,20 +65,19 @@ public class StyklisteDBMapper extends StyklisteMapper {
             String entity, String materialtype, float price, int orderquantity, int order_id) throws StyklistException {
         try {
             Connection con = dbc.connection();
-            String sql = "UPDATE lineitems SET item_id=?, item_description=?, width=?, length=?, "
+            String sql = "UPDATE lineitems SET item_description=?, width=?, length=?, "
                     + "height=?, entity=?, materialtype=?, price=?, orderquantity=? where order_id=? and lineitems_id=?";
             PreparedStatement ps = con.prepareStatement(sql);
-            ps.setInt(1, item_id);
-            ps.setString(2, item_description);
-            ps.setFloat(3, width);
-            ps.setFloat(4, length);
-            ps.setFloat(5, height);
-            ps.setString(6, entity);
-            ps.setString(7, materialtype);
-            ps.setFloat(8, price);
-            ps.setInt(9, orderquantity);
-            ps.setInt(10, order_id);
-            ps.setInt(11, item_id);
+            ps.setString(1, item_description);
+            ps.setFloat(2, width);
+            ps.setFloat(3, length);
+            ps.setFloat(4, height);
+            ps.setString(5, entity);
+            ps.setString(6, materialtype);
+            ps.setFloat(7, price);
+            ps.setInt(8, orderquantity);
+            ps.setInt(9, order_id);
+            ps.setInt(10, item_id);
             ps.executeUpdate();
 
         } catch (SQLException | ClassNotFoundException ex) {
