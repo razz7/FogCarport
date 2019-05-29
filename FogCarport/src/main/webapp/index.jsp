@@ -32,9 +32,7 @@
                     <label for="exampleInputPassword1">Password</label>
                     <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" name="password" value="">
                 </div>
-                <div class="form-group form-check">
 
-                </div>
 
                 <button type="submit" class="btn btn-primary">Login</button>
                 <a class="nav-link" href="JSP/createNewUser.jsp" style="color: black">Register</a>
