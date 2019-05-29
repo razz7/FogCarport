@@ -50,13 +50,11 @@ public class UpdateLineitemCommand implements Command {
             return "index.jsp";
         }
         Order order = (Order) request.getSession().getAttribute("order");
-        System.out.println("THIS IS THE ORDER ID" + order.getOrder_id());
         int lineitem_id = Integer.parseInt(request.getParameter("lineitemid"));
         String description = request.getParameter("description");
         float width = Float.parseFloat(request.getParameter("width"));
         float length = Float.parseFloat(request.getParameter("length"));
         float height = Float.parseFloat(request.getParameter("height"));
-        System.out.println("THIS IS THE ORDER HEIGHT " + height);
         String entity = request.getParameter("entity");
         String type = request.getParameter("type");
         float price = Float.parseFloat(request.getParameter("price"));
