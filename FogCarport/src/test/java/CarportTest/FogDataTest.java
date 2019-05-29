@@ -143,7 +143,7 @@ public class FogDataTest {
     }
 
     @Test
-    public void testSaveOrder() throws OrderSampleException, SQLException {
+    public void testSaveOrder() throws OrderSampleException, SQLException, StyklistException {
         try {
             Order testOrder = new Order(1, 6000, 7800, 2300, 0, 3333, 2100);
             assertNotNull(testOrder);

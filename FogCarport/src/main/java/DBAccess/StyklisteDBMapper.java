@@ -13,8 +13,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -53,20 +51,22 @@ public class StyklisteDBMapper extends StyklisteMapper {
      * @param item_id
      * @param item_description
      * @param width
+     * @param length
      * @param height
      * @param entity
      * @param materialtype
      * @param price
      * @param orderquantity
      * @param order_id
+     * @throws FunctionLayer.StyklistException
      */
     @Override
     public void editLineItemsFromOrderID(int item_id, String item_description, float width, float length, float height,
             String entity, String materialtype, float price, int orderquantity, int order_id) throws StyklistException {
         try {
             Connection con = dbc.connection();
-            String sql = "UPDATE lineitems SET item_id=?, item_description=?, width=?, length=? "
-                    + "height=?, entity=?, materialtype=?, price=?, orderquantity=? where order_id=? and item_id=?";
+            String sql = "UPDATE lineitems SET item_id=?, item_description=?, width=?, length=?, "
+                    + "height=?, entity=?, materialtype=?, price=?, orderquantity=? where order_id=? and lineitems_id=?";
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, item_id);
             ps.setString(2, item_description);
@@ -91,6 +91,7 @@ public class StyklisteDBMapper extends StyklisteMapper {
      *
      * @param styklist
      * @param order_id
+     * @throws FunctionLayer.StyklistException
      */
     @Override
     public void saveLineItemsInDB(Stykliste styklist, int order_id) throws StyklistException{
