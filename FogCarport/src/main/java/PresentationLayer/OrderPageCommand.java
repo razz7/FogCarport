@@ -10,6 +10,7 @@ import FunctionLayer.LoginSampleException;
 import FunctionLayer.MaterialSampleException;
 import FunctionLayer.Order;
 import FunctionLayer.OrderSampleException;
+import FunctionLayer.StyklistException;
 import FunctionLayer.Stykliste;
 import FunctionLayer.User;
 import javax.servlet.http.HttpServletRequest;
@@ -46,7 +47,7 @@ class OrderPageCommand implements Command {
      * @throws MaterialSampleException
      */
     @Override
-    public String execute(HttpServletRequest request, FunctionManager manager) throws LoginSampleException, OrderSampleException, MaterialSampleException {
+    public String execute(HttpServletRequest request, FunctionManager manager) throws LoginSampleException, OrderSampleException, MaterialSampleException, StyklistException {
 
         HttpSession session = request.getSession();
         if (loginStatus(session)) {

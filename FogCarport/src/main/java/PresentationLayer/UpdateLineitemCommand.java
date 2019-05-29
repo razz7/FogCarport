@@ -49,21 +49,21 @@ public class UpdateLineitemCommand implements Command {
         if (loginStatus(session)) {
             return "index.jsp";
         }
-        int order_id = (Integer) request.getSession().getAttribute("specificOrder");
+        Order order = (Order) request.getSession().getAttribute("order");
+        System.out.println("THIS IS THE ORDER ID" + order.getOrder_id());
         int lineitem_id = Integer.parseInt(request.getParameter("lineitemid"));
         String description = request.getParameter("description");
         float width = Float.parseFloat(request.getParameter("width"));
         float length = Float.parseFloat(request.getParameter("length"));
         float height = Float.parseFloat(request.getParameter("height"));
+        System.out.println("THIS IS THE ORDER HEIGHT " + height);
         String entity = request.getParameter("entity");
         String type = request.getParameter("type");
         float price = Float.parseFloat(request.getParameter("price"));
         int qty = Integer.parseInt(request.getParameter("qty"));
 
-        manager.editLineItemsFromOrderID(lineitem_id, description, width, length, height, entity, type, price, qty, order_id);
+        manager.editLineItemsFromOrderID(lineitem_id, description, width, length, height, entity, type, price, qty, order.getOrder_id());
 
-        Order order = manager.getOrderFromId(order_id);
-        session.setAttribute("order", order);
         session.setAttribute("list", order.getStyklist());
 
         return target;
