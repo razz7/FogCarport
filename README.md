@@ -11,7 +11,7 @@ How to get started:
 
 Prerequisites for running the application:
 1.	Java version 1.8.0_181 or newer is required - download the newest version of java at: https://www.java.com/en/
-2.	Windows 8 or Mac OSX 10.12 version or newer is required
+2.	Windows 8 or Mac OSX 10.12 or Linux ubuntu 18.04 LTS version or newer is required
 3.	Apache Tomcat/9.0.16
 
 
