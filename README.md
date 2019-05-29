@@ -14,5 +14,9 @@ Prerequisites for running the application:
 2.	Windows 8 or Mac OSX 10.12 or Linux ubuntu 18.04 LTS version or newer is required
 3.	Apache Tomcat/9.0.16
 
+Javadoc: 
+The full java documentation can be found at:
+https://razz7.github.io/FogCarport/
+
 
 Contributors: Rasmus Hemmingsen, Rasmus Prætorius, Ditlev Andersen, Ludvig Bramsen
