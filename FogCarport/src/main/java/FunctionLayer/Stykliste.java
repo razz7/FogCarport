@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 /**
  *
- * @author rasmu
+ * @author Rasmus2
  */
 public class Stykliste {
     private final ArrayList<Material> styklist;

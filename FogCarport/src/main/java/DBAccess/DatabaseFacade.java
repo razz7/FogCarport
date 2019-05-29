@@ -17,7 +17,7 @@ import java.util.ArrayList;
 
 /**
  *
- * @author rasmu
+ * @author Rasmus2
  */
 public class DatabaseFacade implements DatabaseFacadeInterface {
 

@@ -15,7 +15,7 @@ import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author Ludvig
+ * @author Rasmus2
  */
 public class GraphicCommand implements Command {
 
