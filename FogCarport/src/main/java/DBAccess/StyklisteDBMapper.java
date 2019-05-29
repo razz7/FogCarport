@@ -13,6 +13,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -60,7 +62,7 @@ public class StyklisteDBMapper extends StyklisteMapper {
      */
     @Override
     public void editLineItemsFromOrderID(int item_id, String item_description, float width, float length, float height,
-            String entity, String materialtype, float price, int orderquantity, int order_id) {
+            String entity, String materialtype, float price, int orderquantity, int order_id) throws StyklistException {
         try {
             Connection con = dbc.connection();
             String sql = "UPDATE lineitems SET item_id=?, item_description=?, width=?, length=? "
@@ -80,7 +82,7 @@ public class StyklisteDBMapper extends StyklisteMapper {
             ps.executeUpdate();
 
         } catch (SQLException | ClassNotFoundException ex) {
-
+            throw new StyklistException(ex.getMessage());
         }
     }
 
@@ -91,7 +93,7 @@ public class StyklisteDBMapper extends StyklisteMapper {
      * @param order_id
      */
     @Override
-    public void saveLineItemsInDB(Stykliste styklist, int order_id) {
+    public void saveLineItemsInDB(Stykliste styklist, int order_id) throws StyklistException{
         try {
             ArrayList<Material> lineitems = styklist.getStyklist();
 
@@ -116,7 +118,7 @@ public class StyklisteDBMapper extends StyklisteMapper {
                 ps.executeUpdate();
             }
         } catch (SQLException | ClassNotFoundException ex) {
-
+                throw new StyklistException(ex.getMessage());
         }
 
     }
