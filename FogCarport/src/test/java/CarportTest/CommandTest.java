@@ -112,6 +112,6 @@ public class CommandTest {
         Command command = new LoginCommand("JSP/home.jsp");
         String target = command.execute(request, manager);
         assertThat(target, is("JSP/home.jsp"));
-    }
+    } 
 
 }
