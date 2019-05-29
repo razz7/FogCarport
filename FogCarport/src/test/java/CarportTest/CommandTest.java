@@ -94,10 +94,10 @@ public class CommandTest {
 
     @Test
     public void testLoginCommand() throws LoginSampleException, OrderSampleException, MaterialSampleException, StyklistException, CommandException, ClassNotFoundException {
-        when(request.getParameter("email")).thenReturn("John123@Johnmail.com");
-        when(request.getParameter("password")).thenReturn("qwe");
-        when(manager.verifyUser("John123@Johnmail.com", "qwe")).thenReturn(true);
-        when(manager.getUserByEmail("John123@Johnmail.com")).thenReturn(users);
+        when(request.getParameter("email")).thenReturn("hej@hej.dk");
+        when(request.getParameter("password")).thenReturn("hej");
+        when(manager.verifyUser("hej@hej.dk", "hej")).thenReturn(true);
+        when(manager.getUserByEmail("hej@hej.dk")).thenReturn(users);
         when(request.getSession()).thenReturn(session);
         doAnswer(
                 invocation -> {
