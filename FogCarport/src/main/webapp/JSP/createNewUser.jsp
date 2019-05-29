@@ -6,23 +6,30 @@
 <jsp:include page='/JSP/siteheader.jsp'></jsp:include>
 
 
+<br>
+<div class="container text-center " style="width: 20%">
 
-<div class="container text-center" style="margin-top: 200px"> 
-
-    <td>Register</td>
-    <td>
+    <div class="alert alert-primary" role="alert">
+    
+    
+        <img class = "mb-4" src="img/logofog.png" alt="" width="110" height="100" />
+                <input type="hidden" name="command" value="login">
+                
         <form name="register" action="FrontController" method="POST">
+            
             <input type="hidden" name="command" value="createuser">
-            Email:<br>
-            <input type="email" name="email" value="" aria-describedby="emailHelp" placeholder="Enter email">
-            <br>
-            Password:<br>
-            <input type="password" name="password1" value="" placeholder="Password">
-            <br>
-            Retype Password:<br>
-            <input type="password" name="password2" value="" placeholder="Password">
-            <br>
-            <input type="submit" value="Submit">
+            <label for="email" >Email</label>
+            <input type="email" name="email" id="email" value="" aria-describedby="emailHelp" placeholder="Enter email">
+            
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password1" value="" placeholder="Password">
+            
+            <label for="password2">Retype password</label>
+            <input type="password" id="password2" name="password2" value="" placeholder="Password">
+            <br/>
+            <br/>
+            <button type="submit" class="btn btn-primary">Submit</button>
         </form>
 
 </div>
+</div>   
