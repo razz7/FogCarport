@@ -59,7 +59,7 @@ CREATE TABLE IF NOT EXISTS `fog`.`orders` (
   `status` TINYINT(4) NULL DEFAULT '0',
   `customer_id` INT(11) NULL DEFAULT NULL,
   `orderdate` DATE NULL DEFAULT NULL,
-  `customername` VARCHAR(45) NULL DEFAULT NULL,
+  `price` NULL FLOAT DEFAULT '0',
   PRIMARY KEY (`order_id`));
 
 
